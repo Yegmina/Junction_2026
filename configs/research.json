@@ -1,0 +1,76 @@
+{
+  "experiment": "gemma-thermal-research-v1",
+  "seed": 20261114,
+  "google_cloud_budget_eur": 1000,
+  "allow_non_google_cash": false,
+  "primary_model": "google/gemma-4-12B-it",
+  "reference_model": "google/gemma-4-31B-it",
+  "gemini": {
+    "backend": "developer_api",
+    "key_file_env": "AEROROZUM_GEMINI_KEY_FILE",
+    "allow_enterprise_fallback": false,
+    "usage_mode": "high_volume",
+    "concurrency": 8,
+    "max_concurrency": 128,
+    "quota_utilization": 0.8,
+    "teacher_model": "gemini-4-carbon",
+    "bulk_model": "gemini-4-argon",
+    "reserve_output_tokens": 2048,
+    "max_retries": 5,
+    "requests_per_minute": 60,
+    "input_tokens_per_minute": 200000,
+    "max_requests": 200000,
+    "project_quota_verified": false
+  },
+  "dataset_zip": "/home/yehormsi/Downloads/Telegram Desktop/reviwedreviewed_deataset.zip",
+  "counts": {
+    "physical_pairs": 64,
+    "validation_pairs": 16,
+    "direct_scenes": 24,
+    "images": 30000,
+    "train_campaigns": 512,
+    "validation_campaigns": 64,
+    "fast_test_campaigns": 72,
+    "direct_test_campaigns": 24,
+    "training_seeds": [
+      17,
+      43,
+      91
+    ],
+    "frontier_repetitions": 3
+  },
+  "campaign": {
+    "width_m": 64,
+    "height_m": 64,
+    "day_seconds": 86400,
+    "max_sorties": 6,
+    "sortie_seconds": 600,
+    "max_actions": 128,
+    "turnaround_seconds": 1800
+  },
+  "camera": {
+    "width": 640,
+    "height": 512,
+    "hfov_deg": 100,
+    "vfov_deg": 82,
+    "calibrated": false
+  },
+  "physics": {
+    "solver": "DuMux",
+    "version": "3.10.0",
+    "coupled_moisture": true,
+    "allow_demo_for_research": false,
+    "energy_mass_tolerance": 0.005,
+    "direct_temperature_absolute_tolerance_k": 0.02,
+    "direct_relative_tolerance": 0.02,
+    "surrogate_relative_tolerance": 0.05
+  },
+  "training": {
+    "lora_rank": 16,
+    "grpo_group_size": 4,
+    "microbatch": 1,
+    "decision_window_actions": 8,
+    "compatibility_updates": 10,
+    "allow_2b_fallback": false
+  }
+}

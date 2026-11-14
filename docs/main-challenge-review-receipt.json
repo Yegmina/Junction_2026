@@ -1,0 +1,178 @@
+{
+  "index": "https://junction2026.com/challenges",
+  "main_challenges_reviewed": 19,
+  "decision": "AfterQuery \u2014 Break the Agent",
+  "sources": [
+    {
+      "partner": "Hostinger",
+      "title": "Decode the Noise",
+      "url": "https://junction2026.com/challenges/hostinger-decode-the-noise",
+      "retrieved_at": "2026-11-14T13:30:39.017639+00:00",
+      "content_sha256": "318b58c9eefa4ae186c0639ff10f11ff61526b5d5bcfc60c76c4e258a1427225",
+      "retrieval": "Chromium rendered visible text",
+      "fit_assessment": "Poor"
+    },
+    {
+      "partner": "Tieto",
+      "title": "Earned Trust in AI Code",
+      "url": "https://junction2026.com/challenges/tieto-earned-trust-in-ai-code",
+      "retrieved_at": "2026-11-14T13:30:39.017693+00:00",
+      "content_sha256": "0e8bb547accbfe09e8b26833b5d87a37279a422ea696ae1c5c9cb561dab02e47",
+      "retrieval": "Chromium rendered visible text",
+      "fit_assessment": "Poor"
+    },
+    {
+      "partner": "Bahn Express",
+      "title": "Spread",
+      "url": "https://junction2026.com/challenges/bahn-express-spread",
+      "retrieved_at": "2026-11-14T13:30:39.017711+00:00",
+      "content_sha256": "5ce147e32650aa20bfcda1c1bf26b644baf82555a2f69ef7bf931a2f106baafc",
+      "retrieval": "Chromium rendered visible text",
+      "fit_assessment": "Poor"
+    },
+    {
+      "partner": "AfterQuery",
+      "title": "Break the Agent",
+      "url": "https://junction2026.com/challenges/afterquery-break-the-agent",
+      "retrieved_at": "2026-11-14T13:30:39.017722+00:00",
+      "content_sha256": "7099fb8e3ef783faa935c14ec148402058f97ecd2870e3d052cf87d713e89b3e",
+      "retrieval": "Chromium rendered visible text",
+      "fit_assessment": "Best fit"
+    },
+    {
+      "partner": "Valio Aimo",
+      "title": "Trusted Trade Agents",
+      "url": "https://junction2026.com/challenges/valio-aimo-trusted-trade-agents",
+      "retrieved_at": "2026-11-14T13:30:39.017738+00:00",
+      "content_sha256": "396cabbb7a70bd84ebf7d9fdd73ef17e05b2be8411d42f4fba5994dd39f1a6e8",
+      "retrieval": "Chromium rendered visible text",
+      "fit_assessment": "Poor"
+    },
+    {
+      "partner": "Exa",
+      "title": "The Internet Butler / Your Personal Assistant",
+      "url": "https://junction2026.com/challenges/exa-the-internet-butler-your-personal-assistant",
+      "retrieved_at": "2026-11-14T13:30:39.017756+00:00",
+      "content_sha256": "090e689cd64e8fe89d0b3a47b1521840b379fc1537d4d59194a776d3e9014118",
+      "retrieval": "Chromium rendered visible text",
+      "fit_assessment": "Possible pivot"
+    },
+    {
+      "partner": "Arduino",
+      "title": "The Green European Renaissance",
+      "url": "https://junction2026.com/challenges/arduino-the-green-european-renaissance",
+      "retrieved_at": "2026-11-14T13:30:39.017768+00:00",
+      "content_sha256": "c580ffef4e4ca8d7aaf9809986d3bc6a5eb41218c2db9b06d344e65832314c0d",
+      "retrieval": "Chromium rendered visible text",
+      "fit_assessment": "Conditional runner-up"
+    },
+    {
+      "partner": "Meta",
+      "title": "AI Glasses for Everyone, Everyday",
+      "url": "https://junction2026.com/challenges/meta-ai-glasses-for-everyone-everyday",
+      "retrieved_at": "2026-11-14T13:30:39.017775+00:00",
+      "content_sha256": "0ffb7a40fef6f451cd307e1df7ee69c086199e1040ed6e7d399174cb56278f26",
+      "retrieval": "Chromium rendered visible text",
+      "fit_assessment": "Possible hardware/product pivot"
+    },
+    {
+      "partner": "Ignite Next x Intel",
+      "title": "Stop Simulating, Start Moving",
+      "url": "https://junction2026.com/challenges/ignite-next-x-intel-stop-simulating-start-moving",
+      "retrieved_at": "2026-11-14T13:30:39.017782+00:00",
+      "content_sha256": "e7ac083bcf1597196d8d780ca8d58e2f79ce746c5200c9b791c9c1732df87ecd",
+      "retrieval": "Chromium rendered visible text",
+      "fit_assessment": "Task mismatch"
+    },
+    {
+      "partner": "Rokoko",
+      "title": "The Robot Teleoperation Challenge",
+      "url": "https://junction2026.com/challenges/rokoko-the-robot-teleoperation-challenge",
+      "retrieved_at": "2026-11-14T13:30:39.017791+00:00",
+      "content_sha256": "ff7f418a7ab41600dea5139605f39c8216dce206330c535237b8163077221a95",
+      "retrieval": "Chromium rendered visible text",
+      "fit_assessment": "Conditional hardware pivot"
+    },
+    {
+      "partner": "Aalto University",
+      "title": "Aaltonomous Humanoid",
+      "url": "https://junction2026.com/challenges/aalto-university-aaltonomous-humanoid",
+      "retrieved_at": "2026-11-14T13:30:39.017799+00:00",
+      "content_sha256": "cc22458117e710c95f0d05d36fba9a6dc13d0ee03743f707c337fd8bc31005bc",
+      "retrieval": "Chromium rendered visible text",
+      "fit_assessment": "Task mismatch"
+    },
+    {
+      "partner": "Cala",
+      "title": "Make Unicorns Real",
+      "url": "https://junction2026.com/challenges/cala-make-unicorns-real",
+      "retrieved_at": "2026-11-14T13:30:39.017815+00:00",
+      "content_sha256": "7f5b27970a99f067914593c9629c115383dab9cd78199b7912871f6c04782d5c",
+      "retrieval": "Chromium rendered visible text",
+      "fit_assessment": "Poor"
+    },
+    {
+      "partner": "S-Pankki",
+      "title": "Personal Economic Trainer",
+      "url": "https://junction2026.com/challenges/s-pankki-personal-economic-trainer",
+      "retrieved_at": "2026-11-14T13:30:39.017825+00:00",
+      "content_sha256": "9c8c5c21677691f58f76c40cb1d88bfa4db046a2f214495858a2f878a4c5c908",
+      "retrieval": "Chromium rendered visible text",
+      "fit_assessment": "Poor"
+    },
+    {
+      "partner": "AstraZeneca",
+      "title": "Equal Care Across Finland",
+      "url": "https://junction2026.com/challenges/astrazeneca-equal-care-across-finland",
+      "retrieved_at": "2026-11-14T13:30:39.017834+00:00",
+      "content_sha256": "09460f0f8a24f71d55c5cad61d252c23b445e90e89a0f96705012117202f9db1",
+      "retrieval": "Chromium rendered visible text",
+      "fit_assessment": "Poor"
+    },
+    {
+      "partner": "Aalto University",
+      "title": "Beyond the Clinic",
+      "url": "https://junction2026.com/challenges/aalto-university-beyond-the-clinic",
+      "retrieved_at": "2026-11-14T13:30:39.017843+00:00",
+      "content_sha256": "ed4f985d3ba7228a7b1730021b83f2339f9d3f50d65fa109a6e11570f568bc33",
+      "retrieval": "Chromium rendered visible text",
+      "fit_assessment": "Poor"
+    },
+    {
+      "partner": "Stoa",
+      "title": "Make Blueprints Talk",
+      "url": "https://junction2026.com/challenges/stoa-make-blueprints-talk",
+      "retrieved_at": "2026-11-14T13:30:39.017853+00:00",
+      "content_sha256": "d997b1939a4d0f4bacb0a528eef1c230357c7d166bf5edadcf103affbfac65ed",
+      "retrieval": "Chromium rendered visible text",
+      "fit_assessment": "Poor"
+    },
+    {
+      "partner": "Context.dev",
+      "title": "The Web Is Your Real-Time Database",
+      "url": "https://junction2026.com/challenges/context-dev-the-web-is-your-real-time-database",
+      "retrieved_at": "2026-11-14T13:30:39.017860+00:00",
+      "content_sha256": "aef94ffaa63d4a9352a657b9e4be21271768f9bddc17320f67b81dadef070ecd",
+      "retrieval": "Chromium rendered visible text",
+      "fit_assessment": "Possible data-product pivot"
+    },
+    {
+      "partner": "City of Espoo",
+      "title": "Rethinking Recruitment",
+      "url": "https://junction2026.com/challenges/city-of-espoo-rethinking-recruitment",
+      "retrieved_at": "2026-11-14T13:30:39.017868+00:00",
+      "content_sha256": "43e5da5267a2f11898ce494979fc2ed2d3b0d03afa9951b83943850e12ec4b15",
+      "retrieval": "Chromium rendered visible text",
+      "fit_assessment": "Poor"
+    },
+    {
+      "partner": "MariaDB",
+      "title": "Wikipedia Through Time",
+      "url": "https://junction2026.com/challenges/mariadb-wikipedia-through-time",
+      "retrieved_at": "2026-11-14T13:30:39.017883+00:00",
+      "content_sha256": "73351b19055088d621e849d498426e299091322c1cdf62ddab8ea3444d4c0116",
+      "retrieval": "Chromium rendered visible text",
+      "fit_assessment": "Poor"
+    }
+  ]
+}

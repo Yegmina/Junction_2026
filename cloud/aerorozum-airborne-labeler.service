@@ -1,0 +1,34 @@
+[Unit]
+Description=AeroRozum airborne-only Robotics ER2 labels
+Wants=network-online.target
+After=network-online.target
+ConditionPathExists=/opt/aerorozum/airborne-labeler/state/launch.json
+
+[Service]
+Type=simple
+User=aerorozum-labeler
+Group=aerorozum-labeler
+WorkingDirectory=/opt/aerorozum/airborne-labeler/source
+LoadCredential=gemini-api-key:/etc/aerorozum-labeler/gemini-api-key
+Environment=PYTHONPATH=/opt/aerorozum/airborne-labeler/source
+Environment=AEROROZUM_DATA_ROOT=/opt/aerorozum/airborne-labeler/artifacts
+Environment=CLOUDSDK_CONFIG=/opt/aerorozum/airborne-labeler/state/gcloud
+Environment=CLOUDSDK_CORE_PROJECT=avid-relic-509408-e4
+UnsetEnvironment=GEMINI_API_KEY GOOGLE_API_KEY GOOGLE_APPLICATION_CREDENTIALS GOOGLE_GENAI_USE_VERTEXAI
+ExecStart=/usr/bin/flock --no-fork -n /opt/aerorozum/airborne-labeler/state/worker.lock /opt/aerorozum/venv/bin/python -u /opt/aerorozum/airborne-labeler/source/cloud/airborne_worker.py --plan /opt/aerorozum/airborne-labeler/state/launch.json
+Restart=on-failure
+RestartSec=30
+TimeoutStopSec=900
+KillMode=mixed
+CPUQuota=400%
+MemoryMax=8G
+TasksMax=256
+UMask=0077
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectHome=true
+ProtectSystem=strict
+ReadWritePaths=/opt/aerorozum/airborne-labeler/artifacts /opt/aerorozum/airborne-labeler/state
+
+[Install]
+WantedBy=multi-user.target

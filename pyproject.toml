@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "aerorozum-thermal-rl"
+version = "0.1.0"
+requires-python = ">=3.11"
+dependencies = ["numpy>=2", "Pillow>=10", "scipy>=1.13", "fastapi>=0.115", "uvicorn>=0.30", "pydantic>=2", "PyYAML>=6", "httpx>=0.27", "google-genai>=1", "mcp>=1.10"]
+
+[project.optional-dependencies]
+test = ["pytest>=8"]
+train = ["torch", "transformers", "trl", "peft", "accelerate", "datasets", "safetensors"]
+
+[project.scripts]
+aerorozum = "aerorozum.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["aerorozum*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
