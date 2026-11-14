@@ -32,7 +32,7 @@ detection accuracy or RL improvement. See [implementation and validation](../coo
 [Live mission and saved feedback](https://136.115.179.240/?mission=24859da319234e7d)
 and [recorded coordinate-tool demonstration](https://136.115.179.240/artifacts/presentation/coordinate-agent-tools.mp4).
 
-![Submitted detections and camera evidence from the first completed Harbor reference](harbor-reference-failure.png)
+![Submitted detections and camera evidence from the first completed Harbor reference](https://136.115.179.240/artifacts/presentation/harbor-reference-v3/harbor-evidence.png)
 
 This is an actual saved Harbor reference playthrough, score **0.20/1**. Blue
 boxes show that policy's submitted claims; all 16 were false positives. It
@@ -57,7 +57,7 @@ frontier-superiority result has not been established.
 [Slide PNG](https://136.115.179.240/artifacts/presentation/refinement-results.png)
 and [source measurements](../evidence/measured-refinements.json).
 
-![Completed Gemini Harbor mission with submitted camera evidence](harbor-gemini-playthrough.png)
+![Completed Gemini Harbor mission with submitted camera evidence](https://136.115.179.240/artifacts/presentation/harbor-gemini-v3/harbor-evidence.png)
 
 Gemini Argon's actual development mission scored **1.0**: three matched
 insertions, zero false claims, full coverage and independent views. Its agent
@@ -104,3 +104,9 @@ are chronological saved pairs, two seconds each. Their task rules differ;
 rewards are not a before/after comparison. The first short-cap Gemini attempts
 that stopped before takeoff are explicitly labelled; larger-allowance retries
 retain the same environment and are recorded separately.
+
+Final exports: [six-slide PDF](https://storage.googleapis.com/aerorozum-junction2026-submission-avid-relic-509408-e4/AeroRozum-Junction-2026.pdf), [recorded reference/model comparison](https://storage.googleapis.com/aerorozum-junction2026-submission-avid-relic-509408-e4/aerorozum-demo.mp4), and [all 15 native run logs](https://storage.googleapis.com/aerorozum-junction2026-submission-avid-relic-509408-e4/aerorozum-complete-run-evidence.zip).
+
+![Frozen held-out image comparison](assets/heldout-comparison.svg)
+
+The direct parent scored 61.1% F2; the selected additional-GRPO checkpoint reached 63.2% on the frozen 182-image test. Robotics scored 58.7%, Carbon 64.9% and Argon 70.0%. These are label-agreement results with explicitly different inference allowances.

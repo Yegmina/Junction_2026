@@ -54,7 +54,10 @@ def export(root,output):
             **{k:data[k] for k in FIELDS if k in data},source_sha256=sha(file),
             frozen_test_contract=data.get('frozen_test_contract',data.get('protocol',{}).get('frozen_test_contract'))))
     for file in sorted((test_root/'evaluation').glob('*/status.json')):
-        data=json.loads(file.read_text());held_status.append(dict(model=file.parent.name,**data))
+        data=json.loads(file.read_text())
+        summary=file.with_name('summary.json')
+        if summary.exists() and json.loads(summary.read_text()).get('status')=='completed':data['status']='completed'
+        held_status.append(dict(model=file.parent.name,**data))
     selection=test_root/'selection.json'
     record=dict(recorded_at=datetime.datetime.now(datetime.timezone.utc).isoformat(),
         scope='Native mission rewards, development image agreement and separately frozen held-out image agreement are distinct. Conditions and decoding differ; errored trials are explicitly marked.',

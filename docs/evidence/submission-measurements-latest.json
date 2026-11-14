@@ -1,5 +1,5 @@
 {
-  "recorded_at": "2026-11-14T22:25:56.370520+00:00",
+  "recorded_at": "2026-11-14T22:52:04.146122+00:00",
   "scope": "Native mission rewards, development image agreement and separately frozen held-out image agreement are distinct. Conditions and decoding differ; errored trials are explicitly marked.",
   "trials": [
     {
@@ -47,6 +47,94 @@
       "result_sha256": "673deb6f84dc4c76bcc0ccec84b35121ae2549a76582a14bf6a6d11140197313"
     },
     {
+      "job": "argon-budgeted-32k-s730172",
+      "trial": "thermal-investigation-budgeted__PsooieH",
+      "task_checksum": "ed718fd1747779020d569898ef9a4babae10e3ad1e96c4dfb4af1cdfe46e1a7c",
+      "model": "gemini/gemini-4-argon",
+      "rewards": {
+        "reward": 0.0
+      },
+      "exception_type": null,
+      "finished_at": "2026-11-14T22:27:14.006622Z",
+      "details": {
+        "reward": 0.0,
+        "completed": false,
+        "true_positives": 2,
+        "false_positives": 0,
+        "false_negatives": 1,
+        "f2": 0.7142857142857143,
+        "qualified_coverage": 1.0,
+        "multi_view_matches": 2,
+        "invalid_candidates": 0,
+        "observations": 7,
+        "actions": 17,
+        "flight_elapsed_s": 81.87200000000001,
+        "budget_s": 75.0,
+        "returned_home": true,
+        "scope": "Inserted synthetic-object retrieval in experimental composed thermal imagery; not physical mine confirmation"
+      },
+      "instance": {
+        "seed": 730172,
+        "field_hashes": {
+          "warming": "dc6e1b8ceadaa4930975f409fef6e9b6ac99f27271591fa46bf0d4fac29d2ebb",
+          "cooling": "ef40ccb127908c17289d7959ba7e42b15cb1ea80cc30ab24f8ee08ebfa9a3b91",
+          "dawn": "ec8efb59446a43c4457d7de8446093f7e127ea01852f61af12295e95cb1efcde",
+          "late_warming": "d5618107aa8f89f389456b19f54024909760532d02e28f7ffb0a246153c8f852"
+        },
+        "frozen_before_run": true,
+        "budget_s": 75.0,
+        "thermal_condition": {
+          "phase": "dawn",
+          "physics_elapsed_hours": 1.0
+        }
+      },
+      "result_sha256": "c869b673f5004a44d8651ee7dab64a6530129ecaa1f574204a24eef27b3fc1e4"
+    },
+    {
+      "job": "argon-budgeted-s730171",
+      "trial": "thermal-investigation-budgeted__HMDwB86",
+      "task_checksum": "ed718fd1747779020d569898ef9a4babae10e3ad1e96c4dfb4af1cdfe46e1a7c",
+      "model": "gemini/gemini-4-argon",
+      "rewards": {
+        "reward": 0.164
+      },
+      "exception_type": null,
+      "finished_at": "2026-11-14T22:29:57.306470Z",
+      "details": {
+        "reward": 0.164,
+        "completed": true,
+        "true_positives": 0,
+        "false_positives": 2,
+        "false_negatives": 3,
+        "f2": 0.0,
+        "qualified_coverage": 0.82,
+        "multi_view_matches": 0,
+        "invalid_candidates": 2,
+        "observations": 8,
+        "actions": 20,
+        "flight_elapsed_s": 73.132,
+        "budget_s": 75.0,
+        "returned_home": true,
+        "scope": "Inserted synthetic-object retrieval in experimental composed thermal imagery; not physical mine confirmation"
+      },
+      "instance": {
+        "seed": 730171,
+        "field_hashes": {
+          "warming": "aefb2e091bd2f4dfd5a44449e37ba865099744adef0d9002548bbaaeab25a8f1",
+          "cooling": "de7d9e81303ad5b228506b87bea5e44f1e9846c5131931491bc4ca252a262051",
+          "dawn": "6a75fa3c60cc788dd96efa3ca5fd3273e29e79490c764e2b0ed502eff10518bc",
+          "late_warming": "5dc59e56e4471d109ad9bdaa69477e70f559e13764bf0620ba9491203c2b5372"
+        },
+        "frozen_before_run": true,
+        "budget_s": 75.0,
+        "thermal_condition": {
+          "phase": "dawn",
+          "physics_elapsed_hours": 1.0
+        }
+      },
+      "result_sha256": "7d8f0af47149ea82dcc5747a39a47ba163ce80f6557b143c188307d3d403c652"
+    },
+    {
       "job": "argon-budgeted-s730172",
       "trial": "thermal-investigation-budgeted__8YEPRYQ",
       "task_checksum": "ed718fd1747779020d569898ef9a4babae10e3ad1e96c4dfb4af1cdfe46e1a7c",
@@ -89,6 +177,94 @@
         }
       },
       "result_sha256": "3287be266f7cc87c0d88c10f4a845a509391f6120cbc4a345fb1043a0ae7b00b"
+    },
+    {
+      "job": "carbon-budgeted-32k-s730171",
+      "trial": "thermal-investigation-budgeted__HKSrCp3",
+      "task_checksum": "ed718fd1747779020d569898ef9a4babae10e3ad1e96c4dfb4af1cdfe46e1a7c",
+      "model": "gemini/gemini-4-carbon",
+      "rewards": {
+        "reward": 0.0
+      },
+      "exception_type": null,
+      "finished_at": "2026-11-14T22:40:36.499513Z",
+      "details": {
+        "reward": 0.0,
+        "completed": false,
+        "true_positives": 2,
+        "false_positives": 0,
+        "false_negatives": 1,
+        "f2": 0.7142857142857143,
+        "qualified_coverage": 0.715,
+        "multi_view_matches": 2,
+        "invalid_candidates": 0,
+        "observations": 10,
+        "actions": 35,
+        "flight_elapsed_s": 78.60000000000001,
+        "budget_s": 75.0,
+        "returned_home": true,
+        "scope": "Inserted synthetic-object retrieval in experimental composed thermal imagery; not physical mine confirmation"
+      },
+      "instance": {
+        "seed": 730171,
+        "field_hashes": {
+          "warming": "aefb2e091bd2f4dfd5a44449e37ba865099744adef0d9002548bbaaeab25a8f1",
+          "cooling": "de7d9e81303ad5b228506b87bea5e44f1e9846c5131931491bc4ca252a262051",
+          "dawn": "6a75fa3c60cc788dd96efa3ca5fd3273e29e79490c764e2b0ed502eff10518bc",
+          "late_warming": "5dc59e56e4471d109ad9bdaa69477e70f559e13764bf0620ba9491203c2b5372"
+        },
+        "frozen_before_run": true,
+        "budget_s": 75.0,
+        "thermal_condition": {
+          "phase": "dawn",
+          "physics_elapsed_hours": 1.0
+        }
+      },
+      "result_sha256": "b392596efdd9bf12a78324f4ff440d4f6b22bb4f7f0be8a94e43cd9f9ca52257"
+    },
+    {
+      "job": "carbon-budgeted-32k-s730172",
+      "trial": "thermal-investigation-budgeted__pUedRjv",
+      "task_checksum": "ed718fd1747779020d569898ef9a4babae10e3ad1e96c4dfb4af1cdfe46e1a7c",
+      "model": "gemini/gemini-4-carbon",
+      "rewards": {
+        "reward": 0.0
+      },
+      "exception_type": "AgentTimeoutError",
+      "finished_at": "2026-11-14T22:46:46.364120Z",
+      "details": {
+        "reward": 0.0,
+        "completed": false,
+        "true_positives": 0,
+        "false_positives": 0,
+        "false_negatives": 3,
+        "f2": 0.0,
+        "qualified_coverage": 1.0,
+        "multi_view_matches": 0,
+        "invalid_candidates": 0,
+        "observations": 9,
+        "actions": 23,
+        "flight_elapsed_s": 79.012,
+        "budget_s": 75.0,
+        "returned_home": true,
+        "scope": "Inserted synthetic-object retrieval in experimental composed thermal imagery; not physical mine confirmation"
+      },
+      "instance": {
+        "seed": 730172,
+        "field_hashes": {
+          "warming": "dc6e1b8ceadaa4930975f409fef6e9b6ac99f27271591fa46bf0d4fac29d2ebb",
+          "cooling": "ef40ccb127908c17289d7959ba7e42b15cb1ea80cc30ab24f8ee08ebfa9a3b91",
+          "dawn": "ec8efb59446a43c4457d7de8446093f7e127ea01852f61af12295e95cb1efcde",
+          "late_warming": "d5618107aa8f89f389456b19f54024909760532d02e28f7ffb0a246153c8f852"
+        },
+        "frozen_before_run": true,
+        "budget_s": 75.0,
+        "thermal_condition": {
+          "phase": "dawn",
+          "physics_elapsed_hours": 1.0
+        }
+      },
+      "result_sha256": "4d70e5c56541214d6a218b4cdff37de18742acfe618a569dc075fdb601e11204"
     },
     {
       "job": "carbon-budgeted-s730171",
@@ -1069,6 +1245,50 @@
         }
       },
       "result_sha256": "e9068a3b28f515df8b67946c2928c9f9ca0e0178634e8e7ce1e8c30354e5f5e8"
+    },
+    {
+      "job": "portable-close-v5-smoke",
+      "trial": "thermal-investigation-budgeted__e9UhNz3",
+      "task_checksum": "ed718fd1747779020d569898ef9a4babae10e3ad1e96c4dfb4af1cdfe46e1a7c",
+      "model": null,
+      "rewards": {
+        "reward": 0.0
+      },
+      "exception_type": null,
+      "finished_at": "2026-11-14T22:48:04.786451Z",
+      "details": {
+        "reward": 0.0,
+        "completed": false,
+        "true_positives": 0,
+        "false_positives": 0,
+        "false_negatives": 3,
+        "f2": 0.0,
+        "qualified_coverage": 0.0,
+        "multi_view_matches": 0,
+        "invalid_candidates": 0,
+        "observations": 0,
+        "actions": 0,
+        "flight_elapsed_s": 0.0,
+        "budget_s": 75.0,
+        "returned_home": false,
+        "scope": "Inserted synthetic-object retrieval in experimental composed thermal imagery; not physical mine confirmation"
+      },
+      "instance": {
+        "seed": 930119,
+        "field_hashes": {
+          "warming": "37938d91f5912419b9bd2391a9b73f1c073ba91a7f77997f9ed59445fb4d82e7",
+          "cooling": "74361eaf6fcd037e96c45d1bb5c314b335f21e8b2729b6b76d9509f63916152f",
+          "dawn": "292031df05543f62adb5f100e0c0c2b130af17b98226e3d90d86d49e0345a667",
+          "late_warming": "d3d46309df787d19cf57e4b7425fc37cd88640e7c894f756d09f11b37816bcb2"
+        },
+        "frozen_before_run": true,
+        "budget_s": 75.0,
+        "thermal_condition": {
+          "phase": "dawn",
+          "physics_elapsed_hours": 1.0
+        }
+      },
+      "result_sha256": "fb56e5b2016660b83530bcbf5eb2b911b342e70d927461ceee2bdfc47d19efaa"
     },
     {
       "job": "portable-v3-smoke",
@@ -2268,48 +2488,168 @@
       "source_sha256": "fc3c00070632b05ee8de91180406586d47587d1d14063aee0ad166ef32ba232e"
     }
   ],
-  "held_out_perception": [],
-  "held_out_status": [
+  "held_out_perception": [
     {
       "model": "gemini-4-argon",
-      "status": "running",
-      "completed": 76,
-      "total": 182,
-      "at": "2026-11-14T22:25:50.887629+00:00"
+      "status": "completed",
+      "examples": 182,
+      "tp": 145,
+      "fp": 58,
+      "fn": 63,
+      "micro_f2": 0.7004830917874396,
+      "valid_json_fraction": 0.9945054945054945,
+      "negative_false_alarm_rate": null,
+      "source_sha256": "4e551313a0dae1b95139c91f8dc5b6a4f0f53fc0f5eb1170e82749e604018853",
+      "frozen_test_contract": {
+        "selection_sha256": "63b26baad8e58bf6d5adc3a07fe59333a9537f246e2e30f6ee5664ca6dd74daa",
+        "manifest_sha256": "faeab5181b8f5e5f0f66d7480120bfa2a0db010a0b8ad35c6f83a2b74958fc89",
+        "adapter_sha256": "fda258727f04777e4fdcfd7217bfdbd895b2dbd94f7975e0430c0d9cdbc00d44",
+        "scope": "One-time held-out label agreement; not mission reward or physical mine accuracy"
+      }
     },
     {
       "model": "gemini-4-carbon",
-      "status": "running",
-      "completed": 31,
-      "total": 182,
-      "at": "2026-11-14T22:25:47.907667+00:00"
+      "status": "completed",
+      "examples": 182,
+      "tp": 134,
+      "fp": 66,
+      "fn": 74,
+      "micro_f2": 0.6492248062015504,
+      "valid_json_fraction": 0.9615384615384616,
+      "negative_false_alarm_rate": null,
+      "source_sha256": "364d65af6055ac3e759381573605d43cdf27af59a65cc2563375ddd8ad8240c9",
+      "frozen_test_contract": {
+        "selection_sha256": "63b26baad8e58bf6d5adc3a07fe59333a9537f246e2e30f6ee5664ca6dd74daa",
+        "manifest_sha256": "faeab5181b8f5e5f0f66d7480120bfa2a0db010a0b8ad35c6f83a2b74958fc89",
+        "adapter_sha256": "fda258727f04777e4fdcfd7217bfdbd895b2dbd94f7975e0430c0d9cdbc00d44",
+        "scope": "One-time held-out label agreement; not mission reward or physical mine accuracy"
+      }
     },
     {
       "model": "gemini-robotics-er-2-preview",
-      "status": "failed",
-      "at": "2026-11-14T22:23:34.280161+00:00",
-      "note": "Provider/data failures are not scored as model failures"
+      "status": "completed",
+      "examples": 182,
+      "tp": 117,
+      "fp": 47,
+      "fn": 91,
+      "micro_f2": 0.5873493975903614,
+      "valid_json_fraction": 0.9835164835164835,
+      "negative_false_alarm_rate": null,
+      "source_sha256": "55c826f38e5d5b0c1170b676e351e44009c282139b26ea358b649d8d5360340d",
+      "frozen_test_contract": {
+        "selection_sha256": "63b26baad8e58bf6d5adc3a07fe59333a9537f246e2e30f6ee5664ca6dd74daa",
+        "manifest_sha256": "faeab5181b8f5e5f0f66d7480120bfa2a0db010a0b8ad35c6f83a2b74958fc89",
+        "adapter_sha256": "fda258727f04777e4fdcfd7217bfdbd895b2dbd94f7975e0430c0d9cdbc00d44",
+        "scope": "One-time held-out label agreement; not mission reward or physical mine accuracy"
+      }
     },
     {
       "model": "gemma",
-      "status": "running",
-      "completed": 14,
-      "total": 182,
-      "at": "2026-11-14T22:25:51.400874+00:00"
+      "status": "completed",
+      "examples": 182,
+      "tp": 127,
+      "fp": 46,
+      "fn": 81,
+      "micro_f2": 0.6318407960199005,
+      "valid_json_fraction": 1.0,
+      "negative_false_alarm_rate": null,
+      "protocol_hash": "3b1f66260ce6dc7d6eb3343ef7b58c8bcc4559fe3632e28296715f53a0c22213",
+      "decoding_protocol": "explicit-kv-cache-v2",
+      "source_sha256": "e11613c029d5e278fe97d0a82833992c0688901087e5e50da4177a16a1515dea",
+      "frozen_test_contract": {
+        "selection_sha256": "63b26baad8e58bf6d5adc3a07fe59333a9537f246e2e30f6ee5664ca6dd74daa",
+        "manifest_sha256": "faeab5181b8f5e5f0f66d7480120bfa2a0db010a0b8ad35c6f83a2b74958fc89",
+        "adapter_sha256": "fda258727f04777e4fdcfd7217bfdbd895b2dbd94f7975e0430c0d9cdbc00d44",
+        "scope": "One-time held-out label agreement; not mission reward or physical mine accuracy"
+      }
     },
     {
       "model": "gemma-base",
-      "status": "running",
-      "completed": 3,
-      "total": 182,
-      "at": "2026-11-14T22:25:50.151621+00:00"
+      "status": "completed",
+      "examples": 182,
+      "tp": 6,
+      "fp": 2,
+      "fn": 202,
+      "micro_f2": 0.03571428571428571,
+      "valid_json_fraction": 1.0,
+      "negative_false_alarm_rate": null,
+      "protocol_hash": "3c4c42855263eefae64bb69dfc19073757897ff4110771bdb08d18d79f58fc21",
+      "decoding_protocol": "explicit-kv-cache-v2",
+      "source_sha256": "6cb522e5793795c6943e37e36e617b0ba6f692c6961676f8824cfb7159896a08",
+      "frozen_test_contract": {
+        "selection_sha256": "63b26baad8e58bf6d5adc3a07fe59333a9537f246e2e30f6ee5664ca6dd74daa",
+        "manifest_sha256": "faeab5181b8f5e5f0f66d7480120bfa2a0db010a0b8ad35c6f83a2b74958fc89",
+        "adapter_sha256": "fda258727f04777e4fdcfd7217bfdbd895b2dbd94f7975e0430c0d9cdbc00d44",
+        "scope": "One-time held-out label agreement; not mission reward or physical mine accuracy",
+        "control": "base",
+        "evaluated_adapter_sha256": null
+      }
     },
     {
       "model": "gemma-parent",
-      "status": "running",
-      "completed": 1,
+      "status": "completed",
+      "examples": 182,
+      "tp": 122,
+      "fp": 45,
+      "fn": 86,
+      "micro_f2": 0.6106106106106106,
+      "valid_json_fraction": 1.0,
+      "negative_false_alarm_rate": null,
+      "protocol_hash": "a738c9be4de240e0d5cd10a4a22054f52a02b12f28738f51748404eb89939281",
+      "decoding_protocol": "explicit-kv-cache-v2",
+      "source_sha256": "c4217dfcf1def5dfb5ae16120d2857e44c46b0aaa9a66aa5f104caab348f3fab",
+      "frozen_test_contract": {
+        "selection_sha256": "63b26baad8e58bf6d5adc3a07fe59333a9537f246e2e30f6ee5664ca6dd74daa",
+        "manifest_sha256": "faeab5181b8f5e5f0f66d7480120bfa2a0db010a0b8ad35c6f83a2b74958fc89",
+        "adapter_sha256": "fda258727f04777e4fdcfd7217bfdbd895b2dbd94f7975e0430c0d9cdbc00d44",
+        "scope": "One-time held-out label agreement; not mission reward or physical mine accuracy",
+        "control": "parent",
+        "evaluated_adapter_sha256": "f9bd1c6e2913f6f8446d995624d1e9f953ddce281bc03d1f1e99d7c6eac215e3"
+      }
+    }
+  ],
+  "held_out_status": [
+    {
+      "model": "gemini-4-argon",
+      "status": "completed",
+      "completed": 182,
       "total": 182,
-      "at": "2026-11-14T22:25:56.253442+00:00"
+      "at": "2026-11-14T22:29:59.715078+00:00"
+    },
+    {
+      "model": "gemini-4-carbon",
+      "status": "completed",
+      "completed": 182,
+      "total": 182,
+      "at": "2026-11-14T22:41:16.551023+00:00"
+    },
+    {
+      "model": "gemini-robotics-er-2-preview",
+      "status": "completed",
+      "completed": 182,
+      "total": 182,
+      "at": "2026-11-14T22:33:52.698915+00:00"
+    },
+    {
+      "model": "gemma",
+      "status": "completed",
+      "completed": 182,
+      "total": 182,
+      "at": "2026-11-14T22:49:54.298691+00:00"
+    },
+    {
+      "model": "gemma-base",
+      "status": "completed",
+      "completed": 182,
+      "total": 182,
+      "at": "2026-11-14T22:30:32.444891+00:00"
+    },
+    {
+      "model": "gemma-parent",
+      "status": "completed",
+      "completed": 182,
+      "total": 182,
+      "at": "2026-11-14T22:50:45.755168+00:00"
     }
   ],
   "held_out_selection_sha256": "63b26baad8e58bf6d5adc3a07fe59333a9537f246e2e30f6ee5664ca6dd74daa"

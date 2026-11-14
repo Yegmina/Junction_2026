@@ -200,3 +200,39 @@ require valid JSON. Both failure and recovery logs remain preserved.
 
 No test score chooses a checkpoint or modifies training. The full planned
 three-seed/184-case/30k-observation study remains separate and unfinished.
+
+## Frozen publication
+
+The final full task ZIP v5 is 411,382,380 bytes, SHA-256
+`b49f5b89bd7fc64bbaff071da08bfaa145b65015daea0665f00708039c98de79`.
+All **306** bundled hashes and the exact Harbor task checksum passed independent
+extraction and a fresh native smoke run. The primary archive was frozen at the
+execution cutoff; the evidence-only supplement includes **all 15 terminal runs**,
+including the final Carbon seed-B wall-clock timeout. Three clean 32k frontier
+runs earned zero after late return; the fourth 32k run has `AgentTimeoutError`
+and is retained explicitly. Both reference instances earned 0.733333.
+
+All six held-out image comparisons completed on 182 images / 208 reference boxes:
+
+| Model | TP / FP / FN | Micro-F2 | Valid JSON |
+|---|---|---:|---:|
+| Untouched Gemma | 6 / 2 / 202 | 0.03571 | 100% |
+| Direct Gemma parent | 122 / 45 / 86 | 0.61061 | 100% |
+| Selected Gemma +96 GRPO | 127 / 46 / 81 | 0.63184 | 100% |
+| Robotics teacher | 117 / 47 / 91 | 0.58735 | 98.35% |
+| Gemini Carbon | 134 / 66 / 74 | 0.64922 | 96.15% |
+| Gemini Argon | 145 / 58 / 63 | 0.70048 | 99.45% |
+
+The additional GRPO improved the direct parent's held-out F2. The selected
+student exceeds the Robotics teacher on this label set; Carbon and Argon remain
+higher. No general frontier-superiority or physical mine-accuracy claim follows.
+
+Only approved release ZIPs, public event exports, replay video, figures, PDF and
+measurement snapshots are published to the dedicated bucket
+`gs://aerorozum-junction2026-submission-avid-relic-509408-e4/`. The existing private
+research bucket's access policy is unchanged. Public release downloads survive
+the demo VM's runtime limit. The demo's Let's Encrypt certificate passed normal
+verification and is valid through 21 November 2026.
+
+[Copy-ready entry](https://136.115.179.240/presentation/submission/submit.html)
+provides text within the portal limits, challenge choices and all download links.
