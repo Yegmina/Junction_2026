@@ -19,7 +19,7 @@ def parse_mission_request(prompt):
     if not allowed:raise ValueError('Mission excludes all inspection areas')
     match=re.search(r'(\d+(?:\.\d+)?)\s*(minutes?|mins?|seconds?|secs?)\b',text)
     budget=float(match[1])*(60 if match[2].startswith('m') else 1) if match else 180
-    match=re.search(r'(?:altitude\s*(?:of\s*)?|at\s+)(\d+(?:\.\d+)?)\s*(?:m|meters?|metres?)\b',text)
+    match=re.search(r'(?:(?:altitude|height|z)(?:_m)?\s*(?:of\s*|[=:]\s*)?|at\s+)(\d+(?:\.\d+)?)\s*(?:m|meters?|metres?)?\b',text)
     return dict(allowed_areas=allowed,forbidden_areas=forbidden,budget_s=max(30,min(600,budget)),altitude_m=max(2,min(10,float(match[1]) if match else 5)),revisit_uncertain=bool(re.search('uncertain|revisit|careful|thorough|subtle',text)) and 'do not revisit' not in text)
 
 class MissionManager:
@@ -56,6 +56,7 @@ class MissionManager:
             return await self._create(prompt,controller,seed,physics_phase)
     async def _create(self,prompt,controller='agent',seed=0,physics_phase='warming'):
         plan=parse_mission_request(prompt)
+        plan['navigation_mode']='free_coordinates' if controller=='agent' else 'reference_regions'
         if controller not in ('agent','reference'):raise ValueError('Controller must be agent or reference')
         if physics_phase not in ('warming','cooling'):raise ValueError('Thermal phase must be warming or cooling')
         if self.active:raise ValueError('Another simulated mission is active')
@@ -64,7 +65,7 @@ class MissionManager:
         if controller=='agent' and not sim['agent_enabled']:raise ValueError('Agent API access is not configured')
         if hasattr(self.bridge,'set_thermal_phase'):await self._call('set_thermal_phase',physics_phase)
         identifier=uuid.uuid4().hex[:16]
-        state=dict(id=identifier,prompt=prompt,controller=controller,seed=seed,physics_phase=physics_phase,world_seed_applied=False,status='planning',created_at=utcnow(),plan=plan,simulation=sim,map_bounds=BOUNDS,areas=AREAS,pose=None,route=[],observations=[],events=[],budget=dict(limit_s=plan['budget_s'],elapsed_s=0,remaining_s=plan['budget_s']),report=None,error=None,_stop=False,_start_sim=None,_inference_s=0)
+        state=dict(id=identifier,prompt=prompt,controller=controller,seed=seed,physics_phase=physics_phase,world_seed_applied=False,status='planning',created_at=utcnow(),plan=plan,simulation=sim,map_bounds=BOUNDS,areas=AREAS,pose=None,route=[],observations=[],events=[],agent_steps=[],agent_phase='starting',active_target=None,navigation={},budget=dict(limit_s=plan['budget_s'],elapsed_s=0,remaining_s=plan['budget_s']),report=None,error=None,_stop=False,_start_sim=None,_inference_s=0)
         self.states[identifier]=state;self.active=identifier;self._save(state)
         self.tasks[identifier]=asyncio.create_task(self._run(state));return self.get(identifier)
     async def stop(self,identifier):
@@ -86,19 +87,25 @@ class MissionManager:
         if s['_start_sim'] is None:s['_start_sim']=now
         elapsed=max(0,now-s['_start_sim']-s['_inference_s'])
         s['pose']=pose;s['budget'].update(elapsed_s=round(elapsed,2),remaining_s=round(max(0,s['budget']['limit_s']-elapsed),2))
+        if s.get('active_target'):
+            target=s['active_target'];distance=math.dist([pose[k] for k in ('x_m','y_m','altitude_m')],[target[k] for k in ('x_m','y_m','altitude_m')])
+            speed=math.sqrt(sum(float(native.get('velocity',{}).get(k,0))**2 for k in ('x_m_s','y_m_s','z_m_s')))
+            s['navigation']=dict(target=target,distance_m=round(distance,2),status='arrived' if distance<.65 and speed<.4 else 'moving',speed_m_s=round(speed,2))
         if not s['route'] or sum((pose[k]-s['route'][-1][k])**2 for k in ('x_m','y_m','altitude_m'))>.01:s['route'].append(dict(**pose,time_s=round(elapsed,2)))
         self._save(s);return native
     async def _wait(self,s,target,allow_stop=True,timeout=50):
-        started=asyncio.get_running_loop().time();stable=0
-        while asyncio.get_running_loop().time()-started<timeout:
+        started=asyncio.get_running_loop().time();start_sim=None;stable=0
+        while asyncio.get_running_loop().time()-started<max(60,timeout*8):
             native=await self._refresh(s)
+            if start_sim is None:start_sim=float(native['sim_time_s'])
+            if float(native['sim_time_s'])-start_sim>timeout:break
             if allow_stop and s['_stop']:return False
             distance=math.dist([s['pose'][k] for k in ('x_m','y_m','altitude_m')],target)
             velocity=native.get('velocity',{})
             if not all(isinstance(velocity.get(k),(int,float)) and math.isfinite(velocity[k]) for k in ('x_m_s','y_m_s','z_m_s')):raise RuntimeError('Native velocity unavailable for arrival verification')
             speed=math.sqrt(sum(velocity[k]**2 for k in ('x_m_s','y_m_s','z_m_s')))
             stable=stable+1 if distance<.65 and speed<.4 else 0
-            if stable>=3:return True
+            if stable>=3 and (target[2]>=.5 or abs(s['pose']['altitude_m']-target[2])<.18):return True
             await self._call('tick',.2);await asyncio.sleep(.08)
         raise RuntimeError('Native drone did not reach commanded position within timeout')
     async def _move(self,s,x,y,z,allow_stop=True):
@@ -138,6 +145,7 @@ class MissionManager:
         row.setdefault('evidence_history',[]).append(evidence['evidence_id']);row['evidence']=evidence;self._save(s)
     async def _capture(self,s,area):
         await self._refresh(s)
+        if s['controller']=='agent':s['agent_phase']='observing';self._save(s)
         if s['pose']['altitude_m']<1.5:raise RuntimeError('Ground frames are excluded from mission evidence')
         identifier=uuid.uuid4().hex[:12];path=self.folder/s['id']/'observations'/f'{identifier}.png'
         if hasattr(self.bridge,'capture_pair'):
@@ -155,40 +163,142 @@ class MissionManager:
         if isinstance(receipt.get('pose'),dict):
             cp=receipt['pose'];row['capture_pose']=cp
             row['pose']=dict(x_m=cp['x_m'],y_m=cp['y_m'],altitude_m=cp.get('z_m',cp.get('altitude_m')),yaw_deg=math.degrees(cp.get('yaw_rad',0)))
+        if s['controller']=='agent':row['area_id']=self._area_at_pose({'pose':row['pose']})
         s['observations'].append(row)
         from .mission_evidence import local_thermal_proposals
         proposal=await asyncio.to_thread(self.detector or local_thermal_proposals,path)
         row['reference_proposals']=proposal
         self._boxes(s,row,proposal.get('boxes',[])+proposal.get('uncertain_boxes',[]),proposal.get('model','local_thermal_contrast'))
         self._event(s,'capture',f'Paired thermal and RGB observation of {area}' if pair else f'Actual Gazebo thermal observation of {area}');return row
+    def _exclusions(self,s):
+        return [area['bounds'] for area in AREAS if area['id'] in s['plan']['forbidden_areas']]
+    def _area_at_pose(self,s):
+        p=s['pose']
+        return next((a['id'] for a in AREAS if a['bounds']['x_min']<=p['x_m']<=a['bounds']['x_max'] and a['bounds']['y_min']<=p['y_m']<=a['bounds']['y_max']),'transit')
+    def _return_reserve(self,s):
+        from .mission_navigation import return_route
+        p=s['pose'];start=(p['x_m'],p['y_m']);route=return_route(start,(0.,0.),BOUNDS,self._exclusions(s))
+        distance=sum(math.dist(a,b) for a,b in zip([start]+route,route))
+        return max(20.,distance/1.2+10+2*max(0,len(route)-1))
     async def _decide(self,s,provider):
-        public=dict(prompt=s['prompt'],plan=s['plan'],pose=s['pose'],budget=s['budget'],areas=s['areas'],observations=[{k:o.get(k) for k in ('id','area_id','pose','reference_proposals')} for o in s['observations']])
-        instruction='''Manage this simulated drone investigation. Use only public observations and the latest attached camera image. Return one JSON object: {"action":"inspect_area"|"revisit"|"return_home","area_id":"east"|"west"|"north"|"south","altitude_m":2..10,"reason":"brief operational explanation","detections":[{"bbox":{"x_min":0,"y_min":0,"x_max":1000,"y_max":1000},"confidence":0..1,"evidence":"visible evidence"}]}. Detections apply only to the latest attached image; omit if no image. Include subtle plausible candidates with appropriately lower scores. Respect allowed_areas, revisit preference and return budget. Never inspect an area more than three times. After sufficient inspection return_home. Coordinates are image coordinates normalized 0..1000. Do not output private reasoning. Public mission state: '''
-        instruction+=' If two images are attached, image 1 is white-hot physics-derived thermal; image 2 is the native RGB context at the same pose and timestamp. All detection boxes refer only to image 1. The ground may contain buried targets with no exposed RGB object. '
-        prompt=instruction+json.dumps(public);save(self.folder/s['id']/'agent'/f'{len(s["events"]):03d}-prompt.json',{'prompt':prompt,'prompt_version':'gazebo-paired-physics-v2'})
-        images=[]
-        if s['observations']:
-            last=s['observations'][-1];images=[self.root/last['image']]
-            if last.get('rgb_image'):images.append(self.root/last['rgb_image'])
+        observation=s['observations'][-1] if s['observations'] else None
+        step=dict(id=uuid.uuid4().hex[:12],status='deciding',started_at=utcnow(),model=self._agent_model(),
+                  input_pose=copy.deepcopy(s['pose']),observation_id=observation['id'] if observation else None)
+        s['agent_steps'].append(step);s['agent_phase']='deciding';self._save(s)
+        public=dict(prompt=s['prompt'],plan=s['plan'],pose=s['pose'],budget=s['budget'],geofence=BOUNDS,
+                    coordinate_frame='Local ENU metres: x=east, y=north, altitude=height above the flat ground; home=(0,0)',
+                    named_regions=AREAS,navigation=s.get('navigation',{}),return_reserve_s=self._return_reserve(s),
+                    recent_tools=[{k:v for k,v in item.items() if k in ('tool','arguments','result','error','rationale')} for item in s['agent_steps'][-9:-1]],
+                    observations=[{k:o.get(k) for k in ('id','area_id','pose','reference_proposals')} for o in s['observations'][-8:]])
+        if observation:
+            public['latest_image']=dict(id=observation['id'],pose=observation['pose'],intrinsics=observation['capture'].get('intrinsics',{}),camera_mount=observation['capture'].get('camera_mount',{}))
+        instruction='You operate a simulated drone through tools in a live observation/action/feedback loop. The aircraft and flight clock CONTINUE while you review images. You may retarget it during motion. Use arbitrary safe local coordinates, not just region centres. Named regions are navigation landmarks; plan.forbidden_areas are exclusions. Follow the user\'s requested coordinates, ordering and height.\nReturn one JSON object: {"tool":"goto"|"observe"|"hover"|"return_home","arguments":{},"observation_summary":"brief visible/telemetry facts","rationale":"brief operational justification for this decision","next_check":"what evidence or arrival condition to review next","review_after_s":1.5,"observation_id":"attached image id","detections":[]}. These are concise user-facing decision summaries.\ngoto arguments: {"x_m":number,"y_m":number,"altitude_m":number,"yaw_deg":number(optional)}. Coordinates must be inside the supplied geofence; altitude 2..10m. A goto starts movement immediately; a subsequent goto can change course or height before arrival. Observe keeps the current destination while checking fresh evidence. Hover holds the current position. return_home ends the investigation and lands. review_after_s must be 0.5..5 simulated seconds. Use navigation.status to track whether the previous waypoint has been reached; avoid repeatedly resetting an unchanged destination. On tool rejection, correct the arguments using the error feedback. Return while the return reserve remains.\nImage 1 is white-hot thermal and image 2 is simultaneous native RGB. Boxes apply ONLY to image 1 and the supplied observation_id. Detections: [{"bbox":{"x_min":0,"y_min":0,"x_max":1000,"y_max":1000},"confidence":0..1,"evidence":"brief visible evidence"}]. Include subtle plausible candidates at appropriately lower scores. At most 10 detections. Public mission state: '
+        prompt=instruction+json.dumps(public);folder=self.folder/s['id']/'agent'
+        save(folder/(step['id']+'-prompt.json'),dict(prompt=prompt,prompt_version='coordinate-flight-v3',observation_id=step['observation_id']))
+        images=[] if observation is None else [self.root/observation['image']]+([self.root/observation['rgb_image']] if observation.get('rgb_image') else [])
+        task=asyncio.create_task(provider.generate('gazebo_mission_decision',prompt,images=images,model=self._agent_model(),max_output_tokens=1536))
         try:
-            await self._world_pause(True)
-            result=await provider.generate('gazebo_mission_decision',prompt,images=images,model=self._agent_model(),max_output_tokens=1536)
+            while True:
+                done,_=await asyncio.wait({task},timeout=.2)
+                await self._refresh(s)
+                if s['_stop'] or s['budget']['remaining_s']<self._return_reserve(s):
+                    if not task.done():task.cancel()
+                    await asyncio.gather(task,return_exceptions=True)
+                    step.update(status='cancelled',rationale='Controller requested return: stop instruction or return-time reserve.',finished_at=utcnow())
+                    self._save(s);return dict(tool='return_home',arguments={},controller_guard=True)
+                if done:break
+            result=await task
+            save(folder/(step['id']+'-response.json'),result)
+            if not isinstance(result,dict):raise ValueError('Agent must return a JSON tool call')
+            tool=result.get('tool',result.get('action'))
+            step.update(tool=tool,arguments=result.get('arguments',{}),observation_summary=str(result.get('observation_summary',''))[:1000],
+                        rationale=str(result.get('rationale',result.get('reason','')))[:1000],next_check=str(result.get('next_check',''))[:500],status='ready',decided_at=utcnow())
+            if observation and isinstance(result.get('detections'),list):
+                if result.get('observation_id',observation['id'])==observation['id']:
+                    self._boxes(s,observation,result['detections'],self._agent_model())
+                else:step['detection_warning']='Detection observation id did not match the attached frame; raw response retained.'
+            self._save(s);return {**result,'tool':tool}
+        except Exception as error:
+            step.update(status='rejected',error=redacted_error(error));self._save(s);raise
         finally:
-            await self._world_pause(False)
-        save(self.folder/s['id']/'agent'/f'{len(s["events"]):03d}-response.json',result)
-        if not isinstance(result,dict) or result.get('action') not in ('inspect_area','revisit','return_home'):raise ValueError('Agent returned an invalid bounded action')
-        if s['observations'] and isinstance(result.get('detections'),list):self._boxes(s,s['observations'][-1],result['detections'],self._agent_model())
-        self._event(s,result['action'],str(result.get('reason',''))[:500]);return result
+            if not task.done():task.cancel();await asyncio.gather(task,return_exceptions=True)
+    async def _advance(self,s,duration):
+        native=await self._refresh(s);start=float(native['sim_time_s'])
+        deadline=asyncio.get_running_loop().time()+max(20,duration*15)
+        while asyncio.get_running_loop().time()<deadline:
+            native=await self._refresh(s)
+            if s['_stop'] or s['budget']['remaining_s']<self._return_reserve(s):return False
+            if float(native['sim_time_s'])-start>=duration:return True
+            await self._call('tick',.2);await asyncio.sleep(.05)
+        raise RuntimeError('Simulation clock stalled while executing the agent tool')
+    async def _run_agent(self,s,provider):
+        from .mission_navigation import validate_target
+        await self._capture(s,self._area_at_pose(s))
+        consecutive_errors=0
+        for _ in range(16):
+            await self._refresh(s)
+            if s['_stop'] or s['budget']['remaining_s']<self._return_reserve(s):break
+            step=None
+            try:
+                action=await self._decide(s,provider);step=s['agent_steps'][-1];tool=action.get('tool')
+                if tool=='return_home':
+                    step.update(tool='return_home',source='controller_guard' if action.get('controller_guard') else 'agent',status='executing',commanded_at=utcnow(),result=dict(status='returning',pose=copy.deepcopy(s['pose'])));break
+                arguments=action.get('arguments',{})
+                if not isinstance(arguments,dict):raise ValueError('Tool arguments must be a JSON object')
+                duration=action.get('review_after_s',1.5)
+                if isinstance(duration,bool) or not isinstance(duration,(int,float)) or not math.isfinite(duration) or not .5<=duration<=5:raise ValueError('review_after_s must be between 0.5 and 5 simulated seconds')
+                if tool in ('inspect_area','revisit'):
+                    area_id=action.get('area_id')
+                    if area_id not in s['plan']['allowed_areas']:raise ValueError('Agent action violates requested area constraints')
+                    area=next(a for a in AREAS if a['id']==area_id)
+                    arguments=dict(x_m=area['center']['x_m'],y_m=area['center']['y_m'],altitude_m=action.get('altitude_m',s['plan']['altitude_m']))
+                    tool='goto'
+                if tool=='goto':
+                    x,y,z=validate_target(arguments.get('x_m'),arguments.get('y_m'),arguments.get('altitude_m',arguments.get('z_m')),BOUNDS,self._exclusions(s),start=(s['pose']['x_m'],s['pose']['y_m']))
+                    yaw=arguments.get('yaw_deg',0)
+                    if isinstance(yaw,bool) or not isinstance(yaw,(int,float)) or not math.isfinite(yaw) or not -360<=yaw<=360:raise ValueError('yaw_deg must be a finite heading between -360 and 360')
+                    changed=bool(s.get('active_target') and s.get('navigation',{}).get('status')=='moving' and any(abs(s['active_target'][k]-v)>.1 for k,v in zip(('x_m','y_m','altitude_m'),(x,y,z))))
+                    await self._call('set_target',x,y,z,math.radians(yaw))
+                    arguments=dict(x_m=x,y_m=y,altitude_m=z,yaw_deg=yaw)
+                    s['active_target']=arguments;s['plan'].setdefault('waypoints',[]).append(dict(**arguments,command_id=step['id']))
+                    step['adjusted_during_motion']=changed
+                elif tool=='hover':
+                    await self._call('hover');s['active_target']={k:s['pose'][k] for k in ('x_m','y_m','altitude_m')}
+                elif tool!='observe':raise ValueError('Unknown tool. Use goto, observe, hover or return_home')
+                step.update(tool=tool,arguments=arguments,status='executing',commanded_at=utcnow());s['agent_phase']='executing'
+                self._event(s,'tool_call',dict(tool=tool,arguments=arguments,rationale=step.get('rationale','')))
+                ongoing=await self._advance(s,duration)
+                if ongoing:await self._capture(s,self._area_at_pose(s))
+                await self._refresh(s)
+                step.update(status='done',finished_at=utcnow(),result=dict(status=s.get('navigation',{}).get('status','observed'),pose=copy.deepcopy(s['pose']),navigation=copy.deepcopy(s.get('navigation',{})),remaining_s=s['budget']['remaining_s'],observation_id=s['observations'][-1]['id']))
+                self._event(s,'tool_result',step['result']);consecutive_errors=0
+                if not ongoing:break
+            except (ValueError,RuntimeError) as error:
+                consecutive_errors+=1
+                if step is None and s['agent_steps']:step=s['agent_steps'][-1]
+                if step is not None:step.update(status='rejected',error=redacted_error(error),finished_at=utcnow())
+                self._event(s,'tool_rejected',redacted_error(error))
+                await self._call('hover');s['active_target']={k:s['pose'][k] for k in ('x_m','y_m','altitude_m')}
+                if consecutive_errors>=3:raise ValueError('Agent tool failed three times: '+str(error)) from error
+        s['agent_phase']='returning';self._save(s)
     async def _return(self,s):
         s['status']='returning';self._event(s,'return_home','Return to simulated launch position and land')
         await self._refresh(s);z=max(2,min(5,s['pose']['altitude_m']))
-        await self._move(s,0,0,z,False);await self._call('land');await self._wait(s,[0,0,.15],False)
+        from .mission_navigation import return_route
+        route=return_route((s['pose']['x_m'],s['pose']['y_m']),(0.,0.),BOUNDS,self._exclusions(s))
+        for x,y in route:
+            s['active_target']=dict(x_m=x,y_m=y,altitude_m=z)
+            await self._call('set_target',x,y,z);await self._wait(s,[x,y,z],False)
+        await self._call('land');await self._wait(s,[0,0,.15],False)
+        s['active_target']=None;s['navigation']=dict(status='landed')
     def _report(self,s):
         findings=[dict(observation_id=o['id'],area_id=o['area_id'],image=o['annotated_image'],detections=o.get('detections',[])) for o in s['observations'] if o.get('detections')]
         report=dict(summary=f"{len(s['observations'])} camera observations collected; {len(findings)} observations contain provisional proposals.",findings=findings,controller=s['controller'],budget=s['budget'],returned_home=bool(s['pose'] and math.hypot(s['pose']['x_m'],s['pose']['y_m'])<1 and s['pose']['altitude_m']<.8),limitations=['Thermal images compose experimental DuMux responses with empirical ground texture; full numerical and field validation remain pending.','RGB is native Gazebo imagery using a separate photographic terrain material.','Proposals are image evidence; physical mine identities and geographic coordinates are unverified.','Local contrast scores are uncalibrated. Cross-frame proposals have not been merged into physical identities.'])
         from .mission_evidence import build_mission_report
-        visited=sorted({o['area_id'] for o in s['observations']});requested=s['plan']['allowed_areas']
-        report['coverage']=dict(measure='Requested regions with at least one observation; not complete ground coverage',qualified_ground_coverage_available=False,requested_areas=requested,inspected_areas=visited,unvisited_areas=[a for a in requested if a not in visited],area_fraction=len(visited)/len(requested),all_requested_areas_inspected=set(requested)<=set(visited),within_flight_budget=s['budget']['elapsed_s']<=s['budget']['limit_s'])
+        visited=sorted({o['area_id'] for o in s['observations'] if o['area_id'] in {a['id'] for a in AREAS}});requested=s['plan']['allowed_areas']
+        if s['controller']=='agent':requested=[a for a in requested if re.search(r'\b'+a+r'\b',s['prompt'].lower())]
+        report['coverage']=dict(measure='Named regions with a camera observation; arbitrary waypoint flights are reported separately',qualified_ground_coverage_available=False,requested_areas=requested,inspected_areas=visited,unvisited_areas=[a for a in requested if a not in visited],area_fraction=len(set(visited)&set(requested))/len(requested) if requested else None,all_requested_areas_inspected=set(requested)<=set(visited) if requested else None,within_flight_budget=s['budget']['elapsed_s']<=s['budget']['limit_s'])
+        report['agent_steps']=s.get('agent_steps',[]);report['commanded_waypoints']=s['plan'].get('waypoints',[])
         report['evidence_report']=build_mission_report(s['id'],[o['evidence'] for o in s['observations'] if o.get('evidence')])
         s['report']=report;save(self.folder/s['id']/'report.json',report);self._save(s)
     async def _run(self,s):
@@ -205,24 +315,29 @@ class MissionManager:
                     provider=GeminiProvider(cfg,self.folder/s['id']/'agent/provider')
             await self._world_pause(False);await self._refresh(s);s['status']='starting'
             await self._call('takeoff',s['plan']['altitude_m']);await self._wait(s,[0,0,s['plan']['altitude_m']]);s['status']='running'
-            visits={};queue=list(s['plan']['allowed_areas']);revisited=False
-            for _ in range(14):
-                await self._refresh(s)
-                if s['_stop'] or s['budget']['remaining_s']<25:break
-                if provider:action=await self._decide(s,provider)
-                elif queue:action=dict(action='inspect_area',area_id=queue.pop(0),altitude_m=s['plan']['altitude_m'])
-                elif s['plan']['revisit_uncertain'] and not revisited and any(o.get('detections') for o in s['observations']):
-                    revisited=True;action=dict(action='revisit',area_id=next(o['area_id'] for o in s['observations'] if o.get('detections')),altitude_m=max(2,s['plan']['altitude_m']-2))
-                else:break
-                if action['action']=='return_home':break
-                area_id=action.get('area_id')
-                if area_id not in s['plan']['allowed_areas']:raise ValueError('Agent action violates requested area constraints')
-                if visits.get(area_id,0)>=3:break
-                area=next(a for a in AREAS if a['id']==area_id);z=float(action.get('altitude_m',s['plan']['altitude_m']))
-                self._event(s,action['action'],f"Inspect {area_id} at {z:g}m")
-                if not await self._move(s,area['center']['x_m'],area['center']['y_m'],z):break
-                await self._capture(s,area_id);visits[area_id]=visits.get(area_id,0)+1
-            await self._return(s);s['status']='stopped' if s['_stop'] else 'completed';self._report(s)
+            if provider:
+                await self._run_agent(s,provider)
+            else:
+                visits={};queue=list(s['plan']['allowed_areas']);revisited=False
+                for _ in range(14):
+                    await self._refresh(s)
+                    if s['_stop'] or s['budget']['remaining_s']<25:break
+                    if queue:action=dict(action='inspect_area',area_id=queue.pop(0),altitude_m=s['plan']['altitude_m'])
+                    elif s['plan']['revisit_uncertain'] and not revisited and any(o.get('detections') for o in s['observations']):
+                        revisited=True;action=dict(action='revisit',area_id=next(o['area_id'] for o in s['observations'] if o.get('detections')),altitude_m=max(2,s['plan']['altitude_m']-2))
+                    else:break
+                    if action['action']=='return_home':break
+                    area_id=action.get('area_id')
+                    if area_id not in s['plan']['allowed_areas']:raise ValueError('Agent action violates requested area constraints')
+                    if visits.get(area_id,0)>=3:break
+                    area=next(a for a in AREAS if a['id']==area_id);z=float(action.get('altitude_m',s['plan']['altitude_m']))
+                    self._event(s,action['action'],f"Inspect {area_id} at {z:g}m")
+                    if not await self._move(s,area['center']['x_m'],area['center']['y_m'],z):break
+                    await self._capture(s,area_id);visits[area_id]=visits.get(area_id,0)+1
+            await self._return(s)
+            if s.get('agent_steps') and s['agent_steps'][-1].get('tool')=='return_home':
+                s['agent_steps'][-1].update(status='done',finished_at=utcnow(),result=dict(status='landed',pose=copy.deepcopy(s['pose']),remaining_s=s['budget']['remaining_s']))
+            s['status']='stopped' if s['_stop'] else 'completed';self._report(s)
         except Exception as error:
             s['error']=redacted_error(error);self._event(s,'mission_error',s['error'])
             try:await self._return(s)
@@ -231,4 +346,4 @@ class MissionManager:
         finally:
             try:
                 if provider and hasattr(provider,'close'):await provider.close()
-            finally:self.active=None;self._save(s)
+            finally:s['agent_phase']=s['status'];self.active=None;self._save(s)

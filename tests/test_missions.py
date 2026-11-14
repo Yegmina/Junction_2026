@@ -10,7 +10,8 @@ class Bridge:
     def resume(self):self.paused=False
     def pause(self):self.paused=True
     def tick(self,seconds):self.t+=seconds
-    def set_target(self,x,y,z):self.p=[x,y,z];self.commands.append(self.p)
+    def set_target(self,x,y,z,yaw_rad=0):self.p=[x,y,z];self.commands.append(list(self.p))
+    def hover(self):self.set_target(*self.p)
     def takeoff(self,z):self.set_target(0,0,z)
     def land(self):self.set_target(0,0,.15)
     def capture(self,path,kind):
@@ -45,7 +46,9 @@ def test_agent_invalid_area_is_rejected_and_landed(tmp_path):
         state=await manager.create('Survey east only','agent');await manager.tasks[state['id']]
         result=manager.get(state['id'])
         assert result['status']=='failed' and 'constraints' in result['error']
-        assert result['report']['returned_home'] and not result['observations']
+        assert result['report']['returned_home']
+        assert all(o['area_id']!='west' for o in result['observations'])
+        assert all(command[0]>=0 for command in bridge.commands)
         assert not result['report']['coverage']['all_requested_areas_inspected']
         assert not bridge.paused and manager.active is None
     asyncio.run(run())
@@ -105,7 +108,7 @@ def test_paired_physics_and_rgb_captures_are_saved_and_sent_to_agent(tmp_path):
         provider=Provider();m=MissionManager(tmp_path,bridge=Paired(),provider_factory=lambda:provider,detector=lambda _:dict(boxes=[],model='local_thermal_contrast'))
         s=await m.create('Inspect east at 3m','agent');await m.tasks[s['id']];s=m.get(s['id'])
         assert s['status']=='completed',s['error']
-        assert provider.counts==[0,2]
-        row=s['observations'][0];assert row['paired_capture_id']=='sensor-pair' and (tmp_path/row['rgb_image']).is_file()
+        assert provider.counts==[2,2]
+        row=next(o for o in s['observations'] if o['area_id']=='east');assert row['paired_capture_id']=='sensor-pair' and (tmp_path/row['rgb_image']).is_file()
         assert row['evidence']['context']['source_kind']=='dumux_field_crop'
     asyncio.run(run())
