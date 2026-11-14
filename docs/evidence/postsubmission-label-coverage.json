@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "at": "2026-11-14T23:11:01.509753+00:00",
+  "status": "cache_reconciled_not_all_sources_complete",
+  "model": "gemini-robotics-er-2-preview",
+  "policy_version": "airborne-only-v2-primary-state",
+  "eligible_frames": 12519,
+  "eligible_unique_identities": 12399,
+  "unique_identity_counts": {
+    "valid_label_retained": 12347,
+    "invalid_paid_response_retained": 52
+  },
+  "frame_counts": {
+    "valid_label_retained": 12467,
+    "invalid_paid_response_retained": 52
+  },
+  "saved_result_records_read": 26682,
+  "saved_unique_identities": 21625,
+  "identities_with_both_valid_and_invalid_records": 0,
+  "frozen_source_versions": 183,
+  "inventory_observed_at": "2026-11-14T18:27:05.032610+00:00",
+  "inventory_pending_versions": 70,
+  "inventory_pending_already_in_frozen_audit": 33,
+  "inventory_pending_outside_frozen_audit": 37,
+  "ground_frames_excluded": 27472,
+  "unknown_frames_excluded": 9581,
+  "paid_inference_issued": false,
+  "input_records_modified": false,
+  "limitations": [
+    "Coverage is agreement with saved cache identities, not label accuracy.",
+    "Invalid paid responses remain invalid and are not negative labels.",
+    "Additional source versions require sampling and telemetry qualification.",
+    "Inventory is a timestamped snapshot, not a fresh bucket listing."
+  ],
+  "eligibility_sha256": "2ae37a3ce30850ac0bfb6de2aefd6d8674bf8b3f0d07251eb501bb6d7c37d0c4"
+}

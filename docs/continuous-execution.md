@@ -77,6 +77,30 @@ those figures are not a fresh unique-request estimate. Existing paid caches
 must be reconciled with airborne eligibility before restarting inference.
 The full physical protocol described above remains incomplete.
 
+The local NTFS data partition was found unmounted during the follow-up audit.
+The normal mount failed with `volume is dirty and "force" flag is not set`.
+It is accessible at `/mnt/aerorozum-recovery-readonly` using
+`ntfs-3g -o ro,norecover`; no repair or forced writable mount was attempted.
+Local write-based ingestion remains unavailable. VM training uses its already
+validated input copies independently of this volume.
+
+`cloud/audit_label_coverage.py` joins compact saved-result indexes with the
+frozen corrected airborne audit using pixel hash and source generation.
+It distinguishes valid retained labels, invalid paid responses and genuinely
+missing results. Repeated frames do not count as distinct inference requests,
+and an old discovery queue is reconciled against processed source versions.
+It makes no API requests and never modifies source trees.
+
+The 23:11 UTC reconciliation read 26,682 saved result records across the
+read-only local cache and the VM export. All 12,519 eligible frames in the
+183-source frozen audit have a retained paid result: 12,467 frames have valid
+labels and 52 have invalid paid responses. Deduplication gives 12,399 unique
+identities, including 12,347 valid and 52 invalid. These invalid results are
+not negative labels. The later 18:27 UTC discovery snapshot lists 70 pending
+versions, but 33 are already represented in the frozen audit; 37 fall outside
+it and require sampling and flight-state qualification. See
+[the saved reconciliation](evidence/postsubmission-label-coverage.json).
+
 ## Inspect execution
 
 VM services include `aerorozum-stream-pipeline.service`, physical workers and
