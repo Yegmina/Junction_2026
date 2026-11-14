@@ -134,6 +134,24 @@ already established longer visual recipe across seeds, while preserving the
 opened test set from further selection. The full physical study remains
 incomplete.
 
+At 23:37:57 UTC the follow-up preparation finished all 37 source versions,
+with 2,294 eligible airborne frames and no source quarantines. The frozen ER2
+worker validated every staged pixel and audit hash before resuming at
+23:39:47 UTC. Its prompt remains `thermal-v2-recall-calibrated` with SHA-256
+`b6e271c2bdb530264b9844ed87822bfe82cb31763568db8efa4dbca9ab0d94ad`.
+The [launch receipt](evidence/followup-label-launch.json) binds the 26,682-record
+combined paid-cache index and the source qualification audit. All 2,294 frames
+were absent from that prior paid index. At the first live check, 90 frames
+had completed with zero failures and 90 canonical uploads, with no uploads
+pending. This is an active batch, not a claim of completed labeling.
+
+`cloud/stage_followup_label_plan.py` stages exact bytes, preserves the old
+launch plan, and refuses to change the plan of a live label worker. Its
+pending-only selection excludes invalid retained paid responses as well as
+valid prior labels; an invalid answer never becomes a negative label. The
+existing worker's code, 120 RPM / 500,000 input TPM limits, separate hackathon
+key, and original-response archive remain unchanged.
+
 ## Inspect execution
 
 VM services include `aerorozum-stream-pipeline.service`, physical workers and

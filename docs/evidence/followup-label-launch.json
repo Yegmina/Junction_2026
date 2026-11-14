@@ -1,0 +1,17 @@
+{
+  "status": "validated_label_worker_started",
+  "at": "2026-11-14T23:39:45.812472+00:00",
+  "snapshot": "/opt/aerorozum/airborne-labeler/artifacts/pipeline/inputs/airborne-snapshots/followup-20261114T233943",
+  "manifest_sha256": "8828601ffc388d0787e90a213cdcc50d22dcb4fb6c97ddeb08b986c38f3f5f44",
+  "prompt_version": "thermal-v2-recall-calibrated",
+  "prompt_sha256": "b6e271c2bdb530264b9844ed87822bfe82cb31763568db8efa4dbca9ab0d94ad",
+  "source_code_changed": false,
+  "source_versions": 37,
+  "source_quarantines": 0,
+  "method": "exact_local_vm_copy",
+  "source_audit_sha256": "4dc9aa56535d42177f0cf12d507ea0d1039c4810ca2b320d972eb2ca0c2ca767",
+  "prior_paid_index_sha256": "9ee0eb9cc51a21d6c882eaca1bae600c9bf78acbb1387e6d3b7cef54ffadfc66",
+  "eligible_frames": 2294,
+  "pending_frames": 2294,
+  "prior_paid_frames_excluded": 0
+}
