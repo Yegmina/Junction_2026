@@ -26,9 +26,14 @@ harbor run -p ./harbor/thermal-investigation -a oracle
 
 The native scene assets and runtime sources must first be staged into
 `environment/backend/assets/` and `environment/backend/runtime/`. The deployment
-staging script is `cloud/stage_harbor_native.py`. It copies the existing native
-scene losslessly, checks field hashes, rewrites container paths and records
-`native-assets-manifest.json`. **An unstaged source checkout is not yet a
+staging script is `cloud/stage_harbor_native.py`. Then run
+`cloud/build_harbor_scene.py --assets TASK/environment/backend/assets --case QUALIFIED_CASE`
+to freeze new insertions and their private reference together, using the
+admitted full-day axisymmetric present/absent pair. The source hashes must match
+the admission certificate. It preserves the existing photographic/recorded
+ground appearance and generates both warming/cooling fields without scaling
+the physical contrast. Camera fields and private reference share frozen hashes.
+`native-assets-manifest.json` records the build. **An unstaged source checkout is not yet a
 self-contained distributable**; the final submission bundle must include these
 assets or a pinned, publicly downloadable asset archive. The task is under
 active integration; only actual completed Harbor logs count as run evidence.
@@ -67,8 +72,10 @@ residuals; it has no access to target coordinates.
 
 ## Scope and limitations
 
-Flight uses native Gazebo multirotor dynamics. Thermal frames are perspective
-crops of experimental DuMux-derived composed fields; RGB uses a separate
+Flight uses native Gazebo multirotor dynamics. The local axisymmetric thermal
+response pair has passed numerical admission for one vertical cylinder in
+homogeneous flat soil with spatially uniform forcing. Thermal frames are perspective
+crops of composed fields; RGB uses a separate
 photographic material. This is an inserted-object investigation benchmark,
 not evidence of real mine detection or accepted full-domain thermal physics.
 The first task uses a frozen layout; independent layout replication and

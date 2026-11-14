@@ -10,7 +10,9 @@ server=importlib.util.module_from_spec(spec);spec.loader.exec_module(server)
 
 @pytest.fixture
 def task(tmp_path,monkeypatch):
-    (tmp_path/'provenance').mkdir();(tmp_path/'provenance/scene.truth.json').write_text(json.dumps({'targets':[{'id':0,'x_m':8,'y_m':0},{'id':1,'x_m':12,'y_m':0},{'id':2,'x_m':0,'y_m':12}]}))
+    (tmp_path/'provenance').mkdir();(tmp_path/'sensor-scene').mkdir()
+    (tmp_path/'sensor-scene/warming-scene.json').write_text(json.dumps({'thermal_field_sha256':'a'*64}))
+    (tmp_path/'provenance/scene.truth.json').write_text(json.dumps({'generated_together_with_insertions':True,'field_hashes':{'warming':'a'*64},'targets':[{'id':0,'x_m':8,'y_m':0},{'id':1,'x_m':12,'y_m':0},{'id':2,'x_m':0,'y_m':12}]}))
     monkeypatch.setattr(server,'ROOT',tmp_path)
     state=dict(ready=True,sim_time_s=20.,pose=dict(x_m=0,y_m=0,z_m=.17),velocity=dict(x_m_s=0,y_m_s=0,z_m_s=0))
     monkeypatch.setattr(server,'native',lambda *args,**kwargs:state)

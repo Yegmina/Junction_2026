@@ -38,3 +38,29 @@ reference trial was launched under the actual Harbor CLI; its authoritative
 state is `/opt/aerorozum/harbor/jobs/reference-v1/`. A launched trial is not a
 completed playthrough. The full local test environment is being recreated
 because the external SSD holding its previous virtualenv is disconnected.
+
+The initial Harbor trials exposed two packaging problems: Ubuntu's existing
+UID 1000 conflicted with the agent account, and the live deployment deliberately
+contained no private target reference. The account now uses UID 10001. No
+scores from these failed setup attempts count as playthrough evidence.
+
+The actual VM contains a completed, numerically admitted full-day axisymmetric
+DuMux pair at `physics/cases/axisymmetric-qualification-v2`. Its certificate
+records passed upstream, budget, timestep, grid, domain and regularization
+checks within a homogeneous flat-soil/symmetric-cylinder scope; field validation
+is not performed. `cloud/build_harbor_scene.py` verifies the certificate's
+source-file hashes and creates new response insertions with their private
+reference together. This replaces the unavailable legacy reference without
+inventing labels for the previous scene. The resulting composed terrain keeps
+`research_accepted: false`; qualification of a local response does not qualify
+the full photographic terrain or establish real mine-detection performance.
+
+The new native build has frozen warming field hash
+`f962d23775892709399064388fc113fdcaffe729868f518f5e2b2133538bb46d`
+and cooling field hash
+`1b906be6a5081c553c4658e6d41fa491abceed705c5e1304efea1b94c17415c9`.
+The server requires private-reference hashes to match the camera field manifests.
+The private GPU OpenAI tool-call adapter also produced a valid model-chosen
+`bash("drone status")` call; this verifies protocol translation, not mission
+completion. GPU 0's inference service now loads the selected first-sweep GRPO
+adapter. No frontier-superiority claim has been established.

@@ -32,7 +32,12 @@ def inside(point,polygon):
 class Investigation:
     def __init__(self):
         self.start=None;self.end=None;self.actions=0;self.observations={};self.trace=[];self.report=None;self.sealed=False;self.result=None;self.samples=[];self.budget=180.;self.errors=[]
-        truth=json.loads((ROOT/'provenance/scene.truth.json').read_text())['targets']
+        reference=json.loads((ROOT/'provenance/scene.truth.json').read_text())
+        if reference.get('generated_together_with_insertions') is not True or not reference.get('field_hashes'):raise ValueError('A frozen reference generated with the actual scene insertions is required')
+        for phase,field_hash in reference['field_hashes'].items():
+            metadata=json.loads((ROOT/'sensor-scene'/(phase+'-scene.json')).read_text())
+            if metadata['thermal_field_sha256']!=field_hash:raise ValueError('Reference and camera field identities differ')
+        truth=reference['targets']
         self.targets=[dict(id=str(t['id']),x=float(t['x_m']),y=float(t['y_m'])) for t in truth if any(a<=t['x_m']<=c and b<=t['y_m']<=d for a,b,c,d in REGIONS.values())]
         if len(self.targets)!=3:raise ValueError('Frozen benchmark requires three eligible inserted signatures')
         self.cells=[(x+.5,y+.5) for a,b,c,d in REGIONS.values() for x in range(a,c) for y in range(b,d)]
