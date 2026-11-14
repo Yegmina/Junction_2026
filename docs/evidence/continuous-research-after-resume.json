@@ -1,0 +1,281 @@
+{
+  "at": "2026-11-14T23:34:58.272354+00:00",
+  "scope": "Post-submission continuous development only; independent frozen submission unchanged",
+  "runs": [
+    {
+      "id": "7f83044fe7b13c236bd5d926-17",
+      "batch_id": "7f83044fe7b13c236bd5d926",
+      "seed": 17,
+      "status": "completed",
+      "training_images": 239,
+      "training_provenance": {
+        "original_manual": 13,
+        "reviewed_ai": 51,
+        "user_accepted_model": 175
+      },
+      "manifest_hash": "100f26ed3205030873cda18b5a47ab635b6fd3423a0ed6e1e75958d995ab00c4",
+      "sft_updates": 32,
+      "grpo_updates": 13,
+      "grpo_requested_updates": 16,
+      "grpo_early_stop": "Four consecutive zero-variance task reward groups; do not extend KL-only updates",
+      "development_examples": 120,
+      "baseline_f2": 0.055710306406685235,
+      "sft_f2": 0.014084507042253521,
+      "grpo_f2": 0.027932960893854747,
+      "checkpoint_utility": {
+        "selected_stage": null,
+        "sft_qualifies": false,
+        "grpo_qualifies": false,
+        "task_signal_verified": true,
+        "rl_improvement_claimed": false,
+        "interpretation": "Checkpoint selected by fixed development utility; causal RL benefit requires the planned paired ablations"
+      },
+      "result_sha256": "9b11c9d5b030ae336bbaa6ef4c538c9f9e20218a23ca83cad17dfe2382c9161a"
+    },
+    {
+      "id": "7f83044fe7b13c236bd5d926-43",
+      "batch_id": "7f83044fe7b13c236bd5d926",
+      "seed": 43,
+      "status": "completed",
+      "training_images": 239,
+      "training_provenance": {
+        "original_manual": 13,
+        "reviewed_ai": 51,
+        "user_accepted_model": 175
+      },
+      "manifest_hash": "100f26ed3205030873cda18b5a47ab635b6fd3423a0ed6e1e75958d995ab00c4",
+      "sft_updates": 32,
+      "grpo_updates": 8,
+      "grpo_requested_updates": 16,
+      "grpo_early_stop": "Four consecutive zero-variance task reward groups; do not extend KL-only updates",
+      "development_examples": 120,
+      "baseline_f2": 0.055865921787709494,
+      "sft_f2": 0.04189944134078212,
+      "grpo_f2": 0.04201680672268908,
+      "checkpoint_utility": {
+        "selected_stage": null,
+        "sft_qualifies": false,
+        "grpo_qualifies": false,
+        "task_signal_verified": true,
+        "rl_improvement_claimed": false,
+        "interpretation": "Checkpoint selected by fixed development utility; causal RL benefit requires the planned paired ablations"
+      },
+      "result_sha256": "95796133f29e828f87f8cfa5d6e5d558afeabe4de46c50bd87f9b74bcc57c274"
+    },
+    {
+      "id": "7f83044fe7b13c236bd5d926-91",
+      "batch_id": "7f83044fe7b13c236bd5d926",
+      "seed": 91,
+      "status": "completed",
+      "training_images": 239,
+      "training_provenance": {
+        "original_manual": 13,
+        "reviewed_ai": 51,
+        "user_accepted_model": 175
+      },
+      "manifest_hash": "100f26ed3205030873cda18b5a47ab635b6fd3423a0ed6e1e75958d995ab00c4",
+      "sft_updates": 32,
+      "grpo_updates": 4,
+      "grpo_requested_updates": 16,
+      "grpo_early_stop": "Four consecutive zero-variance task reward groups; do not extend KL-only updates",
+      "development_examples": 120,
+      "baseline_f2": 0.055401662049861494,
+      "sft_f2": 0.04201680672268908,
+      "grpo_f2": 0.04189944134078212,
+      "checkpoint_utility": {
+        "selected_stage": null,
+        "sft_qualifies": false,
+        "grpo_qualifies": false,
+        "task_signal_verified": false,
+        "rl_improvement_claimed": false,
+        "interpretation": "Checkpoint selected by fixed development utility; causal RL benefit requires the planned paired ablations"
+      },
+      "result_sha256": "b035268df347e81358ca024b59dc940bd79bccc4102d280d4d954e7a2ca9a31e"
+    },
+    {
+      "id": "d82909dce3bb7b1445d4b892-17",
+      "batch_id": "d82909dce3bb7b1445d4b892",
+      "seed": 17,
+      "status": "completed",
+      "training_images": 224,
+      "training_provenance": {
+        "original_manual": 18,
+        "reviewed_ai": 46,
+        "user_accepted_model": 160
+      },
+      "manifest_hash": "866eaa18dde4eddeab81f9744a9b24066f070ea66e44f63d9fe648528a9990a9",
+      "sft_updates": 32,
+      "grpo_updates": 6,
+      "grpo_requested_updates": 16,
+      "grpo_early_stop": "Four consecutive zero-variance task reward groups; do not extend KL-only updates",
+      "development_examples": 120,
+      "baseline_f2": 0.055710306406685235,
+      "sft_f2": 0.028011204481792718,
+      "grpo_f2": 0.027932960893854747,
+      "checkpoint_utility": {
+        "selected_stage": null,
+        "sft_qualifies": false,
+        "grpo_qualifies": false,
+        "task_signal_verified": true,
+        "rl_improvement_claimed": false,
+        "interpretation": "Checkpoint selected by fixed development utility; causal RL benefit requires the planned paired ablations"
+      },
+      "result_sha256": "10a9f9050c27709c8adcfeb539911f05fa7b3b92dc7bd3f88a5ca6670c9810eb"
+    },
+    {
+      "id": "d82909dce3bb7b1445d4b892-43",
+      "batch_id": "d82909dce3bb7b1445d4b892",
+      "seed": 43,
+      "status": "completed",
+      "training_images": 224,
+      "training_provenance": {
+        "original_manual": 18,
+        "reviewed_ai": 46,
+        "user_accepted_model": 160
+      },
+      "manifest_hash": "866eaa18dde4eddeab81f9744a9b24066f070ea66e44f63d9fe648528a9990a9",
+      "sft_updates": 32,
+      "grpo_updates": 7,
+      "grpo_requested_updates": 16,
+      "grpo_early_stop": "Four consecutive zero-variance task reward groups; do not extend KL-only updates",
+      "development_examples": 120,
+      "baseline_f2": 0.055865921787709494,
+      "sft_f2": 0.04189944134078212,
+      "grpo_f2": 0.04189944134078212,
+      "checkpoint_utility": {
+        "selected_stage": null,
+        "sft_qualifies": false,
+        "grpo_qualifies": false,
+        "task_signal_verified": true,
+        "rl_improvement_claimed": false,
+        "interpretation": "Checkpoint selected by fixed development utility; causal RL benefit requires the planned paired ablations"
+      },
+      "result_sha256": "12c288f0acc3706a995d5e0ba9f67c708183683367733031e4fc53fd432e3f27"
+    },
+    {
+      "id": "d82909dce3bb7b1445d4b892-91",
+      "batch_id": "d82909dce3bb7b1445d4b892",
+      "seed": 91,
+      "status": "completed",
+      "training_images": 224,
+      "training_provenance": {
+        "original_manual": 18,
+        "reviewed_ai": 46,
+        "user_accepted_model": 160
+      },
+      "manifest_hash": "866eaa18dde4eddeab81f9744a9b24066f070ea66e44f63d9fe648528a9990a9",
+      "sft_updates": 32,
+      "grpo_updates": 6,
+      "grpo_requested_updates": 16,
+      "grpo_early_stop": "Four consecutive zero-variance task reward groups; do not extend KL-only updates",
+      "development_examples": 120,
+      "baseline_f2": 0.055401662049861494,
+      "sft_f2": 0.042134831460674156,
+      "grpo_f2": 0.042134831460674156,
+      "checkpoint_utility": {
+        "selected_stage": null,
+        "sft_qualifies": false,
+        "grpo_qualifies": false,
+        "task_signal_verified": true,
+        "rl_improvement_claimed": false,
+        "interpretation": "Checkpoint selected by fixed development utility; causal RL benefit requires the planned paired ablations"
+      },
+      "result_sha256": "285d95273b4e32bc4ecde0b0f88548661a5900bd2517b54fd28a978073b77b95"
+    },
+    {
+      "id": "fdc6a87d09fbbd53a3e6bab8-17",
+      "batch_id": "fdc6a87d09fbbd53a3e6bab8",
+      "seed": 17,
+      "status": "completed",
+      "training_images": 384,
+      "training_provenance": {
+        "direct_physics": 38,
+        "original_manual": 23,
+        "reviewed_ai": 41,
+        "user_accepted_model": 282
+      },
+      "manifest_hash": "856cb432801412a7bbc1569371f26a73caf7daec844b9ff0d5874fb2b07afedd",
+      "sft_updates": 32,
+      "grpo_updates": 4,
+      "grpo_requested_updates": 16,
+      "grpo_early_stop": "Four consecutive zero-variance task reward groups; do not extend KL-only updates",
+      "development_examples": 120,
+      "baseline_f2": 0.055710306406685235,
+      "sft_f2": 0.042134831460674156,
+      "grpo_f2": 0.042134831460674156,
+      "checkpoint_utility": {
+        "selected_stage": null,
+        "sft_qualifies": false,
+        "grpo_qualifies": false,
+        "task_signal_verified": false,
+        "rl_improvement_claimed": false,
+        "interpretation": "Checkpoint selected by fixed development utility; causal RL benefit requires the planned paired ablations"
+      },
+      "result_sha256": "fc92347138dc49efd3d776cab881f45dab6838060a674a73e96a43924e394440"
+    },
+    {
+      "id": "fdc6a87d09fbbd53a3e6bab8-43",
+      "batch_id": "fdc6a87d09fbbd53a3e6bab8",
+      "seed": 43,
+      "status": "completed",
+      "training_images": 384,
+      "training_provenance": {
+        "direct_physics": 38,
+        "original_manual": 23,
+        "reviewed_ai": 41,
+        "user_accepted_model": 282
+      },
+      "manifest_hash": "856cb432801412a7bbc1569371f26a73caf7daec844b9ff0d5874fb2b07afedd",
+      "sft_updates": 32,
+      "grpo_updates": 15,
+      "grpo_requested_updates": 16,
+      "grpo_early_stop": "Four consecutive zero-variance task reward groups; do not extend KL-only updates",
+      "development_examples": 120,
+      "baseline_f2": 0.055865921787709494,
+      "sft_f2": 0.04189944134078212,
+      "grpo_f2": 0.04189944134078212,
+      "checkpoint_utility": {
+        "selected_stage": null,
+        "sft_qualifies": false,
+        "grpo_qualifies": false,
+        "task_signal_verified": true,
+        "rl_improvement_claimed": false,
+        "interpretation": "Checkpoint selected by fixed development utility; causal RL benefit requires the planned paired ablations"
+      },
+      "result_sha256": "2369081bac7f880f3be6ba0761238591464ce2e7156e1e6cbefc628512ab6ae5"
+    },
+    {
+      "id": "fdc6a87d09fbbd53a3e6bab8-91",
+      "batch_id": "fdc6a87d09fbbd53a3e6bab8",
+      "seed": 91,
+      "status": "completed",
+      "training_images": 384,
+      "training_provenance": {
+        "direct_physics": 38,
+        "original_manual": 23,
+        "reviewed_ai": 41,
+        "user_accepted_model": 282
+      },
+      "manifest_hash": "856cb432801412a7bbc1569371f26a73caf7daec844b9ff0d5874fb2b07afedd",
+      "sft_updates": 32,
+      "grpo_updates": 4,
+      "grpo_requested_updates": 16,
+      "grpo_early_stop": "Four consecutive zero-variance task reward groups; do not extend KL-only updates",
+      "development_examples": 120,
+      "baseline_f2": 0.055401662049861494,
+      "sft_f2": 0.04201680672268908,
+      "grpo_f2": 0.042134831460674156,
+      "checkpoint_utility": {
+        "selected_stage": null,
+        "sft_qualifies": false,
+        "grpo_qualifies": false,
+        "task_signal_verified": false,
+        "rl_improvement_claimed": false,
+        "interpretation": "Checkpoint selected by fixed development utility; causal RL benefit requires the planned paired ablations"
+      },
+      "result_sha256": "5741f5d91f23712b8fc924ceb8a2a380ed6d85ef4e634c922a165d4947a4f21b"
+    }
+  ],
+  "uses_frozen_test_for_selection": false,
+  "full_184_trajectory_protocol_complete": false
+}

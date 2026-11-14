@@ -101,6 +101,39 @@ versions, but 33 are already represented in the frozen audit; 37 fall outside
 it and require sampling and flight-state qualification. See
 [the saved reconciliation](evidence/postsubmission-label-coverage.json).
 
+## Follow-up qualification and short-recipe results
+
+A fresh bucket listing at 23:33 UTC still contained 220 normal thermal videos.
+The 37 source versions outside the original 183-source audit are being
+prepared on the VM by `aerorozum-followup-preparation-v2.service`, with four
+workers and the unchanged five-frame-per-second sampling rule. Every admitted
+frame requires a one-to-one original receipt clock and fresh autopilot state.
+The first attempt found a missing host decoder before qualification; its
+reports are retained under `airborne-followup-v1/attempts/missing-host-ffprobe`.
+After installing the host decoder, the separate source revision adds a
+dependency preflight and reuses the already verified downloads. It makes no
+model requests. The [deployment receipt](evidence/followup-preparation-v2.json)
+binds its source hash. At 23:35:50 UTC, 18 of 37 sources were processed,
+yielding 978 eligible airborne frames with no source quarantines so far.
+
+Nine resumed/arrival-triggered short streaming trials have completed across
+three batches and seeds 17/43/91. All ran 32 SFT updates; GRPO stopped at
+4–15 updates after the reward-variance guard fired. The saved independent
+SFT comparisons show that **none passed the promotion gates**. Their GRPO
+development F2 scores are about 0.028–0.042, below their direct-parent scores
+of about 0.055–0.056. They do not establish useful RL improvement. These
+short-recipe trials are separate from the much stronger selected visual
+submission model and do not change its frozen results or the live endpoint.
+
+![Measured short-recipe comparisons across three seeds](evidence/continuous-research-after-resume.png)
+
+The [nine-run measurement snapshot](evidence/continuous-research-after-resume.json)
+retains actual update counts, manifest hashes, provenance, result hashes and
+checkpoint selection decisions. Further model work should compare the
+already established longer visual recipe across seeds, while preserving the
+opened test set from further selection. The full physical study remains
+incomplete.
+
 ## Inspect execution
 
 VM services include `aerorozum-stream-pipeline.service`, physical workers and
