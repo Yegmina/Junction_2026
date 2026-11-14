@@ -20,8 +20,26 @@ from fastapi import HTTPException,Request
 from fastapi.responses import StreamingResponse
 from PIL import Image
 
-PROTOCOL='gemma4-native-tools-v1'
+PROTOCOL='gemma4-native-tools-v2'
 THINKING_KEYS=('thinking','reasoning','reasoning_content')
+
+
+class NativeContextError(ValueError):pass
+
+
+def fit_context(processor,messages,tools,thinking,requested_limit,fallback_messages=None,context_limit=24576):
+    def encode(history):
+        return processor.apply_chat_template(history,tools=tools or None,enable_thinking=thinking,
+            add_generation_prompt=True,tokenize=True,return_dict=True,return_tensors='pt')
+    inputs=encode(messages);restored=True
+    if inputs['input_ids'].shape[-1]+requested_limit>context_limit and fallback_messages is not None:
+        # Public messages/images are identical. Only optional cached private
+        # thinking is omitted when it would consume the generation allowance.
+        inputs=encode(fallback_messages);restored=False
+    length=inputs['input_ids'].shape[-1];limit=min(requested_limit,context_limit-length)
+    if limit<64:
+        raise NativeContextError(f'This model\'s maximum context length is {context_limit} tokens. The public conversation has {length} tokens; compact the conversation before retrying.')
+    return inputs,limit,restored
 
 
 def normalize_messages(messages,thoughts=None):
@@ -95,10 +113,9 @@ def infer(app,body,session):
         tool['function'].setdefault('description','');tool['function'].setdefault('parameters',dict(type='object',properties={}))
     thinking=os.environ.get('AEROROZUM_NATIVE_THINKING','1')=='1'
     limit=min(4096,max(64,int(body.get('max_tokens') or body.get('max_completion_tokens') or 4096)))
-    inputs=processor.apply_chat_template(messages,tools=tools or None,enable_thinking=thinking,
-        add_generation_prompt=True,tokenize=True,return_dict=True,return_tensors='pt')
+    fallback=normalize_messages(body.get('messages'))[0] if thoughts else None
+    inputs,limit,restored=fit_context(processor,messages,tools,thinking,limit,fallback)
     length=inputs['input_ids'].shape[-1]
-    if length+limit>24576:raise ValueError('Native chat context exceeds the declared 24576-token inference profile')
     prefix=inputs['input_ids'][0].detach().cpu().tolist();device=app.state.model.get_input_embeddings().weight.device
     inputs={k:(v.to(device=device,dtype=torch.bfloat16) if torch.is_floating_point(v) else v.to(device)) if torch.is_tensor(v) else v for k,v in inputs.items()}
     stops=app.state.model.generation_config.eos_token_id
@@ -106,19 +123,25 @@ def infer(app,body,session):
     for token in ('<turn|>','<|tool_response>'):
         index=tokenizer.convert_tokens_to_ids(token)
         if index is not None and index!=tokenizer.unk_token_id:stops.append(index)
-    began=time.monotonic()
-    with torch.inference_mode():generated=app.state.model.generate(**inputs,do_sample=False,num_beams=1,max_new_tokens=limit,use_cache=True,eos_token_id=sorted(set(stops)))
-    tokens=generated[0,length:].detach().cpu().tolist();identifier='chatcmpl-'+uuid.uuid4().hex
+    began=time.monotonic();identifier='chatcmpl-'+uuid.uuid4().hex
     folder=Path(os.environ.get('AEROROZUM_NATIVE_LOGS','/opt/aerorozum/artifacts/private/native-inference'));folder.mkdir(parents=True,exist_ok=True,mode=0o700)
     record=dict(id=identifier,protocol=PROTOCOL,model=os.environ.get('AEROROZUM_MISSION_MODEL','google/gemma-4-12B-it'),
-        adapter_sha256=app.state.adapter_sha256,image_sha256=image_hashes,prompt_token_ids=prefix,output_token_ids=tokens,
-        output_text=tokenizer.decode(tokens,skip_special_tokens=False),input_tokens=length,output_tokens=len(tokens),max_output_tokens=limit,
-        thinking_enabled=thinking,elapsed_s=time.monotonic()-began)
+        status='running',adapter_sha256=app.state.adapter_sha256,image_sha256=image_hashes,prompt_token_ids=prefix,
+        input_tokens=length,max_output_tokens=limit,thinking_enabled=thinking,private_thinking_restored=bool(thoughts) and restored,
+        available_tools=[t['function']['name'] for t in tools],message_roles=[m['role'] for m in messages])
     path=folder/(identifier+'.json');path.write_text(json.dumps(record))
+    try:
+        with torch.inference_mode():generated=app.state.model.generate(**inputs,do_sample=False,num_beams=1,max_new_tokens=limit,use_cache=True,eos_token_id=sorted(set(stops)))
+    except Exception as error:
+        record.update(status='failed',generation_error_type=type(error).__name__,elapsed_s=time.monotonic()-began)
+        path.write_text(json.dumps(record));raise
+    tokens=generated[0,length:].detach().cpu().tolist()
+    record.update(output_token_ids=tokens,output_text=tokenizer.decode(tokens,skip_special_tokens=False),output_tokens=len(tokens),elapsed_s=time.monotonic()-began)
+    path.write_text(json.dumps(record))
     try:
         parsed=tokenizer.parse_response(tokens,prefix=prefix,tools=tools or None);message=public_message(parsed)
     except Exception as error:
-        record['parse_error_type']=type(error).__name__;path.write_text(json.dumps(record))
+        record.update(status='failed',parse_error_type=type(error).__name__);path.write_text(json.dumps(record))
         raise ValueError('Native response parsing failed; private generation record '+identifier) from None
     thought={key:parsed[key] for key in THINKING_KEYS if parsed.get(key)}
     if thought:
@@ -126,7 +149,7 @@ def infer(app,body,session):
         while len(app.state.native_thoughts)>256:app.state.native_thoughts.popitem(last=False)
     finish='tool_calls' if message.get('tool_calls') else 'length' if len(tokens)>=limit else 'stop'
     usage=dict(prompt_tokens=length,completion_tokens=len(tokens),total_tokens=length+len(tokens))
-    record.update(public_message=message,finish_reason=finish);path.write_text(json.dumps(record))
+    record.update(status='completed',public_message=message,finish_reason=finish);path.write_text(json.dumps(record))
     return dict(id=identifier,object='chat.completion',created=int(time.time()),model=record['model'],
         choices=[dict(index=0,message=message,finish_reason=finish)],usage=usage,
         aerorozum=dict(protocol=PROTOCOL,adapter_sha256=record['adapter_sha256'],thinking_enabled=thinking))
@@ -144,6 +167,7 @@ def attach(app):
         if not 32<=len(session)<=128:raise HTTPException(400,'A private proxy session is required')
         async with app.state.lock:
             try:result=await asyncio.to_thread(infer,app,body,session)
+            except NativeContextError as error:raise HTTPException(400,dict(message=str(error),code='context_length_exceeded')) from None
             except ValueError as error:raise HTTPException(422,str(error)) from None
         if not body.get('stream'):return result
         def events():

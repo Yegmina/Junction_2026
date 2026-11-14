@@ -3,7 +3,7 @@
 The native Harbor task, scalar verifier, clean OpenCode model playthroughs and
 reference/shortcut controls run. A prepared portable archive exists; final
 task-version packaging and harder-scenario evaluation remain. Frontier
-superiority remains unproven. The latest full repository check passed 291 tests.
+superiority remains unproven. The latest full repository check passed 302 tests.
 
 ## Latest measured state
 
@@ -31,6 +31,15 @@ and 3: +240 SFT at LR 0.00001 and +480 at LR 0.00003, each followed by up to 96
 GRPO updates with the existing zero-variance stop. Parent adapter SHA-256 is
 `f9bd1c6e2913f6f8446d995624d1e9f953ddce281bc03d1f1e99d7c6eac215e3`.
 These remain development selection; starting jobs does not establish results.
+
+An augmentation continuation is queued after the base native-tool trial. It
+expands each validated training image into identity/horizontal/vertical/both
+flips with the corresponding normalized-box transforms. Original labels and
+provenance stay unchanged. The materialization receipt distinguishes derivative
+examples from independent observations; evaluation images are never augmented.
+Tests reject held-out zones and tampered source/derivative checksums. The
+experiment shares its parent, LR, update count and effective batch with the
+unaugmented +480 continuation. It has no measured result yet.
 
 ## Measured post-training
 
@@ -120,8 +129,22 @@ The original Gemma proxy flattened role/image history into a JSON request.
 `cloud/gemma_native_chat.py` now uses the installed Gemma processor's canonical
 tool template and response parser, preserving tool responses and images.
 Thinking is retained privately and excluded from public chat responses. Both
-base and refined checkpoints passed actual native tool-call probes; paired
-OpenCode trials run against frozen task v0.2 / seed 414331. Results are pending.
+base and refined checkpoints passed actual native tool-call probes. Both first
+OpenCode native trials against frozen task v0.2 / seed 414331 flew and read a
+thermal image, then failed with upstream HTTP 422 after another capture. Their
+scores are zero with `NonZeroAgentExitCodeError`; exclude them from skill
+comparisons. The first proxy discarded the upstream error detail, so the exact
+failure cause is not established by those logs.
+
+Native protocol v2 retains failed requests/error bodies privately, records
+inference starts and generation failures, and preserves machine-readable
+context-overflow errors for the harness. When a conversation approaches the
+24576-token inference window it first omits optional cached private thinking,
+then limits output to the available window; visible messages and images are
+preserved. It rejects an actually oversized public conversation with an
+OpenCode-recognized context error. Unit tests cover these cases and a real
+installed-processor/parser fixture is run before deployment. New paired native
+trials keep the same checkpoints and frozen task; their results are pending.
 The refined service initially could not write its private inference log under
 systemd's read-only filesystem; a narrow log-directory write exception fixed
 the probe. No task or checkpoint was changed to repair this service permission.
@@ -157,6 +180,21 @@ physical, without arbitrary attenuation. Assets were built in an isolated v6
 fork; native reference/frontier trials for these new conditions are pending.
 The active camera field must belong to the private reference's checksummed
 fields; the constructor rejects stale or unrelated references.
+
+The v7 native task (v0.3) is now being evaluated on dawn/180s and cooling/90s.
+A separate immutable v8 fork (v0.3.1) changes the public-image reference, not
+the task's grading rules: wide 10m coverage, registered RGB background fitting,
+compact thermal-residual proposals and 3m revisits. Its development-frame
+diagnostic recovered the three signatures with very few proposals; that
+offline check is not a native mission score. The v8 reference matrix is queued
+behind the existing reference process to bound the renderer fleet.
+
+The second portable ZIP's archive identity and all 137 bundled file hashes
+passed independent verification. It is still a v0.1 development candidate,
+with explicitly warned errored frontier playthroughs; do not present it as the
+final current-version submission. Completed experiment/result archives are
+copied to the private GCS bucket. A first archive attempt used an unsupported
+CLI flag and stopped; the corrected completed-evidence archive succeeded.
 
 The portable packager includes assets/runtime, checksums, licenses and actual
 Harbor evidence. It refuses leaked credentials or disagreement between saved

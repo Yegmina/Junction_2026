@@ -257,6 +257,15 @@ def train(manifest, stage='compatibility', seed=17, steps=10, model=None):
     if lora_scope not in ('language','language_visual_projection'):raise ValueError('Unknown perception LoRA scope')
     if lora_scope!='language' and not stream_stage:raise ValueError('Visual projection experiment requires streaming perception protocol')
     protocol['lora_scope']=lora_scope
+    augmentation=os.environ.get('AEROROZUM_TRAINING_AUGMENTATION','none')
+    if augmentation not in ('none','training-hv-flips-v1'):raise ValueError('Unknown training augmentation')
+    if augmentation!='none':
+        if not stream_stage:raise ValueError('Training augmentation requires streaming perception protocol')
+        from .training_augmentation import augment_training_rows
+        rows,receipt=augment_training_rows(rows,data_root()/'pipeline/training-hv-flips-v1')
+        protocol['augmentation']=receipt
+        protocol['source_manifest_hash']=protocol['manifest_hash']
+        protocol['manifest_hash']=digest(dict(source=protocol['source_manifest_hash'],augmentation=receipt))
     memory_probe=os.environ.get('AEROROZUM_MEMORY_PROBE')=='1'
     if memory_probe:protocol.update(research_result=False,scope='GPU memory compatibility probe only')
     record=job('training',stage=stage,seed=seed,model=model_name,completed=0,total=steps,research_result=not memory_probe and stage not in ('compatibility','policy_compatibility'))

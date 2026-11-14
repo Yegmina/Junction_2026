@@ -1,94 +1,7 @@
 {
-  "recorded_at": "2026-11-14T20:59:14.128431+00:00",
-  "scope": "Development measurements; not sealed-test results. Harbor mission scores and image-level F2 are distinct.",
+  "recorded_at": "2026-11-14T21:13:46.142591+00:00",
+  "scope": "Development measurements; not sealed-test results. Harbor mission scores and image-level F2 are distinct. Errored trials are explicitly marked.",
   "trials": [
-    {
-      "job": "reference-v4",
-      "trial": "thermal-investigation__9MQ3FQs",
-      "task_checksum": "d5a3c319b6ba2f62698c44e7e87065217054f1e1e4d31d503fe5f669cbf4a126",
-      "model": null,
-      "rewards": {
-        "reward": 0.89166667
-      },
-      "exception_type": null,
-      "finished_at": "2026-11-14T20:05:33.851246Z",
-      "details": {
-        "reward": 0.89166667,
-        "completed": true,
-        "true_positives": 3,
-        "false_positives": 3,
-        "false_negatives": 0,
-        "f2": 0.8333333333333334,
-        "qualified_coverage": 1.0,
-        "multi_view_matches": 3,
-        "invalid_candidates": 0,
-        "observations": 13,
-        "actions": 29,
-        "flight_elapsed_s": 123.61999999999999,
-        "budget_s": 180.0,
-        "returned_home": true,
-        "scope": "Inserted synthetic-object retrieval in experimental composed thermal imagery; not physical mine confirmation"
-      },
-      "result_sha256": "7620bca6a6891d2c67a672d8cbe34bae39fd858f738ba88f6696a21238b8a32f"
-    },
-    {
-      "job": "opencode-gemini-v3",
-      "trial": "thermal-investigation__tdSuMhX",
-      "task_checksum": "d5a3c319b6ba2f62698c44e7e87065217054f1e1e4d31d503fe5f669cbf4a126",
-      "model": "gemini/gemini-4-argon",
-      "rewards": {
-        "reward": 1.0
-      },
-      "exception_type": "NonZeroAgentExitCodeError",
-      "finished_at": "2026-11-14T20:11:32.112504Z",
-      "details": {
-        "reward": 1.0,
-        "completed": true,
-        "true_positives": 3,
-        "false_positives": 0,
-        "false_negatives": 0,
-        "f2": 1.0,
-        "qualified_coverage": 1.0,
-        "multi_view_matches": 3,
-        "invalid_candidates": 0,
-        "observations": 10,
-        "actions": 22,
-        "flight_elapsed_s": 125.02000000000001,
-        "budget_s": 180.0,
-        "returned_home": true,
-        "scope": "Inserted synthetic-object retrieval in experimental composed thermal imagery; not physical mine confirmation"
-      },
-      "result_sha256": "83591bb41214c407984da51999d9095965fdb635eb0302671c5f86a017278cc2"
-    },
-    {
-      "job": "opencode-gemma-v3",
-      "trial": "thermal-investigation__cFk8mBU",
-      "task_checksum": "d5a3c319b6ba2f62698c44e7e87065217054f1e1e4d31d503fe5f669cbf4a126",
-      "model": "aerorozum/gemma-4-12b-refined-grpo",
-      "rewards": {
-        "reward": 0.0
-      },
-      "exception_type": "NonZeroAgentExitCodeError",
-      "finished_at": "2026-11-14T20:08:14.259169Z",
-      "details": {
-        "reward": 0.0,
-        "completed": false,
-        "true_positives": 0,
-        "false_positives": 2,
-        "false_negatives": 3,
-        "f2": 0.0,
-        "qualified_coverage": 0.48,
-        "multi_view_matches": 0,
-        "invalid_candidates": 0,
-        "observations": 2,
-        "actions": 11,
-        "flight_elapsed_s": 101.86399999999999,
-        "budget_s": 180.0,
-        "returned_home": false,
-        "scope": "Inserted synthetic-object retrieval in experimental composed thermal imagery; not physical mine confirmation"
-      },
-      "result_sha256": "42af55c9ebbd0d37a6cd06a5d711d4e603897d9a903b8191691918cfeb3bea17"
-    },
     {
       "job": "nop-v4",
       "trial": "thermal-investigation__v7VYTK4",
@@ -116,123 +29,20 @@
         "returned_home": false,
         "scope": "Inserted synthetic-object retrieval in experimental composed thermal imagery; not physical mine confirmation"
       },
+      "instance": {
+        "seed": 414331,
+        "field_hashes": {
+          "warming": "98ddb75b3785ab92e8eb6bb36545e91888cbf1a769a89088154d2a1cffed1aaa",
+          "cooling": "ab8fe13bc377e39669b2c3f1e8957173f764f47763ff004b1104722eec4896ac"
+        },
+        "frozen_before_run": true,
+        "budget_s": 180.0,
+        "thermal_condition": {
+          "phase": "warming",
+          "physics_elapsed_hours": 7.5
+        }
+      },
       "result_sha256": "e3d3c7a4f75f50bff0186aad4c3754cc591114c321bffd30312a2006691107ad"
-    },
-    {
-      "job": "stop-early-v4",
-      "trial": "thermal-investigation__qxKZNQo",
-      "task_checksum": "d4288ad0e34f2450cbcbaf6b6071724cbdabbec4da09c3158564e3f9e519b8dc",
-      "model": null,
-      "rewards": {
-        "reward": 0.0
-      },
-      "exception_type": null,
-      "finished_at": "2026-11-14T20:08:00.541393Z",
-      "details": {
-        "reward": 0.0,
-        "completed": false,
-        "true_positives": 0,
-        "false_positives": 0,
-        "false_negatives": 3,
-        "f2": 0.0,
-        "qualified_coverage": 0.0,
-        "multi_view_matches": 0,
-        "invalid_candidates": 0,
-        "observations": 1,
-        "actions": 3,
-        "flight_elapsed_s": 7.5920000000000005,
-        "budget_s": 180.0,
-        "returned_home": false,
-        "scope": "Inserted synthetic-object retrieval in experimental composed thermal imagery; not physical mine confirmation"
-      },
-      "result_sha256": "6b0df19ea8bcced353e79432fe54059c747aec90bb36c66e454229ae84bbb7dc"
-    },
-    {
-      "job": "reference-v5",
-      "trial": "thermal-investigation__L4RvjSJ",
-      "task_checksum": "3da1637df0d9d64591cd5b253269d9f9f437cd16df589d3124259b1b11c968ef",
-      "model": null,
-      "rewards": {
-        "reward": 0.77391304
-      },
-      "exception_type": null,
-      "finished_at": "2026-11-14T20:24:00.558854Z",
-      "details": {
-        "reward": 0.77391304,
-        "completed": true,
-        "true_positives": 3,
-        "false_positives": 8,
-        "false_negatives": 0,
-        "f2": 0.6521739130434783,
-        "qualified_coverage": 1.0,
-        "multi_view_matches": 3,
-        "invalid_candidates": 0,
-        "observations": 14,
-        "actions": 31,
-        "flight_elapsed_s": 132.516,
-        "budget_s": 180.0,
-        "returned_home": true,
-        "scope": "Inserted synthetic-object retrieval in experimental composed thermal imagery; not physical mine confirmation"
-      },
-      "result_sha256": "493069a4a1f1292a9dcdca0c21890c7aad97fed76c52c96cf9770a90c35d3e39"
-    },
-    {
-      "job": "opencode-gemma-v4",
-      "trial": "thermal-investigation__YcE9h76",
-      "task_checksum": "3da1637df0d9d64591cd5b253269d9f9f437cd16df589d3124259b1b11c968ef",
-      "model": "aerorozum/gemma-4-12b-refined-grpo",
-      "rewards": {
-        "reward": 0.0
-      },
-      "exception_type": null,
-      "finished_at": "2026-11-14T20:20:07.128577Z",
-      "details": {
-        "reward": 0.0,
-        "completed": false,
-        "true_positives": 0,
-        "false_positives": 0,
-        "false_negatives": 3,
-        "f2": 0.0,
-        "qualified_coverage": 0.24,
-        "multi_view_matches": 0,
-        "invalid_candidates": 0,
-        "observations": 1,
-        "actions": 5,
-        "flight_elapsed_s": 34.044000000000004,
-        "budget_s": 180.0,
-        "returned_home": false,
-        "scope": "Inserted synthetic-object retrieval in experimental composed thermal imagery; not physical mine confirmation"
-      },
-      "result_sha256": "7e0047153919677d3207c2f7b20eff1865d8d2c9629ae5a554cfa235324ea6c7"
-    },
-    {
-      "job": "reference-v5-cooling90",
-      "trial": "thermal-investigation__L93GanR",
-      "task_checksum": "3da1637df0d9d64591cd5b253269d9f9f437cd16df589d3124259b1b11c968ef",
-      "model": null,
-      "rewards": {
-        "reward": 0.57111111
-      },
-      "exception_type": null,
-      "finished_at": "2026-11-14T20:27:52.974716Z",
-      "details": {
-        "reward": 0.57111111,
-        "completed": true,
-        "true_positives": 2,
-        "false_positives": 4,
-        "false_negatives": 1,
-        "f2": 0.5555555555555556,
-        "qualified_coverage": 0.8,
-        "multi_view_matches": 1,
-        "invalid_candidates": 0,
-        "observations": 7,
-        "actions": 17,
-        "flight_elapsed_s": 76.98,
-        "budget_s": 90.0,
-        "returned_home": true,
-        "scope": "Inserted synthetic-object retrieval in experimental composed thermal imagery; not physical mine confirmation"
-      },
-      "result_sha256": "35c0d58206050e2b2166e13aa5dd9bcff252c7ac82182fa0fb978372efab2d34"
     },
     {
       "job": "opencode-carbon-v1",
@@ -261,38 +71,661 @@
         "returned_home": true,
         "scope": "Inserted synthetic-object retrieval in experimental composed thermal imagery; not physical mine confirmation"
       },
+      "instance": {
+        "seed": 414331,
+        "field_hashes": {
+          "warming": "98ddb75b3785ab92e8eb6bb36545e91888cbf1a769a89088154d2a1cffed1aaa",
+          "cooling": "ab8fe13bc377e39669b2c3f1e8957173f764f47763ff004b1104722eec4896ac"
+        },
+        "frozen_before_run": true,
+        "budget_s": 180.0,
+        "thermal_condition": {
+          "phase": "warming",
+          "physics_elapsed_hours": 7.5
+        }
+      },
       "result_sha256": "7a9631e9b3d165de8f06d83e61e281f893a72d0e796924be7f8c9048f0f8313f"
+    },
+    {
+      "job": "opencode-gemini-v1",
+      "trial": "thermal-investigation__RanHw5r",
+      "task_checksum": "3d3efd91c256283d36d12cca0a8662fdc33865c85f864f6c80926b8e28481fca",
+      "model": "gemini/gemini-4-argon",
+      "rewards": {
+        "reward": 0.0
+      },
+      "exception_type": "NonZeroAgentExitCodeError",
+      "finished_at": "2026-11-14T19:23:12.157135Z",
+      "details": {
+        "reward": 0.0,
+        "completed": false,
+        "true_positives": 0,
+        "false_positives": 0,
+        "false_negatives": 3,
+        "f2": 0.0,
+        "qualified_coverage": 0.0,
+        "multi_view_matches": 0,
+        "invalid_candidates": 0,
+        "observations": 0,
+        "actions": 0,
+        "flight_elapsed_s": 0.0,
+        "budget_s": 180.0,
+        "returned_home": false,
+        "scope": "Inserted synthetic-object retrieval in experimental composed thermal imagery; not physical mine confirmation"
+      },
+      "instance": null,
+      "result_sha256": "0666247416b86cb470eb86be073e06745389754e528014fe2529c2541de9d16a"
+    },
+    {
+      "job": "opencode-gemini-v2",
+      "trial": "thermal-investigation__ntRpA6C",
+      "task_checksum": "3d3efd91c256283d36d12cca0a8662fdc33865c85f864f6c80926b8e28481fca",
+      "model": "gemini/gemini-4-argon",
+      "rewards": {
+        "reward": 0.0
+      },
+      "exception_type": "NonZeroAgentExitCodeError",
+      "finished_at": "2026-11-14T19:43:02.370245Z",
+      "details": {
+        "reward": 0.0,
+        "completed": false,
+        "true_positives": 0,
+        "false_positives": 0,
+        "false_negatives": 3,
+        "f2": 0.0,
+        "qualified_coverage": 0.995,
+        "multi_view_matches": 0,
+        "invalid_candidates": 0,
+        "observations": 11,
+        "actions": 32,
+        "flight_elapsed_s": 141.73600000000002,
+        "budget_s": 180.0,
+        "returned_home": true,
+        "scope": "Inserted synthetic-object retrieval in experimental composed thermal imagery; not physical mine confirmation"
+      },
+      "instance": null,
+      "result_sha256": "246a93199015dfaef21d8c755d73b2983f38f5f7db86d9e885e0232242172973"
+    },
+    {
+      "job": "opencode-gemini-v3",
+      "trial": "thermal-investigation__tdSuMhX",
+      "task_checksum": "d5a3c319b6ba2f62698c44e7e87065217054f1e1e4d31d503fe5f669cbf4a126",
+      "model": "gemini/gemini-4-argon",
+      "rewards": {
+        "reward": 1.0
+      },
+      "exception_type": "NonZeroAgentExitCodeError",
+      "finished_at": "2026-11-14T20:11:32.112504Z",
+      "details": {
+        "reward": 1.0,
+        "completed": true,
+        "true_positives": 3,
+        "false_positives": 0,
+        "false_negatives": 0,
+        "f2": 1.0,
+        "qualified_coverage": 1.0,
+        "multi_view_matches": 3,
+        "invalid_candidates": 0,
+        "observations": 10,
+        "actions": 22,
+        "flight_elapsed_s": 125.02000000000001,
+        "budget_s": 180.0,
+        "returned_home": true,
+        "scope": "Inserted synthetic-object retrieval in experimental composed thermal imagery; not physical mine confirmation"
+      },
+      "instance": {
+        "seed": 414331,
+        "field_hashes": {
+          "warming": "98ddb75b3785ab92e8eb6bb36545e91888cbf1a769a89088154d2a1cffed1aaa",
+          "cooling": "ab8fe13bc377e39669b2c3f1e8957173f764f47763ff004b1104722eec4896ac"
+        },
+        "frozen_before_run": true,
+        "budget_s": 180.0,
+        "thermal_condition": {
+          "phase": "warming",
+          "physics_elapsed_hours": 7.5
+        }
+      },
+      "result_sha256": "83591bb41214c407984da51999d9095965fdb635eb0302671c5f86a017278cc2"
+    },
+    {
+      "job": "opencode-gemma-base-v1",
+      "trial": "thermal-investigation__XtWKfRj",
+      "task_checksum": "3da1637df0d9d64591cd5b253269d9f9f437cd16df589d3124259b1b11c968ef",
+      "model": "aerorozum/gemma-4-12b-base",
+      "rewards": {
+        "reward": 0.0
+      },
+      "exception_type": null,
+      "finished_at": "2026-11-14T20:43:36.779917Z",
+      "details": {
+        "reward": 0.0,
+        "completed": false,
+        "true_positives": 0,
+        "false_positives": 0,
+        "false_negatives": 3,
+        "f2": 0.0,
+        "qualified_coverage": 0.24,
+        "multi_view_matches": 0,
+        "invalid_candidates": 0,
+        "observations": 1,
+        "actions": 6,
+        "flight_elapsed_s": 34.10399999999999,
+        "budget_s": 180.0,
+        "returned_home": false,
+        "scope": "Inserted synthetic-object retrieval in experimental composed thermal imagery; not physical mine confirmation"
+      },
+      "instance": {
+        "seed": 414331,
+        "field_hashes": {
+          "warming": "98ddb75b3785ab92e8eb6bb36545e91888cbf1a769a89088154d2a1cffed1aaa",
+          "cooling": "ab8fe13bc377e39669b2c3f1e8957173f764f47763ff004b1104722eec4896ac"
+        },
+        "frozen_before_run": true,
+        "budget_s": 180.0,
+        "thermal_condition": {
+          "phase": "warming",
+          "physics_elapsed_hours": 7.5
+        }
+      },
+      "result_sha256": "61c5fcc3316286cf660ea890e5db9ac1370ff8a2b2dc7953f2f12cc845358e80"
+    },
+    {
+      "job": "opencode-gemma-native-base-v1",
+      "trial": "thermal-investigation__AhHJ6g5",
+      "task_checksum": "3da1637df0d9d64591cd5b253269d9f9f437cd16df589d3124259b1b11c968ef",
+      "model": "aerorozum/gemma-4-12b-base-native",
+      "rewards": {
+        "reward": 0.0
+      },
+      "exception_type": "NonZeroAgentExitCodeError",
+      "finished_at": "2026-11-14T21:11:57.449941Z",
+      "details": {
+        "reward": 0.0,
+        "completed": false,
+        "true_positives": 0,
+        "false_positives": 0,
+        "false_negatives": 3,
+        "f2": 0.0,
+        "qualified_coverage": 0.24,
+        "multi_view_matches": 0,
+        "invalid_candidates": 0,
+        "observations": 2,
+        "actions": 10,
+        "flight_elapsed_s": 42.72799999999998,
+        "budget_s": 180.0,
+        "returned_home": false,
+        "scope": "Inserted synthetic-object retrieval in experimental composed thermal imagery; not physical mine confirmation"
+      },
+      "instance": {
+        "seed": 414331,
+        "field_hashes": {
+          "warming": "98ddb75b3785ab92e8eb6bb36545e91888cbf1a769a89088154d2a1cffed1aaa",
+          "cooling": "ab8fe13bc377e39669b2c3f1e8957173f764f47763ff004b1104722eec4896ac"
+        },
+        "frozen_before_run": true,
+        "budget_s": 180.0,
+        "thermal_condition": {
+          "phase": "warming",
+          "physics_elapsed_hours": 7.5
+        }
+      },
+      "result_sha256": "cd64b167eba8c60d70ceecdad4358167faf331d96ea33108696b1ad88b0bcccc"
+    },
+    {
+      "job": "opencode-gemma-native-refined-v1",
+      "trial": "thermal-investigation__6WWYMpi",
+      "task_checksum": "3da1637df0d9d64591cd5b253269d9f9f437cd16df589d3124259b1b11c968ef",
+      "model": "aerorozum/gemma-4-12b-refined-grpo-native",
+      "rewards": {
+        "reward": 0.0
+      },
+      "exception_type": "NonZeroAgentExitCodeError",
+      "finished_at": "2026-11-14T21:09:46.668604Z",
+      "details": {
+        "reward": 0.0,
+        "completed": false,
+        "true_positives": 0,
+        "false_positives": 0,
+        "false_negatives": 3,
+        "f2": 0.0,
+        "qualified_coverage": 0.12,
+        "multi_view_matches": 0,
+        "invalid_candidates": 0,
+        "observations": 2,
+        "actions": 10,
+        "flight_elapsed_s": 43.260000000000005,
+        "budget_s": 180.0,
+        "returned_home": false,
+        "scope": "Inserted synthetic-object retrieval in experimental composed thermal imagery; not physical mine confirmation"
+      },
+      "instance": {
+        "seed": 414331,
+        "field_hashes": {
+          "warming": "98ddb75b3785ab92e8eb6bb36545e91888cbf1a769a89088154d2a1cffed1aaa",
+          "cooling": "ab8fe13bc377e39669b2c3f1e8957173f764f47763ff004b1104722eec4896ac"
+        },
+        "frozen_before_run": true,
+        "budget_s": 180.0,
+        "thermal_condition": {
+          "phase": "warming",
+          "physics_elapsed_hours": 7.5
+        }
+      },
+      "result_sha256": "3242f70330440bb73daaf0dba040da12f54bc934edc1d2882cf2376ea0ebc68b"
+    },
+    {
+      "job": "opencode-gemma-v1",
+      "trial": "thermal-investigation__4BhK5jV",
+      "task_checksum": "3d3efd91c256283d36d12cca0a8662fdc33865c85f864f6c80926b8e28481fca",
+      "model": "openai/gemma-4-12b-refined-grpo",
+      "rewards": {
+        "reward": 0.0
+      },
+      "exception_type": "NonZeroAgentExitCodeError",
+      "finished_at": "2026-11-14T19:38:22.864581Z",
+      "details": {
+        "reward": 0.0,
+        "completed": false,
+        "true_positives": 0,
+        "false_positives": 0,
+        "false_negatives": 3,
+        "f2": 0.0,
+        "qualified_coverage": 0.0,
+        "multi_view_matches": 0,
+        "invalid_candidates": 0,
+        "observations": 0,
+        "actions": 0,
+        "flight_elapsed_s": 0.0,
+        "budget_s": 180.0,
+        "returned_home": false,
+        "scope": "Inserted synthetic-object retrieval in experimental composed thermal imagery; not physical mine confirmation"
+      },
+      "instance": null,
+      "result_sha256": "ae9279d5ab296acf9ba415231e0f5270aa1e35201e41e10d1faa7e268fc2c1d0"
+    },
+    {
+      "job": "opencode-gemma-v2",
+      "trial": "thermal-investigation__4eDpaKg",
+      "task_checksum": "3d3efd91c256283d36d12cca0a8662fdc33865c85f864f6c80926b8e28481fca",
+      "model": "aerorozum/gemma-4-12b-refined-grpo",
+      "rewards": {
+        "reward": 0.0
+      },
+      "exception_type": "NonZeroAgentExitCodeError",
+      "finished_at": "2026-11-14T19:52:44.966675Z",
+      "details": {
+        "reward": 0.0,
+        "completed": false,
+        "true_positives": 0,
+        "false_positives": 0,
+        "false_negatives": 3,
+        "f2": 0.0,
+        "qualified_coverage": 0.15,
+        "multi_view_matches": 0,
+        "invalid_candidates": 0,
+        "observations": 1,
+        "actions": 5,
+        "flight_elapsed_s": 30.631999999999998,
+        "budget_s": 180.0,
+        "returned_home": false,
+        "scope": "Inserted synthetic-object retrieval in experimental composed thermal imagery; not physical mine confirmation"
+      },
+      "instance": null,
+      "result_sha256": "b6302f7d6c65825e6eb18d515542e25bae0c4195df9b06613902659a47c7c7ea"
+    },
+    {
+      "job": "opencode-gemma-v3",
+      "trial": "thermal-investigation__cFk8mBU",
+      "task_checksum": "d5a3c319b6ba2f62698c44e7e87065217054f1e1e4d31d503fe5f669cbf4a126",
+      "model": "aerorozum/gemma-4-12b-refined-grpo",
+      "rewards": {
+        "reward": 0.0
+      },
+      "exception_type": "NonZeroAgentExitCodeError",
+      "finished_at": "2026-11-14T20:08:14.259169Z",
+      "details": {
+        "reward": 0.0,
+        "completed": false,
+        "true_positives": 0,
+        "false_positives": 2,
+        "false_negatives": 3,
+        "f2": 0.0,
+        "qualified_coverage": 0.48,
+        "multi_view_matches": 0,
+        "invalid_candidates": 0,
+        "observations": 2,
+        "actions": 11,
+        "flight_elapsed_s": 101.86399999999999,
+        "budget_s": 180.0,
+        "returned_home": false,
+        "scope": "Inserted synthetic-object retrieval in experimental composed thermal imagery; not physical mine confirmation"
+      },
+      "instance": {
+        "seed": 414331,
+        "field_hashes": {
+          "warming": "98ddb75b3785ab92e8eb6bb36545e91888cbf1a769a89088154d2a1cffed1aaa",
+          "cooling": "ab8fe13bc377e39669b2c3f1e8957173f764f47763ff004b1104722eec4896ac"
+        },
+        "frozen_before_run": true,
+        "budget_s": 180.0,
+        "thermal_condition": {
+          "phase": "warming",
+          "physics_elapsed_hours": 7.5
+        }
+      },
+      "result_sha256": "42af55c9ebbd0d37a6cd06a5d711d4e603897d9a903b8191691918cfeb3bea17"
+    },
+    {
+      "job": "opencode-gemma-v4",
+      "trial": "thermal-investigation__YcE9h76",
+      "task_checksum": "3da1637df0d9d64591cd5b253269d9f9f437cd16df589d3124259b1b11c968ef",
+      "model": "aerorozum/gemma-4-12b-refined-grpo",
+      "rewards": {
+        "reward": 0.0
+      },
+      "exception_type": null,
+      "finished_at": "2026-11-14T20:20:07.128577Z",
+      "details": {
+        "reward": 0.0,
+        "completed": false,
+        "true_positives": 0,
+        "false_positives": 0,
+        "false_negatives": 3,
+        "f2": 0.0,
+        "qualified_coverage": 0.24,
+        "multi_view_matches": 0,
+        "invalid_candidates": 0,
+        "observations": 1,
+        "actions": 5,
+        "flight_elapsed_s": 34.044000000000004,
+        "budget_s": 180.0,
+        "returned_home": false,
+        "scope": "Inserted synthetic-object retrieval in experimental composed thermal imagery; not physical mine confirmation"
+      },
+      "instance": {
+        "seed": 414331,
+        "field_hashes": {
+          "warming": "98ddb75b3785ab92e8eb6bb36545e91888cbf1a769a89088154d2a1cffed1aaa",
+          "cooling": "ab8fe13bc377e39669b2c3f1e8957173f764f47763ff004b1104722eec4896ac"
+        },
+        "frozen_before_run": true,
+        "budget_s": 180.0,
+        "thermal_condition": {
+          "phase": "warming",
+          "physics_elapsed_hours": 7.5
+        }
+      },
+      "result_sha256": "7e0047153919677d3207c2f7b20eff1865d8d2c9629ae5a554cfa235324ea6c7"
+    },
+    {
+      "job": "reference-v1",
+      "trial": "thermal-investigation__m5mmxJq",
+      "task_checksum": "6e5c57ce28dee4fd10bf647bc938ff0446365f5c0526f50321000a2ccce14f2a",
+      "model": null,
+      "rewards": null,
+      "exception_type": "RuntimeError",
+      "finished_at": "2026-11-14T19:04:44.706918Z",
+      "details": null,
+      "instance": null,
+      "result_sha256": "198030dd47a7a8749ec12ecfbf9ca84f801a2ac7669994de97f6150ca1c379be"
+    },
+    {
+      "job": "reference-v2",
+      "trial": "thermal-investigation__CwNSKet",
+      "task_checksum": "d3eaf7273b6408d0ca318b4b4ab7c6dc8142a3603e016021f1fe3ee6fae4cb47",
+      "model": null,
+      "rewards": null,
+      "exception_type": "RuntimeError",
+      "finished_at": "2026-11-14T19:06:57.068560Z",
+      "details": null,
+      "instance": null,
+      "result_sha256": "51d13300e80c803a1ca08d2cf6453c5cff2dca431cfa482c4af22404d2580966"
+    },
+    {
+      "job": "reference-v3",
+      "trial": "thermal-investigation__qzoYnEd",
+      "task_checksum": "3d3efd91c256283d36d12cca0a8662fdc33865c85f864f6c80926b8e28481fca",
+      "model": null,
+      "rewards": {
+        "reward": 0.2
+      },
+      "exception_type": null,
+      "finished_at": "2026-11-14T19:26:46.303973Z",
+      "details": {
+        "reward": 0.2,
+        "completed": true,
+        "true_positives": 0,
+        "false_positives": 16,
+        "false_negatives": 3,
+        "f2": 0.0,
+        "qualified_coverage": 1.0,
+        "multi_view_matches": 0,
+        "invalid_candidates": 0,
+        "observations": 8,
+        "actions": 51,
+        "flight_elapsed_s": 97.244,
+        "budget_s": 180.0,
+        "returned_home": true,
+        "scope": "Inserted synthetic-object retrieval in experimental composed thermal imagery; not physical mine confirmation"
+      },
+      "instance": null,
+      "result_sha256": "1ba4cf22355a2bacc6f42d935222e77bbe59c9e16dddd15768f1dcf04d4d0b36"
+    },
+    {
+      "job": "reference-v4",
+      "trial": "thermal-investigation__9MQ3FQs",
+      "task_checksum": "d5a3c319b6ba2f62698c44e7e87065217054f1e1e4d31d503fe5f669cbf4a126",
+      "model": null,
+      "rewards": {
+        "reward": 0.89166667
+      },
+      "exception_type": null,
+      "finished_at": "2026-11-14T20:05:33.851246Z",
+      "details": {
+        "reward": 0.89166667,
+        "completed": true,
+        "true_positives": 3,
+        "false_positives": 3,
+        "false_negatives": 0,
+        "f2": 0.8333333333333334,
+        "qualified_coverage": 1.0,
+        "multi_view_matches": 3,
+        "invalid_candidates": 0,
+        "observations": 13,
+        "actions": 29,
+        "flight_elapsed_s": 123.61999999999999,
+        "budget_s": 180.0,
+        "returned_home": true,
+        "scope": "Inserted synthetic-object retrieval in experimental composed thermal imagery; not physical mine confirmation"
+      },
+      "instance": {
+        "seed": 414331,
+        "field_hashes": {
+          "warming": "98ddb75b3785ab92e8eb6bb36545e91888cbf1a769a89088154d2a1cffed1aaa",
+          "cooling": "ab8fe13bc377e39669b2c3f1e8957173f764f47763ff004b1104722eec4896ac"
+        },
+        "frozen_before_run": true,
+        "budget_s": 180.0,
+        "thermal_condition": {
+          "phase": "warming",
+          "physics_elapsed_hours": 7.5
+        }
+      },
+      "result_sha256": "7620bca6a6891d2c67a672d8cbe34bae39fd858f738ba88f6696a21238b8a32f"
+    },
+    {
+      "job": "reference-v5",
+      "trial": "thermal-investigation__L4RvjSJ",
+      "task_checksum": "3da1637df0d9d64591cd5b253269d9f9f437cd16df589d3124259b1b11c968ef",
+      "model": null,
+      "rewards": {
+        "reward": 0.77391304
+      },
+      "exception_type": null,
+      "finished_at": "2026-11-14T20:24:00.558854Z",
+      "details": {
+        "reward": 0.77391304,
+        "completed": true,
+        "true_positives": 3,
+        "false_positives": 8,
+        "false_negatives": 0,
+        "f2": 0.6521739130434783,
+        "qualified_coverage": 1.0,
+        "multi_view_matches": 3,
+        "invalid_candidates": 0,
+        "observations": 14,
+        "actions": 31,
+        "flight_elapsed_s": 132.516,
+        "budget_s": 180.0,
+        "returned_home": true,
+        "scope": "Inserted synthetic-object retrieval in experimental composed thermal imagery; not physical mine confirmation"
+      },
+      "instance": {
+        "seed": 414331,
+        "field_hashes": {
+          "warming": "98ddb75b3785ab92e8eb6bb36545e91888cbf1a769a89088154d2a1cffed1aaa",
+          "cooling": "ab8fe13bc377e39669b2c3f1e8957173f764f47763ff004b1104722eec4896ac"
+        },
+        "frozen_before_run": true,
+        "budget_s": 180.0,
+        "thermal_condition": {
+          "phase": "warming",
+          "physics_elapsed_hours": 7.5
+        }
+      },
+      "result_sha256": "493069a4a1f1292a9dcdca0c21890c7aad97fed76c52c96cf9770a90c35d3e39"
+    },
+    {
+      "job": "reference-v5-cooling90",
+      "trial": "thermal-investigation__L93GanR",
+      "task_checksum": "3da1637df0d9d64591cd5b253269d9f9f437cd16df589d3124259b1b11c968ef",
+      "model": null,
+      "rewards": {
+        "reward": 0.57111111
+      },
+      "exception_type": null,
+      "finished_at": "2026-11-14T20:27:52.974716Z",
+      "details": {
+        "reward": 0.57111111,
+        "completed": true,
+        "true_positives": 2,
+        "false_positives": 4,
+        "false_negatives": 1,
+        "f2": 0.5555555555555556,
+        "qualified_coverage": 0.8,
+        "multi_view_matches": 1,
+        "invalid_candidates": 0,
+        "observations": 7,
+        "actions": 17,
+        "flight_elapsed_s": 76.98,
+        "budget_s": 90.0,
+        "returned_home": true,
+        "scope": "Inserted synthetic-object retrieval in experimental composed thermal imagery; not physical mine confirmation"
+      },
+      "instance": {
+        "seed": 414331,
+        "field_hashes": {
+          "warming": "98ddb75b3785ab92e8eb6bb36545e91888cbf1a769a89088154d2a1cffed1aaa",
+          "cooling": "ab8fe13bc377e39669b2c3f1e8957173f764f47763ff004b1104722eec4896ac"
+        },
+        "frozen_before_run": true,
+        "budget_s": 90.0,
+        "thermal_condition": {
+          "phase": "cooling",
+          "physics_elapsed_hours": 17.0
+        }
+      },
+      "result_sha256": "35c0d58206050e2b2166e13aa5dd9bcff252c7ac82182fa0fb978372efab2d34"
+    },
+    {
+      "job": "reference-v7-dawn180",
+      "trial": "thermal-investigation__idNCLLs",
+      "task_checksum": "7e414b3f6cc34296b222ef817670637b47f8263db456e15fe84be27dc481883a",
+      "model": null,
+      "rewards": {
+        "reward": 0.2
+      },
+      "exception_type": null,
+      "finished_at": "2026-11-14T21:09:09.132184Z",
+      "details": {
+        "reward": 0.2,
+        "completed": true,
+        "true_positives": 0,
+        "false_positives": 0,
+        "false_negatives": 3,
+        "f2": 0.0,
+        "qualified_coverage": 1.0,
+        "multi_view_matches": 0,
+        "invalid_candidates": 0,
+        "observations": 8,
+        "actions": 19,
+        "flight_elapsed_s": 90.496,
+        "budget_s": 180.0,
+        "returned_home": true,
+        "scope": "Inserted synthetic-object retrieval in experimental composed thermal imagery; not physical mine confirmation"
+      },
+      "instance": {
+        "seed": 414331,
+        "field_hashes": {
+          "warming": "98ddb75b3785ab92e8eb6bb36545e91888cbf1a769a89088154d2a1cffed1aaa",
+          "cooling": "ab8fe13bc377e39669b2c3f1e8957173f764f47763ff004b1104722eec4896ac",
+          "dawn": "26d42f8dee9f332f7d6b42164d4bbbb3d2c6c519ef01071ccacd1ef742818c50",
+          "late_warming": "4160f03bba2b9e0f8131f3841dfd67c96f39b5729b3a8dcd4141bf5886d39659"
+        },
+        "frozen_before_run": true,
+        "budget_s": 180.0,
+        "thermal_condition": {
+          "phase": "dawn",
+          "physics_elapsed_hours": 1.0
+        }
+      },
+      "result_sha256": "de9afdfe32aab80b1304efd7521ac578a5ddb2dc0499afc1770418262d4611b5"
+    },
+    {
+      "job": "stop-early-v4",
+      "trial": "thermal-investigation__qxKZNQo",
+      "task_checksum": "d4288ad0e34f2450cbcbaf6b6071724cbdabbec4da09c3158564e3f9e519b8dc",
+      "model": null,
+      "rewards": {
+        "reward": 0.0
+      },
+      "exception_type": null,
+      "finished_at": "2026-11-14T20:08:00.541393Z",
+      "details": {
+        "reward": 0.0,
+        "completed": false,
+        "true_positives": 0,
+        "false_positives": 0,
+        "false_negatives": 3,
+        "f2": 0.0,
+        "qualified_coverage": 0.0,
+        "multi_view_matches": 0,
+        "invalid_candidates": 0,
+        "observations": 1,
+        "actions": 3,
+        "flight_elapsed_s": 7.5920000000000005,
+        "budget_s": 180.0,
+        "returned_home": false,
+        "scope": "Inserted synthetic-object retrieval in experimental composed thermal imagery; not physical mine confirmation"
+      },
+      "instance": {
+        "seed": 414331,
+        "field_hashes": {
+          "warming": "98ddb75b3785ab92e8eb6bb36545e91888cbf1a769a89088154d2a1cffed1aaa",
+          "cooling": "ab8fe13bc377e39669b2c3f1e8957173f764f47763ff004b1104722eec4896ac"
+        },
+        "frozen_before_run": true,
+        "budget_s": 180.0,
+        "thermal_condition": {
+          "phase": "warming",
+          "physics_elapsed_hours": 7.5
+        }
+      },
+      "result_sha256": "6b0df19ea8bcced353e79432fe54059c747aec90bb36c66e454229ae84bbb7dc"
     }
   ],
   "frontier_perception": [
-    {
-      "model": "gemini-4-carbon",
-      "status": "completed",
-      "examples": 120,
-      "tp": 60,
-      "fp": 55,
-      "fn": 28,
-      "micro_f2": 0.6423982869379015,
-      "valid_json_fraction": 1.0,
-      "negative_false_alarm_rate": 0.4375,
-      "protocol": {
-        "model": "gemini-4-carbon",
-        "prompt": "Inspect this thermal image for provisional mine-like ground signatures. Return ONLY JSON {\"detections\":[{\"bbox\":{\"x_min\":0,\"y_min\":0,\"x_max\":1000,\"y_max\":1000}}]}. Boxes must tightly bound visible evidence, normalized to 0..1000. Return an empty detections list when no supported candidate is visible. Thermal appearance does not confirm a physical mine.",
-        "validation_manifest_hash": "8b99f7dd674524ba8ce59a4084d7117ade2317c4a0cb5703b7ee4c9b8c4a0614",
-        "generation": {
-          "bulk_model": "gemini-4-carbon",
-          "temperature": 0.0,
-          "concurrency": 4,
-          "requests_per_minute": 30,
-          "input_tokens_per_minute": 200000,
-          "max_requests": 124,
-          "max_retries": 1,
-          "reserve_output_tokens": 8192
-        },
-        "scope": "Development perception comparison; not native mission-policy evaluation",
-        "note": "Same visible prompt and images as Gemma; frontier receives native JSON mode and 8192 total output tokens including its default reasoning, versus Gemma greedy 192 output tokens. No ground truth sent."
-      }
-    },
     {
       "model": "gemini-4-argon",
       "status": "completed",
@@ -319,7 +752,37 @@
         },
         "scope": "Development perception comparison; not native mission-policy evaluation",
         "note": "Same visible prompt and images as Gemma; frontier receives native JSON mode and 8192 total output tokens including its default reasoning, versus Gemma greedy 192 output tokens. No ground truth sent."
-      }
+      },
+      "source_sha256": "6de64c926f90378e11f08d212801bb6239c06605dc7bbe6d3fdbd6d242631e5a"
+    },
+    {
+      "model": "gemini-4-carbon",
+      "status": "completed",
+      "examples": 120,
+      "tp": 60,
+      "fp": 55,
+      "fn": 28,
+      "micro_f2": 0.6423982869379015,
+      "valid_json_fraction": 1.0,
+      "negative_false_alarm_rate": 0.4375,
+      "protocol": {
+        "model": "gemini-4-carbon",
+        "prompt": "Inspect this thermal image for provisional mine-like ground signatures. Return ONLY JSON {\"detections\":[{\"bbox\":{\"x_min\":0,\"y_min\":0,\"x_max\":1000,\"y_max\":1000}}]}. Boxes must tightly bound visible evidence, normalized to 0..1000. Return an empty detections list when no supported candidate is visible. Thermal appearance does not confirm a physical mine.",
+        "validation_manifest_hash": "8b99f7dd674524ba8ce59a4084d7117ade2317c4a0cb5703b7ee4c9b8c4a0614",
+        "generation": {
+          "bulk_model": "gemini-4-carbon",
+          "temperature": 0.0,
+          "concurrency": 4,
+          "requests_per_minute": 30,
+          "input_tokens_per_minute": 200000,
+          "max_requests": 124,
+          "max_retries": 1,
+          "reserve_output_tokens": 8192
+        },
+        "scope": "Development perception comparison; not native mission-policy evaluation",
+        "note": "Same visible prompt and images as Gemma; frontier receives native JSON mode and 8192 total output tokens including its default reasoning, versus Gemma greedy 192 output tokens. No ground truth sent."
+      },
+      "source_sha256": "aa3d05937a22ae96397766cc288364d5a77c2679084eebc3fdffaf3fb9d2b963"
     }
   ],
   "other_training": [
@@ -352,38 +815,27 @@
           "decoding_protocol": "explicit-kv-cache-v2"
         }
       },
-      "source_sha256": "67cad47f25cff27684c2340d3e5e29f4e49f4ea83d7adbd2cf7d85ab9ae1f8df"
-    },
-    {
-      "family": "submission-visual-projection-v2",
-      "arm": "updates-480",
-      "evaluations": {
+      "training": {
         "sft": {
-          "status": "completed",
-          "examples": 120,
-          "tp": 41,
-          "fp": 10,
-          "fn": 47,
-          "micro_f2": 0.5086848635235732,
-          "valid_json_fraction": 0.9916666666666667,
-          "negative_false_alarm_rate": 0.03125,
-          "protocol_hash": "fca31472b09c4daa1533f323b193c003123fbf52c7181c99000af20d6d979fa3",
-          "decoding_protocol": "explicit-kv-cache-v2"
+          "optimizer_updates": 16,
+          "requested_optimizer_updates": 16,
+          "early_stopped": false,
+          "nonzero_gradient_checks": 16,
+          "lora_scope": null,
+          "augmentation": null,
+          "peak_gpu_memory_bytes": 24475131392
         },
         "grpo": {
-          "status": "completed",
-          "examples": 120,
-          "tp": 50,
-          "fp": 14,
-          "fn": 38,
-          "micro_f2": 0.6009615384615384,
-          "valid_json_fraction": 0.9916666666666667,
-          "negative_false_alarm_rate": 0.09375,
-          "protocol_hash": "29494c6fa9e6a3e5fb87b5c35ab81591ce3067b695459aa16497ee063d7b9a4f",
-          "decoding_protocol": "explicit-kv-cache-v2"
+          "optimizer_updates": 64,
+          "requested_optimizer_updates": 64,
+          "early_stopped": false,
+          "nonzero_gradient_checks": 64,
+          "lora_scope": null,
+          "augmentation": null,
+          "peak_gpu_memory_bytes": 25140823040
         }
       },
-      "source_sha256": "b7da2c4fefa41d45e9caf64e51ef4376451ad4a00027f51de373ee6303b7e712"
+      "source_sha256": "67cad47f25cff27684c2340d3e5e29f4e49f4ea83d7adbd2cf7d85ab9ae1f8df"
     },
     {
       "family": "submission-visual-projection-v2",
@@ -414,7 +866,98 @@
           "decoding_protocol": "explicit-kv-cache-v2"
         }
       },
+      "training": {
+        "sft": {
+          "optimizer_updates": 120,
+          "requested_optimizer_updates": 120,
+          "early_stopped": false,
+          "nonzero_gradient_checks": 120,
+          "lora_scope": "language_visual_projection",
+          "augmentation": null,
+          "peak_gpu_memory_bytes": 24714545664
+        },
+        "grpo": {
+          "optimizer_updates": 5,
+          "requested_optimizer_updates": 48,
+          "early_stopped": true,
+          "nonzero_gradient_checks": 5,
+          "lora_scope": "language_visual_projection",
+          "augmentation": null,
+          "peak_gpu_memory_bytes": 24901750784
+        }
+      },
       "source_sha256": "a3b94e8fe2164af2f2a7029d6db9c04fcc2da3f8a615af7d99cf5d7a76c67549"
+    },
+    {
+      "family": "submission-visual-projection-v2",
+      "arm": "updates-480",
+      "evaluations": {
+        "sft": {
+          "status": "completed",
+          "examples": 120,
+          "tp": 41,
+          "fp": 10,
+          "fn": 47,
+          "micro_f2": 0.5086848635235732,
+          "valid_json_fraction": 0.9916666666666667,
+          "negative_false_alarm_rate": 0.03125,
+          "protocol_hash": "fca31472b09c4daa1533f323b193c003123fbf52c7181c99000af20d6d979fa3",
+          "decoding_protocol": "explicit-kv-cache-v2"
+        },
+        "grpo": {
+          "status": "completed",
+          "examples": 120,
+          "tp": 50,
+          "fp": 14,
+          "fn": 38,
+          "micro_f2": 0.6009615384615384,
+          "valid_json_fraction": 0.9916666666666667,
+          "negative_false_alarm_rate": 0.09375,
+          "protocol_hash": "29494c6fa9e6a3e5fb87b5c35ab81591ce3067b695459aa16497ee063d7b9a4f",
+          "decoding_protocol": "explicit-kv-cache-v2"
+        }
+      },
+      "training": {
+        "sft": {
+          "optimizer_updates": 480,
+          "requested_optimizer_updates": 480,
+          "early_stopped": false,
+          "nonzero_gradient_checks": 480,
+          "lora_scope": "language_visual_projection",
+          "augmentation": null,
+          "peak_gpu_memory_bytes": 24714547712
+        },
+        "grpo": {
+          "optimizer_updates": 48,
+          "requested_optimizer_updates": 48,
+          "early_stopped": false,
+          "nonzero_gradient_checks": 48,
+          "lora_scope": "language_visual_projection",
+          "augmentation": null,
+          "peak_gpu_memory_bytes": 24924846592
+        }
+      },
+      "source_sha256": "b7da2c4fefa41d45e9caf64e51ef4376451ad4a00027f51de373ee6303b7e712"
+    },
+    {
+      "family": "submission-refinement-v3",
+      "arm": "base-control",
+      "evaluations": {
+        "base_control": {
+          "status": "completed",
+          "examples": 120,
+          "tp": 4,
+          "fp": 5,
+          "fn": 84,
+          "micro_f2": 0.055401662049861494,
+          "valid_json_fraction": 0.9916666666666667,
+          "negative_false_alarm_rate": 0.0625,
+          "protocol_hash": "b671ca961ee8d8b4293b224e7310d3982fe7daed753607c2cae1b86afbfc3fa7",
+          "decoding_protocol": "explicit-kv-cache-v2"
+        }
+      },
+      "training": {},
+      "source_sha256": "3c9e4e4ea19f9a9b64eba59c3c571ed2665efe52a3b93f8cd9fda9dd2a6a86d9"
     },
     {
       "family": "submission-refinement-v3",
@@ -445,26 +988,27 @@
           "decoding_protocol": "explicit-kv-cache-v2"
         }
       },
-      "source_sha256": "da26cb7f78f8b21539c93a6f38207f38ab26a4c9a49b8381633b39d353ec75f7"
-    },
-    {
-      "family": "submission-refinement-v3",
-      "arm": "base-control",
-      "evaluations": {
-        "base_control": {
-          "status": "completed",
-          "examples": 120,
-          "tp": 4,
-          "fp": 5,
-          "fn": 84,
-          "micro_f2": 0.055401662049861494,
-          "valid_json_fraction": 0.9916666666666667,
-          "negative_false_alarm_rate": 0.0625,
-          "protocol_hash": "b671ca961ee8d8b4293b224e7310d3982fe7daed753607c2cae1b86afbfc3fa7",
-          "decoding_protocol": "explicit-kv-cache-v2"
+      "training": {
+        "sft": {
+          "optimizer_updates": 480,
+          "requested_optimizer_updates": 480,
+          "early_stopped": false,
+          "nonzero_gradient_checks": 480,
+          "lora_scope": null,
+          "augmentation": null,
+          "peak_gpu_memory_bytes": 24711783424
+        },
+        "grpo": {
+          "optimizer_updates": 37,
+          "requested_optimizer_updates": 64,
+          "early_stopped": true,
+          "nonzero_gradient_checks": 37,
+          "lora_scope": null,
+          "augmentation": null,
+          "peak_gpu_memory_bytes": 24923274752
         }
       },
-      "source_sha256": "3c9e4e4ea19f9a9b64eba59c3c571ed2665efe52a3b93f8cd9fda9dd2a6a86d9"
+      "source_sha256": "da26cb7f78f8b21539c93a6f38207f38ab26a4c9a49b8381633b39d353ec75f7"
     }
   ]
 }

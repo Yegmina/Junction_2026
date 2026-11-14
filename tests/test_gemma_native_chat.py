@@ -32,3 +32,21 @@ def test_native_codec_rejects_remote_image_fetch_and_invalid_argument_types():
         normalize_messages([dict(role='tool',content=[dict(type='image_url',image_url=dict(url='https://example.org/a.png'))])])
     with pytest.raises(ValueError,match='Invalid native tool'):
         public_message(dict(tool_calls=[dict(function=dict(name='bash',arguments=[]))]))
+
+
+def test_context_budget_omits_only_optional_private_thinking_before_rejecting_public_history():
+    import numpy as np
+    from cloud.gemma_native_chat import fit_context,NativeContextError
+    class Processor:
+        def __init__(self):self.seen=[]
+        def apply_chat_template(self,messages,**kwargs):
+            self.seen.append(messages)
+            return {'input_ids':np.zeros((1,messages[0]['tokens']),dtype=int)}
+    processor=Processor();full=[dict(tokens=160,thinking='private fixture')];public=[dict(tokens=80)]
+    inputs,limit,restored=fit_context(processor,full,[],True,128,public,256)
+    assert processor.seen==[full,public] and limit==128 and not restored
+    assert inputs['input_ids'].shape[-1]==80 and full[0]['thinking']=='private fixture'
+    _,limit,_=fit_context(processor,[dict(tokens=200)],[],True,128,context_limit=300)
+    assert limit==100
+    with pytest.raises(NativeContextError,match='maximum context length is 256 tokens'):
+        fit_context(processor,[dict(tokens=250)],[],True,128,context_limit=256)

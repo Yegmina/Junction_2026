@@ -75,3 +75,9 @@ The newer visual-projection model reached **60.1% development F2**, versus its
 claims versus the frontier's 55, while missing more reference objects (38 vs
 28). These are image-level development results, distinct from mission rewards.
 [Latest measurements and protocol differences](../evidence/submission-measurements-latest.json).
+
+![Development F2 and error counts for the visual adaptation and frontier controls](assets/development-comparison.svg)
+
+[Slide PNG](https://136.115.179.240/artifacts/presentation/development-comparison.png).
+The count panel keeps missed objects visible alongside false claims; the
+student's lower false-alarm count is not described as higher overall F2.

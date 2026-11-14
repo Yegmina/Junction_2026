@@ -47,3 +47,17 @@ def test_native_proxy_preserves_conversation_roles_without_the_flattened_prompt(
     message,raw=proxy.infer(original)
     assert received[0]['messages']==original['messages'] and 'prompt' not in received[0]
     assert message['content']=='Done.' and raw['input_tokens']==42
+
+
+def test_native_upstream_context_error_keeps_request_and_machine_readable_diagnostic(tmp_path,monkeypatch):
+    monkeypatch.setenv('AEROROZUM_NATIVE_CHAT','1');monkeypatch.setattr(proxy,'OUTPUT',tmp_path)
+    detail=dict(message='This model\'s maximum context length is 24576 tokens.',code='context_length_exceeded')
+    def fail(request,timeout):
+        raise proxy.urllib.error.HTTPError(request.full_url,400,'Bad Request',{},io.BytesIO(json.dumps(dict(detail=detail)).encode()))
+    monkeypatch.setattr(proxy.urllib.request,'urlopen',fail)
+    with pytest.raises(proxy.UpstreamError) as error:
+        proxy.infer(dict(messages=[dict(role='user',content='public fixture')],tools=[]))
+    assert error.value.status==400 and error.value.error['code']=='context_length_exceeded'
+    assert 'maximum context length' in error.value.error['message']
+    assert json.loads(next(tmp_path.glob('*-request.json')).read_text())['request']['messages'][0]['content']=='public fixture'
+    assert json.loads(next(tmp_path.glob('*-error.json')).read_text())['status']==400

@@ -1,14 +1,14 @@
-"""Public-only survey baseline: compact thermal components and geometric revisits.
+"""Public-image survey reference: wide coverage, RGB residuals, useful revisits.
 
-No simulator files, reference locations, target counts or grading endpoints are
-read. Polarity, camera calibration, regions and budgets come from public tools.
+No scene files, reference locations, target counts or grading endpoints are
+read. Calibration, regions, thermal condition and budgets come from public tools.
 """
 import json,subprocess,time,math
 from pathlib import Path
 import numpy as np
 from PIL import Image
-from scipy.ndimage import gaussian_filter,label,find_objects,maximum_filter
 from camera_geometry import pixel_to_ground
+from vision import proposals
 
 
 def call(command,*args):
@@ -27,7 +27,7 @@ def at(x,y,z):
 
 
 state=call('status');phase=state.get('thermal_condition',{}).get('phase','warming');regions=state['regions']
-state=call('launch','--altitude',5);candidates=[]
+state=call('launch','--altitude',10);candidates=[]
 
 
 def capture():
@@ -36,46 +36,51 @@ def capture():
         except RuntimeError:
             if attempt==2:raise
             time.sleep(.5)
-    item=next(i for i in observation['images'] if i['kind']=='thermal')
-    pixels=np.asarray(Image.open(item['local_file']).convert('L'),dtype=np.float32)
-    filtered=gaussian_filter(pixels,.8);signal=filtered if phase in ('warming','late_warming') else 255-filtered
-    # Saturated compact components are a conservative first proposal source.
-    components,count=label(signal>247);proposals=[]
-    for index,slices in enumerate(find_objects(components),1):
-        if slices is None:continue
-        yy,xx=slices;mask=components[yy,xx]==index;area=int(mask.sum());height=yy.stop-yy.start;width=xx.stop-xx.start
-        if not 35<=area<=2500 or min(width,height)<4 or max(width,height)>3*min(width,height) or area/(width*height)<.45:continue
-        vs,us=np.nonzero(mask);u=float(us.mean()+xx.start);v=float(vs.mean()+yy.start)
-        proposals.append((u,v,max(width,height)/2+3,float(signal[yy,xx][mask].mean())))
-    proposals.sort(key=lambda r:r[3],reverse=True)
-    for u,v,radius,_ in proposals[:8]:
-        h,w=pixels.shape;point=pixel_to_ground(observation,u/w*1000,v/h*1000)
+    files={i['kind']:i['local_file'] for i in observation['images']}
+    with Image.open(files['thermal']) as image:pixels=np.asarray(image.convert('L'))
+    with Image.open(files['rgb']) as image:rgb=np.asarray(image.convert('RGB'))
+    height,width=pixels.shape
+    for u,v,radius,strength in proposals(observation,pixels,rgb,phase):
+        point=pixel_to_ground(observation,u/width*1000,v/height*1000)
         if not any(a<=point[0]<=c and b<=point[1]<=d for a,b,c,d in regions.values()):continue
-        radius=min(28,max(6,radius));bbox=dict(x_min=max(0,u-radius)/w*1000,y_min=max(0,v-radius)/h*1000,x_max=min(w,u+radius)/w*1000,y_max=min(h,v+radius)/h*1000)
+        radius=min(60,max(4,radius))
+        bbox=dict(x_min=max(0,u-radius)/width*1000,y_min=max(0,v-radius)/height*1000,
+                  x_max=min(width,u+radius)/width*1000,y_max=min(height,v+radius)/height*1000)
         evidence=dict(observation_id=observation['observation_id'],bbox=bbox)
-        nearby=[c for c in candidates if math.dist(c['_point'],point)<.45]
+        nearby=[c for c in candidates if math.dist(c['_point'],point)<.75
+                and all(math.dist(prior,point)<=1.2 for prior in c['_points'])]
         existing=min(nearby,key=lambda c:math.dist(c['_point'],point)) if nearby else None
         if existing:
+            # Proposals are strongest first: never assign different boxes from
+            # one capture to the same object, even if a residual fragmented.
             if any(e['observation_id']==observation['observation_id'] for e in existing['evidence']):continue
             existing['evidence'].append(evidence);existing['_points'].append(point)
-            existing['_point']=tuple(float(v) for v in np.median(existing['_points'],axis=0))
-        elif len(candidates)<24:candidates.append(dict(_point=point,_points=[point],notes='Compact thermal signature; geometric association uses public capture calibration',evidence=[evidence]))
+            existing['_point']=tuple(float(value) for value in np.median(existing['_points'],axis=0))
+            existing['_strength']=max(existing['_strength'],strength)
+        elif len(candidates)<16:
+            candidates.append(dict(_point=point,_points=[point],_strength=strength,
+                notes='Compact thermal residual after fitting registered RGB terrain appearance; location associated using public capture calibration',evidence=[evidence]))
 
 
-for x,y in [(7.5,-2.5),(12.5,-2.5),(12.5,2.5),(7.5,2.5),(-2.5,9.5),(2.5,9.5),(2.5,14.5),(-2.5,14.5)]:
-    state=call('status');p=state['pose'];reserve=math.hypot(x,y)/1.2+15
+# At 10m the nominal public camera covers an entire requested 10m region.
+# Additional lower views trade coverage for detail without assuming a target count.
+waypoints=[((a+c)/2,(b+d)/2) for a,b,c,d in regions.values()]
+while waypoints:
+    state=call('status');p=state['pose'];waypoints.sort(key=lambda q:math.dist(q,(p['x_m'],p['y_m'])))
+    x,y=waypoints.pop(0);reserve=math.hypot(x,y)/1.2+18
     if state['remaining_s']<math.hypot(p['x_m']-x,p['y_m']-y)/1.2+reserve+8:break
-    call('goto','--x',x,'--y',y,'--altitude',5);state=at(x,y,5)
+    call('goto','--x',x,'--y',y,'--altitude',10);state=at(x,y,10)
     if state['remaining_s']<math.hypot(state['pose']['x_m'],state['pose']['y_m'])/1.2+12:break
     capture()
 
-# Resolve known uncertain signatures before spending budget on redundant views.
 pending=list(candidates)
 while pending:
-    state=call('status');p=state['pose'];pending.sort(key=lambda c:math.dist(c['_point'],(p['x_m'],p['y_m'])))
+    state=call('status');p=state['pose']
+    pending.sort(key=lambda c:-(c['_strength']/(1+math.dist(c['_point'],(p['x_m'],p['y_m']))))/(1 if len(c['evidence'])==1 else 4))
     candidate=pending.pop(0);x,y=candidate['_point']
-    cost=math.hypot(p['x_m']-x,p['y_m']-y)/1.2+math.hypot(x,y)/1.2+20
-    if state['remaining_s']<cost or state['action_count']>58:break
+    cost=math.hypot(p['x_m']-x,p['y_m']-y)/1.2+math.hypot(x,y)/1.2+22
+    if state['remaining_s']<cost or state['action_count']>58:continue
     call('goto','--x',x,'--y',y,'--altitude',3);at(x,y,3);capture()
-call('land');path=Path('/workspace/report.json');path.write_text(json.dumps(dict(candidates=[{k:v for k,v in c.items() if not k.startswith('_')} for c in candidates])))
+call('land');path=Path('/workspace/report.json')
+path.write_text(json.dumps(dict(candidates=[{k:v for k,v in c.items() if not k.startswith('_')} for c in candidates])))
 print(json.dumps(call('submit','--report',path),indent=2))

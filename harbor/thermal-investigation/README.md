@@ -40,7 +40,7 @@ staging script is `cloud/stage_harbor_native.py`. Then run
 to freeze new insertions and their private reference together, using the
 admitted full-day axisymmetric present/absent pair. The source hashes must match
 the admission certificate. It preserves the existing photographic/recorded
-ground appearance and generates both warming/cooling fields without scaling
+ground appearance and generates all four thermal-condition fields without scaling
 the physical contrast. Camera fields and private reference share frozen hashes.
 `native-assets-manifest.json` records the build. **An unstaged source checkout is not yet a
 self-contained distributable**; the final submission bundle must include these
@@ -80,9 +80,12 @@ be used to optimize a still-running trial.
 
 The verifier also saves score details, the authoritative ledger and
 checksum-verified camera images. The reference policy uses only public images
-and telemetry. It follows a survey grid, proposes compact components of the
-appropriate thermal polarity and spends remaining budget revisiting candidates;
-it has no access to target coordinates.
+and telemetry. Version 0.3.1 first surveys at 10m, fits broad thermal appearance
+from geometrically registered RGB, proposes compact thermal residuals of the
+reported polarity, and spends remaining budget revisiting candidates at 3m.
+It merges consistent locations across views and has no access to target
+coordinates or the number of inserted objects. This revised reference still
+needs native evaluation; its unit/offline checks are not mission scores.
 
 At container startup, the scene factory redraws the insertions using a private
 random seed. The seed is not exposed to the agent. Set `AEROROZUM_TASK_SEED` on
