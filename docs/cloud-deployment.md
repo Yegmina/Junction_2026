@@ -79,11 +79,18 @@ Open `http://127.0.0.1:18910` through that tunnel.
 
 The demo is also available at **https://136.115.179.240** directly from the VM.
 `cloud/publish_ip_demo.py --ip 136.115.179.240` configures nginx with a trusted
-Let's Encrypt IP certificate, HTTP-to-HTTPS redirect, a separate demo login,
-request rate limiting and twice-daily certificate renewal. The web login is
-generated on the VM and stored only in `/etc/aerorozum/demo-access.json` (0600).
-It is unrelated to the Gemini key, which remains in the backend credential store.
-No password or private certificate key is checked into this repository.
+Let's Encrypt IP certificate, HTTP-to-HTTPS redirect, automatic guest identities,
+request rate limiting and twice-daily certificate renewal. Opening the page
+creates a unique guest username and random password automatically. Only a hash
+is stored in the VM's private `guest-sessions/guests.sqlite3`; the credential is
+carried in a Secure, HttpOnly cookie and never displayed. API/image requests reuse
+the same guest, and opening the page again creates a fresh identity. No login
+form or browser password prompt appears. The guest service is a separate enabled
+system service on loopback 18950, so this change does not restart active missions.
+The simulator and saved research gallery remain shared; guest identities are
+anonymous visitor bookkeeping, not a private access gate or isolated workspaces.
+The Gemini key remains in the backend credential store. No generated passwords,
+session database or private certificate key is checked into this repository.
 
 The firewall rule `aerorozum-public-demo-web` allows only TCP 80/443 to instances
 with the `aerorozum-public-demo` tag. API, simulator and Gemma inference ports
