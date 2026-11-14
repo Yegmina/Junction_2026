@@ -63,6 +63,16 @@ def create_app(data_root: Path | str | None = None, campaign_factory=None, evalu
         simulation=await run_in_threadpool(app.state.missions.simulation_status)
         return safe(dict(missions=app.state.missions.list(),simulation=simulation))
 
+    @app.get('/api/mission-eval')
+    def mission_eval():
+        jobs=[]
+        for condition,run in [('paired','paired-decisions-v1'),('blank','paired-decisions-blank-v1')]:
+            folder=app.state.data_root/'mission-eval'/run/'results'
+            for gpu,name in enumerate(('base','real_sft','real_grpo','stream_grpo')):
+                status=read_json(folder/name/'status.json',{}) or {}
+                if status:jobs.append(dict(gpu=gpu,condition=condition,**status,summary=read_json(folder/name/'summary.json')))
+        return safe(dict(jobs=jobs,total_cases_per_checkpoint=128,scope='Offline routing and instruction-contract probes; not full mission completion or field detection accuracy.'))
+
     @app.post('/api/missions')
     async def create_mission(body: CreateMission):
         try:return safe(await app.state.missions.create(body.prompt,body.controller,body.seed,physics_phase=body.physics_phase))
