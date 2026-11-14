@@ -152,6 +152,38 @@ valid prior labels; an invalid answer never becomes a negative label. The
 existing worker's code, 120 RPM / 500,000 input TPM limits, separate hackathon
 key, and original-response archive remain unchanged.
 
+## Fixed visual-recipe replications
+
+The nine short streaming trials did not justify promotion. A separate declared
+study now replicates the established longer visual recipe on seeds 43 and 91,
+using the original training and continuation source snapshots. Each replica
+requests 480 SFT updates at `3e-5`, then 48 GRPO updates and a separate fresh
+optimizer continuation of up to 96 GRPO updates. The original task-reward
+variation and four-group zero-variance guards remain in force. A continuation
+without verified parent task-reward variation is not admitted.
+
+The dataset remains the original frozen 602 training examples and 120-image
+development comparison. Scope is language plus visual-projection LoRA;
+microbatch 1 and accumulation 4 preserve the established effective batch of 4.
+The opened 182-image test is not used for training or selection. All declared
+results, including unsuccessful seeds or early stops, must be reported.
+
+GPU 1 runs a seed-17 control starting from the same F9 parent as the selected
+96-step GRPO continuation. It performs 96 SFT updates at `1e-6`, followed by
+development evaluation. This matches the number of optimizer updates, **not
+the amount of compute**. It cannot by itself establish a causal RL advantage.
+GPUs 2 and 3 run the seed-43 and seed-91 replications. GPU 0's live inference
+service is preserved. All three workers have been observed beyond optimizer
+step 15; completion and improved quality are not yet established.
+
+The [declared protocol](evidence/visual-replication-protocol.json) binds source,
+manifest, validation and parent-adapter hashes. Units are
+`aerorozum-visual-replication-{17,43,91}.service`; their three-hour limits do not
+extend the VM's reviewed shutdown deadline. Separate GPU reservations prevent
+streaming jobs from overlapping these workers, and each worker releases its
+own reservation when it exits. No automatic promotion is performed. Run data
+is under `artifacts/postsubmission-visual-replication-v1/` on the VM.
+
 ## Inspect execution
 
 VM services include `aerorozum-stream-pipeline.service`, physical workers and
