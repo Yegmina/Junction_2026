@@ -111,6 +111,9 @@ def package(task,jobs,output,secrets=(),audits=(),task_folder='thermal-investiga
                 summaries.append(dict(job=job.name,trial=source.name,reward=reward,agent=result['config']['agent']['name'],
                     model=result['config']['agent'].get('model_name'),exception_type=(result.get('exception_info') or {}).get('exception_type'),
                     public_tool_events=counts.get('tools',0),completed_mission=details.get('completed'),
+                    flight_elapsed_s=details.get('flight_elapsed_s'),budget_s=details.get('budget_s'),
+                    observations=details.get('observations'),actions=details.get('actions'),
+                    true_positives=details.get('true_positives'),false_positives=details.get('false_positives'),
                     task_checksum=result.get('task_checksum'),result_sha256=sha(trial),instance=instance))
         audit_records=[]
         for source in map(Path,audits):
@@ -170,6 +173,14 @@ is made by this bundle.
 
 `SHA256SUMS` covers every other bundled file. Verify with `sha256sum -c SHA256SUMS`.
 '''.replace('thermal-investigation',task_folder))
+        with (root/'README.md').open('a') as stream:
+            if task_folder=='thermal-investigation-budgeted':
+                stream.write('\n## Why this environment matters\n\nA wide scan is cheap; a supported claim needs a close inspection. The agent can prepare code before takeoff and analyze saved evidence after landing, but the aircraft keeps flying during inference. It must decide which uncertain patches deserve more time and reserve the trip home. Good detections do not excuse missing the flight deadline. The reference uses public images and telemetry, with no target locations or counts.\n')
+            stream.write('\n## Included actual runs\n\n| Job | Reward | Process | Mission | Flight / budget | Captures |\n|---|---:|---|---|---|---:|\n')
+            for run in summaries:
+                timing='—' if run['flight_elapsed_s'] is None else f"{run['flight_elapsed_s']:.3f} / {run['budget_s']:g}s"
+                stream.write(f"| {run['job']} | {run['reward']:.6f} | {run['exception_type'] or 'clean'} | {'complete' if run['completed_mission'] else 'incomplete'} | {timing} | {run['observations'] if run['observations'] is not None else '—'} |\n")
+            stream.write('\nRun names distinguish output allowances and seeds. A clean process exit can still describe an incomplete mission. Short-cap preflight truncations and process errors are not treated as evidence of flight-planning failure. Full configurations, scores, ledgers and public tool logs are included; the table does not replace them.\n')
         # Exact private values plus common credential signatures are checked
         # before writing an archive. Never include the matching secret in errors.
         patterns=[re.compile(rb'AIza[0-9A-Za-z_-]{25,}'),re.compile(rb'-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----')]

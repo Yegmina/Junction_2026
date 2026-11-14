@@ -52,6 +52,24 @@ def validate_selection(path):
     return receipt
 
 
+def control_adapter(root,receipt,control):
+    """Fix comparisons to the untouched base or the selected model's parent."""
+    if control=='base':return None
+    if control!='parent':raise ValueError('Unknown frozen comparison control')
+    root=Path(root).resolve();selected=json.loads(Path(receipt['selected']['result']).read_text())
+    continuation=selected['results']['grpo'].get('continuation')
+    if not continuation:raise ValueError('Selected model has no bound GRPO continuation parent')
+    parent=(root/continuation['parent_result']).resolve()
+    if not parent.is_relative_to(root) or sha(parent)!=continuation['parent_result_sha256']:
+        raise ValueError('Frozen parent result identity changed')
+    document=json.loads(parent.read_text())
+    if document.get('status')!='completed':raise ValueError('Parent experiment incomplete')
+    adapter=(root/document['results']['grpo']['adapter']).resolve()
+    if not adapter.is_relative_to(root/'training') or sha(adapter/'adapter_model.safetensors')!=continuation['grpo_adapter_sha256']:
+        raise ValueError('Frozen parent weights changed')
+    return adapter
+
+
 def prepare_manifest(root,selection,source,train,development,output):
     root=Path(root).resolve();receipt=validate_selection(selection)
     forbidden=set()

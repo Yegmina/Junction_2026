@@ -2,17 +2,30 @@
 
 The Harbor environment, scalar verifier, native OpenCode model playthroughs,
 reference controller and shortcut controls run on the four-A100 VM. The full
-repository check passed **327 tests**. The portable baseline archive passed an
+repository check passed **331 tests**. The portable baseline archive passed an
 independent extraction, file-hash check and fresh native Harbor smoke run.
 The newer close-inspection task is being evaluated on fresh instances.
 Frontier superiority is not established.
 
 ## Runnable submission
 
+- [Verified close-inspection ZIP v4](https://136.115.179.240/presentation/submission/aerorozum-harbor-close-inspection-v4.zip)
+- [Independent close-inspection portability receipt](https://136.115.179.240/presentation/submission/close-inspection-v4-portability.json)
 - [Verified baseline ZIP](https://136.115.179.240/presentation/submission/aerorozum-harbor-candidate-v3.zip)
 - [Independent portability receipt](https://136.115.179.240/presentation/submission/candidate-v3-portability.json)
 - [Presentation and result browser](https://136.115.179.240/presentation/submission/index.html)
 - [Branch](https://github.com/Yegmina/Junction_2026/tree/codex/harbor-investigation)
+
+The close-inspection v4 ZIP is **364,945,349 bytes**, with 156 verified file
+hashes. SHA-256:
+`2c04acba77cb72585f0568a01b99b8d06501e9cbaf0ddad0d2668e6a281ab468`.
+Its extracted task reproduced full Harbor checksum
+`ed718fd1747779020d569898ef9a4babae10e3ad1e96c4dfb4af1cdfe46e1a7c`.
+A clean native smoke trial used fresh seed 930117, regenerated all four physical
+fields and retained the actual dawn/75s defaults. The archive includes both
+reference instances, a clean Gemma flight attempt, first short-cap model logs
+and all five native adversarial controls. Later larger-allowance model runs
+remain separate until terminal and verified.
 
 The baseline ZIP is 407,309,079 bytes. SHA-256:
 `46790a32e7d3fdc3e5bd645bb4c5782a13ee81c033c1e99c36a721d1c910522d`.
@@ -67,6 +80,7 @@ reference/frontier/shortcut runs are required because the rules differ.
 | Baseline dawn / 180s | Refined Gemma, thinking disabled | 0 | Clean; incomplete mission |
 | Close inspection, seed 730171 | Public-image reference | 0.733333 | Clean; 2 matched, 1 false, 1 missed; 71.484/75s |
 | Close inspection, seed 730172 | Public-image reference | 0.733333 | Clean; 2 matched, 1 false, 1 missed; 73.104/75s |
+| Close inspection, seed 730171 | Gemini Argon, 32k output allowance | 0 | Clean; 2 matched, no false claims, full coverage and home return; landed at 81.032/75s |
 | Close inspection, seed 730171 | Visual Gemma 12B, no thinking | 0 | Clean; 3 captures, 9 actions, stopped without return or report |
 | Close inspection | No-op / early report / reward-file spoof | 0 / 0 / 0 | Completed controls; see machine-readable execution status |
 | Close inspection | Forged capture + local image mutation | 0 | Completed flight and landed; forged ID rejected, sealed camera bytes unchanged |
@@ -92,10 +106,10 @@ same task and fresh seed, without changing any in-flight checkpoint.
 
 ## Perception post-training
 
-All reported image scores use the same **120-image development set**: 88
+The development image scores below use the same **120-image development set**: 88
 positive reference objects plus 32 screened negative images. Training has 602
 images: 162 original-manual, 320 reviewed-AI and 120 user-accepted-model records.
-Provenance is retained. Test zones 8/9 remain sealed. One seed, BF16 Gemma 4 12B;
+Provenance is retained. Test zones 8/9 stay excluded from training and development selection; the final-hour section records their one-time evaluation opening. One seed, BF16 Gemma 4 12B;
 these are development results, not field validation or a multi-seed causal study.
 
 | Development image control | TP / FP / FN | Micro-F2 | Negative-image false alarms |
@@ -106,12 +120,15 @@ these are development results, not field validation or a multi-seed causal study
 | Continued language-only GRPO | See source | 0.45113 | See recorded summary |
 | Visual-projection SFT | 41 / 10 / 47 | 0.50868 | See recorded summary |
 | Visual-projection GRPO | 50 / 14 / 38 | 0.60096 | 3/32 |
+| Visual parent +96 GRPO only | 55 / 16 / 33 | 0.65012 | 5/32 |
+| Visual parent +480 SFT, then GRPO | 52 / 23 / 36 | 0.60890 | 5/32 |
 | Gemini Carbon | 60 / 55 / 28 | 0.64240 | 14/32 |
 | Gemini Argon | 60 / 88 / 28 | 0.60000 | 20/32 |
 | Robotics teacher | See latest snapshot | 0.61060 | See latest snapshot |
 
-The visual model has fewer false alarms but misses more objects than the
-strongest frontier. Frontier controls share visible prompt/images with Gemma,
+The selected 0.65012 development F2 exceeds Carbon's 0.64240 on these images,
+with fewer false claims and more missed objects. This is a small development
+difference after tuning, not independent superiority evidence. Frontier controls share visible prompt/images with Gemma,
 but use native JSON and 8192 total output tokens including default reasoning;
 Gemma uses greedy 192-token output. This is not matched inference compute.
 Image-level F2 and native mission reward are separate measurements.
@@ -120,8 +137,9 @@ The visual projection's gradients are verified in the actual
 `embed_vision.multimodal_embedder.embedding_projection` module. The selected
 adapter hash is `f9bd1c6e2913f6f8446d995624d1e9f953ddce281bc03d1f1e99d7c6eac215e3`.
 The extra +240 SFT continuation regressed to 0.08219 SFT / 0.09615 GRPO and was
-not promoted. The +480 SFT continuation and a separate up-to-96-step **GRPO-only**
-continuation are running. The latter keeps completed SFT+GRPO lineage, verifies
+not promoted. The +480 SFT continuation completed at 0.57279 SFT / 0.60890 GRPO.
+The separate **GRPO-only** continuation completed all 96 requested updates and
+reached 0.65012. It keeps completed SFT+GRPO lineage, verifies
 parent weight hashes, starts a fresh optimizer and adds no SFT. Four consecutive
 zero-variance task-reward groups stop training; nonzero KL gradients alone do
 not establish learning. The geometric-augmentation experiment was cancelled
@@ -155,3 +173,30 @@ Videos cut between captures, two seconds per pair; they are not continuous
 flight recordings. The separate coordinate-agent video demonstrates actual
 retargeting during flight. Real thermal label excerpts preserve source times,
 prompt versions, frame identities and lower-confidence candidates.
+
+## Final-hour held-out comparison
+
+Before opening test zones, checkpoint selection was frozen to maximum completed
+GRPO development F2, then lower negative-image false alarms, then valid JSON.
+The selected additional-96-GRPO model scored 0.650118 on development data. Its
+receipt binds the actual result and adapter hashes. Test images remain labelled
+`test`; disjoint training/development hashes and duplicate test images are
+excluded explicitly. The frozen manifest contains **182 zone-8/9 images**.
+
+The selected Gemma, its immutable direct parent, the untouched base, Carbon,
+Argon and Robotics are evaluated separately. The base/parent controls were
+recorded before inspecting any test score; the selected checkpoint remains
+fixed. All three local models use the same single-image greedy 192-token
+program on separate free GPUs. Gemini retains the previously specified native
+JSON/8192-token protocol; this is not matched inference compute.
+
+Robotics returned an unquoted `Patch` token in a box coordinate. The initial
+strict-provider wrapper stopped the evaluation. An explicit parser amendment
+now scores the first retained raw completion, including malformed JSON, using
+the same invalid-prediction rule as Gemma. Valid paid completions and that
+malformed response are reused without new requests. Transport errors with no
+completion still stop evaluation. Ordinary production labelling continues to
+require valid JSON. Both failure and recovery logs remain preserved.
+
+No test score chooses a checkpoint or modifies training. The full planned
+three-seed/184-case/30k-observation study remains separate and unfinished.

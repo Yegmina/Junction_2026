@@ -44,6 +44,9 @@ def plot_latest(source,output):
         ('submission-visual-projection-v2','updates-480','grpo','Gemma visual projection · SFT + GRPO')]:
         match=next(r for r in data['other_training'] if r['family']==family and r['arm']==arm)
         rows.append((name,match['evaluations'][stage],'#72e8c0'))
+    continuation=next((r for r in data['other_training'] if r['family']=='submission-grpo-continuation-v1' and r['arm']=='updates-96'),None)
+    if continuation:
+        rows.append(('Gemma visual · additional 96 GRPO',continuation['evaluations']['grpo'],'#b9f69a'))
     for row in sorted(data['frontier_perception'],key=lambda x:x['micro_f2']):
         rows.append((row['model'],row,'#e5bc82'))
     plt.rcParams.update({'font.family':'DejaVu Sans','text.color':'#eef5f4','axes.labelcolor':'#b0c4ca','xtick.color':'#b0c4ca','ytick.color':'#eef5f4','font.size':12})
@@ -65,10 +68,12 @@ def plot_latest(source,output):
     legend=errors.legend(loc='lower center',bbox_to_anchor=(.5,1.025),frameon=False,fontsize=11)
     for text in legend.get_texts():text.set_color('#eef5f4')
     fig.text(.045,.94,'AEROROZUM / MEASURED DEVELOPMENT RESULTS',color='#72e8c0',fontsize=13,weight='bold')
-    fig.text(.045,.87,'Visual adaptation closes the gap.',fontsize=29,weight='bold')
-    fig.text(.045,.82,'60.1% student F2 versus 64.2% strongest frontier · fewer false alarms, lower recall',color='#b0c4ca',fontsize=14)
+    student=max((r[1] for r in rows if r[0].startswith('Gemma')),key=lambda r:r['micro_f2'])
+    frontier=max(data['frontier_perception'],key=lambda r:r['micro_f2'])
+    fig.text(.045,.87,'Measured thermal perception after GRPO.',fontsize=29,weight='bold')
+    fig.text(.045,.82,f'{100*student["micro_f2"]:.1f}% selected student F2 versus {100*frontier["micro_f2"]:.1f}% strongest frontier · development only',color='#b0c4ca',fontsize=14)
     fig.subplots_adjust(left=.29,right=.94,top=.74,bottom=.27,wspace=.18)
-    fig.text(.045,.105,'Same 120 development images · 88 reference objects + 32 screened negative images · test zones untouched',color='#b0c4ca',fontsize=11)
+    fig.text(.045,.105,'Same 120 development images · 88 reference objects + 32 screened negatives · test scores excluded from selection',color='#b0c4ca',fontsize=11)
     fig.text(.045,.068,'Gemma: greedy 192-token output. Frontiers: native JSON, 8192 tokens including default reasoning. Not matched compute.',color='#b0c4ca',fontsize=11)
     fig.text(.045,.031,'Image-level perception only. Development selection across runs; no sealed-test or mission-policy superiority claim.',color='#b0c4ca',fontsize=11)
     fig.savefig(output/'development-comparison.png',dpi=120,facecolor=fig.get_facecolor())

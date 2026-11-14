@@ -20,7 +20,7 @@ def archive(root=Path('/opt/aerorozum'),gcloud='/snap/bin/gcloud'):
                 parent=(data/record['adapter']).resolve().parent
                 if not parent.is_relative_to(data/'training'):raise ValueError('Adapter outside training tree')
                 paths.add(parent)
-    for folder in ['frontier-development-v1','pipeline/baseline-cache']:
+    for folder in ['frontier-development-v1','pipeline/baseline-cache','submission-frozen-test-v1']:
         if (data/folder).is_dir():paths.add(data/folder)
     for path in sorted(paths):
         subprocess.run([gcloud,'storage','rsync','-r',str(path),bucket+'posttraining/'+str(path.relative_to(data))],check=True)

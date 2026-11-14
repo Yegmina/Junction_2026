@@ -21,6 +21,13 @@ class ProviderDraining(RuntimeError):
     """Unstarted paid work stays resumable while accepted requests finish."""
 
 
+def request_identity(cfg,*,role,prompt,images,model,max_output_tokens):
+    """Identity shared by strict JSON calls and retained-completion evaluation."""
+    return digest(dict(role=role,prompt=prompt,images=images,model=model,
+        temperature=float(cfg.get('temperature',.1)),max_output_tokens=max_output_tokens,
+        api_version=cfg.get('api_version','v1beta'),thinking_budget=cfg.get('thinking_budget')))
+
+
 @dataclass(eq=False)
 class TokenReservation:
     created_at: float
@@ -148,7 +155,7 @@ class GeminiProvider:
         limit = max_output_tokens or self.cfg.get('reserve_output_tokens',2048)
         temperature=float(self.cfg.get('temperature',.1))
         if not math.isfinite(temperature) or not 0<=temperature<=2:raise ValueError('Temperature must be finite and within 0..2')
-        cache_id = digest(dict(role=role,prompt=prompt,images=content_hashes,model=model,temperature=temperature,max_output_tokens=limit,api_version=self.cfg.get('api_version','v1beta'),thinking_budget=self.cfg.get('thinking_budget')))
+        cache_id = request_identity(self.cfg,role=role,prompt=prompt,images=content_hashes,model=model,max_output_tokens=limit)
         cache = self.root / 'responses' / (cache_id + '.json')
         if reuse and cache.exists():
             return json.loads(cache.read_text())['output']

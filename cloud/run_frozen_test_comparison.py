@@ -12,7 +12,7 @@ def active(unit):return subprocess.run(['systemctl','is-active','--quiet',unit])
 def main():
     root=Path('/opt/aerorozum');data=root/'artifacts';source=Path(__file__).resolve().parents[1]
     from aerorozum.frozen_test import freeze_selection,prepare_manifest
-    deadline=datetime.datetime(2026,11,14,22,22,tzinfo=datetime.timezone.utc)
+    deadline=datetime.datetime(2026,11,14,22,25,tzinfo=datetime.timezone.utc)
     units=['aerorozum-grpo-only-v1-gpu2','aerorozum-visual-continuation-v1-gpu3']
     while any(active(unit) for unit in units) and datetime.datetime.now(datetime.timezone.utc)<deadline:time.sleep(10)
     output=data/'submission-frozen-test-v1';output.mkdir(exist_ok=True)

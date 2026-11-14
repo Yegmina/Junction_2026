@@ -42,3 +42,19 @@ def test_preparation_excludes_training_overlap_without_relabeling_it(tmp_path):
     row=json.loads(manifest.read_text())['images'][0];train.write_text(json.dumps(dict(images=[row])))
     with pytest.raises(ValueError,match='No disjoint test images'):
         prepare_manifest(tmp_path,selection,tmp_path/'source.json',train,tmp_path/'dev.json',tmp_path/'other.json')
+
+
+def test_parent_control_is_bound_to_the_selected_continuation_not_arbitrary_weights(tmp_path):
+    from aerorozum.frozen_test import control_adapter,sha
+    selection,manifest,train,result=fixture(tmp_path)
+    receipt=json.loads(selection.read_text())
+    assert control_adapter(tmp_path,receipt,'base') is None
+    with pytest.raises(ValueError,match='bound GRPO continuation parent'):
+        control_adapter(tmp_path,receipt,'parent')
+    parent_adapter=tmp_path/'training/parent';parent_adapter.mkdir();(parent_adapter/'adapter_model.safetensors').write_bytes(b'parent')
+    parent=tmp_path/'parent.json';parent.write_text(json.dumps(dict(status='completed',results=dict(grpo=dict(adapter='training/parent')))))
+    d=json.loads(result.read_text());d['results']['grpo']['continuation']=dict(parent_result='parent.json',parent_result_sha256=sha(parent),grpo_adapter_sha256=sha(parent_adapter/'adapter_model.safetensors'))
+    result.write_text(json.dumps(d));receipt['selected']['result_sha256']=sha(result)
+    assert control_adapter(tmp_path,receipt,'parent')==parent_adapter
+    (parent_adapter/'adapter_model.safetensors').write_bytes(b'changed')
+    with pytest.raises(ValueError,match='parent weights changed'):control_adapter(tmp_path,receipt,'parent')
