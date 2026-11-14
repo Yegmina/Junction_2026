@@ -1,0 +1,30 @@
+{
+  "at": "2026-11-14T23:07:21.168233+00:00",
+  "status": "continuous_dispatch_resumed",
+  "queued_jobs": 6,
+  "manifests": [
+    {
+      "manifest": "/opt/aerorozum/artifacts/pipeline/batches/7f83044fe7b13c236bd5d926/manifest.json",
+      "images": 239,
+      "manifest_hash": "100f26ed3205030873cda18b5a47ab635b6fd3423a0ed6e1e75958d995ab00c4"
+    },
+    {
+      "manifest": "/opt/aerorozum/artifacts/pipeline/batches/d82909dce3bb7b1445d4b892/manifest.json",
+      "images": 224,
+      "manifest_hash": "866eaa18dde4eddeab81f9744a9b24066f070ea66e44f63d9fe648528a9990a9"
+    }
+  ],
+  "settings_changes": [
+    "deadline_utc"
+  ],
+  "controls_changes": [
+    "pause_dispatch",
+    "pause_reason",
+    "last_resume_reason"
+  ],
+  "deadline_utc": "2026-11-16T16:46:54+00:00",
+  "submission_artifacts_changed": false,
+  "physics_gates_changed": false,
+  "training_recipe_changed": false,
+  "active_workers_interrupted": false
+}

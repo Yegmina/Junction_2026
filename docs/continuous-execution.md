@@ -30,13 +30,13 @@ and incomplete. Cropped auxiliary evidence does not establish a validated
 
 ## Resources
 
-The existing Spot VM has 48 vCPUs and four A100 40 GB GPUs. Its runtime
+The current standard VM has 48 vCPUs and four A100 40 GB GPUs. Its runtime
 `system.slice` CPU quota is 4300% (43 cores, approximately 89.6% of the host),
 with a 300 GiB memory high-water mark. Telemetry reports actual usage separately
 from allocations. High utilization is a scheduling target, not busywork.
 
 The full-BF16 single-GPU forward/backward/GRPO probe passed. Current training
-uses four exclusive single-GPU groups, microbatch 2 and accumulation 2
+uses exclusive single-GPU groups, microbatch 2 and accumulation 2
 (effective batch 4), with measured peak reservation around 25.3 GB per GPU.
 Active optimizer work is preserved during controller restarts.
 
@@ -45,8 +45,37 @@ persistent user-service definitions. After a host reboot, confirm the external
 SSD is mounted before treating local artifacts as available. A connected observer
 does not imply an active solver or optimizer: inspect actual queue and telemetry.
 
-Scheduled termination is **2026-11-15 06:30:50 UTC / 08:30:50 Helsinki**, subject
-to earlier Spot preemption. Checkpoints are archived outside the VM.
+Scheduled shutdown is **2026-11-16 16:46:54 UTC / 18:46:54 Helsinki**.
+The standard VM has a 48-hour cloud runtime limit with STOP termination;
+the local shutdown timer expires four seconds before that limit. The streaming
+controller deadline now matches the local timer. Checkpoints are archived
+outside the VM.
+
+## Research resumed after submission preparation
+
+At 2026-11-14 23:07:21 UTC, the submission-priority dispatch pause was lifted
+after validating both queued manifests. Six previously queued jobs cover seeds
+17, 43 and 91 on two batches (239 and 224 eligible images). At 23:07:26,
+the first three workers started on GPUs 1, 2 and 3. GPU 0 remains reserved for
+the live inference service. The original 32-step SFT / 16-step GRPO recipe,
+dataset admission rules and promotion checks are unchanged. Starting a worker
+does not establish that its optimization or evaluation has completed.
+
+`cloud/resume_research_queue.py` refuses to restart a coordinator with active
+managed workers or occupied training GPUs. It retains the previous settings,
+controls and queue under `pipeline/recovery/postsubmission-resume-*/`, and
+records manifest hashes and the corrected cutoff in a receipt. The submission
+package and published measurements remain frozen; new work lives on
+`codex/research-replication`.
+
+The separate airborne labeling worker is **not running**. Its last completed
+batch retained 4,198 labels from 4,242 frames, with 44 failures and no pending
+archive uploads. This is partial batch coverage, not completion of all videos.
+The older input inventory (2026-11-14 14:44:50 UTC) still reports 59 pending
+source versions and 2,335 unresolved frame failures across earlier queues;
+those figures are not a fresh unique-request estimate. Existing paid caches
+must be reconciled with airborne eligibility before restarting inference.
+The full physical protocol described above remains incomplete.
 
 ## Inspect execution
 
