@@ -67,14 +67,27 @@ the complete raw generation is saved; no hidden substitute controller is used.
 GPU 0 needs a coordinator external lease for the lifetime of the inference
 service, so future training dispatch does not compete for its memory.
 
-Access is private. Use an authenticated Google Cloud SSH/IAP tunnel:
+The base installer keeps access on loopback. An authenticated Google Cloud SSH/IAP tunnel remains available:
 
 ```sh
 gcloud compute ssh INSTANCE --project PROJECT --zone ZONE -- -N -L 127.0.0.1:18910:127.0.0.1:18900
 ```
 
-Open `http://127.0.0.1:18910`. No public firewall rule exposes paid API actions,
-model inference or the simulator controls.
+Open `http://127.0.0.1:18910` through that tunnel.
+
+## Public IP demo
+
+The demo is also available at **https://136.115.179.240** directly from the VM.
+`cloud/publish_ip_demo.py --ip 136.115.179.240` configures nginx with a trusted
+Let's Encrypt IP certificate, HTTP-to-HTTPS redirect, a separate demo login,
+request rate limiting and twice-daily certificate renewal. The web login is
+generated on the VM and stored only in `/etc/aerorozum/demo-access.json` (0600).
+It is unrelated to the Gemini key, which remains in the backend credential store.
+No password or private certificate key is checked into this repository.
+
+The firewall rule `aerorozum-public-demo-web` allows only TCP 80/443 to instances
+with the `aerorozum-public-demo` tag. API, simulator and Gemma inference ports
+remain on loopback. Publishing the proxy does not restart research workers.
 
 ## VM policy and recovery
 
