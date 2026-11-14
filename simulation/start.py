@@ -8,7 +8,7 @@ def main():
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--replace-transient',action='store_true');a=p.parse_args();repo=Path(__file__).resolve().parents[1]
     if not (SSD/'worlds/aerorozum.sdf').is_file():raise RuntimeError('Build world on mounted SSD first')
     units=SSD/'units';units.mkdir(exist_ok=True);config=Path.home()/'.config/systemd/user';config.mkdir(parents=True,exist_ok=True)
-    env={'GZ_PARTITION':'aerorozum-mission-local','GZ_IP':'127.0.0.1','GZ_DISCOVERY_MSG_PORT':'18935','GZ_DISCOVERY_SRV_PORT':'18936','GZ_SIM_RESOURCE_PATH':str(SSD/'models'),'GZ_FUEL_CACHE_PATH':str(SSD/'fuel'),'GZ_SIM_LOG_ROOT':str(SSD/'logs'),'GZ_LOG_PATH':str(SSD/'logs'),'XDG_CACHE_HOME':str(SSD/'cache'),'XDG_CONFIG_HOME':str(SSD/'config'),'__GL_SHADER_DISK_CACHE_PATH':str(SSD/'cache/nvidia'),'MESA_SHADER_CACHE_DIR':str(SSD/'cache/mesa')}
+    env={'AEROROZUM_SIM_ROOT':str(SSD),'GZ_PARTITION':'aerorozum-mission-local','GZ_IP':'127.0.0.1','GZ_DISCOVERY_MSG_PORT':'18935','GZ_DISCOVERY_SRV_PORT':'18936','GZ_SIM_RESOURCE_PATH':str(SSD/'models'),'GZ_FUEL_CACHE_PATH':str(SSD/'fuel'),'GZ_SIM_LOG_ROOT':str(SSD/'logs'),'GZ_LOG_PATH':str(SSD/'logs'),'XDG_CACHE_HOME':str(SSD/'cache'),'XDG_CONFIG_HOME':str(SSD/'config'),'__GL_SHADER_DISK_CACHE_PATH':str(SSD/'cache/nvidia'),'MESA_SHADER_CACHE_DIR':str(SSD/'cache/mesa')}
     prefix='[Unit]\nDescription=AeroRozum local native Gazebo\n'
     common='[Service]\nType=simple\nRestart=on-failure\nRestartSec=3\nWorkingDirectory='+str(SSD/'runtime')+'\n'
     environment=''.join('Environment='+json.dumps(k+'='+v)+'\n' for k,v in env.items())

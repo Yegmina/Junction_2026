@@ -16,8 +16,9 @@ from gz.msgs10.boolean_pb2 import Boolean
 from gz.msgs10.world_control_pb2 import WorldControl
 from gz.msgs10.world_stats_pb2 import WorldStatistics
 from physics_camera import PhysicsCamera
+from view_camera import DEFAULT as DEFAULT_VIEW,settings as view_settings,camera_pose
 
-SSD=Path('/media/yehormsi/External SSD Volume/AeroRozum-thermal-rl/simulation')
+SSD=Path(os.environ.get('AEROROZUM_SIM_ROOT','/media/yehormsi/External SSD Volume/AeroRozum-thermal-rl/simulation'))
 
 def rpy(q):
     return (math.atan2(2*(q.w*q.x+q.y*q.z),1-2*(q.x*q.x+q.y*q.y)),math.asin(np.clip(2*(q.w*q.y-q.z*q.x),-1,1)),math.atan2(2*(q.w*q.z+q.x*q.y),1-2*(q.y*q.y+q.z*q.z)))
@@ -29,11 +30,41 @@ class Runtime:
         self.node.subscribe(Odometry,'/aerorozum_sim/odometry',self.odometry)
         self.node.subscribe(WorldStatistics,'/world/aerorozum_mission/stats',self.statistics)
         self.pending_frames={};self.frame_lock=threading.Lock();self.last_disk_frame={}
+        self.view=dict(DEFAULT_VIEW);self.view_confirmed=None;self.view_error=None
         self.physics_camera=PhysicsCamera(SSD/'sensor-scene')
         self.run_id=uuid.uuid4().hex[:10]
         for kind in ['rgb','overview']:self.node.subscribe(Image,'/aerorozum_sim/'+kind,lambda msg,k=kind:self.enqueue_image(k,msg))
         threading.Thread(target=self.camera_worker,daemon=True).start()
         self.control_diagnostic={};self.control_thread=threading.Thread(target=self.control,daemon=True);self.control_thread.start()
+        threading.Thread(target=self.view_worker,daemon=True).start()
+    def set_view(self,data):
+        with self.lock:self.view=view_settings(self.view,data)
+        return self.view_status()
+    def view_status(self):
+        with self.lock:return dict(settings=dict(self.view),confirmed=self.view_confirmed,error=self.view_error)
+    def view_worker(self):
+        import xml.etree.ElementTree as E
+        root=E.parse(SSD/'worlds/aerorozum.sdf').getroot()
+        mount=tuple(map(float,root.findtext("world/model[@name='overview_camera']/link/sensor/pose").split()))
+        previous=None
+        while True:
+            try:
+                with self.lock:drone=None if self.pose is None else dict(self.pose);view=dict(self.view);paused=self.paused
+                if drone is not None and not paused:
+                    pose=camera_pose(view,drone,mount);signature=tuple(round(v,2) for v in [*pose['position'].values(),*pose['orientation'].values()])
+                    if signature!=previous:
+                        position=' '.join(f'{k}: {v:.8f}' for k,v in pose['position'].items());orientation=' '.join(f'{k}: {v:.9f}' for k,v in pose['orientation'].items())
+                        request='name: "overview_camera" position { '+position+' } orientation { '+orientation+' }'
+                        # Run outside the flight publisher's Node and Python GIL.
+                        result=subprocess.run(['/usr/bin/gz','service','-s','/world/aerorozum_mission/set_pose','--reqtype','gz.msgs.Pose','--reptype','gz.msgs.Boolean','--timeout','600','--req',request],capture_output=True,text=True,timeout=2)
+                        if result.returncode==0 and 'data: true' in result.stdout:
+                            with self.lock:self.view_confirmed=dict(pose=pose['sensor_pose'],at_sim_time_s=self.sim_time);self.view_error=None
+                            previous=signature
+                        else:
+                            with self.lock:self.view_error='Native overview camera is waiting for pose acknowledgement'
+            except Exception as error:
+                with self.lock:self.view_error=str(error)[:200]
+            time.sleep(.25)
     def statistics(self,msg):
         with self.lock:self.paused=msg.paused;self.sim_time=msg.sim_time.sec+msg.sim_time.nsec*1e-9;self.last_stats=time.monotonic()
     def odometry(self,msg):
@@ -69,7 +100,9 @@ class Runtime:
                 data=io.BytesIO();im.save(data,format='PNG',compress_level=1);encoded=data.getvalue()
                 meta={**common,**extra,'kind':name,'event_id':pair_id+'-'+name,'camera_topic':'/aerorozum_sim/'+name,'sha256':hashlib.sha256(encoded).hexdigest()}
                 if name=='thermal':meta['camera_topic']='/aerorozum_sim/physics_thermal';meta['paired_rgb_topic']='/aerorozum_sim/rgb';meta['derived_from_native_rgb_timestamp']=True
-                if name=='overview':meta.update(drone_pose=pose,pose=dict(x_m=22.,y_m=-24.,z_m=21.,roll_rad=0.,pitch_rad=.57,yaw_rad=2.31),pose_sim_time_s=at,pose_time_offset_s=0.)
+                if name=='overview':
+                    with self.lock:confirmed=self.view_confirmed
+                    meta.update(drone_pose=pose,pose=confirmed['pose'] if confirmed else dict(x_m=22.,y_m=-24.,z_m=21.,roll_rad=0.,pitch_rad=.57,yaw_rad=2.31),pose_sim_time_s=confirmed['at_sim_time_s'] if confirmed else None,pose_time_offset_s=None,camera_pose_source='native_set_pose_acknowledgement' if confirmed else 'initial_sdf_camera_pose',camera_mount=dict(x_m=0,y_m=0,z_m=0,roll_rad=0,pitch_rad=0,yaw_rad=0),view_only=True)
                 completed[name]=(encoded,meta)
             # RGB and thermal become visible as one atomic pair.
             with self.lock:self.frames.update(completed)
@@ -178,6 +211,7 @@ class Handler(BaseHTTPRequestHandler):
         path=urlsplit(self.path).path
         try:
             if path=='/status':return self.send(RUNTIME.status())
+            if path=='/view':return self.send(RUNTIME.view_status())
             if path=='/frame-pair':return self.send(RUNTIME.snapshot_pair())
             if path.startswith('/frame-info/'):return self.send(RUNTIME.snapshot(path.rsplit('/',1)[1]))
             if path.startswith('/frame/'):
@@ -194,6 +228,7 @@ class Handler(BaseHTTPRequestHandler):
             if size>16384:raise ValueError('Command is too large')
             data=json.loads(self.rfile.read(size));path=urlsplit(self.path).path
             if path=='/target':result=RUNTIME.target_position(data)
+            elif path=='/view':result=RUNTIME.set_view(data)
             elif path=='/command':result=RUNTIME.command(data)
             elif path=='/tick':result=RUNTIME.tick(data['seconds'])
             else:return self.send({'error':'Unknown route'},404)

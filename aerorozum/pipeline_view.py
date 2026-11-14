@@ -77,4 +77,4 @@ def snapshot(root):
             'connection':read(root/'pipeline/connection.json', {}),
             'cloud_health':read(root/'cloud/health.json', {}),
             'media':media,
-            'runtime':read(root/'cloud/20h-extension-verification.json', {})}
+            'runtime':read(root/'cloud/48h-extension-verification.json', None) or read(root/'cloud/20h-extension-verification.json', {})}

@@ -3,6 +3,7 @@ import {ArrowRight,Camera,Clock3,Download,Flag,LoaderCircle,MapPin,Navigation,Pa
 import * as THREE from 'three';
 import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
 import './missions.css';
+import NativeScene from './NativeScene';
 
 type Data=Record<string,any>;
 type Bounds={x_min:number;y_min:number;x_max:number;y_max:number};
@@ -17,21 +18,6 @@ function point(value:any){const v=value?.pose||value;return v&&finite(v.x_m)&&fi
 function statusTone(value:string){return /error|fail|unavailable/.test(value)?'issue':/complete|stopped|ready|connected/.test(value)?'done':active(value)?'active':'waiting'}
 function MissionStatus({value}:{value:string}){return <span className={`ms-status ${statusTone(value)}`}><i/>{words(value)}</span>}
 const colors=['#a7d5a1','#84b6cc','#d4b888','#b5a0cf'];
-
-function NativeScene({mission,simulation}:{mission:Data|null;simulation:Data}){
- const[frame,setFrame]=useState(''),[error,setError]=useState(''),[captured,setCaptured]=useState(''),objectUrl=useRef('');
- const enabled=simulation.available===true&&!!mission&&active(mission.status);
- const saved=(Array.isArray(mission?.observations)?mission!.observations:[]).slice().reverse().find((observation:Data)=>typeof observation.overview_image==='string'),savedMode=!!saved&&(!enabled||!frame),imagePath=savedMode?media(saved.overview_image):frame;
- useEffect(()=>{if(objectUrl.current)URL.revokeObjectURL(objectUrl.current);objectUrl.current='';setFrame('');setCaptured('');setError('')},[mission?.id]);
- useEffect(()=>{
-  let alive=true,busy=false;const abort=new AbortController();
-  const capture=async()=>{if(busy||!enabled)return;busy=true;try{const response=await fetch(`/api/missions/camera/overview?t=${Date.now()}`,{signal:abort.signal,cache:'no-store'});if(!response.ok)throw new Error('The native overview camera is not returning an image yet.');const blob=await response.blob();if(!blob.type.startsWith('image/'))throw new Error('The overview endpoint did not return a camera image.');if(alive){const next=URL.createObjectURL(blob);if(objectUrl.current)URL.revokeObjectURL(objectUrl.current);objectUrl.current=next;setFrame(next);setCaptured(new Date().toLocaleTimeString('en-GB'));setError('')}}catch(e){if(alive&&(e as Error).name!=='AbortError')setError((e as Error).message)}finally{busy=false}};
-  capture();const timer=enabled?setInterval(capture,1000):undefined;
-  return()=>{alive=false;abort.abort();if(timer)clearInterval(timer)};
- },[enabled,mission?.id]);
- useEffect(()=>()=>{if(objectUrl.current)URL.revokeObjectURL(objectUrl.current)},[]);
- return <section className="ms-native panel"><div className="panel-top"><div className="panel-title"><Video size={17}/><h2>Native Gazebo scene</h2><span className="ms-map-note">SIMULATOR OVERVIEW CAMERA</span></div><span className={`ms-native-live ${enabled&&!!frame&&!error?'running':''}`}><i/>{savedMode?'Saved mission frame':enabled?error?'Camera waiting':frame?'Live · 1 s refresh':'Connecting camera':frame?'Last received frame':'Camera idle'}</span></div><div className="ms-native-stage">{imagePath?<img src={imagePath} alt={savedMode?'Saved native Gazebo overview capture from this mission':'Native Gazebo overview camera showing the simulated world and drone'}/>:<div className="ms-camera-empty"><Video size={34}/><strong>{enabled?'Waiting for the native camera':'Watch the mission in Gazebo'}</strong><p>{enabled?'The simulator overview will appear when its camera returns a frame.':'Start a mission when the simulator connects to see its actual rendered scene.'}</p></div>}{error&&enabled&&<div className="ms-native-error"><TriangleAlert size={13}/>{error}</div>}</div><footer><span>{savedMode?`Saved simulator capture · mission ${duration(saved.time_s)}`:`Native rendered simulator image${captured?` · received ${captured}`:''}`}</span><span>{simulation.thermal_fidelity||'Simulation camera appearance is not field-validated thermal physics.'}</span></footer></section>
-}
 
 function MissionMap({mission,simulation}:{mission:Data|null;simulation:Data}){
  const host=useRef<HTMLDivElement>(null),[view,setView]=useState('3d'),[failed,setFailed]=useState(false);

@@ -45,6 +45,7 @@ while True:
                 media_cache[relative] = {'stamp': stamp, 'sha256': sha}
         save(root/'pipeline/worker.json', state)
         save(root/'pipeline/telemetry.json', state.get('telemetry', {}))
+        save(root/'training/status.json', state.get('training', {}))
         save(root/'pipeline/connection.json', {'status':'connected', 'checked_at': utcnow()})
     except Exception as exc:
         save(root/'pipeline/connection.json', {'status':'reconnecting', 'checked_at':utcnow(), 'error':redacted_error(exc)})

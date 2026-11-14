@@ -21,6 +21,7 @@ class GazeboBridge:
     def status(self):
         try:return self._request('/status')
         except GazeboUnavailable as error:return {'ready':False,'simulation_only':True,'backend':'gazebo_native_multirotor','pose':None,'error':str(error)}
+    def view(self,settings=None):return self._request('/view',settings)
     def pose(self):
         status=self.status()
         if not status.get('ready'):raise GazeboUnavailable(status.get('error','Native odometry not ready'))
@@ -55,7 +56,9 @@ class GazeboBridge:
         return {kind:self._copy_capture(info,Path(folder)/(stem+('' if kind=='thermal' else '-rgb')+'.png')) for kind,info in pair.items()}
     def _copy_capture(self,info,destination):
         import hashlib
-        source=Path(info['path']).resolve();allowed=Path('/media/yehormsi/External SSD Volume/AeroRozum-thermal-rl/simulation/media/captures').resolve()
+        source=Path(info['path']).resolve()
+        simulation=Path(os.environ.get('AEROROZUM_SIM_ROOT','/media/yehormsi/External SSD Volume/AeroRozum-thermal-rl/simulation'))
+        allowed=(simulation/'media/captures').resolve()
         if not source.is_relative_to(allowed):raise GazeboUnavailable('Capture path is outside native media directory')
         data=source.read_bytes()
         if hashlib.sha256(data).hexdigest()!=info['sha256']:raise GazeboUnavailable('Native capture checksum differs')

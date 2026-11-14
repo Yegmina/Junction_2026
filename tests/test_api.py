@@ -58,6 +58,20 @@ def test_status_redacts_secrets_and_does_not_invent_metrics(tmp_path):
     assert data['training']['metrics']==[]
     assert 'secret-value' not in str(data)
 
+def test_overview_controls_cannot_accept_aircraft_commands(tmp_path):
+    c=client(tmp_path)
+    calls=[]
+    class ViewOnly:
+        def view(self,settings=None):
+            calls.append(settings)
+            return {'settings':settings or {'mode':'follow'},'confirmed':None}
+    c.app.state.missions._bridge=ViewOnly()
+    assert c.post('/api/missions/view',json={'distance_m':3.5,'mode':'follow'}).status_code==200
+    assert calls==[{'mode':'follow','distance_m':3.5}]
+    assert c.post('/api/missions/view',json={'drone_altitude_m':25}).status_code==422
+    assert c.post('/api/missions/view',json={'distance_m':'Infinity'}).status_code==422
+    assert len(calls)==1
+
 
 def test_saved_candidate_examples_exclude_paid_provider_records(tmp_path):
     import json

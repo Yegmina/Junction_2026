@@ -1,6 +1,6 @@
 """Prompt-driven investigations using native Gazebo pose and camera evidence."""
 from __future__ import annotations
-import asyncio, copy, json, math, re, uuid
+import asyncio, copy, json, math, os, re, uuid
 from pathlib import Path
 from PIL import Image, ImageDraw
 from .common import config, data_root, redacted_error, save, secret, utcnow
@@ -40,7 +40,10 @@ class MissionManager:
         return self._bridge
     def simulation_status(self):
         status=self.bridge.status()
-        return dict(available=bool(status.get('ready')),status='ready' if status.get('ready') else 'unavailable',backend='gazebo_native_multirotor',agent_enabled=bool(self.provider_factory or secret('GEMINI_API_KEY','AEROROZUM_GEMINI_KEY_FILE')),map_bounds=BOUNDS,home=dict(x_m=0,y_m=0),thermal_fidelity='DuMux-derived grayscale thermal + native RGB; experimental composed ground, not field validated',simulation_only=True,error=status.get('error'))
+        local=os.environ.get('AEROROZUM_MISSION_PROVIDER')=='local_gemma'
+        return dict(available=bool(status.get('ready')),status='ready' if status.get('ready') else 'unavailable',backend='gazebo_native_multirotor',agent_enabled=bool(self.provider_factory or local or secret('GEMINI_API_KEY','AEROROZUM_GEMINI_KEY_FILE')),agent_provider='local_gemma' if local else 'gemini_api',agent_model=self._agent_model(),map_bounds=BOUNDS,home=dict(x_m=0,y_m=0),thermal_fidelity='DuMux-derived grayscale thermal + native RGB; experimental composed ground, not field validated',simulation_only=True,error=status.get('error'))
+    def _agent_model(self):
+        return os.environ.get('AEROROZUM_MISSION_MODEL','google/gemma-4-12B-it') if os.environ.get('AEROROZUM_MISSION_PROVIDER')=='local_gemma' else config()['gemini']['bulk_model']
     def get(self,identifier):
         state=self.states[identifier]
         return copy.deepcopy({k:v for k,v in state.items() if not k.startswith('_')})
@@ -169,12 +172,12 @@ class MissionManager:
             if last.get('rgb_image'):images.append(self.root/last['rgb_image'])
         try:
             await self._world_pause(True)
-            result=await provider.generate('gazebo_mission_decision',prompt,images=images,model=config()['gemini']['bulk_model'],max_output_tokens=1536)
+            result=await provider.generate('gazebo_mission_decision',prompt,images=images,model=self._agent_model(),max_output_tokens=1536)
         finally:
             await self._world_pause(False)
         save(self.folder/s['id']/'agent'/f'{len(s["events"]):03d}-response.json',result)
         if not isinstance(result,dict) or result.get('action') not in ('inspect_area','revisit','return_home'):raise ValueError('Agent returned an invalid bounded action')
-        if s['observations'] and isinstance(result.get('detections'),list):self._boxes(s,s['observations'][-1],result['detections'],config()['gemini']['bulk_model'])
+        if s['observations'] and isinstance(result.get('detections'),list):self._boxes(s,s['observations'][-1],result['detections'],self._agent_model())
         self._event(s,result['action'],str(result.get('reason',''))[:500]);return result
     async def _return(self,s):
         s['status']='returning';self._event(s,'return_home','Return to simulated launch position and land')
@@ -193,6 +196,9 @@ class MissionManager:
         try:
             if s['controller']=='agent':
                 if self.provider_factory:provider=self.provider_factory()
+                elif os.environ.get('AEROROZUM_MISSION_PROVIDER')=='local_gemma':
+                    from .local_mission_provider import LocalMissionProvider
+                    provider=LocalMissionProvider(self.folder/s['id']/'agent/provider')
                 else:
                     from .providers import GeminiProvider
                     cfg={**config()['gemini'],'requests_per_minute':24,'input_tokens_per_minute':200000,'concurrency':1,'max_requests':16,'max_retries':2,'thinking_budget':0}

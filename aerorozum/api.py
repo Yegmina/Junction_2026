@@ -45,6 +45,16 @@ class CreateMission(BaseModel):
     seed: int = 0
     physics_phase: str = 'warming'
 
+class OverviewView(BaseModel):
+    model_config = {'extra':'forbid'}
+    preset: str | None = None
+    mode: str | None = None
+    distance_m: float | None = Field(default=None,ge=3,le=85)
+    elevation_deg: float | None = Field(default=None,ge=8,le=88)
+    azimuth_deg: float | None = Field(default=None,ge=-3600,le=3600)
+    pan_x_m: float | None = Field(default=None,ge=-50,le=50)
+    pan_y_m: float | None = Field(default=None,ge=-50,le=50)
+
 
 def create_app(data_root: Path | str | None = None, campaign_factory=None, evaluator_enabled: bool | None = None) -> FastAPI:
     app = FastAPI(title='AeroRozum Thermal Research Lab', version='0.1.0')
@@ -72,6 +82,16 @@ def create_app(data_root: Path | str | None = None, campaign_factory=None, evalu
                 status=read_json(folder/name/'status.json',{}) or {}
                 if status:jobs.append(dict(gpu=gpu,condition=condition,**status,summary=read_json(folder/name/'summary.json')))
         return safe(dict(jobs=jobs,total_cases_per_checkpoint=128,scope='Offline routing and instruction-contract probes; not full mission completion or field detection accuracy.'))
+
+    @app.get('/api/missions/view')
+    async def overview_view():
+        try:return safe(await run_in_threadpool(app.state.missions.bridge.view))
+        except RuntimeError as error:raise HTTPException(503,str(error))
+
+    @app.post('/api/missions/view')
+    async def set_overview_view(body: OverviewView):
+        try:return safe(await run_in_threadpool(app.state.missions.bridge.view,body.model_dump(exclude_none=True)))
+        except RuntimeError as error:raise HTTPException(409,str(error))
 
     @app.post('/api/missions')
     async def create_mission(body: CreateMission):

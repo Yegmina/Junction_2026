@@ -1,11 +1,11 @@
 #!/usr/bin/python3
 """Build an isolated native Gazebo world from the existing BSD3 PX4 x500."""
-import copy,hashlib,json,shutil,subprocess
+import copy,hashlib,json,os,shutil,subprocess
 from pathlib import Path
 import xml.etree.ElementTree as E
 
-SSD=Path('/media/yehormsi/External SSD Volume/AeroRozum-thermal-rl/simulation')
-PX4=Path('/home/yehormsi/src/PX4-Autopilot-v1.17.0')
+SSD=Path(os.environ.get('AEROROZUM_SIM_ROOT','/media/yehormsi/External SSD Volume/AeroRozum-thermal-rl/simulation'))
+PX4=Path(os.environ.get('AEROROZUM_PX4_SOURCE','/home/yehormsi/src/PX4-Autopilot-v1.17.0'))
 
 def child(parent,tag,text=None,**attrs):
     node=E.SubElement(parent,tag,attrs)
