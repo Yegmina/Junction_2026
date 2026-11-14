@@ -31,7 +31,8 @@ def export(root,output):
         frontier.append(dict(model=data['model'],**{k:data[k] for k in FIELDS if k in data},
             protocol=data['protocol'],source_sha256=sha(file)))
     for family in ['submission-reward-curriculum-v1','submission-visual-projection-v2','submission-refinement-v3',
-                   'submission-visual-continuation-v1','submission-geometric-augmentation-v1']:
+                   'submission-visual-continuation-v1','submission-geometric-augmentation-v1',
+                   'submission-grpo-continuation-v1']:
         for file in sorted((root/'artifacts'/family).rglob('result.json')):
             data=json.loads(file.read_text())
             if data.get('status')!='completed':continue

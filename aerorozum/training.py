@@ -266,6 +266,13 @@ def train(manifest, stage='compatibility', seed=17, steps=10, model=None):
         protocol['augmentation']=receipt
         protocol['source_manifest_hash']=protocol['manifest_hash']
         protocol['manifest_hash']=digest(dict(source=protocol['source_manifest_hash'],augmentation=receipt))
+    continuation_result=os.environ.get('AEROROZUM_GRPO_CONTINUATION_RESULT')
+    continuation_parent=None
+    if continuation_result:
+        if stage!='stream_grpo':raise ValueError('GRPO continuation is restricted to streaming perception GRPO')
+        from .grpo_continuation import validate_continuation
+        continuation_parent,protocol['continuation']=validate_continuation(continuation_result,root=data_root(),
+            model=model_name,seed=seed,manifest_hash=protocol['manifest_hash'],lora_scope=lora_scope)
     memory_probe=os.environ.get('AEROROZUM_MEMORY_PROBE')=='1'
     if memory_probe:protocol.update(research_result=False,scope='GPU memory compatibility probe only')
     record=job('training',stage=stage,seed=seed,model=model_name,completed=0,total=steps,research_result=not memory_probe and stage not in ('compatibility','policy_compatibility'))
@@ -279,11 +286,14 @@ def train(manifest, stage='compatibility', seed=17, steps=10, model=None):
         update(record,'failed',error='Refusing checkpoint recovery with a different dataset');raise ValueError('Checkpoint dataset differs')
     if prior.exists() and json.loads(prior.read_text()).get('lora_scope','language')!=lora_scope:
         update(record,'failed',error='Refusing checkpoint recovery with a different adapter scope');raise ValueError('Checkpoint adapter scope differs')
+    if prior.exists() and json.loads(prior.read_text()).get('continuation')!=protocol.get('continuation'):
+        update(record,'failed',error='Refusing checkpoint recovery with different continuation lineage');raise ValueError('Checkpoint continuation lineage differs')
     completed=output/'summary.json'
     if completed.is_file():
         previous=json.loads(completed.read_text())
         same=(previous.get('status')=='completed' and previous.get('manifest_hash')==protocol['manifest_hash']
             and previous.get('model')==model_name and previous.get('seed')==seed and previous.get('stage')==stage
+            and previous.get('continuation')==protocol.get('continuation')
             and (previous.get('optimizer_updates',0)>=steps or (previous.get('early_stopped') is True and previous.get('requested_optimizer_updates')==steps))
             and previous.get('nonzero_gradient_checks',0)>0)
         adapter=output/'adapter'
@@ -293,9 +303,11 @@ def train(manifest, stage='compatibility', seed=17, steps=10, model=None):
     try:
         parent=None
         if stage in ('grpo','policy_grpo','real_grpo','stream_grpo'):
-            parent_stage='policy_sft' if policy_stage else 'real_sft' if real_stage else 'stream_sft' if stream_stage else 'sft'
-            parent=Path(os.environ.get('AEROROZUM_SFT_CHECKPOINT',training_root/slug/parent_stage/f'seed-{seed}'/'adapter'))
-            validate_parent_adapter(parent,parent_stage,model_name,seed,protocol['manifest_hash'])
+            if continuation_parent is not None:parent=continuation_parent
+            else:
+                parent_stage='policy_sft' if policy_stage else 'real_sft' if real_stage else 'stream_sft' if stream_stage else 'sft'
+                parent=Path(os.environ.get('AEROROZUM_SFT_CHECKPOINT',training_root/slug/parent_stage/f'seed-{seed}'/'adapter'))
+                validate_parent_adapter(parent,parent_stage,model_name,seed,protocol['manifest_hash'])
         import torch
         from transformers import AutoProcessor, AutoModelForImageTextToText, TrainerCallback, set_seed
         from transformers.trainer_utils import get_last_checkpoint

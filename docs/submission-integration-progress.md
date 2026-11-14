@@ -1,205 +1,153 @@
-# Submission integration — 14 November 2026
+# AeroRozum submission evidence — 14 November 2026
 
-The native Harbor task, scalar verifier, clean OpenCode model playthroughs and
-reference/shortcut controls run. A prepared portable archive exists; final
-task-version packaging and harder-scenario evaluation remain. Frontier
-superiority remains unproven. The latest full repository check passed 302 tests.
+The Harbor environment, scalar verifier, native OpenCode model playthroughs,
+reference controller and shortcut controls run on the four-A100 VM. The full
+repository check passed **320 tests**. The portable baseline archive passed an
+independent extraction, file-hash check and fresh native Harbor smoke run.
+The newer close-inspection task is being evaluated on fresh instances.
+Frontier superiority is not established.
 
-## Latest measured state
+## Runnable submission
 
-The strongest completed visual-projection arm reached **0.60096 development
-F2** after GRPO, compared with its corresponding SFT **0.50868**. This is a
-different adapter scope from the six language-only arms below. Continued
-language-only training reached 0.45113. The untouched base scored 0.05540.
-All use the same 120 development images; no frozen test zones were accessed.
+- [Verified baseline ZIP](https://136.115.179.240/presentation/submission/aerorozum-harbor-candidate-v3.zip)
+- [Independent portability receipt](https://136.115.179.240/presentation/submission/candidate-v3-portability.json)
+- [Presentation and result browser](https://136.115.179.240/presentation/submission/index.html)
+- [Branch](https://github.com/Yegmina/Junction_2026/tree/codex/harbor-investigation)
 
-| Development image control | TP / FP / FN | Micro-F2 | Negative-image false-alarm rate |
+The baseline ZIP is 407,309,079 bytes. SHA-256:
+`46790a32e7d3fdc3e5bd645bb4c5782a13ee81c033c1e99c36a721d1c910522d`.
+All 254 bundled file hashes passed independent verification. Extracting with
+Unix modes preserved produced the same full task checksum and evaluation
+contract as frozen source-v8. A fresh-seed native no-op run exited cleanly at
+zero. Existing Docker layer caches were used; no private source or bucket mount
+was required. All scene assets and runtime sources are included.
+
+Tested stack: Harbor 0.26.0, OpenCode 1.19.5, Docker 29.1.3, Compose 2.39.4.
+Evaluators supply their own model credentials. Base weights, original flight
+recordings, credentials and agent caches do not enter the archive. Public event
+logs preserve tools, feedback and final text; private reasoning events are
+explicitly omitted. Inline image attachments are saved as byte-identical,
+SHA-256-named images. Exact private-key scanning covers binary files too.
+
+## Investigation environment
+
+The agent sends arbitrary local `goto(x, y, altitude)` commands, inspects paired
+640×512 thermal/RGB captures, associates sightings, reserves time to return,
+lands and submits an evidence-linked report. Native Gazebo dynamics run in a
+separate simulator container, which owns the private reference and immutable
+capture ledger. The root verifier writes `/logs/verifier/reward.txt`.
+
+The scalar is `0.65 F2 + 0.20 coverage + 0.15 independent-view fraction`, gated by
+a report, airborne evidence, home return, flight-time and action compliance.
+One-to-one retrieval and duplicate penalties discourage unsupported claims;
+median ground association rejects inconsistent evidence. Local workspace edits
+cannot change authoritative simulator state.
+
+The baseline task is [thermal-investigation](../harbor/thermal-investigation/README.md).
+The separate [close-inspection task](../harbor/thermal-investigation-budgeted/README.md)
+uses a **75-second dawn flight budget**. Each positive claim needs a correctly
+localized saved image captured at **≤4.5m**. Independent-view credit requires
+**≥1m horizontal separation**; changing height alone earns none. Wide imagery
+helps select inspections. Optional provisional sightings are retained without
+being counted as positive claims. Limits are public before takeoff. Fresh
+reference/frontier/shortcut runs are required because the rules differ.
+
+## Measured native mission results
+
+| Task / condition | Agent | Reward | Execution |
+|---|---|---:|---|
+| Baseline dawn / 180s | Old public-image reference v7 | 0.20000 | Clean; no matches |
+| Baseline dawn / 180s | Improved public-image reference v8 | 0.74000 | Clean; 3 matched, 10 false claims |
+| Baseline cooling / 90s | Reference v8 | 0.79167 | Clean; 3 matched, 3 false claims |
+| Baseline warming / 180s | Reference v8 | 0.78750 | Clean |
+| Baseline dawn / 180s | Gemini Argon | 0.959375 | Clean |
+| Baseline cooling / 90s | Gemini Carbon | 1.00000 | Clean; 3 matched, no false claims |
+| Baseline v8 | No-op / early airborne report / reward-file spoof | 0 / 0 / 0 | All clean |
+| Baseline native-tools v2 | Untouched Gemma 12B | 0 | Clean; incomplete mission |
+| Baseline dawn / 180s | Refined Gemma, thinking disabled | 0 | Clean; incomplete mission |
+| Close inspection, seed 730171 | Public-image reference | 0.733333 | Clean; 2 matched, 1 false, 1 missed; 71.484/75s |
+| Close inspection | No-op / early report / reward-file spoof | 0 / 0 / 0 | Completed controls; see machine-readable execution status |
+
+Frozen baseline source-v8 full task checksum:
+`603755a222d1e2c988fe46cdfe75fc13483640edf1facdf5625e53e566a32fe6`.
+The baseline v7/v8 cooling comparison has an explicit audit of identical
+instructions, environment/assets, verifier, resources, native packages and
+sealed instance. Only the private reference implementation, README and version
+changed. Its shared evaluation-contract hash is
+`aa4490f4c0367447abeb342ee36644e68292d54f789b5331e5df77a1e038ca0f`.
+This audit does **not** make baseline and close-inspection rules comparable.
+
+Earlier warm Gemini runs earned 1.0 but ended with OpenCode Git-snapshot EPIPE;
+retain their process warnings. Later clean frontier runs supersede them as the
+submission's clean model evidence. Native refined Gemma v2 and the initial
+visual-native trial hit the old 240-second HTTP timeout; exclude these errors
+from model-skill comparisons. Transport timeout is now 900 seconds. Canonical
+Gemma native tool formatting preserves roles, tool results and images. A new
+frozen visual-checkpoint close-inspection trial uses thinking disabled, the
+same task and fresh seed, without changing any in-flight checkpoint.
+
+## Perception post-training
+
+All reported image scores use the same **120-image development set**: 88
+positive reference objects plus 32 screened negative images. Training has 602
+images: 162 original-manual, 320 reviewed-AI and 120 user-accepted-model records.
+Provenance is retained. Test zones 8/9 remain sealed. One seed, BF16 Gemma 4 12B;
+these are development results, not field validation or a multi-seed causal study.
+
+| Development image control | TP / FP / FN | Micro-F2 | Negative-image false alarms |
 |---|---|---:|---:|
-| Gemma, visual projection SFT + GRPO | 50 / 14 / 38 | 0.60096 | 3/32 |
+| Untouched Gemma | 4 / 5 / 84 | 0.05540 | See recorded summary |
+| Language-only selected SFT | See source | 0.26385 | See recorded summary |
+| Language-only selected GRPO | 29 / 9 / 59 | 0.37179 | 3/32 |
+| Continued language-only GRPO | See source | 0.45113 | See recorded summary |
+| Visual-projection SFT | 41 / 10 / 47 | 0.50868 | See recorded summary |
+| Visual-projection GRPO | 50 / 14 / 38 | 0.60096 | 3/32 |
 | Gemini Carbon | 60 / 55 / 28 | 0.64240 | 14/32 |
 | Gemini Argon | 60 / 88 / 28 | 0.60000 | 20/32 |
+| Robotics teacher | See latest snapshot | 0.61060 | See latest snapshot |
 
-The student has fewer false alarms, but the strongest frontier has higher F2.
-Frontier controls used the same visible prompt/images and native JSON mode,
-with 8192 output tokens including default reasoning. Gemma used greedy 192-token
-output. These decoding differences are recorded; this is not a sealed-test or
-matched-compute superiority claim. [Latest measurements](evidence/submission-measurements-latest.json)
-include source hashes and individual run details.
+The visual model has fewer false alarms but misses more objects than the
+strongest frontier. Frontier controls share visible prompt/images with Gemma,
+but use native JSON and 8192 total output tokens including default reasoning;
+Gemma uses greedy 192-token output. This is not matched inference compute.
+Image-level F2 and native mission reward are separate measurements.
 
-Two bounded continuations of the visual adapter are now scheduled on GPUs 1
-and 3: +240 SFT at LR 0.00001 and +480 at LR 0.00003, each followed by up to 96
-GRPO updates with the existing zero-variance stop. Parent adapter SHA-256 is
-`f9bd1c6e2913f6f8446d995624d1e9f953ddce281bc03d1f1e99d7c6eac215e3`.
-These remain development selection; starting jobs does not establish results.
+The visual projection's gradients are verified in the actual
+`embed_vision.multimodal_embedder.embedding_projection` module. The selected
+adapter hash is `f9bd1c6e2913f6f8446d995624d1e9f953ddce281bc03d1f1e99d7c6eac215e3`.
+The extra +240 SFT continuation regressed to 0.08219 SFT / 0.09615 GRPO and was
+not promoted. The +480 SFT continuation and a separate up-to-96-step **GRPO-only**
+continuation are running. The latter keeps completed SFT+GRPO lineage, verifies
+parent weight hashes, starts a fresh optimizer and adds no SFT. Four consecutive
+zero-variance task-reward groups stop training; nonzero KL gradients alone do
+not establish learning. The geometric-augmentation experiment was cancelled
+before starting and has no result. Its tested implementation remains available.
 
-An augmentation continuation is queued after the base native-tool trial. It
-expands each validated training image into identity/horizontal/vertical/both
-flips with the corresponding normalized-box transforms. Original labels and
-provenance stay unchanged. The materialization receipt distinguishes derivative
-examples from independent observations; evaluation images are never augmented.
-Tests reject held-out zones and tampered source/derivative checksums. The
-experiment shares its parent, LR, update count and effective batch with the
-unaugmented +480 continuation. It has no measured result yet.
+Actual completed results, source-result hashes, protocol differences and
+process errors are exported to [the measurement snapshot](evidence/submission-measurements-latest.json).
+Complete paid responses, optimizer metrics, adapters and original jobs are
+retained privately under `/opt/aerorozum/artifacts` and `/opt/aerorozum/harbor/jobs`,
+with terminal evidence archived to the existing private GCS bucket.
 
-## Measured post-training
+## Physics and presentation scope
 
-Six bounded experiments completed on the existing four-A100 VM. The first
-sweep used 482 reviewed positive training frames and 120 screened explicit
-negatives, with 120 SFT updates followed by dense-localization GRPO. The second
-sweep warm-started the first sweep's selected GRPO adapter and varied additional
-SFT updates. Validation/test zones never entered training. Development selection
-is hyperparameter tuning, not a sealed test result.
+The qualified full-day DuMux present/absent pair models one inert polymer
+cylinder in homogeneous flat soil under uniform forcing. Certificate checks
+passed within that local scope. The runtime factory draws private insertion
+positions and writes fields and truth together; active camera-field hashes must
+match the private ledger. Physical contrast is not amplified. Warming, cooling,
+dawn and late-warming snapshots come from the same admitted trajectory.
 
-All scores below use the same 120-image development set: 88 positive reference
-objects and 32 screened negative images. The earlier 88-positive-only table has
-a different denominator. Seed is 17; BF16 Gemma 4 12B and language-attention LoRA
-are unchanged across these six experiments.
+The composed 70m field uses photographic albedo and recorded thermal
+microtexture, with explicit sensor noise and PSF. It retains
+`research_accepted: false`: local-pair admission does not qualify a full
+heterogeneous-domain solve. Original full 184/30k/three-seed research gates are
+not complete and are not waived by this pilot benchmark. No real-mine accuracy
+claim is made.
 
-| Arm | SFT F2 | GRPO F2 | GRPO TP / FP / FN | Informative GRPO steps |
-|---|---:|---:|---|---:|
-| Initial LR 0.000002 | 0.05540 | 0.05540 | 4 / 5 / 84 | 1 of 5 |
-| Initial LR 0.000010 | 0.09589 | 0.09589 | 7 / 6 / 81 | 1 of 5 |
-| Initial LR 0.000030 | 0.11019 | 0.12363 | 9 / 3 / 79 | 1 of 5 |
-| Warm start +120 SFT | 0.12329 | 0.12363 | 9 / 3 / 79 | 1 of 5 |
-| Warm start +240 SFT | 0.12195 | 0.19841 | 15 / 11 / 73 | 5 of 15 |
-| Warm start +480 SFT | 0.26385 | 0.37179 | 29 / 9 / 59 | 18 of 37 |
-
-The +480 arm's GRPO negative-image false-alarm rate is 3/32 (9.375%); valid
-JSON is 118/120 (98.33%). GRPO stops after four consecutive zero task-reward
-variance groups; nonzero gradients alone are not treated as task-learning
-evidence. These are single-seed perception results. They do not demonstrate
-native mission-policy improvement, generalization or a frontier win.
-
-[Machine-readable measurements](evidence/measured-refinements.json) preserve
-source-result hashes, dataset identity, optimizer counts, reward diagnostics,
-decoding protocol and adapter paths. Raw generations and adapters remain under
-`/opt/aerorozum/artifacts/submission-refinement-v{1,2}/` and
-`training/submission-refinement-v{1,2}/`; a separate archive job copies both
-results and training namespaces to the private GCS bucket.
-
-The +480 GRPO adapter was promoted to private GPU inference with SHA-256
-`ef19fdcda7ed07979d3aca38a197af66dfe2d68702f3b40467dbfc9b9b68506a`.
-Health and generated responses now expose the loaded adapter hash. GPU 0 serves
-model-chosen OpenCode tool calls. The reward-supported curriculum and
-visual-projection ablations completed; latest measurements appear above.
-Both visual arms have verified nonzero gradients in
-the actual `embed_vision.multimodal_embedder.embedding_projection` module.
-Earlier failed module-selection attempts performed no optimizer updates and
-are retained as failed jobs.
-
-## Harbor execution and reward integrity
-
-The task is [thermal-investigation](../harbor/thermal-investigation/README.md).
-Tested software: Harbor 0.26.0, task schema 1.4, OpenCode 1.19.5, Compose
-v2.39.4. Native Gazebo multirotor dynamics and paired 640×512 cameras run in a
-separate simulator container. The agent receives public tools and captured
-evidence; the private reference, evidence store and grading state stay in the
-sidecar. The verifier writes `/logs/verifier/reward.txt`.
-
-The task checks real flight time, return/landing, action budget, evidence
-identity, one-to-one retrieval, duplicate claims, coverage and independent
-views. Candidate evidence must describe a consistent ground location; copying
-unrelated region-wide guesses into every candidate is rejected. Agent edits to
-local reward files are cleared by a root-owned verifier run.
-
-Completed development attempts, all preserved:
-
-| Attempt | Result | Interpretation |
-|---|---|---|
-| Reference v3 | 0.20, clean completion | Full coverage and home return; its residual detector submitted 16 false candidates and missed all 3 insertions. |
-| OpenCode Gemini v2 | 0, nonzero agent exit | 11 observations, 99.5% coverage, returned home; no accepted final report. This is an errored playthrough, not a clean frontier baseline. |
-| OpenCode Gemma v2 | 0, protocol error | Flew and read a thermal frame. The proxy rejected a valid nested OpenAI tool envelope; translation was fixed and tested. Exclude from model-skill comparisons. |
-| Reference v4 | 0.89167, clean | Three true and three false candidates; full coverage and independent views. |
-| OpenCode Gemini Argon v3 | 1.0, mission completed, process warning | Three true candidates, no false candidates, full coverage and independent views. OpenCode exited nonzero with Git snapshot EPIPE. |
-| OpenCode Gemini Carbon v1 | 1.0, mission completed, process warning | Same successful mission outcome; same EPIPE process error. |
-| No-op / airborne early report v4 | 0 / 0, clean | Shortcut controls fail the completion gate. |
-| Reference v5 | 0.77391, clean | Stricter association: three true and eight false candidates. |
-| Reference v5, cooling / 90 s | 0.57111, clean | Two true, four false, one missed; 80% coverage. |
-| OpenCode Gemma refined v4 / base v1 | 0 / 0, clean | Old JSON bridge; one observation each, incomplete missions. |
-
-UID/account conflicts, absent legacy private reference and initial credential
-mapping failures were setup failures, not agent failures. Initializing a real
-agent-owned Git workspace removed the EPIPE error; both later Gemma runs exited
-cleanly, with zero mission scores. Task v0.2 also rejects inconsistent ground
-associations and multiple distinct boxes from a single capture per candidate.
-[Sealed-evidence reassociation audit](evidence/association-audit.json) retained
-the frontier 1.0 and reference v4 0.89167 scores; this was not a new flight.
-
-The original Gemma proxy flattened role/image history into a JSON request.
-`cloud/gemma_native_chat.py` now uses the installed Gemma processor's canonical
-tool template and response parser, preserving tool responses and images.
-Thinking is retained privately and excluded from public chat responses. Both
-base and refined checkpoints passed actual native tool-call probes. Both first
-OpenCode native trials against frozen task v0.2 / seed 414331 flew and read a
-thermal image, then failed with upstream HTTP 422 after another capture. Their
-scores are zero with `NonZeroAgentExitCodeError`; exclude them from skill
-comparisons. The first proxy discarded the upstream error detail, so the exact
-failure cause is not established by those logs.
-
-Native protocol v2 retains failed requests/error bodies privately, records
-inference starts and generation failures, and preserves machine-readable
-context-overflow errors for the harness. When a conversation approaches the
-24576-token inference window it first omits optional cached private thinking,
-then limits output to the available window; visible messages and images are
-preserved. It rejects an actually oversized public conversation with an
-OpenCode-recognized context error. Unit tests cover these cases and a real
-installed-processor/parser fixture is run before deployment. New paired native
-trials keep the same checkpoints and frozen task; their results are pending.
-The refined service initially could not write its private inference log under
-systemd's read-only filesystem; a narrow log-directory write exception fixed
-the probe. No task or checkpoint was changed to repair this service permission.
-Actual job state remains `/opt/aerorozum/harbor/jobs/`.
-
-## Physical source and reproducibility
-
-`physics/cases/axisymmetric-qualification-v2` contains a numerically admitted
-full-day DuMux present/absent pair. Source hashes match its certificate; all
-certificate checks passed within its homogeneous flat-soil/symmetric-cylinder
-scope. Field validation is not performed. The generator inserts the response
-and writes its private reference together; it never invents labels for a
-legacy camera field. Physical contrast is not amplified.
-
-The composed 70m photographic terrain retains `research_accepted: false`.
-Admission of a local response does not qualify a heterogeneous full-domain
-solve or establish real mine-detection accuracy. Existing object/3D
-qualification jobs remain separate and continue without relaxed gates.
-
-Each native task startup draws a private seed, frozen for that trial. Paired
-comparisons supply a seed on the host; it is revealed only in the sealed
-ledger. Checksummed thermal kernels and background arrays are fixed assets.
-Freezing backgrounds removed a host/container image-processing reproducibility
-failure. The native startup check reproduced seed 414331 exactly:
-
-- Warming: `98ddb75b3785ab92e8eb6bb36545e91888cbf1a769a89088154d2a1cffed1aaa`
-- Cooling: `ab8fe13bc377e39669b2c3f1e8957173f764f47763ff004b1104722eec4896ac`
-- A different seed produced different fields.
-
-Task v0.3 adds dawn (one elapsed source hour) and late-warming (11.75 hours)
-snapshots from the same admitted full-day trajectory. Their weaker contrast is
-physical, without arbitrary attenuation. Assets were built in an isolated v6
-fork; native reference/frontier trials for these new conditions are pending.
-The active camera field must belong to the private reference's checksummed
-fields; the constructor rejects stale or unrelated references.
-
-The v7 native task (v0.3) is now being evaluated on dawn/180s and cooling/90s.
-A separate immutable v8 fork (v0.3.1) changes the public-image reference, not
-the task's grading rules: wide 10m coverage, registered RGB background fitting,
-compact thermal-residual proposals and 3m revisits. Its development-frame
-diagnostic recovered the three signatures with very few proposals; that
-offline check is not a native mission score. The v8 reference matrix is queued
-behind the existing reference process to bound the renderer fleet.
-
-The second portable ZIP's archive identity and all 137 bundled file hashes
-passed independent verification. It is still a v0.1 development candidate,
-with explicitly warned errored frontier playthroughs; do not present it as the
-final current-version submission. Completed experiment/result archives are
-copied to the private GCS bucket. A first archive attempt used an unsupported
-CLI flag and stopped; the corrected completed-evidence archive succeeded.
-
-The portable packager includes assets/runtime, checksums, licenses and actual
-Harbor evidence. It refuses leaked credentials or disagreement between saved
-Harbor rewards and reward files. Public event logs explicitly omit reasoning;
-tool actions, feedback and scores remain. Clean model playthroughs and errored
-development attempts are distinguished in bundle metadata. Source checkout
-alone still requires staging; a prepared bundle must be tested independently
-before it is described as ready to submit.
+Presentation replay frames are actual saved camera pairs checked against the
+sealed image hashes. Blue annotations show submitted claims, not private truth.
+Videos cut between captures, two seconds per pair; they are not continuous
+flight recordings. The separate coordinate-agent video demonstrates actual
+retargeting during flight. Real thermal label excerpts preserve source times,
+prompt versions, frame identities and lower-confidence candidates.

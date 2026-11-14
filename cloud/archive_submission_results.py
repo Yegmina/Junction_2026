@@ -8,7 +8,8 @@ def archive(root=Path('/opt/aerorozum'),gcloud='/snap/bin/gcloud'):
     data=root/'artifacts';bucket='gs://aerorozum-thermal-rl-avid-relic-509408-e4/'
     paths=set()
     for family in ['submission-reward-curriculum-v1','submission-visual-projection-v2',
-                   'submission-refinement-v3','submission-visual-continuation-v1']:
+                   'submission-refinement-v3','submission-visual-continuation-v1',
+                   'submission-grpo-continuation-v1']:
         for file in (data/family).rglob('result.json'):
             result=json.loads(file.read_text())
             if result.get('status')!='completed':continue

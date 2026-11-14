@@ -5,7 +5,9 @@ agent caches and host environment files never enter the archive. Original full
 Harbor jobs remain in private storage; the public event log omits reasoning.
 """
 import argparse
+import base64
 import hashlib
+import importlib.util
 import json
 import math
 import re
@@ -24,7 +26,26 @@ def sha(path):
 
 
 def public_events(source,destination):
-    counts=dict(events=0,tools=0,omitted_reasoning_events=0)
+    counts=dict(events=0,tools=0,omitted_reasoning_events=0,externalized_image_payloads=0,image_artifacts=[])
+    images={}
+    def externalize(value):
+        if isinstance(value,str) and value.startswith('data:image/') and ';base64,' in value:
+            header,encoded=value.split(';base64,',1)
+            suffix={'data:image/png':'.png','data:image/jpeg':'.jpg','data:image/webp':'.webp'}.get(header)
+            if not suffix:raise ValueError('Unknown inline image format in public event log')
+            payload=base64.b64decode(encoded,validate=True)
+            signatures={'.png':payload.startswith(b'\x89PNG\r\n\x1a\n'),'.jpg':payload.startswith(b'\xff\xd8'),
+                        '.webp':payload.startswith(b'RIFF') and payload[8:12]==b'WEBP'}
+            if not signatures[suffix]:raise ValueError('Inline image payload does not match its declared format')
+            identity=hashlib.sha256(payload).hexdigest();name='inline-images/'+identity+suffix
+            path=destination.parent/name;path.parent.mkdir(exist_ok=True);path.write_bytes(payload)
+            counts['externalized_image_payloads']+=1
+            images[name]=dict(path=name,sha256=identity,bytes=len(payload),
+                scope='Image attached in an agent tool log; may be a generated crop/mosaic, not a direct camera capture')
+            return name
+        if isinstance(value,dict):return {k:externalize(v) for k,v in value.items()}
+        if isinstance(value,list):return [externalize(v) for v in value]
+        return value
     with destination.open('w') as stream:
         for line in source.read_text(errors='replace').splitlines():
             try:event=json.loads(line)
@@ -34,11 +55,14 @@ def public_events(source,destination):
                 counts['omitted_reasoning_events']+=1;continue
             counts['events']+=1
             counts['tools']+=int(event.get('part',{}).get('type')=='tool')
-            stream.write(json.dumps(event)+'\n')
+            stream.write(json.dumps(externalize(event))+'\n')
+    counts['image_artifacts']=list(images.values())
     return counts
 
 
-def package(task,jobs,output,secrets=()):
+def package(task,jobs,output,secrets=(),audits=(),task_folder='thermal-investigation'):
+    if not re.fullmatch(r'[a-z][a-z0-9-]{0,79}',task_folder):
+        raise ValueError('Task folder must be a single safe directory name')
     task=Path(task).resolve();output=Path(output).resolve()
     for required in ('instruction.md','task.toml','environment/Dockerfile','tests/test.sh','solution/solve.sh',
                      'environment/backend/runtime/scene_factory.py','environment/backend/assets/provenance/response-kernels.json'):
@@ -46,15 +70,19 @@ def package(task,jobs,output,secrets=()):
     if output.exists():raise ValueError('Refusing to overwrite a prior submission archive')
     output.parent.mkdir(parents=True,exist_ok=True)
     with tempfile.TemporaryDirectory(prefix='harbor-submission-',dir=output.parent) as temp:
-        root=Path(temp)/'aerorozum-submission';root.mkdir();destination=root/'thermal-investigation'
-        # Avoid copying generated runtime captures or a forgotten credential file.
-        def ignore(directory,names):
-            return [name for name in names if name in ('__pycache__','.pytest_cache','jobs','media','cache','logs','evidence')
-                    or name.startswith('.env') or name.endswith(('.pyc','.key','.pem','.safetensors'))]
+        root=Path(temp)/'aerorozum-submission';root.mkdir();destination=root/task_folder
+        # Preserve the immutable task byte-for-byte, including compiled modules
+        # that Docker COPY can reach. Reject private/unstaged input rather than
+        # silently changing the evaluated environment while packaging it.
         for path in task.rglob('*'):
             if path.is_symlink():raise ValueError('Task contains a symlink; inspect before packaging: '+str(path))
-        shutil.copytree(task,destination,ignore=ignore,symlinks=False)
+            if path.is_file() and (path.name.startswith('.env') or path.suffix in
+                    ('.key','.pem','.safetensors','.mp4','.avi','.mov','.mkv','.sqlite','.db')):
+                raise ValueError('Task contains a private or unstaged artifact: '+str(path.relative_to(task)))
+        shutil.copytree(task,destination,symlinks=False)
         shutil.copyfile(Path(__file__).with_name('run_harbor_trial.py'),root/'run_harbor_trial.py')
+        shutil.copyfile(Path(__file__).with_name('harbor_controls.py'),root/'harbor_controls.py')
+        shutil.copyfile(Path(__file__).with_name('audit_harbor_contract.py'),root/'audit_harbor_contract.py')
         summaries=[]
         for job in map(Path,jobs):
             for trial in sorted(job.glob('*/result.json')):
@@ -73,12 +101,30 @@ def package(task,jobs,output,secrets=()):
                 (agent/'export.json').write_text(json.dumps(dict(**counts,original_log_sha256=sha(logs[0]) if logs else None,
                     note='Structured OpenCode events; reasoning events omitted. Unmodified original retained privately.'),indent=2))
                 details=json.loads((verifier/'details.json').read_text()) if (verifier/'details.json').exists() else {}
+                instance=json.loads((verifier/'ledger.json').read_text()).get('instance') if (verifier/'ledger.json').is_file() else None
                 summaries.append(dict(job=job.name,trial=source.name,reward=reward,agent=result['config']['agent']['name'],
                     model=result['config']['agent'].get('model_name'),exception_type=(result.get('exception_info') or {}).get('exception_type'),
                     public_tool_events=counts.get('tools',0),completed_mission=details.get('completed'),
-                    task_checksum=result.get('task_checksum')))
+                    task_checksum=result.get('task_checksum'),result_sha256=sha(trial),instance=instance))
+        audit_records=[]
+        for source in map(Path,audits):
+            audit=json.loads(source.read_text())
+            if any(audit.get(k) is not True for k in ('pair_comparable','contract_identical','native_stack_identical','instance_identical')):
+                raise ValueError('Comparison audit has not verified a clean comparable pair')
+            spec=importlib.util.spec_from_file_location('bundle_contract',Path(__file__).with_name('audit_harbor_contract.py'))
+            contract=importlib.util.module_from_spec(spec);spec.loader.exec_module(contract)
+            if contract.fingerprint(destination)['sha256']!=audit['right_contract_sha256'] or audit['left_contract_sha256']!=audit['right_contract_sha256']:
+                raise ValueError('Comparison audit does not describe the bundled task')
+            for side in ('left','right'):
+                trial=audit['trials'][side]
+                if not any(r['job']==trial['job'] and r['result_sha256']==trial['result_sha256']
+                           and r['instance']==trial['instance'] and r['exception_type'] is None for r in summaries):
+                    raise ValueError('Comparison audit trial is absent or differs from bundled result')
+            target=root/'comparison-audits'/source.name;target.parent.mkdir(exist_ok=True)
+            shutil.copyfile(source,target);audit_records.append(dict(path=str(target.relative_to(root)),sha256=sha(target)))
         clean=any(s['agent']=='opencode' and s['public_tool_events']>0 and s['exception_type'] is None for s in summaries)
         metadata=dict(schema_version=1,runs=summaries,clean_opencode_playthrough=clean,
+                      comparison_audits=audit_records,
                       frontier_superiority_verified=False,contains_base_model_weights=False,
                       contains_original_flight_recordings=False)
         (root/'submission.json').write_text(json.dumps(metadata,indent=2)+'\n')
@@ -90,24 +136,43 @@ included: no access to the team's VM or private bucket is needed to build it.
 Use Harbor 0.26.0, OpenCode 1.19.5, Docker and Compose; model credentials are
 supplied by the evaluator. See the task README for the tested run command.
 
+From this extracted directory, run the reference with:
+`harbor run -p ./thermal-investigation -a oracle`.
+For a model, use Harbor's usual `-a opencode -m <provider/model>` arguments.
+The included Google runner pins the tested harness configuration, for example:
+`python run_harbor_trial.py --task ./thermal-investigation --job-name first-run --key-file /private/key-file --output-tokens 32768`.
+Keep credentials outside the task. The task uses a separate CPU-rendered Gazebo
+simulator container configured for up to 8 CPU cores and 12 GiB, in addition to
+the agent container. A GPU is not required to run the environment.
+
+Controls use the same task without replacing its reference solution:
+`PYTHONPATH=. harbor run -p ./thermal-investigation -a harbor_controls:StopEarlyAgent`
+and `PYTHONPATH=. harbor run -p ./thermal-investigation -a harbor_controls:RewardFileSpoofAgent`.
+Use `-a nop` for the do-nothing control. All should score zero.
+
 `run-evidence/` contains actual Harbor results, scalar rewards, authoritative
 ledgers and camera evidence. Public OpenCode event logs retain tool actions,
 feedback and final text; reasoning events are omitted explicitly. Original
 complete jobs are preserved privately. `submission.json` distinguishes clean
-model playthroughs from errored development attempts. Scores from differing
-task checksums are not a paired model comparison. No frontier-superiority or
-real mine-detection claim is made by this bundle.
+model playthroughs from errored development attempts. Full Harbor task hashes
+remain in each result. A comparison across different hashes requires an
+explicit audit of identical instructions, environment/assets, verifier,
+resources, native package stack and sealed instance. Bundled comparison audits
+cover only reference-implementation revisions; they never equate different
+grading rules or scenes. No frontier-superiority or real mine-detection claim
+is made by this bundle.
 
 `SHA256SUMS` covers every other bundled file. Verify with `sha256sum -c SHA256SUMS`.
-''')
+'''.replace('thermal-investigation',task_folder))
         # Exact private values plus common credential signatures are checked
         # before writing an archive. Never include the matching secret in errors.
         patterns=[re.compile(rb'AIza[0-9A-Za-z_-]{25,}'),re.compile(rb'-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----')]
         for path in root.rglob('*'):
             if not path.is_file():continue
-            if path.suffix in ('.png','.jpg','.jpeg','.npy','.npz'):continue
             content=path.read_bytes()
-            if any(value and value.encode() in content for value in secrets) or any(p.search(content) for p in patterns):
+            exact_secret=any(value and value.encode() in content for value in secrets)
+            generic_signature=path.suffix not in ('.png','.jpg','.jpeg','.webp','.npy','.npz') and any(p.search(content) for p in patterns)
+            if exact_secret or generic_signature:
                 raise ValueError('Credential scan rejected bundled file: '+str(path.relative_to(root)))
         paths=sorted(p for p in root.rglob('*') if p.is_file())
         (root/'SHA256SUMS').write_text(''.join(sha(p)+'  '+str(p.relative_to(root))+'\n' for p in paths))
@@ -124,6 +189,6 @@ real mine-detection claim is made by this bundle.
 
 
 if __name__=='__main__':
-    p=argparse.ArgumentParser();p.add_argument('--task',required=True);p.add_argument('--job',action='append',default=[]);p.add_argument('--output',required=True);p.add_argument('--key-file');a=p.parse_args()
+    p=argparse.ArgumentParser();p.add_argument('--task',required=True);p.add_argument('--task-folder',default='thermal-investigation');p.add_argument('--job',action='append',default=[]);p.add_argument('--comparison-audit',action='append',default=[]);p.add_argument('--output',required=True);p.add_argument('--key-file');a=p.parse_args()
     secret=Path(a.key_file).read_text().strip() if a.key_file else ''
-    package(a.task,a.job,a.output,[secret])
+    package(a.task,a.job,a.output,[secret],a.comparison_audit,a.task_folder)

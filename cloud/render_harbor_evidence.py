@@ -3,6 +3,7 @@ import argparse
 import hashlib
 import json
 import math
+import shutil
 import subprocess
 from pathlib import Path
 from PIL import Image,ImageDraw,ImageFont
@@ -74,7 +75,11 @@ def render(trial,output):
         frame.save(output/f'frame-{number:03d}.png')
     index=max(range(len(observations)),key=lambda n:len({i for i,b in evidence.get(observations[n]['id'],[])}))
     Image.open(output/f'frame-{index:03d}.png').save(output/'harbor-evidence.png')
-    subprocess.run(['ffmpeg','-y','-loglevel','error','-framerate','1/2','-i',str(output/'frame-%03d.png'),'-c:v','libx264','-r','24','-pix_fmt','yuv420p','-movflags','+faststart',str(output/'harbor-evidence-replay.mp4')],check=True)
+    encoder=shutil.which('ffmpeg')
+    if encoder is None:
+        import imageio_ffmpeg
+        encoder=imageio_ffmpeg.get_ffmpeg_exe()
+    subprocess.run([encoder,'-y','-loglevel','error','-framerate','1/2','-i',str(output/'frame-%03d.png'),'-c:v','libx264','-threads','2','-r','24','-pix_fmt','yuv420p','-movflags','+faststart',str(output/'harbor-evidence-replay.mp4')],check=True)
     (output/'provenance.json').write_text(json.dumps(dict(trial=str(trial),ledger_sha256=hashlib.sha256((trial/'verifier/ledger.json').read_bytes()).hexdigest(),result=result,model=model,images=receipts,annotation='Submitted candidate boxes; no private-reference overlay',video='2 seconds per captured pair, chronological cuts; not a continuous-flight recording'),indent=2))
     print(output/'harbor-evidence-replay.mp4')
 

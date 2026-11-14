@@ -8,10 +8,13 @@ from pathlib import Path
 
 
 def main():
-    p=argparse.ArgumentParser();p.add_argument('--task',required=True);p.add_argument('--job-name',required=True);p.add_argument('--jobs-dir',default='./jobs');p.add_argument('--harbor',default=shutil.which('harbor') or 'harbor');p.add_argument('--model',default='gemini-4-argon');p.add_argument('--local-gemma',action='store_true');p.add_argument('--local-model',default='gemma-4-12b-refined-grpo');p.add_argument('--base-url',default='http://host.docker.internal:18941/v1');p.add_argument('--seed',type=int);p.add_argument('--key-file');p.add_argument('--phase',choices=['warming','cooling','dawn','late_warming'],default='warming');p.add_argument('--budget',type=int,default=180);a=p.parse_args()
+    p=argparse.ArgumentParser();p.add_argument('--task',required=True);p.add_argument('--job-name',required=True);p.add_argument('--jobs-dir',default='./jobs');p.add_argument('--harbor',default=shutil.which('harbor') or 'harbor');p.add_argument('--model',default='gemini-4-argon');p.add_argument('--local-gemma',action='store_true');p.add_argument('--local-model',default='gemma-4-12b-refined-grpo');p.add_argument('--base-url',default='http://host.docker.internal:18941/v1');p.add_argument('--seed',type=int);p.add_argument('--key-file');p.add_argument('--phase',choices=['warming','cooling','dawn','late_warming']);p.add_argument('--budget',type=int);p.add_argument('--output-tokens',type=int);a=p.parse_args()
     env=os.environ.copy()
-    if not 60<=a.budget<=600:p.error('--budget must be 60..600 simulated seconds')
-    env.update(AEROROZUM_TASK_PHASE=a.phase,AEROROZUM_TASK_BUDGET=str(a.budget))
+    if a.budget is not None and not 60<=a.budget<=600:p.error('--budget must be 60..600 simulated seconds')
+    if a.output_tokens is not None and not 512<=a.output_tokens<=(4096 if a.local_gemma else 65536):
+        p.error('--output-tokens must be 512..4096 for local Gemma or 512..65536 for Google')
+    if a.phase is not None:env['AEROROZUM_TASK_PHASE']=a.phase
+    if a.budget is not None:env['AEROROZUM_TASK_BUDGET']=str(a.budget)
     if a.seed is not None:env['AEROROZUM_TASK_SEED']=str(a.seed)
     extra=[]
     if a.local_gemma:
@@ -26,6 +29,7 @@ def main():
         if not key:raise RuntimeError('Set GEMINI_API_KEY or GOOGLE_GENERATIVE_AI_API_KEY, or provide --key-file')
         env['GOOGLE_GENERATIVE_AI_API_KEY']=key
         extra=['--api-key-name','GOOGLE_GENERATIVE_AI_API_KEY'];key_name='GOOGLE_GENERATIVE_AI_API_KEY';context=131072;output=8192
+    if a.output_tokens is not None:output=a.output_tokens
     config=dict(provider={provider:dict(options=dict(apiKey='{env:'+key_name+'}'),models={model:dict(name=model,limit=dict(context=context,output=output),modalities=dict(input=['text','image'],output=['text']))})})
     kwargs=dict(version='1.19.5',opencode_config=config)
     if a.local_gemma:

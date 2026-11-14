@@ -12,6 +12,7 @@ INFERENCE_URL=os.environ.get('AEROROZUM_INFERENCE_URL','http://127.0.0.1:18940/g
 OUTPUT=Path(os.environ.get('AEROROZUM_PROXY_LOGS','/opt/aerorozum/harbor/gemma-proxy'))
 INFERENCE_LOCK=threading.Lock()
 NATIVE_SESSION=uuid.uuid4().hex
+INFERENCE_TIMEOUT_S=float(os.environ.get('AEROROZUM_INFERENCE_TIMEOUT_S','900'))
 
 
 class UpstreamError(ValueError):
@@ -35,13 +36,13 @@ def infer(request,peer='local-probe'):
         # Preserve the public request before inference, including failed calls.
         # Authentication headers and provider keys are never part of this body.
         request_path=OUTPUT/(identifier+'-request.json')
-        request_path.write_text(json.dumps(dict(protocol='native-chat',model=MODEL,request=payload)))
+        request_path.write_text(json.dumps(dict(protocol='native-chat',model=MODEL,request=payload,upstream_timeout_s=INFERENCE_TIMEOUT_S)))
         request_path.chmod(0o600)
         session=hashlib.sha256((NATIVE_SESSION+peer).encode()).hexdigest()
         req=urllib.request.Request(INFERENCE_URL,data=json.dumps(payload).encode(),headers={'Content-Type':'application/json','X-Aero-Native-Session':session})
         with INFERENCE_LOCK:
             try:
-                with urllib.request.urlopen(req,timeout=240) as response:result=json.load(response)
+                with urllib.request.urlopen(req,timeout=INFERENCE_TIMEOUT_S) as response:result=json.load(response)
             except urllib.error.HTTPError as error:
                 body=error.read(100000).decode(errors='replace')
                 (OUTPUT/(identifier+'-error.json')).write_text(json.dumps(dict(status=error.code,body=body)))
