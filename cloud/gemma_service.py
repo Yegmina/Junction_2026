@@ -14,9 +14,9 @@ from pydantic import BaseModel, Field
 
 
 class Generate(BaseModel):
-    prompt: str = Field(min_length=4, max_length=32000)
-    images: list[str] = Field(default_factory=list, max_length=2)
-    max_output_tokens: int = Field(default=768, ge=64, le=1536)
+    prompt: str = Field(min_length=4, max_length=128000)
+    images: list[str] = Field(default_factory=list, max_length=16)
+    max_output_tokens: int = Field(default=768, ge=64, le=4096)
 
 
 @asynccontextmanager

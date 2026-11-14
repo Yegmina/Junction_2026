@@ -27,3 +27,6 @@ docs/presentation/*
 !docs/presentation/assets/
 docs/presentation/assets/*
 !docs/presentation/assets/*.svg
+harbor/**/environment/backend/assets/
+harbor/**/environment/backend/runtime/
+harbor/**/jobs/
