@@ -34,3 +34,4 @@ submission/
 !docs/presentation/submission/
 docs/presentation/submission/*
 !docs/presentation/submission/index.html
+!docs/presentation/submission/deck.html

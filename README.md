@@ -1,7 +1,36 @@
-# AeroRozum thermal research lab
+# AeroRozum — thermal investigation under a flight budget
 
-Coupled soil heat/moisture simulation, a six-sortie survey environment, high-volume
-hackathon Gemini supervision, and Gemma 4 12B LoRA/SFT/GRPO experiments.
+A Harbor environment for a drone agent that chooses where to fly, which thermal
+sightings to inspect, and which evidence belongs in its final report. The new
+close-inspection task combines a 75-second flight budget, native Gazebo dynamics,
+paired thermal/RGB cameras, and an authoritative scalar verifier.
+
+## Junction / AfterQuery submission
+
+[Demo, downloads and measured results](https://136.115.179.240/presentation/submission/index.html)
+· [Task description](harbor/thermal-investigation-budgeted/README.md)
+· [Integration evidence](docs/submission-integration-progress.md)
+
+The prepared ZIP includes scene assets and runtime sources; a source checkout
+requires staging those large files. From an extracted close-inspection bundle:
+
+```bash
+harbor run -p ./thermal-investigation-budgeted -a oracle
+harbor run -p ./thermal-investigation-budgeted -a opencode -m <provider/model>
+```
+
+Tested: Harbor 0.26.0, OpenCode 1.19.5, Docker and Compose. The reference uses
+public images and telemetry, with no target locations or counts. Fresh-seed
+reference runs scored 0.733/1 on both instances. All completed no-op, early-stop,
+reward-file, forged-evidence and private-state controls scored zero. Model
+results and process failures are retained explicitly. The earlier baseline
+task has different rules and clean frontier scores up to 1.0; no frontier
+superiority is claimed.
+
+Supporting research includes coupled soil heat/moisture simulation, recorded
+thermal labels and Gemma 4 12B visual LoRA/SFT/GRPO experiments. Development
+perception F2 and native mission reward are separate metrics. Local physical
+admission does not establish heterogeneous-field or real mine accuracy.
 
 ## Run locally
 
@@ -38,10 +67,12 @@ a private file named by `AEROROZUM_GEMINI_KEY_FILE`, or a literal assignment in 
 local ignored `.env` / parent `.env`. Dotenv is parsed, never sourced or executed.
 There is no fallback to startup ADC/Vertex credentials. Do not commit keys.
 
-Google Cloud compute uses `gcloud auth login` separately. The run's resources
-carry `project=aerorozum-thermal-rl` labels. The four-A100 Spot worker's original
-two-hour timer was extended to 20 hours at the user's request. Its verified
-scheduled deletion is 2026-11-15 06:30:50 UTC, subject to earlier Spot preemption.
+Google Cloud compute uses `gcloud auth login` separately. The current four-A100
+deployment is `aerorozum-mission-48h-20261114`: STANDARD provisioning,
+`preemptible: false`, automatic restart enabled, and a 172800-second maximum
+runtime with STOP on termination. It started on 14 November at 16:46:58 UTC;
+the runtime limit falls on 16 November at about 16:46:58 UTC. Host maintenance
+can still terminate the GPU instance. Earlier Spot-worker timers are historical.
 The initial EUR100 reservation plus EUR500 extension allowance are conservative
 budget reservations, not quoted or actual charges. The
 SQLite ledger counts outstanding reservations and settled costs against the

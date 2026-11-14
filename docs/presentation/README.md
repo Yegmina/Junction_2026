@@ -81,3 +81,26 @@ claims versus the frontier's 55, while missing more reference objects (38 vs
 [Slide PNG](https://136.115.179.240/artifacts/presentation/development-comparison.png).
 The count panel keeps missed objects visible alongside false claims; the
 student's lower false-alarm count is not described as higher overall F2.
+
+## Submission presentation
+
+[Six-slide deck](https://136.115.179.240/presentation/submission/deck.html)
+and [result/evidence page](https://136.115.179.240/presentation/submission/index.html)
+use actual saved images and completed measurement snapshots. Source HTML is
+versioned under `docs/presentation/submission/`; PDF and video exports are
+served with the public artifacts.
+
+The new close-inspection reference earned 0.733 on each of two fresh instances,
+landing at 71.484 and 73.104 simulated seconds within a 75-second budget. The
+visual Gemma agent captured three observations but stopped without landing or
+submitting a report: reward zero, clean process exit. No-op, early-stop,
+reward-file spoof, forged evidence/local-image mutation and private-state probes
+all earned zero. The original camera bytes survived local image mutation;
+private files were absent and the pre-seal ledger endpoint returned 404.
+
+[New task reference replay](https://136.115.179.240/artifacts/presentation/harbor-budgeted-reference/harbor-evidence-replay.mp4)
+and [clean baseline Carbon replay](https://136.115.179.240/artifacts/presentation/harbor-clean-carbon/harbor-evidence-replay.mp4)
+are chronological saved pairs, two seconds each. Their task rules differ;
+rewards are not a before/after comparison. The first short-cap Gemini attempts
+that stopped before takeoff are explicitly labelled; larger-allowance retries
+retain the same environment and are recorded separately.

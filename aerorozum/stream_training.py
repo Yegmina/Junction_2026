@@ -32,6 +32,13 @@ def checkpoint_utility(baseline,sft,grpo,signal):
         'interpretation':'Checkpoint selected by fixed development utility; causal RL benefit requires the planned paired ablations'}
 
 def evaluate_adapter(adapter,manifest,output,model_path,*,seed=17,max_tokens=192):
+    doc=json.loads(Path(manifest).read_text());rows=doc['images']
+    if not rows or any(r.get('split')!='validation' or r.get('zone') in ('zone8','zone9') for r in rows):raise ValueError('Use development validation only; test zones stay sealed')
+    return _evaluate_images(adapter,doc,output,model_path,seed=seed,max_tokens=max_tokens)
+
+
+def _evaluate_images(adapter,doc,output,model_path,*,seed=17,max_tokens=192,test_contract=None):
+    """Shared deterministic decoder; public entry points validate split contracts."""
     import torch
     from PIL import Image
     from transformers import AutoProcessor,AutoModelForImageTextToText,set_seed
@@ -39,10 +46,11 @@ def evaluate_adapter(adapter,manifest,output,model_path,*,seed=17,max_tokens=192
     from .training import PROMPT,parse_prediction,detection_score
     from .fast_fields import file_hash
     root=data_root().resolve();output=Path(output);output.mkdir(parents=True,exist_ok=True)
-    doc=json.loads(Path(manifest).read_text());rows=doc['images']
-    if not rows or any(r.get('split')!='validation' or r.get('zone') in ('zone8','zone9') for r in rows):raise ValueError('Use development validation only; test zones stay sealed')
-    protocol_hash=digest({'adapter':None if adapter is None else file_hash(Path(adapter)/'adapter_model.safetensors'),
-        'manifest':digest(doc),'seed':seed,'max_tokens':max_tokens,'prompt':PROMPT,'use_cache':True,'decoding_protocol':'explicit-kv-cache-v2'})
+    rows=doc['images']
+    identity={'adapter':None if adapter is None else file_hash(Path(adapter)/'adapter_model.safetensors'),
+        'manifest':digest(doc),'seed':seed,'max_tokens':max_tokens,'prompt':PROMPT,'use_cache':True,'decoding_protocol':'explicit-kv-cache-v2'}
+    if test_contract is not None:identity['frozen_test_contract']=test_contract
+    protocol_hash=digest(identity)
     if (output/'summary.json').exists():
         old=json.loads((output/'summary.json').read_text())
         if old['protocol_hash']!=protocol_hash:raise ValueError('Evaluation identity changed')
@@ -78,7 +86,9 @@ def evaluate_adapter(adapter,manifest,output,model_path,*,seed=17,max_tokens=192
     tp=sum(r['tp'] for r in scores);fp=sum(r['fp'] for r in scores);fn=sum(r['fn'] for r in scores);neg=[r for r in scores if not r['has_gold']]
     result={'status':'completed','protocol_hash':protocol_hash,'examples':len(scores),'tp':tp,'fp':fp,'fn':fn,'micro_f2':5*tp/max(1,5*tp+4*fn+fp),
         'valid_json_fraction':sum(r['valid_json'] for r in scores)/len(scores),'negative_false_alarm_rate':sum(r['fp']>0 for r in neg)/len(neg) if neg else None,
-        'elapsed_s':time.monotonic()-started,'scores':scores,'use_cache':True,'decoding_protocol':'explicit-kv-cache-v2','interpretation':'Development label agreement, not verified physical mine accuracy'}
+        'elapsed_s':time.monotonic()-started,'scores':scores,'use_cache':True,'decoding_protocol':'explicit-kv-cache-v2',
+        'interpretation':'Frozen held-out label agreement, not verified physical mine accuracy' if test_contract else 'Development label agreement, not verified physical mine accuracy'}
+    if test_contract is not None:result['frozen_test_contract']=test_contract
     save(output/'summary.json',result);del model,processor;gc.collect();torch.cuda.empty_cache();return result
 
 def run_pass(batch,validation,output,seed,sft_steps=32,grpo_steps=16,warm_start=None):

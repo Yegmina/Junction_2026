@@ -98,6 +98,12 @@ def package(task,jobs,output,secrets=(),audits=(),task_folder='thermal-investiga
                 agent=target/'agent';agent.mkdir()
                 logs=list(source.rglob('opencode.txt'));counts={}
                 if logs:counts=public_events(logs[0],agent/'opencode-public.jsonl')
+                for filename in ('reward-file-spoof.json','evidence-tamper.json','truth-probe.json'):
+                    control=source/'agent'/filename
+                    if control.is_file():
+                        if control.stat().st_size>1000000:raise ValueError('Unexpectedly large control receipt')
+                        json.loads(control.read_text())
+                        shutil.copyfile(control,agent/filename)
                 (agent/'export.json').write_text(json.dumps(dict(**counts,original_log_sha256=sha(logs[0]) if logs else None,
                     note='Structured OpenCode events; reasoning events omitted. Unmodified original retained privately.'),indent=2))
                 details=json.loads((verifier/'details.json').read_text()) if (verifier/'details.json').exists() else {}

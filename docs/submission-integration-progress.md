@@ -2,7 +2,7 @@
 
 The Harbor environment, scalar verifier, native OpenCode model playthroughs,
 reference controller and shortcut controls run on the four-A100 VM. The full
-repository check passed **320 tests**. The portable baseline archive passed an
+repository check passed **327 tests**. The portable baseline archive passed an
 independent extraction, file-hash check and fresh native Harbor smoke run.
 The newer close-inspection task is being evaluated on fresh instances.
 Frontier superiority is not established.
@@ -66,7 +66,11 @@ reference/frontier/shortcut runs are required because the rules differ.
 | Baseline native-tools v2 | Untouched Gemma 12B | 0 | Clean; incomplete mission |
 | Baseline dawn / 180s | Refined Gemma, thinking disabled | 0 | Clean; incomplete mission |
 | Close inspection, seed 730171 | Public-image reference | 0.733333 | Clean; 2 matched, 1 false, 1 missed; 71.484/75s |
+| Close inspection, seed 730172 | Public-image reference | 0.733333 | Clean; 2 matched, 1 false, 1 missed; 73.104/75s |
+| Close inspection, seed 730171 | Visual Gemma 12B, no thinking | 0 | Clean; 3 captures, 9 actions, stopped without return or report |
 | Close inspection | No-op / early report / reward-file spoof | 0 / 0 / 0 | Completed controls; see machine-readable execution status |
+| Close inspection | Forged capture + local image mutation | 0 | Completed flight and landed; forged ID rejected, sealed camera bytes unchanged |
+| Close inspection | Private-state access probe | 0 | Private files absent in agent container; pre-seal ledger returned HTTP 404 |
 
 Frozen baseline source-v8 full task checksum:
 `603755a222d1e2c988fe46cdfe75fc13483640edf1facdf5625e53e566a32fe6`.

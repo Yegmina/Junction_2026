@@ -46,10 +46,23 @@ def export(root,output):
                     'early_stopped','nonzero_gradient_checks','lora_scope','augmentation','peak_gpu_memory_bytes']}
                     for stage in ('sft','grpo') if isinstance(result.get(stage),dict)},
                 source_sha256=sha(file)))
+    held_out=[];held_status=[];test_root=root/'artifacts/submission-frozen-test-v1'
+    for file in sorted((test_root/'evaluation').glob('*/summary.json')):
+        data=json.loads(file.read_text())
+        if data.get('status')!='completed':continue
+        held_out.append(dict(model=data.get('model',file.parent.name),
+            **{k:data[k] for k in FIELDS if k in data},source_sha256=sha(file),
+            frozen_test_contract=data.get('frozen_test_contract',data.get('protocol',{}).get('frozen_test_contract'))))
+    for file in sorted((test_root/'evaluation').glob('*/status.json')):
+        data=json.loads(file.read_text());held_status.append(dict(model=file.parent.name,**data))
+    selection=test_root/'selection.json'
     record=dict(recorded_at=datetime.datetime.now(datetime.timezone.utc).isoformat(),
-        scope='Development measurements; not sealed-test results. Harbor mission scores and image-level F2 are distinct. Errored trials are explicitly marked.',
-        trials=trials,frontier_perception=frontier,other_training=other)
-    Path(output).write_text(json.dumps(record,indent=2)+'\n')
+        scope='Native mission rewards, development image agreement and separately frozen held-out image agreement are distinct. Conditions and decoding differ; errored trials are explicitly marked.',
+        trials=trials,frontier_perception=frontier,other_training=other,
+        held_out_perception=held_out,held_out_status=held_status,
+        held_out_selection_sha256=sha(selection) if selection.exists() else None)
+    output=Path(output);temporary=output.with_name(output.name+'.building')
+    temporary.write_text(json.dumps(record,indent=2)+'\n');temporary.replace(output)
     print(json.dumps(dict(terminal_trials=len(trials),frontier_controls=len(frontier),training_arms=len(other))))
     return record
 
