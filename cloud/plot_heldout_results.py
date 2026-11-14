@@ -30,6 +30,7 @@ def plot(source,output):
     fig.subplots_adjust(left=.27,right=.94,top=.74,bottom=.25,wspace=.20)
     fig.text(.045,.105,'Mixed original-manual and reviewed-AI labels. Image agreement, not verified physical mine accuracy.',color='#b0c4ba',fontsize=11);fig.text(.045,.067,'Gemma: greedy 192 tokens. Gemini: native JSON, 8192 tokens including default reasoning. Not matched compute.',color='#b0c4ba',fontsize=11);fig.text(.045,.029,'Single-seed post-training study. No test score selected a model or changed training.',color='#b0c4ba',fontsize=11)
     fig.savefig(out/'heldout-comparison.png',dpi=120,facecolor=fig.get_facecolor());fig.savefig(out/'heldout-comparison.svg',facecolor=fig.get_facecolor(),metadata={'Date':None});plt.close(fig)
+    svg=out/'heldout-comparison.svg';svg.write_text('\n'.join(line.rstrip() for line in svg.read_text().splitlines())+'\n')
     (out/'heldout-comparison-provenance.json').write_text(json.dumps(dict(source_sha256=hashlib.sha256(source.read_bytes()).hexdigest(),frozen_selection_sha256=data['held_out_selection_sha256']),indent=2))
 
 if __name__=='__main__':

@@ -54,4 +54,3 @@ AeroRozum-Junction-2026.pdf
 ## Presentation Download
 
 https://storage.googleapis.com/aerorozum-junction2026-submission-avid-relic-509408-e4/AeroRozum-Junction-2026.pdf
-
