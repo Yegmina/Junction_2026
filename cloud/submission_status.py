@@ -13,8 +13,9 @@ def main():
     root=Path('/opt/aerorozum');harbor=root/'harbor'
     print('GPU',command('nvidia-smi','--query-gpu=index,utilization.gpu,memory.used','--format=csv,noheader'))
     units=command('systemctl','list-units','--type=service','--state=running','--no-legend','--plain').splitlines()
-    print('RUNNING_UNITS',[line.split()[0] for line in units if any(word in line for word in ['harbor','projection','curriculum','cloud-gemma','physics-3d','ledger-mirror'])])
-    for name in ['reference-v4','opencode-gemini-v3','opencode-gemma-v3']:
+    print('RUNNING_UNITS',[line.split()[0] for line in units if any(word in line for word in ['harbor','projection','curriculum','refinement','frontier','cloud-gemma','physics-3d','ledger-mirror'])])
+    for name in ['reference-v4','opencode-gemini-v3','opencode-gemma-v3','opencode-carbon-v1','nop-v4','stop-early-v4',
+                 'reference-v5','reference-v5-cooling90','opencode-gemma-v4','opencode-gemma-base-v1']:
         job=harbor/'jobs'/name
         for file in job.glob('*/result.json'):
             data=json.loads(file.read_text());error=data.get('exception_info') or {}

@@ -34,3 +34,16 @@ def test_standard_openai_tool_envelope_preserves_the_model_arguments(tmp_path,mo
     monkeypatch.setattr(proxy.urllib.request,'urlopen',lambda *a,**k:io.BytesIO(json.dumps(dict(output=dict(tool_calls=[dict(type='function',function=dict(name='bash',arguments='{"command":"drone wait --seconds 2"}'))]))).encode()))
     message,_=proxy.infer(dict(messages=[],tools=[dict(type='function',function=dict(name='bash'))]))
     assert json.loads(message['tool_calls'][0]['function']['arguments'])=={'command':'drone wait --seconds 2'}
+
+
+def test_native_proxy_preserves_conversation_roles_without_the_flattened_prompt(tmp_path,monkeypatch):
+    monkeypatch.setenv('AEROROZUM_NATIVE_CHAT','1');monkeypatch.setattr(proxy,'OUTPUT',tmp_path)
+    original=dict(messages=[dict(role='user',content='Inspect'),dict(role='tool',tool_call_id='one',content='camera result')],tools=[])
+    received=[]
+    def generate(request,timeout):
+        received.append(json.loads(request.data));assert request.get_header('X-aero-native-session')
+        return io.BytesIO(json.dumps(dict(id='native-fixture',choices=[dict(message=dict(role='assistant',content='Done.'))],usage=dict(prompt_tokens=42,completion_tokens=8))).encode())
+    monkeypatch.setattr(proxy.urllib.request,'urlopen',generate)
+    message,raw=proxy.infer(original)
+    assert received[0]['messages']==original['messages'] and 'prompt' not in received[0]
+    assert message['content']=='Done.' and raw['input_tokens']==42

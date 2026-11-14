@@ -1,8 +1,36 @@
 # Submission integration — 14 November 2026
 
-The native Harbor task and scalar verifier run. Submission readiness still
-requires a clean model playthrough, portable assets, reference/shortcut controls,
-and recorded failure analysis. Frontier superiority remains unproven.
+The native Harbor task, scalar verifier, clean OpenCode model playthroughs and
+reference/shortcut controls run. A prepared portable archive exists; final
+task-version packaging and harder-scenario evaluation remain. Frontier
+superiority remains unproven. The latest full repository check passed 291 tests.
+
+## Latest measured state
+
+The strongest completed visual-projection arm reached **0.60096 development
+F2** after GRPO, compared with its corresponding SFT **0.50868**. This is a
+different adapter scope from the six language-only arms below. Continued
+language-only training reached 0.45113. The untouched base scored 0.05540.
+All use the same 120 development images; no frozen test zones were accessed.
+
+| Development image control | TP / FP / FN | Micro-F2 | Negative-image false-alarm rate |
+|---|---|---:|---:|
+| Gemma, visual projection SFT + GRPO | 50 / 14 / 38 | 0.60096 | 3/32 |
+| Gemini Carbon | 60 / 55 / 28 | 0.64240 | 14/32 |
+| Gemini Argon | 60 / 88 / 28 | 0.60000 | 20/32 |
+
+The student has fewer false alarms, but the strongest frontier has higher F2.
+Frontier controls used the same visible prompt/images and native JSON mode,
+with 8192 output tokens including default reasoning. Gemma used greedy 192-token
+output. These decoding differences are recorded; this is not a sealed-test or
+matched-compute superiority claim. [Latest measurements](evidence/submission-measurements-latest.json)
+include source hashes and individual run details.
+
+Two bounded continuations of the visual adapter are now scheduled on GPUs 1
+and 3: +240 SFT at LR 0.00001 and +480 at LR 0.00003, each followed by up to 96
+GRPO updates with the existing zero-variance stop. Parent adapter SHA-256 is
+`f9bd1c6e2913f6f8446d995624d1e9f953ddce281bc03d1f1e99d7c6eac215e3`.
+These remain development selection; starting jobs does not establish results.
 
 ## Measured post-training
 
@@ -43,9 +71,9 @@ results and training namespaces to the private GCS bucket.
 The +480 GRPO adapter was promoted to private GPU inference with SHA-256
 `ef19fdcda7ed07979d3aca38a197af66dfe2d68702f3b40467dbfc9b9b68506a`.
 Health and generated responses now expose the loaded adapter hash. GPU 0 serves
-model-chosen OpenCode tool calls. GPUs 1–3 run a reward-supported curriculum and
-explicit visual-projection ablations. Their results must be measured before
-any improvement claim. Both visual arms have verified nonzero gradients in
+model-chosen OpenCode tool calls. The reward-supported curriculum and
+visual-projection ablations completed; latest measurements appear above.
+Both visual arms have verified nonzero gradients in
 the actual `embed_vision.multimodal_embedder.embedding_projection` module.
 Earlier failed module-selection attempts performed no optimizer updates and
 are retained as failed jobs.
@@ -72,12 +100,32 @@ Completed development attempts, all preserved:
 | Reference v3 | 0.20, clean completion | Full coverage and home return; its residual detector submitted 16 false candidates and missed all 3 insertions. |
 | OpenCode Gemini v2 | 0, nonzero agent exit | 11 observations, 99.5% coverage, returned home; no accepted final report. This is an errored playthrough, not a clean frontier baseline. |
 | OpenCode Gemma v2 | 0, protocol error | Flew and read a thermal frame. The proxy rejected a valid nested OpenAI tool envelope; translation was fixed and tested. Exclude from model-skill comparisons. |
+| Reference v4 | 0.89167, clean | Three true and three false candidates; full coverage and independent views. |
+| OpenCode Gemini Argon v3 | 1.0, mission completed, process warning | Three true candidates, no false candidates, full coverage and independent views. OpenCode exited nonzero with Git snapshot EPIPE. |
+| OpenCode Gemini Carbon v1 | 1.0, mission completed, process warning | Same successful mission outcome; same EPIPE process error. |
+| No-op / airborne early report v4 | 0 / 0, clean | Shortcut controls fail the completion gate. |
+| Reference v5 | 0.77391, clean | Stricter association: three true and eight false candidates. |
+| Reference v5, cooling / 90 s | 0.57111, clean | Two true, four false, one missed; 80% coverage. |
+| OpenCode Gemma refined v4 / base v1 | 0 / 0, clean | Old JSON bridge; one observation each, incomplete missions. |
 
 UID/account conflicts, absent legacy private reference and initial credential
-mapping failures were setup failures, not agent failures. A revised public-only
-reference and matched Gemini/Gemma trials are running against the same private
-seed, 180-second budget and revised task. Starting a trial does not establish
-its completion. Actual state is `/opt/aerorozum/harbor/jobs/`.
+mapping failures were setup failures, not agent failures. Initializing a real
+agent-owned Git workspace removed the EPIPE error; both later Gemma runs exited
+cleanly, with zero mission scores. Task v0.2 also rejects inconsistent ground
+associations and multiple distinct boxes from a single capture per candidate.
+[Sealed-evidence reassociation audit](evidence/association-audit.json) retained
+the frontier 1.0 and reference v4 0.89167 scores; this was not a new flight.
+
+The original Gemma proxy flattened role/image history into a JSON request.
+`cloud/gemma_native_chat.py` now uses the installed Gemma processor's canonical
+tool template and response parser, preserving tool responses and images.
+Thinking is retained privately and excluded from public chat responses. Both
+base and refined checkpoints passed actual native tool-call probes; paired
+OpenCode trials run against frozen task v0.2 / seed 414331. Results are pending.
+The refined service initially could not write its private inference log under
+systemd's read-only filesystem; a narrow log-directory write exception fixed
+the probe. No task or checkpoint was changed to repair this service permission.
+Actual job state remains `/opt/aerorozum/harbor/jobs/`.
 
 ## Physical source and reproducibility
 
@@ -102,6 +150,13 @@ failure. The native startup check reproduced seed 414331 exactly:
 - Warming: `98ddb75b3785ab92e8eb6bb36545e91888cbf1a769a89088154d2a1cffed1aaa`
 - Cooling: `ab8fe13bc377e39669b2c3f1e8957173f764f47763ff004b1104722eec4896ac`
 - A different seed produced different fields.
+
+Task v0.3 adds dawn (one elapsed source hour) and late-warming (11.75 hours)
+snapshots from the same admitted full-day trajectory. Their weaker contrast is
+physical, without arbitrary attenuation. Assets were built in an isolated v6
+fork; native reference/frontier trials for these new conditions are pending.
+The active camera field must belong to the private reference's checksummed
+fields; the constructor rejects stale or unrelated references.
 
 The portable packager includes assets/runtime, checksums, licenses and actual
 Harbor evidence. It refuses leaked credentials or disagreement between saved

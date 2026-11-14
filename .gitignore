@@ -30,3 +30,4 @@ docs/presentation/assets/*
 harbor/**/environment/backend/assets/
 harbor/**/environment/backend/runtime/
 harbor/**/jobs/
+submission/

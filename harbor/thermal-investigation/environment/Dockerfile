@@ -7,3 +7,8 @@ COPY camera_geometry.py /opt/drone-sdk/camera_geometry.py
 ENV PYTHONPATH=/opt/drone-sdk
 RUN chmod 755 /usr/local/bin/drone
 WORKDIR /workspace
+# Harbor enables Git-based OpenCode snapshots. A real public workspace avoids
+# snapshot subprocesses trying to read ignore rules from a missing repository.
+USER agent
+RUN git init . && git -c user.name='AeroRozum Benchmark' -c user.email=benchmark@localhost commit --allow-empty -m 'Initialize public agent workspace'
+USER root

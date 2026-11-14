@@ -12,6 +12,7 @@ import re
 import shutil
 import tarfile
 import tempfile
+import zipfile
 from pathlib import Path
 
 
@@ -50,10 +51,10 @@ def package(task,jobs,output,secrets=()):
         def ignore(directory,names):
             return [name for name in names if name in ('__pycache__','.pytest_cache','jobs','media','cache','logs','evidence')
                     or name.startswith('.env') or name.endswith(('.pyc','.key','.pem','.safetensors'))]
-        shutil.copytree(task,destination,ignore=ignore,symlinks=False)
-        shutil.copyfile(Path(__file__).with_name('run_harbor_trial.py'),root/'run_harbor_trial.py')
         for path in task.rglob('*'):
             if path.is_symlink():raise ValueError('Task contains a symlink; inspect before packaging: '+str(path))
+        shutil.copytree(task,destination,ignore=ignore,symlinks=False)
+        shutil.copyfile(Path(__file__).with_name('run_harbor_trial.py'),root/'run_harbor_trial.py')
         summaries=[]
         for job in map(Path,jobs):
             for trial in sorted(job.glob('*/result.json')):
@@ -110,7 +111,12 @@ real mine-detection claim is made by this bundle.
                 raise ValueError('Credential scan rejected bundled file: '+str(path.relative_to(root)))
         paths=sorted(p for p in root.rglob('*') if p.is_file())
         (root/'SHA256SUMS').write_text(''.join(sha(p)+'  '+str(p.relative_to(root))+'\n' for p in paths))
-        with tarfile.open(output,'w:gz') as archive:archive.add(root,arcname=root.name)
+        if output.suffix=='.zip':
+            with zipfile.ZipFile(output,'w',compression=zipfile.ZIP_DEFLATED,compresslevel=6) as archive:
+                for path in sorted(root.rglob('*')):
+                    if path.is_file():archive.write(path,arcname=str(path.relative_to(root.parent)))
+        else:
+            with tarfile.open(output,'w:gz') as archive:archive.add(root,arcname=root.name)
     receipt=dict(path=str(output),sha256=sha(output),bytes=output.stat().st_size,**metadata)
     output.with_suffix(output.suffix+'.json').write_text(json.dumps(receipt,indent=2)+'\n')
     print(json.dumps(receipt,indent=2))

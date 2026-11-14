@@ -28,19 +28,19 @@ def build(assets,case=None,seed=2026111403,runtime=False):
     if not (runtime and assets==Path('/scene')) and (assets.name!='assets' or assets.parent.name!='backend'):raise ValueError('Use the dedicated Harbor backend/assets build directory')
     certificate=json.loads(((case/'admission-progress.json') if case else assets/'provenance/axisymmetric-admission.json').read_text())
     if not certificate.get('accepted') or certificate.get('failed_checks') or any(c['status']!='passed' for c in certificate['checks']):raise ValueError('Numerical pair admission is incomplete')
-    scene=assets/'sensor-scene';profiles={};identities={}
+    scene=assets/'sensor-scene';(scene/'fields').mkdir(exist_ok=True);profiles={};identities={}
     if case:
         present=case/'present/field.npz';absent=case/'absent/field.npz'
         if sha(present)!=certificate['present_sha256'] or sha(absent)!=certificate['absent_sha256']:raise ValueError('Admitted source field hashes changed')
         with np.load(present,allow_pickle=False) as a,np.load(absent,allow_pickle=False) as b:
             times=a['times_s'];radii=a['r_m'];ta=a['radial_temperature_k'];tb=b['radial_temperature_k']
             if not np.array_equal(times,b['times_s']) or not np.array_equal(radii,b['r_m']):raise ValueError('Counterfactual sampling grids differ')
-        for phase,t in [('warming',27000.),('cooling',61200.)]:
+        for phase,t in [('warming',27000.),('cooling',61200.),('dawn',3600.),('late_warming',42300.)]:
             absent_t=interpolate(times,tb,t)
             profiles[phase]=(radii,interpolate(times,ta,t)-absent_t,absent_t,t)
     else:
         identities=json.loads((assets/'provenance/response-kernels.json').read_text())
-        for phase in ('warming','cooling'):
+        for phase in ('warming','cooling','dawn','late_warming'):
             path=scene/(phase+'-response.npz')
             if sha(path)!=identities[phase]:raise ValueError('Admitted response kernel identity changed')
             with np.load(path,allow_pickle=False) as data:profiles[phase]=(data['r_m'],data['delta_k'],data['absent_k'],float(data['time_s']))
@@ -79,8 +79,10 @@ def build(assets,case=None,seed=2026111403,runtime=False):
             patch=np.interp(distance,radii,delta,left=delta[0],right=0.)
             field[np.ix_(iy,ix)]+=patch
         path=scene/'fields'/f'harbor-{phase}-{seed}.npy';np.save(path,field,allow_pickle=False);kept.add(path.name)
-        prior=json.loads((scene/(phase+'-scene.json')).read_text())
-        prior.update(version='harbor-admitted-axisymmetric-composition-v1',physics_time_s=t,physics_time_hours=t/3600,
+        template=scene/(phase+'-scene.json')
+        if not template.exists():template=scene/'warming-scene.json'
+        prior=json.loads(template.read_text())
+        prior.update(version='harbor-admitted-axisymmetric-composition-v2',task_thermal_phase=phase,physics_time_s=t,physics_time_hours=t/3600,
             thermal_field_path='/scene/sensor-scene/fields/'+path.name,thermal_field_sha256=sha(path),background_temperature_k=mean,
             physics=dict(backend=certificate['backend'],present_sha256=certificate['present_sha256'],absent_sha256=certificate['absent_sha256'],
                 pair_numerically_accepted=True,symmetry_scope=certificate['symmetry_scope'],field_validation='not_performed',
@@ -92,7 +94,7 @@ def build(assets,case=None,seed=2026111403,runtime=False):
         (scene/(phase+'-scene.json')).write_text(json.dumps(prior,indent=2));phases[phase]=prior
         if case:np.savez_compressed(scene/(phase+'-response.npz'),r_m=radii,delta_k=delta,absent_k=absent_t,time_s=t)
     phase=os.environ.get('AEROROZUM_TASK_PHASE','warming')
-    if phase not in ('warming','cooling'):raise ValueError('Unknown task thermal phase')
+    if phase not in profiles:raise ValueError('Unknown task thermal phase')
     shutil.copyfile(scene/(phase+'-scene.json'),scene/'scene.json')
     # This build directory is derived. The original deployed arrays are retained.
     for path in (scene/'fields').glob('*.npy'):

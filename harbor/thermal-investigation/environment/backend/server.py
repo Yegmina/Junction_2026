@@ -33,7 +33,8 @@ class Investigation:
         self.budget=float(os.environ.get('AEROROZUM_TASK_BUDGET','180'))
         if not 60<=self.budget<=600:raise ValueError('Task budget must be 60..600 simulated seconds')
         camera=json.loads((ROOT/'sensor-scene/scene.json').read_text())
-        self.condition=dict(phase='warming' if camera['physics_time_hours']<12 else 'cooling',physics_elapsed_hours=camera['physics_time_hours'])
+        if camera.get('thermal_field_sha256') not in reference['field_hashes'].values():raise ValueError('Active camera field has no matching private reference')
+        self.condition=dict(phase=camera.get('task_thermal_phase','warming' if camera['physics_time_hours']<12 else 'cooling'),physics_elapsed_hours=camera['physics_time_hours'])
         self.instance.update(budget_s=self.budget,thermal_condition=self.condition)
         self.targets=[dict(id=str(t['id']),x=float(t['x_m']),y=float(t['y_m'])) for t in truth if any(a<=t['x_m']<=c and b<=t['y_m']<=d for a,b,c,d in REGIONS.values())]
         if len(self.targets)!=3:raise ValueError('Frozen benchmark requires three eligible inserted signatures')
@@ -116,21 +117,29 @@ class Investigation:
             try:
                 refs=candidate['evidence']
                 if not isinstance(refs,list) or not 1<=len(refs)<=16:raise ValueError('Evidence count')
-                hits=[]
+                hits=[];capture_boxes={}
                 for e in refs:
                     row=self.observations[e['observation_id']];b=e['bbox'];coords=[b[k] for k in ('x_min','y_min','x_max','y_max')]
                     if not all(finite(v) and 0<=v<=1000 for v in coords):raise ValueError('Invalid box')
                     x0,y0,x1,y1=coords
                     if not (x0<x1 and y0<y1 and (x1-x0)*(y1-y0)<=250000):raise ValueError('Invalid box size')
+                    if row['id'] in capture_boxes:
+                        if capture_boxes[row['id']]!=coords:raise ValueError('One candidate cannot occupy multiple boxes in one capture')
+                        continue
+                    capture_boxes[row['id']]=coords
                     hit=project(row,(x0+x1)/2,(y0+y1)/2);hits.append((hit,row))
                 # One record must describe one location. Otherwise copying a
                 # region-wide list of guesses into every record can retrieve
                 # all targets without any object association.
                 if any(math.dist(a[0],b[0])>1.3+1e-8 for j,a in enumerate(hits) for b in hits[j+1:]):raise ValueError('Candidate evidence describes inconsistent ground locations')
-                for hit,row in hits:
-                    for target in self.targets:
-                        if math.dist(hit,(target['x'],target['y']))<=.65:
-                            edges.setdefault(i,set()).add(target['id']);views.setdefault((i,target['id']),{})[row['id']]=row['pose']
+                # Retrieval uses the robust associated position, not whichever
+                # view happened to land closest to a hidden reference.
+                center=tuple(float(v) for v in np.median([hit for hit,row in hits],axis=0))
+                for target in self.targets:
+                    if math.dist(center,(target['x'],target['y']))<=.65:
+                        edges.setdefault(i,set()).add(target['id'])
+                        for hit,row in hits:
+                            if math.dist(hit,(target['x'],target['y']))<=.65:views.setdefault((i,target['id']),{})[row['id']]=row['pose']
             except (KeyError,ValueError,TypeError):
                 invalid+=1;edges.pop(i,None)
         assigned={}

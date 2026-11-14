@@ -2,7 +2,7 @@ schema_version = "1.4"
 
 [task]
 name = "aerorozum/thermal-investigation"
-version = "0.1.0"
+version = "0.3.0"
 authors = [{name = "AeroRozum"}]
 
 [metadata]

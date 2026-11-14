@@ -64,7 +64,9 @@ Otherwise reward is zero. The flight clock stops after verified landing;
 report-writing time on the ground does not consume flight budget.
 
 Candidate centers are projected from their recorded image boxes using actual
-capture pose and camera calibration. One-to-one matching uses a 0.65m radius
+capture pose and camera calibration, then associated by their median ground
+position. One candidate has at most one distinct box in any capture; repeating
+the identical box adds no evidence. One-to-one matching uses a 0.65m radius
 around the frozen inserted synthetic targets. Duplicate/unmatched candidates
 are false positives in F2. Coverage is the fraction of 1m grid cells in the
 requested regions inside actual captured camera footprints. Evidence grouped
@@ -91,7 +93,8 @@ when positions are redrawn. Freezing the background arrays avoids differences
 between host/container image-resizing and reduction libraries. A native startup
 check reproduced the staged field hashes for seed 414331 and confirmed that
 another seed changes the fields.
-`AEROROZUM_TASK_PHASE` selects `warming` or `cooling`, and
+`AEROROZUM_TASK_PHASE` selects `warming` (7.5 elapsed solver hours), `cooling`
+(17h), `dawn` (1h), or `late_warming` (11.75h), and
 `AEROROZUM_TASK_BUDGET` selects 60–600 simulated seconds (180 by default).
 All budgets/conditions are exposed through public status before takeoff. The
 runtime factory and private reference stay in the simulator container.
@@ -109,6 +112,11 @@ shortcut/exploit controls remain necessary before claiming a robust frontier
 performance gap. GPU post-training experiments are separate until a checkpoint
 has actually been evaluated through the same Harbor task and harness.
 
-The reference/agent comparison and run-log paths will be documented after
-actual execution. A successfully built image or passing unit tests alone do
+Version 0.2 adds the per-capture uniqueness and median-position rules. Version
+0.3 adds two weaker-contrast snapshots from the same admitted full-day pair;
+it does not scale physical contrast or change the sensor noise/resolution.
+These new conditions still require native reference/model validation. Earlier
+development scores from version 0.1 cannot be substituted for a rerun of this
+verifier. Completed run evidence and exact task checksums belong in the
+submission bundle. A successfully built image or passing unit tests alone do
 not establish submission readiness or RL superiority.

@@ -32,7 +32,10 @@ Report schema:
 Box coordinates are normalized 0..1000 in the thermal image, with positive
 width/height and area at most one quarter of the image. Group repeated
 sightings of one candidate into one report entry. Each evidence item must refer
-to an actual saved image. Do not use full-frame boxes or enumerate guesses.
+to an actual saved image. Give one box per candidate per capture; different
+boxes in the same capture cannot represent one candidate. Associated evidence
+must describe a consistent ground location; retrieval uses its median projected
+position. Do not use full-frame boxes or enumerate guesses.
 Return an empty candidates list if the observations do not support candidates.
 
 Observations include camera intrinsics, mount and capture pose. The public
@@ -42,6 +45,8 @@ coordinates. Use this calibration to associate repeated views; it contains no
 scene or target information. The thermal display is white-hot. The synthetic
 inclusion is an inert polymer cylinder approximately 0.24m across; its visible
 thermal footprint can be larger and depends on the reported thermal condition.
+Signatures can be warmer or cooler than nearby ground. Assess local contrast
+and use additional views when the evidence is uncertain.
 
 Your score combines one-to-one retrieval of inserted simulated thermal targets,
 coverage of the two requested regions, and independent-view evidence for true
@@ -51,3 +56,6 @@ early submission without captured evidence, or an unfinished mission scores 0.
 All decisions must use public observations; simulator files and private target
 state are in a separate service. File edits in your workspace cannot change
 flight telemetry, captures, candidate eligibility or the verifier's ledger.
+
+Finish the flight with `drone land`, then submit the report. After reading the
+submission result, give a short final text response with the outcome.

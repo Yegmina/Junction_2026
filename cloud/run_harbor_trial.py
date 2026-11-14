@@ -8,16 +8,16 @@ from pathlib import Path
 
 
 def main():
-    p=argparse.ArgumentParser();p.add_argument('--task',required=True);p.add_argument('--job-name',required=True);p.add_argument('--jobs-dir',default='./jobs');p.add_argument('--harbor',default=shutil.which('harbor') or 'harbor');p.add_argument('--model',default='gemini-4-argon');p.add_argument('--local-gemma',action='store_true');p.add_argument('--seed',type=int);p.add_argument('--key-file');p.add_argument('--phase',choices=['warming','cooling'],default='warming');p.add_argument('--budget',type=int,default=180);a=p.parse_args()
+    p=argparse.ArgumentParser();p.add_argument('--task',required=True);p.add_argument('--job-name',required=True);p.add_argument('--jobs-dir',default='./jobs');p.add_argument('--harbor',default=shutil.which('harbor') or 'harbor');p.add_argument('--model',default='gemini-4-argon');p.add_argument('--local-gemma',action='store_true');p.add_argument('--local-model',default='gemma-4-12b-refined-grpo');p.add_argument('--base-url',default='http://host.docker.internal:18941/v1');p.add_argument('--seed',type=int);p.add_argument('--key-file');p.add_argument('--phase',choices=['warming','cooling','dawn','late_warming'],default='warming');p.add_argument('--budget',type=int,default=180);a=p.parse_args()
     env=os.environ.copy()
     if not 60<=a.budget<=600:p.error('--budget must be 60..600 simulated seconds')
     env.update(AEROROZUM_TASK_PHASE=a.phase,AEROROZUM_TASK_BUDGET=str(a.budget))
     if a.seed is not None:env['AEROROZUM_TASK_SEED']=str(a.seed)
     extra=[]
     if a.local_gemma:
-        model='gemma-4-12b-refined-grpo';provider='aerorozum';selector=provider+'/'+model
+        model=a.local_model;provider='aerorozum';selector=provider+'/'+model
         env['OPENAI_API_KEY']='local-inference-only'
-        extra=['--base-url','http://host.docker.internal:18941/v1','--api-key-name','OPENAI_API_KEY','--api-format','openai_chat_completions']
+        extra=['--base-url',a.base_url,'--api-key-name','OPENAI_API_KEY','--api-format','openai_chat_completions']
         key_name='OPENAI_API_KEY';context=24576;output=4096
     else:
         model=a.model;provider='google';selector='gemini/'+model
@@ -30,10 +30,10 @@ def main():
     kwargs=dict(version='1.19.5',opencode_config=config)
     if a.local_gemma:
         config['provider'][provider].update(npm='@ai-sdk/openai-compatible')
-        config['provider'][provider]['options']['baseURL']='http://host.docker.internal:18941/v1'
+        config['provider'][provider]['options']['baseURL']=a.base_url
         job=dict(schema_version=1,job_name=a.job_name,jobs_dir=a.jobs_dir,n_concurrent_trials=1,
             agents=[dict(name='opencode',model_name=selector,skip_model_parsing=True,
-                base_url='http://host.docker.internal:18941/v1',model_api_key_name='OPENAI_API_KEY',
+                base_url=a.base_url,model_api_key_name='OPENAI_API_KEY',
                 model_api_format='openai_chat_completions',kwargs=kwargs)],tasks=[dict(path=a.task)])
         with tempfile.TemporaryDirectory(prefix='harbor-local-provider-') as temp:
             path=Path(temp)/'job.json';path.write_text(json.dumps(job))

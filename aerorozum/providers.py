@@ -6,6 +6,7 @@ from collections import deque
 from dataclasses import dataclass
 import hashlib
 import json
+import math
 import mimetypes
 from pathlib import Path
 import time
@@ -145,7 +146,9 @@ class GeminiProvider:
         blobs = [p.read_bytes() for p in paths]
         content_hashes = [hashlib.sha256(b).hexdigest() for b in blobs]
         limit = max_output_tokens or self.cfg.get('reserve_output_tokens',2048)
-        cache_id = digest(dict(role=role,prompt=prompt,images=content_hashes,model=model,temperature=.1,max_output_tokens=limit,api_version=self.cfg.get('api_version','v1beta'),thinking_budget=self.cfg.get('thinking_budget')))
+        temperature=float(self.cfg.get('temperature',.1))
+        if not math.isfinite(temperature) or not 0<=temperature<=2:raise ValueError('Temperature must be finite and within 0..2')
+        cache_id = digest(dict(role=role,prompt=prompt,images=content_hashes,model=model,temperature=temperature,max_output_tokens=limit,api_version=self.cfg.get('api_version','v1beta'),thinking_budget=self.cfg.get('thinking_budget')))
         cache = self.root / 'responses' / (cache_id + '.json')
         if reuse and cache.exists():
             return json.loads(cache.read_text())['output']
@@ -178,7 +181,7 @@ class GeminiProvider:
                     await self.limiter.cancel(reservation);raise
                 start = time.monotonic()
                 try:
-                    generation=dict(temperature=.1,response_mime_type='application/json',max_output_tokens=limit)
+                    generation=dict(temperature=temperature,response_mime_type='application/json',max_output_tokens=limit)
                     if 'thinking_budget' in self.cfg:
                         generation['thinking_config']=types.ThinkingConfig(thinking_budget=self.cfg['thinking_budget'])
                     response = await self.client.aio.models.generate_content(model=model,contents=contents,config=types.GenerateContentConfig(**generation))
@@ -191,7 +194,7 @@ class GeminiProvider:
                     if not isinstance(output,dict):
                         raise ValueError('Expected JSON object')
                     usage = response.usage_metadata.model_dump(mode='json') if response.usage_metadata else {}
-                    record = dict(id=cache_id,role=role,backend='developer_api',model=model,created_at=utcnow(),prompt=prompt,image_hashes=content_hashes,output=output,raw_text=response.text,finish_reason=str(response.candidates[0].finish_reason) if response.candidates else None,generation_config=dict(temperature=.1,max_output_tokens=limit,api_version=self.cfg.get('api_version','v1beta'),thinking_budget=self.cfg.get('thinking_budget')),usage=usage,elapsed_s=time.monotonic()-start,attempt=attempt+1)
+                    record = dict(id=cache_id,role=role,backend='developer_api',model=model,created_at=utcnow(),prompt=prompt,image_hashes=content_hashes,output=output,raw_text=response.text,finish_reason=str(response.candidates[0].finish_reason) if response.candidates else None,generation_config=dict(temperature=temperature,max_output_tokens=limit,api_version=self.cfg.get('api_version','v1beta'),thinking_budget=self.cfg.get('thinking_budget')),usage=usage,elapsed_s=time.monotonic()-start,attempt=attempt+1)
                     save(cache,record)
                     return output
                 except Exception as ex:

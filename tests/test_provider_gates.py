@@ -29,3 +29,19 @@ def test_quota_callback_stops_retry_before_second_paid_transport(tmp_path,monkey
  with pytest.raises(RuntimeError,match='allowance paused'):asyncio.run(p.generate('role','prompt'))
  assert calls==[1] and rejected==[429] and p.issued==1
  assert len(list((tmp_path/'errors').glob('*.json')))==1
+
+
+def test_temperature_changes_paid_cache_identity_and_actual_configuration(tmp_path):
+ calls=[]
+ async def generate(**kwargs):
+  calls.append(kwargs['config'].temperature)
+  return SimpleNamespace(text='{"detections":[]}',usage_metadata=None,candidates=[])
+ p=provider(tmp_path,generate)
+ async def exercise():
+  p.cfg['temperature']=0
+  await p.generate('eval','frozen prompt')
+  await p.generate('eval','frozen prompt')
+  p.cfg['temperature']=.1
+  await p.generate('eval','frozen prompt')
+ asyncio.run(exercise())
+ assert calls==[0,.1] and len(list((tmp_path/'responses').glob('*.json')))==2

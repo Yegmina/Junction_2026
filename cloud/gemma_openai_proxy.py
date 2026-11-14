@@ -3,16 +3,31 @@
 The model chooses every tool and argument. This adapter only translates the
 protocol; it executes no drone actions and contains no target/reference data.
 """
-import json,os,time,uuid,urllib.request,threading
+import hashlib,json,os,time,uuid,urllib.request,threading
 from pathlib import Path
 from http.server import BaseHTTPRequestHandler,ThreadingHTTPServer
 
-MODEL='gemma-4-12b-refined-grpo'
+MODEL=os.environ.get('AEROROZUM_PROXY_MODEL','gemma-4-12b-refined-grpo')
+INFERENCE_URL=os.environ.get('AEROROZUM_INFERENCE_URL','http://127.0.0.1:18940/generate')
 OUTPUT=Path(os.environ.get('AEROROZUM_PROXY_LOGS','/opt/aerorozum/harbor/gemma-proxy'))
 INFERENCE_LOCK=threading.Lock()
+NATIVE_SESSION=uuid.uuid4().hex
 
-def infer(request):
+def infer(request,peer='local-probe'):
     OUTPUT.mkdir(parents=True,exist_ok=True)
+    if os.environ.get('AEROROZUM_NATIVE_CHAT')=='1':
+        # Preserve roles, tool results and image placement for Gemma's canonical
+        # template. One private proxy process belongs to one benchmark episode.
+        identifier=uuid.uuid4().hex
+        payload={**request,'stream':False}
+        session=hashlib.sha256((NATIVE_SESSION+peer).encode()).hexdigest()
+        req=urllib.request.Request(INFERENCE_URL,data=json.dumps(payload).encode(),headers={'Content-Type':'application/json','X-Aero-Native-Session':session})
+        with INFERENCE_LOCK:
+            with urllib.request.urlopen(req,timeout=240) as response:result=json.load(response)
+        (OUTPUT/(identifier+'-request.json')).write_text(json.dumps(dict(protocol='native-chat',model=MODEL,message_count=len(request.get('messages',[])),generation_id=result['id'])))
+        (OUTPUT/(identifier+'-response.json')).write_text(json.dumps(result))
+        usage=result.get('usage',{});limit=min(4096,max(64,request.get('max_tokens') or request.get('max_completion_tokens') or 4096))
+        return result['choices'][0]['message'],dict(input_tokens=usage.get('prompt_tokens',0),output_tokens=usage.get('completion_tokens',0),requested_max_tokens=limit)
     messages=[];images=[]
     tools=request.get('tools',[])
     for message in request.get('messages',[]):
@@ -37,7 +52,7 @@ def infer(request):
     began=time.time();identifier=uuid.uuid4().hex
     # Requests contain public task context, never provider authentication headers.
     (OUTPUT/(identifier+'-request.json')).write_text(json.dumps(dict(model=MODEL,messages=messages,tools=tools,image_count=len(images))))
-    req=urllib.request.Request('http://127.0.0.1:18940/generate',data=json.dumps(payload).encode(),headers={'Content-Type':'application/json'})
+    req=urllib.request.Request(INFERENCE_URL,data=json.dumps(payload).encode(),headers={'Content-Type':'application/json'})
     with INFERENCE_LOCK:
         with urllib.request.urlopen(req,timeout=180) as response:raw=json.load(response)
     raw['requested_max_tokens']=payload['max_output_tokens']
@@ -71,7 +86,7 @@ class Handler(BaseHTTPRequestHandler):
             if self.path!='/v1/chat/completions':return self.send_json(dict(error='Unknown route'),404)
             size=int(self.headers.get('Content-Length',0))
             if not 0<size<12000000:raise ValueError('Invalid payload size')
-            request=json.loads(self.rfile.read(size));message,raw=infer(request)
+            request=json.loads(self.rfile.read(size));message,raw=infer(request,self.client_address[0])
             finish='tool_calls' if message.get('tool_calls') else 'length' if raw.get('output_tokens',0)>=raw.get('requested_max_tokens',4096) else 'stop';identifier='chatcmpl-'+uuid.uuid4().hex
             usage=dict(prompt_tokens=raw.get('input_tokens',0),completion_tokens=raw.get('output_tokens',0),total_tokens=raw.get('input_tokens',0)+raw.get('output_tokens',0))
             result=dict(id=identifier,object='chat.completion',created=int(time.time()),model=MODEL,choices=[dict(index=0,message=message,finish_reason=finish)],usage=usage)
@@ -86,4 +101,4 @@ class Handler(BaseHTTPRequestHandler):
             self.wfile.write(b'data: [DONE]\n\n');self.wfile.flush()
         except Exception as error:self.send_json(dict(error=dict(message=str(error),type='model_protocol_error')),400)
 
-if __name__=='__main__':ThreadingHTTPServer((os.environ.get('AEROROZUM_PROXY_HOST','127.0.0.1'),18941),Handler).serve_forever()
+if __name__=='__main__':ThreadingHTTPServer((os.environ.get('AEROROZUM_PROXY_HOST','127.0.0.1'),int(os.environ.get('AEROROZUM_PROXY_PORT','18941'))),Handler).serve_forever()

@@ -52,7 +52,8 @@ app = FastAPI(lifespan=lifespan)
 def health():
     return {'ready': True, 'model': os.environ.get('AEROROZUM_MISSION_MODEL', 'google/gemma-4-12B-it'),
             'hosting': 'vm_gpu', 'adapter': bool(os.environ.get('AEROROZUM_GEMMA_ADAPTER')),
-            'adapter_sha256': getattr(app.state,'adapter_sha256',None)}
+            'adapter_sha256': getattr(app.state,'adapter_sha256',None),
+            'native_tool_protocol':getattr(app.state,'native_protocol',None)}
 
 
 def infer(request):
@@ -97,3 +98,10 @@ async def generate(request: Generate):
             return await asyncio.to_thread(infer, request)
         except ValueError as error:
             raise HTTPException(422, str(error)) from error
+
+
+try:
+    from .gemma_native_chat import attach
+except ImportError:
+    from gemma_native_chat import attach
+attach(app)

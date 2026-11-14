@@ -1,6 +1,7 @@
 import importlib.util
 import json
 import tarfile
+import zipfile
 from pathlib import Path
 import pytest
 
@@ -20,14 +21,16 @@ def fixture(tmp_path):
     return task,job
 
 
-def test_bundle_keeps_real_score_and_actions_without_private_reasoning(tmp_path):
-    task,job=fixture(tmp_path);output=tmp_path/'bundle.tar.gz'
+@pytest.mark.parametrize('extension',['.tar.gz','.zip'])
+def test_bundle_keeps_real_score_and_actions_without_private_reasoning(tmp_path,extension):
+    task,job=fixture(tmp_path);output=tmp_path/('bundle'+extension)
     receipt=packager.package(task,[job],output)
     assert receipt['clean_opencode_playthrough'] and receipt['runs'][0]['reward']==.5
-    with tarfile.open(output) as archive:
-        log=archive.extractfile('aerorozum-submission/run-evidence/job/trial/agent/opencode-public.jsonl').read()
+    with (zipfile.ZipFile(output) if extension=='.zip' else tarfile.open(output)) as archive:
+        read=archive.read if extension=='.zip' else lambda name:archive.extractfile(name).read()
+        log=read('aerorozum-submission/run-evidence/job/trial/agent/opencode-public.jsonl')
         assert b'drone status' in log and b'private-reasoning-fixture' not in log
-        assert archive.extractfile('aerorozum-submission/run-evidence/job/trial/verifier/reward.txt').read()==b'0.50000000\n'
+        assert read('aerorozum-submission/run-evidence/job/trial/verifier/reward.txt')==b'0.50000000\n'
 
 
 def test_bundle_rejects_secret_and_score_disagreement(tmp_path):
