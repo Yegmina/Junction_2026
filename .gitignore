@@ -23,6 +23,7 @@ docs/presentation/*
 !docs/presentation/README.md
 !docs/presentation/paired-sensors.png
 !docs/presentation/native-camera-controls.png
+!docs/presentation/coordinate-agent.png
 !docs/presentation/assets/
 docs/presentation/assets/*
 !docs/presentation/assets/*.svg

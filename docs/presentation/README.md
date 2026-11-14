@@ -18,3 +18,16 @@ from aircraft control; paired RGB/thermal evidence still comes from the drone.
 
 Large videos, original flight evidence, API logs and datasets remain in the
 private SSD/GCS artifact store and are deliberately excluded from Git.
+
+![Coordinate flight tools and live decision feedback](coordinate-agent.png)
+
+The agent sends arbitrary local `goto(x, y, altitude)` commands and reviews
+synchronized thermal/RGB evidence while the drone keeps flying. The activity
+panel records concise observations, operational rationales, tool calls and
+actual navigation feedback. Native mission `24859da319234e7d` redirected from
+`(22,22,4)` to `(6,-6,3)` before reaching the first target, then observed and
+requested return. This verifies the tool loop; it does not establish mine
+detection accuracy or RL improvement. See [implementation and validation](../coordinate-flight-agent.md).
+
+[Live mission and saved feedback](https://136.115.179.240/?mission=24859da319234e7d)
+and [recorded coordinate-tool demonstration](https://136.115.179.240/artifacts/presentation/coordinate-agent-tools.mp4).

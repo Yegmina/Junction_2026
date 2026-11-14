@@ -55,6 +55,12 @@ still approximately 21m away when the new destination was dispatched. This
 checks the coordinate tool mechanism and live retargeting, not autonomous
 detection quality or trained-policy improvement.
 
+The four real model decisions were `goto → goto → observe → return_home`.
+The mission completed without an error and confirmed home return after 48.11
+simulated seconds, within its 120-second budget. Model input/response logs and
+camera evidence are archived privately under
+`gs://aerorozum-thermal-rl-avid-relic-509408-e4/mission-demos/coordinate-flight-v3/24859da319234e7d`.
+
 Presentation assets are saved under `artifacts/presentation/`:
 `coordinate-agent-presentation.png`, `coordinate-agent-mobile.png`, and
 `coordinate-agent-tools.mp4`. The console contains concise observation and
