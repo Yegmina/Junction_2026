@@ -2,6 +2,7 @@
 import asyncio
 import base64
 import io
+import hashlib
 import json
 import os
 import re
@@ -31,9 +32,12 @@ async def lifespan(app):
         path, dtype=torch.bfloat16, device_map={'': 0},
         attn_implementation='sdpa', low_cpu_mem_usage=True, local_files_only=True)
     adapter = os.environ.get('AEROROZUM_GEMMA_ADAPTER')
+    app.state.adapter_sha256 = None
     if adapter:
         from peft import PeftModel
         model = PeftModel.from_pretrained(model, adapter, is_trainable=False)
+        from pathlib import Path
+        app.state.adapter_sha256 = hashlib.sha256((Path(adapter)/'adapter_model.safetensors').read_bytes()).hexdigest()
     model.eval()
     model.config.use_cache = True
     app.state.model = model
@@ -47,7 +51,8 @@ app = FastAPI(lifespan=lifespan)
 @app.get('/health')
 def health():
     return {'ready': True, 'model': os.environ.get('AEROROZUM_MISSION_MODEL', 'google/gemma-4-12B-it'),
-            'hosting': 'vm_gpu', 'adapter': bool(os.environ.get('AEROROZUM_GEMMA_ADAPTER'))}
+            'hosting': 'vm_gpu', 'adapter': bool(os.environ.get('AEROROZUM_GEMMA_ADAPTER')),
+            'adapter_sha256': getattr(app.state,'adapter_sha256',None)}
 
 
 def infer(request):
@@ -79,6 +84,7 @@ def infer(request):
         output = None
     return {'output': output, 'text': text, 'elapsed_s': time.monotonic() - began,
             'input_tokens': length, 'output_tokens': generated.shape[-1] - length,
+            'adapter_sha256': getattr(app.state,'adapter_sha256',None),
             'model': os.environ.get('AEROROZUM_MISSION_MODEL', 'google/gemma-4-12B-it')}
 
 

@@ -99,6 +99,7 @@ class Runtime:
             for name,im,extra in images:
                 data=io.BytesIO();im.save(data,format='PNG',compress_level=1);encoded=data.getvalue()
                 meta={**common,**extra,'kind':name,'event_id':pair_id+'-'+name,'camera_topic':'/aerorozum_sim/'+name,'sha256':hashlib.sha256(encoded).hexdigest()}
+                if name=='rgb':meta['camera_mount']=dict(x_m=.03,y_m=0,z_m=-.13,roll_rad=0,pitch_rad=math.pi/2,yaw_rad=0)
                 if name=='thermal':meta['camera_topic']='/aerorozum_sim/physics_thermal';meta['paired_rgb_topic']='/aerorozum_sim/rgb';meta['derived_from_native_rgb_timestamp']=True
                 if name=='overview':
                     with self.lock:confirmed=self.view_confirmed

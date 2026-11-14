@@ -3,12 +3,13 @@
 The model chooses every tool and argument. This adapter only translates the
 protocol; it executes no drone actions and contains no target/reference data.
 """
-import json,os,time,uuid,urllib.request
+import json,os,time,uuid,urllib.request,threading
 from pathlib import Path
 from http.server import BaseHTTPRequestHandler,ThreadingHTTPServer
 
 MODEL='gemma-4-12b-refined-grpo'
 OUTPUT=Path(os.environ.get('AEROROZUM_PROXY_LOGS','/opt/aerorozum/harbor/gemma-proxy'))
+INFERENCE_LOCK=threading.Lock()
 
 def infer(request):
     OUTPUT.mkdir(parents=True,exist_ok=True)
@@ -37,14 +38,23 @@ def infer(request):
     # Requests contain public task context, never provider authentication headers.
     (OUTPUT/(identifier+'-request.json')).write_text(json.dumps(dict(model=MODEL,messages=messages,tools=tools,image_count=len(images))))
     req=urllib.request.Request('http://127.0.0.1:18940/generate',data=json.dumps(payload).encode(),headers={'Content-Type':'application/json'})
-    with urllib.request.urlopen(req,timeout=180) as response:raw=json.load(response)
+    with INFERENCE_LOCK:
+        with urllib.request.urlopen(req,timeout=180) as response:raw=json.load(response)
+    raw['requested_max_tokens']=payload['max_output_tokens']
     (OUTPUT/(identifier+'-response.json')).write_text(json.dumps(raw))
     result=raw.get('output')
     if not isinstance(result,dict):return dict(role='assistant',content=raw.get('text','')),raw
     calls=[];names={t['function']['name'] for t in tools if t.get('type')=='function'}
     for item in result.get('tool_calls',[]):
-        if not isinstance(item,dict) or item.get('name') not in names or not isinstance(item.get('arguments'),dict):raise ValueError('Model emitted an invalid tool call')
-        calls.append(dict(id='call_'+uuid.uuid4().hex[:20],type='function',function=dict(name=item['name'],arguments=json.dumps(item['arguments']))))
+        # Models sometimes echo the standard OpenAI envelope instead of our
+        # shorter JSON spelling. Both carry the same exact chosen tool/args.
+        function=item.get('function',item) if isinstance(item,dict) else None
+        arguments=function.get('arguments') if isinstance(function,dict) else None
+        if isinstance(arguments,str):
+            try:arguments=json.loads(arguments)
+            except ValueError:pass
+        if not isinstance(function,dict) or function.get('name') not in names or not isinstance(arguments,dict):raise ValueError('Model emitted an invalid tool call')
+        calls.append(dict(id='call_'+uuid.uuid4().hex[:20],type='function',function=dict(name=function['name'],arguments=json.dumps(arguments))))
     message=dict(role='assistant',content=str(result.get('content','')))
     if calls:message['tool_calls']=calls
     return message,raw
@@ -62,7 +72,7 @@ class Handler(BaseHTTPRequestHandler):
             size=int(self.headers.get('Content-Length',0))
             if not 0<size<12000000:raise ValueError('Invalid payload size')
             request=json.loads(self.rfile.read(size));message,raw=infer(request)
-            finish='tool_calls' if message.get('tool_calls') else 'stop';identifier='chatcmpl-'+uuid.uuid4().hex
+            finish='tool_calls' if message.get('tool_calls') else 'length' if raw.get('output_tokens',0)>=raw.get('requested_max_tokens',4096) else 'stop';identifier='chatcmpl-'+uuid.uuid4().hex
             usage=dict(prompt_tokens=raw.get('input_tokens',0),completion_tokens=raw.get('output_tokens',0),total_tokens=raw.get('input_tokens',0)+raw.get('output_tokens',0))
             result=dict(id=identifier,object='chat.completion',created=int(time.time()),model=MODEL,choices=[dict(index=0,message=message,finish_reason=finish)],usage=usage)
             if not request.get('stream'):return self.send_json(result)
@@ -71,6 +81,7 @@ class Handler(BaseHTTPRequestHandler):
             if delta.get('tool_calls'):delta['tool_calls']=[dict(index=i,**call) for i,call in enumerate(delta['tool_calls'])]
             for item in [dict(index=0,delta=delta,finish_reason=None),dict(index=0,delta={},finish_reason=finish)]:
                 chunk=dict(id=identifier,object='chat.completion.chunk',created=result['created'],model=MODEL,choices=[item])
+                if item['finish_reason'] is not None:chunk['usage']=usage
                 self.wfile.write(('data: '+json.dumps(chunk)+'\n\n').encode());self.wfile.flush()
             self.wfile.write(b'data: [DONE]\n\n');self.wfile.flush()
         except Exception as error:self.send_json(dict(error=dict(message=str(error),type='model_protocol_error')),400)

@@ -45,9 +45,13 @@ Harbor/OpenCode over MCP.
 6. Lead the presentation with the benchmark, measured gap and failure analysis.
    Real footage, physics and optional Gemma training support that story.
 
-No further optional training experiment is being launched before the primary
-benchmark gap is addressed. Existing bounded physics jobs can finish; no new
-solver expansion was requested. Preserve all results and unchanged quality gates.
+The subsequent user instruction explicitly requested GPU use alongside Harbor
+integration. Bounded perception experiments therefore run in parallel with the
+primary benchmark work. They remain supporting evidence until evaluated in
+the same closed-loop task. Existing bounded physics jobs continue without
+solver expansion or relaxed quality gates. See the current
+[integration evidence](submission-integration-progress.md); the earlier audit
+above records the state before native Harbor trials existed.
 
 ## Main-track review decision
 

@@ -3,7 +3,7 @@
 import argparse,json,os,urllib.request,urllib.error
 from pathlib import Path
 p=argparse.ArgumentParser(description='Native Gazebo investigation tools. Coordinates are local east/north metres; altitude is above flat ground.')
-p.add_argument('command',choices=['status','launch','goto','observe','wait','land','submit','result'])
+p.add_argument('command',choices=['status','launch','goto','observe','hover','wait','land','submit','result'])
 p.add_argument('--x',type=float);p.add_argument('--y',type=float);p.add_argument('--altitude',type=float,default=5)
 p.add_argument('--seconds',type=float,default=2);p.add_argument('--report',help='JSON file: {"candidates":[{"evidence":[{"observation_id":"...","bbox":{"x_min":0,"y_min":0,"x_max":1000,"y_max":1000}}],"notes":"..."}]}')
 a=p.parse_args();body={k:v for k,v in vars(a).items() if v is not None}

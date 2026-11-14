@@ -83,6 +83,22 @@ def test_lora_only_targets_language_attention():
     targets=language_lora_targets(Model())
     assert len(targets)==2 and all('language_model' in x for x in targets)
 
+
+def test_visual_projection_scope_is_explicit_and_does_not_unfreeze_audio():
+    from aerorozum.training import perception_lora_targets
+    from types import SimpleNamespace
+    class Model:
+        def named_modules(self):return [(name,SimpleNamespace(in_features=3840,out_features=3840)) for name in [
+            'model.language_model.layers.0.self_attn.q_proj',
+            'model.embed_vision.multimodal_embedder.embedding_projection','model.embed_audio.embedding_projection']]
+    assert perception_lora_targets(Model())==['model.language_model.layers.0.self_attn.q_proj']
+    assert perception_lora_targets(Model(),'language_visual_projection')==[
+        'model.language_model.layers.0.self_attn.q_proj','model.embed_vision.multimodal_embedder.embedding_projection']
+    with pytest.raises(ValueError,match='Unknown'):perception_lora_targets(Model(),'all')
+    class Missing(Model):
+        def named_modules(self):return super().named_modules()[:1]
+    with pytest.raises(ValueError,match='Expected one'):perception_lora_targets(Missing(),'language_visual_projection')
+
 def test_policy_adapter_rejects_hidden_truth():
     with pytest.raises(ValueError,match='Hidden state'):
         policy_conversations([{'split':'train','research_accepted':True,'truth':{},'messages':[],'tools':[{}]}])

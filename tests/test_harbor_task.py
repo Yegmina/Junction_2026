@@ -5,6 +5,7 @@ import pytest
 
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT/'simulation'))
+sys.path.insert(0,str(ROOT/'harbor/thermal-investigation/environment'))
 spec=importlib.util.spec_from_file_location('harbor_investigation',ROOT/'harbor/thermal-investigation/environment/backend/server.py')
 server=importlib.util.module_from_spec(spec);spec.loader.exec_module(server)
 
@@ -12,6 +13,7 @@ server=importlib.util.module_from_spec(spec);spec.loader.exec_module(server)
 def task(tmp_path,monkeypatch):
     (tmp_path/'provenance').mkdir();(tmp_path/'sensor-scene').mkdir()
     (tmp_path/'sensor-scene/warming-scene.json').write_text(json.dumps({'thermal_field_sha256':'a'*64}))
+    (tmp_path/'sensor-scene/scene.json').write_text(json.dumps({'physics_time_hours':7.5}))
     (tmp_path/'provenance/scene.truth.json').write_text(json.dumps({'generated_together_with_insertions':True,'field_hashes':{'warming':'a'*64},'targets':[{'id':0,'x_m':8,'y_m':0},{'id':1,'x_m':12,'y_m':0},{'id':2,'x_m':0,'y_m':12}]}))
     monkeypatch.setattr(server,'ROOT',tmp_path)
     state=dict(ready=True,sim_time_s=20.,pose=dict(x_m=0,y_m=0,z_m=.17),velocity=dict(x_m_s=0,y_m_s=0,z_m_s=0))
@@ -46,6 +48,15 @@ def test_repeated_same_capture_is_not_independent_view_evidence(task):
     t,state=ready(task);c=candidate();c['evidence']*=3;t.report={'candidates':[c]}
     assert t.score()['multi_view_matches']==0
 
+
+def test_copying_region_wide_guesses_into_every_record_cannot_retrieve_targets(task):
+    t,state=ready(task)
+    t.observations['other']={**row(12),'id':'other'}
+    mixed=candidate();mixed['evidence'].append(candidate('other')['evidence'][0])
+    t.report={'candidates':[mixed,mixed,mixed]}
+    score=t.score()
+    assert score['true_positives']==0 and score['invalid_candidates']==3
+
 def test_ground_control_and_budget_are_completion_gates(task):
     t,state=ready(task);t.report={'candidates':[candidate()]};assert t.score()['reward']>0
     t.end=181.;assert t.score()['reward']==0
@@ -63,3 +74,23 @@ def test_coverage_uses_actual_captured_polygon():
     polygon=[server.project(row(),u,v) for u,v in [(0,0),(1000,0),(1000,1000),(0,1000)]]
     assert server.inside((8,0),polygon)
     assert not server.inside((0,12),polygon)
+
+
+def test_private_instance_and_reference_are_not_in_public_status(task):
+    t,_=task
+    public=t.status()
+    assert 'instance' not in public and 'targets' not in public and 'seed' not in public
+    assert public['thermal_condition']['phase']=='warming'
+
+
+def test_reference_identity_must_match_camera_fields(task,tmp_path):
+    (tmp_path/'sensor-scene/warming-scene.json').write_text(json.dumps({'thermal_field_sha256':'b'*64}))
+    with pytest.raises(ValueError,match='identities differ'):server.Investigation()
+
+
+@pytest.mark.parametrize('u,v',[(200,300),(700,600),(500,500)])
+def test_public_camera_calibration_round_trips_ground_coordinates(u,v):
+    from camera_geometry import pixel_to_ground,ground_to_pixel
+    observation=row();observation['pose'].update(roll_rad=.1,pitch_rad=.2,yaw_rad=.7)
+    x,y=pixel_to_ground(observation,u,v)
+    assert ground_to_pixel(observation,x,y)==pytest.approx((u,v),abs=1e-8)

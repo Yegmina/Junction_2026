@@ -14,15 +14,24 @@ Repeated images do not establish separate objects or independent views.
 
 ## Run
 
-Use Harbor 0.26.0, Docker and Docker Compose (tested plugin v2.39.4). The task
+Use Harbor 0.26.0, OpenCode 1.19.5, Docker and Docker Compose (tested plugin v2.39.4). The task
 uses schema 1.4. Install model credentials in the host environment, never in the
-task files. For the hackathon Google key use `GEMINI_API_KEY`; the Harbor
-OpenCode integration resolves the Google provider credentials.
+task files. Export `GEMINI_API_KEY` or `GOOGLE_GENERATIVE_AI_API_KEY` in your
+shell. The runner explicitly maps the key to OpenCode's Google provider; a
+plain Harbor invocation without that mapping failed authentication in testing.
 
 ```
-harbor run -p ./harbor/thermal-investigation -a opencode -m gemini/gemini-4-argon
+python cloud/run_harbor_trial.py --task ./harbor/thermal-investigation --job-name gemini-warming-01 --seed 414331
 harbor run -p ./harbor/thermal-investigation -a oracle
 ```
+
+In the portable bundle, run from its root with
+`python run_harbor_trial.py --task ./thermal-investigation --job-name gemini-warming-01 --seed 414331`.
+The helper calls the actual `harbor run` command with the OpenCode harness,
+pins OpenCode 1.19.5 and configures text/image input. It also checks the sealed
+ledger's actual seed against the requested seed. `--model`, `--phase`,
+`--budget`, `--jobs-dir` and `--harbor` are configurable. Default limits are
+180 simulated flight seconds, 64 actions and 1800 wall-clock agent seconds.
 
 The native scene assets and runtime sources must first be staged into
 `environment/backend/assets/` and `environment/backend/runtime/`. The deployment
@@ -58,7 +67,9 @@ Candidate centers are projected from their recorded image boxes using actual
 capture pose and camera calibration. One-to-one matching uses a 0.65m radius
 around the frozen inserted synthetic targets. Duplicate/unmatched candidates
 are false positives in F2. Coverage is the fraction of 1m grid cells in the
-requested regions inside actual captured camera footprints. Multi-view credit
+requested regions inside actual captured camera footprints. Evidence grouped
+into one candidate must project to consistent ground locations (maximum pair
+separation 1.3m); copying unrelated guesses into every record is rejected. Multi-view credit
 requires matched evidence from distinct captures at least 1m apart. Image
 identities and hashes stay in the sidecar. Full-frame boxes, invented capture
 IDs, repeated frames and local reward-file edits cannot create retrieval
@@ -67,8 +78,23 @@ be used to optimize a still-running trial.
 
 The verifier also saves score details, the authoritative ledger and
 checksum-verified camera images. The reference policy uses only public images
-and telemetry. It follows a survey grid and proposes strong compact thermal
-residuals; it has no access to target coordinates.
+and telemetry. It follows a survey grid, proposes compact components of the
+appropriate thermal polarity and spends remaining budget revisiting candidates;
+it has no access to target coordinates.
+
+At container startup, the scene factory redraws the insertions using a private
+random seed. The seed is not exposed to the agent. Set `AEROROZUM_TASK_SEED` on
+the Harbor host to reproduce an instance or pair model comparisons; the sealed
+ledger records the actual instance seed and field identities. The physical
+response kernels and terrain background arrays are checksummed and unchanged
+when positions are redrawn. Freezing the background arrays avoids differences
+between host/container image-resizing and reduction libraries. A native startup
+check reproduced the staged field hashes for seed 414331 and confirmed that
+another seed changes the fields.
+`AEROROZUM_TASK_PHASE` selects `warming` or `cooling`, and
+`AEROROZUM_TASK_BUDGET` selects 60–600 simulated seconds (180 by default).
+All budgets/conditions are exposed through public status before takeoff. The
+runtime factory and private reference stay in the simulator container.
 
 ## Scope and limitations
 
@@ -78,7 +104,7 @@ homogeneous flat soil with spatially uniform forcing. Thermal frames are perspec
 crops of composed fields; RGB uses a separate
 photographic material. This is an inserted-object investigation benchmark,
 not evidence of real mine detection or accepted full-domain thermal physics.
-The first task uses a frozen layout; independent layout replication and
+Each trial freezes its freshly generated layout; independent layout replication and
 shortcut/exploit controls remain necessary before claiming a robust frontier
 performance gap. GPU post-training experiments are separate until a checkpoint
 has actually been evaluated through the same Harbor task and harness.

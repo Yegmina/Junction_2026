@@ -1,10 +1,10 @@
 """Public tools over native Gazebo; authoritative evidence and grading stay here."""
-import copy,hashlib,json,math,threading,time,uuid
+import copy,hashlib,json,math,os,threading,time,uuid
 from http.server import BaseHTTPRequestHandler,ThreadingHTTPServer
 from pathlib import Path
 import urllib.request,urllib.error
 import numpy as np
-from physics_camera import rotation
+from camera_geometry import pixel_to_ground as project
 
 REGIONS={'east':(5,-5,15,5),'north':(-5,7,5,17)}
 ROOT=Path('/scene');LOCK=threading.RLock()
@@ -14,15 +14,6 @@ def native(path,body=None):
     with urllib.request.urlopen(req,timeout=45) as response:return json.load(response)
 
 def finite(value):return isinstance(value,(int,float)) and not isinstance(value,bool) and math.isfinite(value)
-
-def project(row,u,v):
-    """Ray/plane intersection using the exact captured camera pose and model."""
-    p=row['pose'];w=row['width'];h=row['height'];fx=row['intrinsics']['fx'];fy=row['intrinsics']['fy']
-    r=rotation(p.get('roll_rad',0),p.get('pitch_rad',0),p.get('yaw_rad',0))
-    position=np.array([p['x_m'],p['y_m'],p['z_m']])+r@np.array([0,0,-.12])
-    ray=r@rotation(0,math.pi/2,0)@np.array([1,-(u*w/1000+.5-w/2)/fx,-(v*h/1000+.5-h/2)/fy])
-    if ray[2]>=-1e-6:raise ValueError('Evidence ray does not intersect the ground')
-    hit=position-ray*(position[2]/ray[2]);return (float(hit[0]),float(hit[1]))
 
 def inside(point,polygon):
     sign=[]
@@ -38,6 +29,12 @@ class Investigation:
             metadata=json.loads((ROOT/'sensor-scene'/(phase+'-scene.json')).read_text())
             if metadata['thermal_field_sha256']!=field_hash:raise ValueError('Reference and camera field identities differ')
         truth=reference['targets']
+        self.instance={k:reference.get(k) for k in ('seed','field_hashes','frozen_before_run')}
+        self.budget=float(os.environ.get('AEROROZUM_TASK_BUDGET','180'))
+        if not 60<=self.budget<=600:raise ValueError('Task budget must be 60..600 simulated seconds')
+        camera=json.loads((ROOT/'sensor-scene/scene.json').read_text())
+        self.condition=dict(phase='warming' if camera['physics_time_hours']<12 else 'cooling',physics_elapsed_hours=camera['physics_time_hours'])
+        self.instance.update(budget_s=self.budget,thermal_condition=self.condition)
         self.targets=[dict(id=str(t['id']),x=float(t['x_m']),y=float(t['y_m'])) for t in truth if any(a<=t['x_m']<=c and b<=t['y_m']<=d for a,b,c,d in REGIONS.values())]
         if len(self.targets)!=3:raise ValueError('Frozen benchmark requires three eligible inserted signatures')
         self.cells=[(x+.5,y+.5) for a,b,c,d in REGIONS.values() for x in range(a,c) for y in range(b,d)]
@@ -45,7 +42,7 @@ class Investigation:
     def elapsed(self,s):return 0. if self.start is None else max(0,(float(s['sim_time_s']) if self.end is None else self.end)-self.start)
     def status(self):
         s=native('/status');p=s.get('pose') or {};elapsed=self.elapsed(s)
-        return dict(ready=s.get('ready',False),pose=p,velocity=s.get('velocity'),sim_time_s=s.get('sim_time_s'),flight_elapsed_s=round(elapsed,3),remaining_s=max(0,round(self.budget-elapsed,3)),action_count=self.actions,action_limit=64,regions=REGIONS,coverage_fraction=len(self.covered)/len(self.cells),observations=[{k:r[k] for k in ('id','pose','sim_time_s','width','height','images')} for r in self.observations.values()],report_submitted=self.report is not None,sealed=self.sealed,simulation_only=True)
+        return dict(ready=s.get('ready',False),pose=p,velocity=s.get('velocity'),navigation=dict(target=s.get('requested_target'),arrived=s.get('arrived')),thermal_condition=self.condition,sim_time_s=s.get('sim_time_s'),flight_elapsed_s=round(elapsed,3),remaining_s=max(0,round(self.budget-elapsed,3)),action_count=self.actions,action_limit=64,regions=REGIONS,coverage_fraction=len(self.covered)/len(self.cells),observations=[{k:r[k] for k in ('id','pose','sim_time_s','width','height','intrinsics','camera_mount','images')} for r in self.observations.values()],report_submitted=self.report is not None,sealed=self.sealed,simulation_only=True)
     def wait(self,condition,timeout=300):
         deadline=time.monotonic()+timeout
         while time.monotonic()<deadline:
@@ -71,7 +68,7 @@ class Investigation:
         row={**r,'id':identifier,'images':images};self.observations[identifier]=row
         polygon=[project(row,u,v) for u,v in [(0,0),(1000,0),(1000,1000),(0,1000)]]
         self.covered.update(i for i,cell in enumerate(self.cells) if inside(cell,polygon))
-        return dict(observation_id=identifier,pose=row['pose'],sim_time_s=row['sim_time_s'],images=images,display_mapping=row.get('display_mapping'),status=self.status())
+        return dict(observation_id=identifier,pose=row['pose'],width=row['width'],height=row['height'],intrinsics=row['intrinsics'],camera_mount=row['camera_mount'],rgb_calibration={k:rgb[k] for k in ('width','height','intrinsics','camera_mount')},sim_time_s=row['sim_time_s'],images=images,display_mapping=row.get('display_mapping'),status=self.status())
     def land(self):
         s=native('/status');z=max(2,min(5,s['pose']['z_m']));self.goto(0,0,z)
         self.wait(lambda s,p:math.hypot(p.get('x_m',99),p.get('y_m',99))<.5 and abs(p.get('z_m',99)-z)<.5)
@@ -99,6 +96,7 @@ class Investigation:
             if self.start is None:raise ValueError('Launch first')
             self.goto(data.get('x'),data.get('y'),data.get('altitude'))
         elif command=='observe':return self.observe()
+        elif command=='hover':native('/command',{'command':'hover'})
         elif command=='wait':
             seconds=data.get('seconds',2)
             if not finite(seconds) or not 0<=seconds<=5:raise ValueError('Wait must be 0..5 simulated seconds')
@@ -118,12 +116,18 @@ class Investigation:
             try:
                 refs=candidate['evidence']
                 if not isinstance(refs,list) or not 1<=len(refs)<=16:raise ValueError('Evidence count')
+                hits=[]
                 for e in refs:
                     row=self.observations[e['observation_id']];b=e['bbox'];coords=[b[k] for k in ('x_min','y_min','x_max','y_max')]
                     if not all(finite(v) and 0<=v<=1000 for v in coords):raise ValueError('Invalid box')
                     x0,y0,x1,y1=coords
                     if not (x0<x1 and y0<y1 and (x1-x0)*(y1-y0)<=250000):raise ValueError('Invalid box size')
-                    hit=project(row,(x0+x1)/2,(y0+y1)/2)
+                    hit=project(row,(x0+x1)/2,(y0+y1)/2);hits.append((hit,row))
+                # One record must describe one location. Otherwise copying a
+                # region-wide list of guesses into every record can retrieve
+                # all targets without any object association.
+                if any(math.dist(a[0],b[0])>1.3+1e-8 for j,a in enumerate(hits) for b in hits[j+1:]):raise ValueError('Candidate evidence describes inconsistent ground locations')
+                for hit,row in hits:
                     for target in self.targets:
                         if math.dist(hit,(target['x'],target['y']))<=.65:
                             edges.setdefault(i,set()).add(target['id']);views.setdefault((i,target['id']),{})[row['id']]=row['pose']
@@ -148,7 +152,7 @@ class Investigation:
     def seal(self):
         if self.sealed:return self.result
         self.result=self.score();self.sealed=True
-        document=dict(result=self.result,report=self.report,trace=self.trace,observations=self.observations)
+        document=dict(result=self.result,report=self.report,trace=self.trace,observations=self.observations,instance=self.instance,errors=self.errors)
         (ROOT/'run.json').write_text(json.dumps(document,indent=2));return self.result
 
 TASK=None

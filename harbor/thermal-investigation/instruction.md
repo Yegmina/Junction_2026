@@ -1,8 +1,9 @@
 Investigate provisional thermal signatures in the East and North survey regions
 using the simulated drone. Identify distinct supported candidates, revisit
 uncertain evidence when useful, return to the launch position, land, and submit
-an evidence-linked JSON report. You have 180 simulated seconds of flight time
-and at most 64 tool actions. The simulator keeps flying during your analysis.
+an evidence-linked JSON report. Read `drone status` before takeoff for the
+flight-time budget and thermal condition. You have at most 64 tool actions.
+The simulator keeps flying during your analysis.
 
 Local coordinates are metres east (+x), north (+y), and altitude above flat
 ground. Home is (0,0). Flight bounds are x/y -24..24 and altitude 2..10m. East is
@@ -18,6 +19,7 @@ Use the installed `drone` CLI (run `drone --help`):
 - `drone observe` saves paired images under `/workspace/evidence/`. Inspect the
   actual thermal/RGB images using your image-reading tool. You can retarget
   before arrival, or `drone wait --seconds 2` to advance a short interval.
+- `drone hover` holds the current position while the flight clock continues.
 - `drone land` returns home and lands. Budget enough time for the return.
 - `drone submit --report /workspace/report.json` seals the report permanently.
 
@@ -32,6 +34,14 @@ width/height and area at most one quarter of the image. Group repeated
 sightings of one candidate into one report entry. Each evidence item must refer
 to an actual saved image. Do not use full-frame boxes or enumerate guesses.
 Return an empty candidates list if the observations do not support candidates.
+
+Observations include camera intrinsics, mount and capture pose. The public
+`camera_geometry` Python module provides `pixel_to_ground(observation,u,v)` and
+`ground_to_pixel(observation,x,y)` for normalized pixels and local ground
+coordinates. Use this calibration to associate repeated views; it contains no
+scene or target information. The thermal display is white-hot. The synthetic
+inclusion is an inert polymer cylinder approximately 0.24m across; its visible
+thermal footprint can be larger and depends on the reported thermal condition.
 
 Your score combines one-to-one retrieval of inserted simulated thermal targets,
 coverage of the two requested regions, and independent-view evidence for true

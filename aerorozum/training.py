@@ -199,6 +199,19 @@ def language_lora_targets(model) -> list[str]:
     return names
 
 
+def perception_lora_targets(model, scope='language') -> list[str]:
+    """Opt-in visual projection adaptation; never silently target other towers."""
+    targets=language_lora_targets(model)
+    if scope=='language':return targets
+    if scope!='language_visual_projection':raise ValueError('Unknown perception LoRA scope')
+    projection=[name for name,module in model.named_modules()
+                if name.endswith(('embed_vision.embedding_projection','embed_vision.multimodal_embedder.embedding_projection'))
+                and getattr(module,'in_features',None)==3840
+                and getattr(module,'out_features',None)==3840]
+    if len(projection)!=1:raise ValueError('Expected one Gemma4 visual embedding projection; refusing fallback')
+    return targets+projection
+
+
 def build_dataset(rows: list[dict], stage: str):
     from datasets import Dataset, Image as DatasetImage
     examples=[]
@@ -240,6 +253,10 @@ def train(manifest, stage='compatibility', seed=17, steps=10, model=None):
     elif stream_stage:rows,protocol=load_stream_manifest(manifest,stage)
     elif real_stage:rows,protocol=load_real_transfer_manifest(manifest,stage,seed=seed)
     else:rows,protocol=load_training_manifest(manifest,stage)
+    lora_scope=os.environ.get('AEROROZUM_LORA_SCOPE','language')
+    if lora_scope not in ('language','language_visual_projection'):raise ValueError('Unknown perception LoRA scope')
+    if lora_scope!='language' and not stream_stage:raise ValueError('Visual projection experiment requires streaming perception protocol')
+    protocol['lora_scope']=lora_scope
     memory_probe=os.environ.get('AEROROZUM_MEMORY_PROBE')=='1'
     if memory_probe:protocol.update(research_result=False,scope='GPU memory compatibility probe only')
     record=job('training',stage=stage,seed=seed,model=model_name,completed=0,total=steps,research_result=not memory_probe and stage not in ('compatibility','policy_compatibility'))
@@ -251,6 +268,8 @@ def train(manifest, stage='compatibility', seed=17, steps=10, model=None):
     prior=output/'protocol.json'
     if prior.exists() and json.loads(prior.read_text()).get('manifest_hash')!=protocol['manifest_hash']:
         update(record,'failed',error='Refusing checkpoint recovery with a different dataset');raise ValueError('Checkpoint dataset differs')
+    if prior.exists() and json.loads(prior.read_text()).get('lora_scope','language')!=lora_scope:
+        update(record,'failed',error='Refusing checkpoint recovery with a different adapter scope');raise ValueError('Checkpoint adapter scope differs')
     completed=output/'summary.json'
     if completed.is_file():
         previous=json.loads(completed.read_text())
@@ -304,8 +323,10 @@ def train(manifest, stage='compatibility', seed=17, steps=10, model=None):
         elif parent is not None:
             trained=PeftModel.from_pretrained(base,parent,is_trainable=True)
         else:
-            targets=language_lora_targets(base)
+            targets=perception_lora_targets(base,lora_scope)
             trained=get_peft_model(base,LoraConfig(r=settings['training']['lora_rank'],lora_alpha=32,lora_dropout=.05,target_modules=targets,bias='none',task_type='CAUSAL_LM'))
+        if lora_scope=='language_visual_projection' and not any('embed_vision.' in name and '.embedding_projection.' in name and p.requires_grad for name,p in trained.named_parameters()):
+            raise ValueError('Selected parent adapter does not train the requested visual projection')
         trained.enable_input_require_grads()
         probe_image=next((r['image_paths'][0] for r in rows if r.get('image_paths')),None) if policy_stage else rows[0]['image_path']
         if not probe_image:raise ValueError('At least one image-bearing training example is required')
@@ -317,15 +338,17 @@ def train(manifest, stage='compatibility', seed=17, steps=10, model=None):
             zero_variance_steps=0
             early_stop_reason=None
             def on_pre_optimizer_step(self,args,state,control,model=None,**kwargs):
-                squared=0.;count=0
-                for p in model.parameters():
+                squared=0.;count=0;visual_squared=0.
+                for name,p in model.named_parameters():
                     if p.requires_grad and p.grad is not None:
                         if not torch.isfinite(p.grad).all(): raise FloatingPointError('Non-finite training gradient')
-                        squared+=float(p.grad.float().square().sum());count+=p.grad.numel()
+                        value=float(p.grad.float().square().sum());squared+=value;count+=p.grad.numel()
+                        if 'embed_vision.' in name and '.embedding_projection.' in name:visual_squared+=value
                 if not count or not math.isfinite(squared): raise FloatingPointError('No finite LoRA gradients')
+                if lora_scope=='language_visual_projection' and not visual_squared>0:raise FloatingPointError('Visual projection received no task gradient')
                 self.checks+=1
                 self.nonzero_checks+=int(squared>0)
-                save(output/'gradient_checks.json',{'checks':self.checks,'nonzero_checks':self.nonzero_checks,'last_gradient_l2':math.sqrt(squared),'finite':True})
+                save(output/'gradient_checks.json',{'checks':self.checks,'nonzero_checks':self.nonzero_checks,'last_gradient_l2':math.sqrt(squared),'visual_projection_gradient_l2':math.sqrt(visual_squared),'finite':True})
             def on_log(self,args,state,control,logs=None,**kwargs):
                 metrics={k:float(v) for k,v in (logs or {}).items() if isinstance(v,(int,float)) and math.isfinite(float(v))}
                 if logs and 'loss' in logs and not math.isfinite(float(logs['loss'])): raise FloatingPointError('Non-finite training loss')
