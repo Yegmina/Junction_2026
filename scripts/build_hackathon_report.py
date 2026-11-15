@@ -140,7 +140,7 @@ for name in ['temporal-review-diagnostic-v1.json','background-review-final-v1.js
     read(E/name)
 fields=['family','variant','seed','phase','status','metric','value','actual_updates','requested_updates','source','source_sha256']
 with (OUT/'experiment-ledger.csv').open('w') as stream:
-    writer=csv.DictWriter(stream,fieldnames=fields);writer.writeheader();writer.writerows(ledger)
+    writer=csv.DictWriter(stream,fieldnames=fields,lineterminator="\n");writer.writeheader();writer.writerows(ledger)
 manifest=dict(scope='Hackathon artifact snapshot; rows may share parents and are not independent trials. Physics rows are recorded case states, not numerical acceptance certificates.',
               source_sha256=sources,ledger_rows=len(ledger),native_multiseed_trials=len(native['records']),physics_case_state_records=len(physics['cases']),
               training_and_mission_metrics_separate=True,field_accuracy_claimed=False)
