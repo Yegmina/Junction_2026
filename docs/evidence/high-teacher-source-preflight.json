@@ -1,0 +1,10 @@
+{
+  "at": "2026-11-15T02:52:05.308943+00:00",
+  "status": "passed",
+  "source": "/opt/aerorozum/postsubmission/high-teacher-visual-source-512-snapshots-v1",
+  "training_sha256": "d9b8f8e85b4ea6d4d28a802d8b94f7f9b96bac5b9e1ac14d4d2a6f037bd97c71",
+  "snapshot_sha256": "23601277803a6dd6b98caa0f45c9d975810a89f9b78d248181bba328a41ddc2f",
+  "source_transform_executed_from_exact_queued_launcher": true,
+  "no_gpu_allocated": true,
+  "no_model_or_training_launched": true
+}

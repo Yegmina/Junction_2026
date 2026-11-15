@@ -35,7 +35,7 @@ def prepare():
     base_path=ART/'pipeline/inputs/vm-ingestion/candidate.json';base=json.loads(base_path.read_text())
     registry_path=INPUT/'labelling/robotics-er2-airborne/session-splits.json'
     registry=json.loads(registry_path.read_text());sessions=registry['sessions']
-    folders=[INPUT/'labelling'/name for name in ['robotics-er2-high-thinking-v1','robotics-er2-high-thinking-requalified-v1']]
+    folders=[INPUT/'labelling'/name for name in ['robotics-er2-high-thinking-v1','robotics-er2-high-thinking-requalified-v1','robotics-er2-high-thinking-recovery-v1']]
     if not all((p/'settled.json').exists() for p in folders):return None
     records=[];held=set(base['sealed_test_image_hashes']);held.update(r['sha256'] for r in base['images'] if r['split']!='train')
     for folder in folders:
@@ -104,7 +104,7 @@ def launch(seed,gpu,catalog):
     sizes=[len(processor.tokenizer.encode(json.dumps({'detections':[{'bbox':b.get('bbox',b)} for b in r['boxes']]},separators=(',',':')),add_special_tokens=False)) for r in manifest['images']]
     limit=max(512,128*math.ceil((max(sizes)+32)/128))
     if limit>2048:raise ValueError('Gold targets require a separately qualified longer-completion recipe; no rows have been dropped')
-    source=ROOT/('postsubmission/high-teacher-visual-source-'+str(limit)+'-v1')
+    source=ROOT/('postsubmission/high-teacher-visual-source-'+str(limit)+'-snapshots-v1')
     if not source.exists():
         shutil.copytree(ROOT/'postsubmission/expanded-visual-source-v2',source,ignore=shutil.ignore_patterns('__pycache__','*.pyc'))
         target=source/'aerorozum/training.py';code=target.read_text()
@@ -115,9 +115,21 @@ def launch(seed,gpu,catalog):
         probe="else rows[0]['image_path']"
         if code.count(probe)!=1:raise ValueError('Unexpected image-influence probe source')
         code=code.replace(probe,"else next((r['image_path'] for r in rows if r.get('image_statistics',{}).get('gray_stddev',0)>=3),rows[0]['image_path'])")
+        line=next(line for line in code.splitlines() if 'trainer=SFTTrainer(' in line)
+        if line.count('callbacks=[monitor]')!=1:raise ValueError('Unexpected SFT callback source')
+        code=code.replace(line,"            from .snapshot_monitor import SnapshotMonitor\n"+line.replace('callbacks=[monitor]',"callbacks=[monitor,SnapshotMonitor(output/'fixed-sft-snapshots')]"))
+        checked=ROOT/'postsubmission/snapshot-qualification-source-v1/aerorozum/snapshot_monitor.py'
+        qualification=json.loads((NIGHT/'snapshot-monitor-qualification.json').read_text())
+        if qualification.get('status')!='passed' or module.sha(checked)!=qualification['source_sha256']:
+            raise ValueError('Read-only snapshot qualification differs')
+        shutil.copyfile(checked,source/'aerorozum/snapshot_monitor.py')
         target.write_text(code)
         save(source/'high-teacher-source-receipt.json',dict(completion_limit=limit,
-            all_admitted_positives_preserved=True,probe_uses_nonconstant_original=True,optimizer_unchanged=True))
+            all_admitted_positives_preserved=True,probe_uses_nonconstant_original=True,optimizer_unchanged=True,
+            fixed_read_only_sft_snapshots=True,snapshot_monitor_sha256=qualification['source_sha256']))
+    receipt=json.loads((source/'high-teacher-source-receipt.json').read_text())
+    if not receipt.get('fixed_read_only_sft_snapshots') or module.sha(source/'aerorozum/snapshot_monitor.py')!=receipt['snapshot_monitor_sha256']:
+        raise ValueError('Incomplete or changed read-only snapshot source')
     parent_path=ART/'submission-visual-projection-v2/updates-480/result.json';parent=json.loads(parent_path.read_text())
     spec=module.recipe(parent,seed)
     spec.update(kind='high_teacher_fresh_visual',sft_steps=math.ceil(len(manifest['images'])*3.2/4),grpo_steps=48,continuation_steps=0,
@@ -126,6 +138,7 @@ def launch(seed,gpu,catalog):
         source_continuation=str(ROOT/'harbor/grpo-only-source-v1'),parent_adapter='unused_fresh_base',
         maximum_gold_target_tokens=max(sizes),grpo_completion_limit=limit,fixed_epoch_target=3.2,
         automatic_promotion=False,test_access=False,high_teacher_dataset_signature=catalog['dataset_signature'],
+        fixed_sft_snapshot_steps=sorted({math.ceil(len(manifest['images'])*epoch/4) for epoch in [.5,1.,2.]}),
         lease=dict(id='high-teacher-visual-'+str(seed),gpu_ids=[gpu],expires_at=(datetime.now(timezone.utc)+timedelta(hours=19)).isoformat(),
                    purpose='Next full-positive HIGH-teacher visual generation; frozen development evaluation'))
     module.lease(ROOT,spec['lease']);started=False
@@ -135,10 +148,12 @@ def launch(seed,gpu,catalog):
         if gpu==0 or uuids[gpu] in used:raise ValueError('GPU is still occupied; preserve its current job')
         save(out/'train.json',manifest)
         files=[Path(__file__).resolve(),Path(spec['manifest']),validation,ART/'postsubmission-high-teacher-visual-v1/catalog.json',
-            source/'aerorozum/training.py',source/'aerorozum/gradient_monitor.py',source/'configs/research.json',ROOT/'postsubmission/replicate_visual_recipe.py']
+            source/'aerorozum/training.py',source/'aerorozum/gradient_monitor.py',source/'aerorozum/snapshot_monitor.py',
+            NIGHT/'snapshot-monitor-qualification.json',source/'configs/research.json',ROOT/'postsubmission/replicate_visual_recipe.py']
         spec['input_hashes']={str(p):module.sha(p) for p in files};save(out/'specification.json',spec)
         env=dict(CUDA_VISIBLE_DEVICES=str(gpu),AEROROZUM_DATA_ROOT=str(ART),AEROROZUM_LOCAL_MODEL_PATH=str(ROOT/'models/gemma-4-12B-it'),
-            AEROROZUM_GPU_MEMORY_FRACTION='.88',HF_HUB_OFFLINE='1',OMP_NUM_THREADS='2',MKL_NUM_THREADS='2',TOKENIZERS_PARALLELISM='false')
+            AEROROZUM_GPU_MEMORY_FRACTION='.88',HF_HUB_OFFLINE='1',OMP_NUM_THREADS='2',MKL_NUM_THREADS='2',TOKENIZERS_PARALLELISM='false',
+            AEROROZUM_SFT_SNAPSHOT_STEPS=json.dumps(spec['fixed_sft_snapshot_steps']))
         command=['systemd-run','--unit=aerorozum-high-teacher-visual-'+str(seed),'--property=RuntimeMaxSec=64800','--property=CPUQuota=300%','--property=MemoryMax=64G',
             '--property=StandardOutput=append:'+str(out/'worker.log'),'--property=StandardError=append:'+str(out/'worker.log')]
         command.extend('--setenv='+key+'='+value for key,value in env.items())

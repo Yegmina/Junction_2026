@@ -73,7 +73,8 @@ def archive_inputs(input_path=None,relative='airborne-input-pixels-v1',receipt_n
 def terminal_paths():
     paths=[]
     for family in ['postsubmission-visual-replication-v1','postsubmission-expanded-visual-v1',
-                   'postsubmission-expanded-controls-v1','postsubmission-high-teacher-visual-v1']:
+                   'postsubmission-expanded-controls-v1','postsubmission-high-teacher-visual-v1',
+                   'postsubmission-high-teacher-snapshots-v1']:
         catalog=ART/family/'catalog.json'
         if catalog.exists():paths.append((catalog,'catalogs/'+family+'/catalog.json'))
         for p in (ART/family).rglob('specification.json'):
@@ -105,7 +106,10 @@ def terminal_paths():
     for name in ['visual-replications-summary.json','gemma-proxy-availability-recovery.json']:
         path=STUDY/name
         if path.exists():paths.append((path,'evidence/'+name))
-    for name in ['post-label-review-source-v1','high-teacher-students-source-v1','maintenance-source-v3']:
+    for name in ['post-label-review-source-v1','high-teacher-students-source-v1','maintenance-source-v3',
+                 'high-teacher-students-source-v2','high-teacher-students-source-v3','high-failure-recovery-source-v1',
+                 'snapshot-qualification-source-v1','native-chat-queue-v2','native-outcome-source-v1',
+                 'maintenance-source-v4','snapshot-evaluation-source-v2']:
         path=ROOT/'postsubmission'/name
         if path.exists():paths.append((path,'sources/'+name))
     return paths

@@ -80,3 +80,17 @@ The [native outcome grid](evidence/native-outcomes-v1.png) shows every terminal 
 A separately predeclared canonical-tool Gemma control waits for the original 20-case Gemma cohort to settle. It retains the same deployed language adapter and task instances, but uses native tool-message formatting with a 16,384-token context to investigate the earlier long-context memory/protocol failures. Tool formatting and context change together, so any difference cannot be attributed to either alone. There are no outcome-based retries, no checkpoint promotion and no changes to the submitted environment or verifier. A simple protocol probe precedes the first actual control case.
 
 The plotting dependencies live in an isolated cloud plotting environment. The training environment was left unchanged. Browser verification again passed desktop and 390 px mobile checks with actual live values and no injected metrics.
+
+## Primary HIGH pass settled, 02:53 UTC
+
+The primary pass issued 14,657 requests and retained **14,626 schema-valid results**, with 31 failed cases. Every valid result was uploaded, with zero pending uploads. The separately aligned 1,199-frame pass then started after the rate-window handover. Some failures are service-unavailable responses; others are malformed paid outputs. All originals and failures remain archived.
+
+A single bounded recovery pass follows both batches. Its separate prompt, `thermal-v2-format-recovery-v1`, adds only a one-JSON-object / finite ordered box-format clarification to V2, while preserving the same images, HIGH setting, candidate recall instructions and 0.60 threshold. Each failed frame receives at most one additional attempt. Still-invalid recoveries remain quarantined. New full-teacher catalogs and supplemental context/crop reviews wait for this pass; they retain its distinct prompt provenance.
+
+## Additional checkpoint evidence, declared before HIGH-teacher training
+
+The next three-seed full-teacher generation retains its full 3.2 effective epochs and unchanged optimizer settings. Fixed adapter snapshots at approximately 0.5, 1.0 and 2.0 epochs are retained in addition to its final checkpoints, then evaluated separately using the same development protocol. These added comparisons are repeatedly used development evidence, with no automatic deployment or independent accuracy claim.
+
+The actual snapshot callback passed a paired CPU qualification on a real tiny PEFT model with dropout: ten optimizer steps, three real adapter serializations, bit-identical losses and all final parameters, and unchanged RNG streams / parameter and gradient versions. Runtime guards also check those invariants at actual snapshot saves. [Qualification receipt](evidence/snapshot-monitor-qualification.json). The exact queued source transformation compiled successfully in the cloud without allocating a GPU or launching training. [Preflight receipt](evidence/high-teacher-source-preflight.json).
+
+The first 2,400-image seed's supervised development evaluation completed at F2 **0.667** (TP 57, FP 18, FN 31; valid JSON 120/120; zero disagreements on the 32 model-zero reference frames). Its initial GRPO phase stopped at 15 of at most 48 updates after four consecutive zero-variance groups. Its GRPO evaluation and the other seeds remain pending; this partial larger-data cohort is separate from the completed 602-image three-seed results.

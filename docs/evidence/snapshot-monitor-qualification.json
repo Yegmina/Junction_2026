@@ -1,0 +1,14 @@
+{
+  "at": "2026-11-15T02:48:37.162939+00:00",
+  "status": "passed",
+  "backend": "CPU tiny real PEFT Llama; no GPU allocation",
+  "optimizer_steps": 10,
+  "dropout": 0.1,
+  "three_real_adapter_serializations": true,
+  "actual_trainer_callback_exercised": true,
+  "losses_bit_identical": true,
+  "all_model_parameters_bit_identical": true,
+  "rng_and_parameter_and_gradient_guards_passed": true,
+  "source_sha256": "23601277803a6dd6b98caa0f45c9d975810a89f9b78d248181bba328a41ddc2f",
+  "scope": "Read-only adapter serialization qualification; not a claim of improved model accuracy"
+}

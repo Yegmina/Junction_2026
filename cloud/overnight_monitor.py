@@ -38,7 +38,8 @@ def sample(previous):
     declared=read(ROOT/'airborne-labeler/artifacts/labelling/robotics-er2-high-thinking-v1/frozen-inputs.json')
     training=[]
     for family in ['postsubmission-visual-replication-v1','postsubmission-expanded-visual-v1',
-                   'postsubmission-expanded-controls-v1','postsubmission-high-teacher-visual-v1']:
+                   'postsubmission-expanded-controls-v1','postsubmission-high-teacher-visual-v1',
+                   'postsubmission-high-teacher-snapshots-v1']:
         for spec_path in (ART/family).rglob('specification.json'):
             spec=read(spec_path);folder=spec_path.parent;state=read(folder/'status.json')
             phases=[]
@@ -47,6 +48,11 @@ def sample(previous):
                 if status or result:
                     evaluations={k:v for k,v in result.get('results',{}).items() if k.endswith('_evaluation')}
                     phases.append(dict(phase=name,status=status,evaluations={k:{n:v.get(n) for n in ['micro_f2','tp','fp','fn','valid_json_fraction','negative_false_alarm_rate']} for k,v in evaluations.items()}))
+            if family=='postsubmission-high-teacher-snapshots-v1':
+                for path in sorted(folder.glob('step-*/summary.json')):
+                    value=read(path)
+                    phases.append(dict(phase=path.parent.name,status=dict(status=value.get('status')),
+                        evaluations=dict(development={n:value.get(n) for n in ['micro_f2','tp','fp','fn','valid_json_fraction','negative_false_alarm_rate']})))
             namespace=spec['namespace']
             metrics=[]
             for file in (ART/'training'/namespace).glob('**/metrics.jsonl'):
@@ -81,11 +87,14 @@ def sample(previous):
     reviews={mode:dict(progress=read(STUDY/('post-label-'+mode+'-v1/progress.json')),
                             report=read(STUDY/('post-label-'+mode+'-v1/report.json')))
              for mode in ['temporal','background-tiles']}
+    recovery_folder=ROOT/'airborne-labeler/artifacts/labelling/robotics-er2-high-thinking-recovery-v1'
+    recovery=dict(progress=read(recovery_folder/'progress.json'),settled=read(recovery_folder/'settled.json'),
+        available_unique_frames=read(recovery_folder/'frozen-inputs.json').get('unique_eligible_available'))
     receipt=dict(at=utcnow(),cpu_utilization_percent=cpu,host_cores=48,core_quota=43,
         disk_free_gib=shutil.disk_usage(ROOT).free/1024**3,gpus=gpus,reasoning=reasoning,
         high_thinking=dict(progress=high,available_unique_frames=declared.get('unique_eligible_available'),
                            missing_source_pixels=len(declared.get('missing',[])),settled=read(ROOT/'airborne-labeler/artifacts/labelling/robotics-er2-high-thinking-v1/settled.json')),
-        requalified_high_thinking=extra,post_label_reviews=reviews,
+        requalified_high_thinking=extra,post_label_reviews=reviews,high_thinking_failure_recovery=recovery,
         training=training,native=native,physics=physical,accepted_physical_pairs=physics.get('accepted_pairs'),
         submission_unchanged=True,opened_test_reused_for_selection=False,
         interpretation='Development research. Model labels are not human-confirmed physical mine locations.')
