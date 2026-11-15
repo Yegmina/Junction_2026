@@ -2,8 +2,16 @@ import hashlib
 import importlib.util
 import io
 import json
+import errno
+import os
 from pathlib import Path
+import pty
+import select
+import signal
 import stat
+import subprocess
+import sys
+import time
 import zipfile
 
 import pytest
@@ -17,6 +25,61 @@ def load(name):
 
 
 wizard = load('opencode_wizard')
+
+
+@pytest.mark.parametrize('answer,expected', [(b'chosen\n', 'chosen'), (b'\n', 'default')])
+def test_prompt_uses_real_controlling_terminal_even_with_piped_stdin(answer, expected):
+    source = str(Path(wizard.__file__).resolve())
+    program = ("import importlib.util,io,sys; "
+               f"s=importlib.util.spec_from_file_location('wizard',{source!r}); "
+               "w=importlib.util.module_from_spec(s);s.loader.exec_module(w); "
+               "sys.stdin=io.StringIO('must not read this\\n'); "
+               "print('ANSWER='+w.ask('Terminal test','default'),flush=True)")
+    pid, fd = pty.fork()
+    if pid == 0:
+        os.execv(sys.executable, [sys.executable, '-c', program])
+    output, answered, reaped = b'', False, False
+    try:
+        deadline = time.monotonic() + 10
+        while time.monotonic() < deadline:
+            if not select.select([fd], [], [], .1)[0]:
+                continue
+            try:
+                block = os.read(fd, 65536)
+            except OSError as error:
+                if error.errno == errno.EIO:
+                    break
+                raise
+            if not block:
+                break
+            output += block
+            if b'Terminal test [default]: ' in output and not answered:
+                os.write(fd, answer)
+                answered = True
+        assert answered, output.decode(errors='replace')
+        assert ('ANSWER=' + expected).encode() in output, output.decode(errors='replace')
+        _, status = os.waitpid(pid, 0)
+        reaped = True
+        assert os.waitstatus_to_exitcode(status) == 0
+    finally:
+        os.close(fd)
+        if not reaped:
+            try:
+                os.kill(pid, signal.SIGKILL)
+            except ProcessLookupError:
+                pass
+            os.waitpid(pid, 0)
+
+
+def test_prompt_rejects_a_session_without_any_controlling_terminal():
+    source = str(Path(wizard.__file__).resolve())
+    program = ("import importlib.util; "
+               f"s=importlib.util.spec_from_file_location('wizard',{source!r}); "
+               "w=importlib.util.module_from_spec(s);s.loader.exec_module(w);w.ask('Prompt')")
+    result = subprocess.run([sys.executable, '-c', program], start_new_session=True,
+                            input='not a terminal\n', capture_output=True, text=True, timeout=10)
+    assert result.returncode != 0
+    assert 'Run this wizard from an interactive terminal.' in result.stderr
 
 
 def package(tmp_path, extra=None):

@@ -53,9 +53,11 @@ def run(args, *, env=None, capture=False):
 def ask(prompt, default=None):
     suffix = ' [%s]' % default if default is not None else ''
     try:
-        with open('/dev/tty', 'r+') as terminal:
-            terminal.write(prompt + suffix + ': ')
-            terminal.flush()
+        # Buffered read/write streams require seeking, which a terminal does
+        # not support. Separate handles also work when stdin carries a script.
+        with open('/dev/tty', 'w') as output, open('/dev/tty', 'r') as terminal:
+            output.write(prompt + suffix + ': ')
+            output.flush()
             answer = terminal.readline()
     except OSError:
         raise SetupError('Run this wizard from an interactive terminal.') from None

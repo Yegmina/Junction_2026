@@ -1,0 +1,28 @@
+{
+  "at": "2026-11-15T06:31:09.440622+00:00",
+  "status": "public_exact_command_verified",
+  "terminal_prompt_fix": "Separate read and write handles avoid requiring a seekable terminal",
+  "wizard_sha256": "950a16a15b2d35adc300763703f8a62ea05dfff9eaa75315f1786c117f42e89e",
+  "bootstrap_sha256": "bf55b746c65363a36514b0243c16d8e56eb1f576e0f6e61e6ab0d8c3a82b8320",
+  "regression_tests_passed": 10,
+  "checks": [
+    {
+      "shell": "bash",
+      "command": "bash <(curl -fsSL https://136.115.179.240/start.sh)",
+      "prompt_reached": true,
+      "exit_code": 130,
+      "stopped_before_setup_and_inference": true,
+      "output": "\r\nAeroRozum \u00b7 OpenCode mission starter\r\n\r\nWhere should the environment and results be saved? [/home/yehormsi/.local/share/aerorozum-opencode]: ^C\r\nStopped. Downloads and setup are retained for the next launch.\r\n"
+    },
+    {
+      "shell": "zsh",
+      "command": "bash <(curl -fsSL https://136.115.179.240/start.sh)",
+      "prompt_reached": true,
+      "exit_code": -2,
+      "stopped_before_setup_and_inference": true,
+      "output": "\r\nAeroRozum \u00b7 OpenCode mission starter\r\n\r\nWhere should the environment and results be saved? [/home/yehormsi/.local/share/aerorozum-opencode]: ^C\r\nStopped. Downloads and setup are retained for the next launch.\r\n"
+    }
+  ],
+  "paid_inference_issued": false,
+  "package_archive_modified": false
+}

@@ -26,11 +26,11 @@ fi
 starter_tmp=$(mktemp -d)
 trap 'rm -rf "$starter_tmp"' EXIT
 curl --proto '=https' --tlsv1.2 -fsSL \
-  'https://storage.googleapis.com/aerorozum-junction2026-submission-avid-relic-509408-e4/opencode-wizard-v2.py' \
+  'https://storage.googleapis.com/aerorozum-junction2026-submission-avid-relic-509408-e4/opencode-wizard-v3.py' \
   -o "$starter_tmp/wizard.py"
 python3 - "$starter_tmp/wizard.py" <<'VERIFY'
 import hashlib, pathlib, sys
-if hashlib.sha256(pathlib.Path(sys.argv[1]).read_bytes()).hexdigest() != '870c3cc54cf737b7e445c1b8c16bf4d47991755d88fdc3a58b5b4cf8659599c8':
+if hashlib.sha256(pathlib.Path(sys.argv[1]).read_bytes()).hexdigest() != '950a16a15b2d35adc300763703f8a62ea05dfff9eaa75315f1786c117f42e89e':
     raise SystemExit('Starter verification failed. Downloaded code was not executed.')
 VERIFY
 python3 "$starter_tmp/wizard.py" "$@"

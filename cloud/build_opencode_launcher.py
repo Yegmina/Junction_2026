@@ -33,7 +33,7 @@ fi
 starter_tmp=$(mktemp -d)
 trap 'rm -rf "$starter_tmp"' EXIT
 curl --proto '=https' --tlsv1.2 -fsSL \\
-  'https://storage.googleapis.com/aerorozum-junction2026-submission-avid-relic-509408-e4/opencode-wizard-v2.py' \\
+  'https://storage.googleapis.com/aerorozum-junction2026-submission-avid-relic-509408-e4/opencode-wizard-v3.py' \\
   -o "$starter_tmp/wizard.py"
 python3 - "$starter_tmp/wizard.py" <<'VERIFY'
 import hashlib, pathlib, sys
