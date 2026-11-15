@@ -1,5 +1,5 @@
 {
-  "at": "2026-11-15T03:54:38.285936+00:00",
+  "at": "2026-11-15T04:09:50.748940+00:00",
   "seeds": [
     {
       "seed": 17,
@@ -87,13 +87,41 @@
       "stages": [
         {
           "stage": "SFT",
-          "state": "pending",
-          "source": "postsubmission-expanded-visual-v1/seed-43/initial/result.json"
+          "state": "completed",
+          "source": "postsubmission-expanded-visual-v1/seed-43/initial/result.json",
+          "micro_f2": 0.7727272727272727,
+          "tp": 68,
+          "fp": 20,
+          "fn": 20,
+          "valid_json_fraction": 1.0,
+          "negative_false_alarm_rate": 0.0,
+          "examples": 120,
+          "protocol_hash": "6a0c6f770f07e47e81d450d9caf651de667b5405395e38def6ef72b4e1bf3a04",
+          "actual_updates": 1920,
+          "maximum_requested_updates": 1920,
+          "early_stopped": false,
+          "early_stop_reason": null,
+          "train_runtime_s": 7067.4397,
+          "manifest_hash": "9548896109bf4a7fcac74a6cd7f2472446dffc87f8472ffa98155d946f139409"
         },
         {
           "stage": "Initial GRPO",
-          "state": "pending",
-          "source": "postsubmission-expanded-visual-v1/seed-43/initial/result.json"
+          "state": "completed",
+          "source": "postsubmission-expanded-visual-v1/seed-43/initial/result.json",
+          "micro_f2": 0.7727272727272727,
+          "tp": 68,
+          "fp": 20,
+          "fn": 20,
+          "valid_json_fraction": 1.0,
+          "negative_false_alarm_rate": 0.0,
+          "examples": 120,
+          "protocol_hash": "310cee86ccb2f226350e98aadeb23198bc7dc1a15c7eac74096fb10f8a58b6cd",
+          "actual_updates": 35,
+          "maximum_requested_updates": 48,
+          "early_stopped": true,
+          "early_stop_reason": "Four consecutive zero-variance task reward groups; do not extend KL-only updates",
+          "train_runtime_s": 439.2642,
+          "manifest_hash": "9548896109bf4a7fcac74a6cd7f2472446dffc87f8472ffa98155d946f139409"
         },
         {
           "stage": "Extra SFT",
@@ -150,8 +178,22 @@
         },
         {
           "stage": "Extra SFT",
-          "state": "pending",
-          "source": "postsubmission-expanded-controls-v1/seed-91/sft-control/initial/result.json"
+          "state": "completed",
+          "source": "postsubmission-expanded-controls-v1/seed-91/sft-control/initial/result.json",
+          "micro_f2": 0.6338028169014085,
+          "tp": 54,
+          "fp": 20,
+          "fn": 34,
+          "valid_json_fraction": 1.0,
+          "negative_false_alarm_rate": 0.0,
+          "examples": 120,
+          "protocol_hash": "72b32845f60f604b88b29894d14482f580f6132c0237f42b9c445a10add4033c",
+          "actual_updates": 96,
+          "maximum_requested_updates": 96,
+          "early_stopped": false,
+          "early_stop_reason": null,
+          "train_runtime_s": 324.6649,
+          "manifest_hash": "86a53e9ee1abd8ee07a87d90498a6736ceca3f2771312b53ef99aefb5359be2b"
         },
         {
           "stage": "Extra GRPO",
@@ -168,7 +210,9 @@
     "postsubmission-expanded-visual-v1/seed-17/initial/result.json": "054b525c10d3d013a7476c1282983d85b768a66ff1839613e0f9f15c3172de3e",
     "postsubmission-expanded-controls-v1/seed-17/sft-control/initial/result.json": "30dd79f5246f6af0c17febcd5e0023a55a9e5791322ef4a5aed6bc3656568698",
     "postsubmission-expanded-controls-v1/seed-17/grpo/continuation/result.json": "5c3c3214a6665463890c8bf056346a75bab4d3b1875ca6d6e98371120ddf1e8e",
-    "postsubmission-expanded-visual-v1/seed-91/initial/result.json": "4233dd96563c1aba262cf9bd5b89188368993aade7fffd4521e069bf442dc88d"
+    "postsubmission-expanded-visual-v1/seed-43/initial/result.json": "355ebc58ca13339e3694da1c98266bd6f64e62821927a1bec1254716c2c99542",
+    "postsubmission-expanded-visual-v1/seed-91/initial/result.json": "4233dd96563c1aba262cf9bd5b89188368993aade7fffd4521e069bf442dc88d",
+    "postsubmission-expanded-controls-v1/seed-91/sft-control/initial/result.json": "523a8f9836a5a19774f369d3f16b3cff698e5227ee00a187417816eb9cfae2f9"
   },
   "development_reference_provenance": {
     "original_manual": 30,

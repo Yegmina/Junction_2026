@@ -1,0 +1,62 @@
+{
+  "at": "2026-11-15T04:19:14.291026+00:00",
+  "snapshot": {
+    "at": "2026-11-15T04:18:35.069280+00:00",
+    "adapter": "/opt/aerorozum/artifacts/training/postsubmission-high-teacher-visual-v1/seed-17/initial/google_gemma-4-12B-it/stream_sft/seed-17/fixed-sft-snapshots/step-586/adapter",
+    "rng_streams_unchanged": true,
+    "parameter_and_gradient_versions_unchanged": true,
+    "optimizer_step": 586,
+    "actual_epoch": 0.5
+  },
+  "backup": {
+    "at": "2026-11-15T04:18:48.771533+00:00",
+    "seed": 17,
+    "optimizer_step": 586,
+    "status": "server_digest_verified",
+    "snapshot_identity_sha256": "67cd602b6a11ee200fca876858579590c1c15f874cbb99a73612b4557756ca11",
+    "files": {
+      "adapter/README.md": {
+        "size": 5238,
+        "sha256": "ea8115d41e0222b84275fda09d3efbc308ae702c2b3c4c8d5130994a0692ad74",
+        "md5": "kEfjgGLEaCUfB3kY1E/2rA=="
+      },
+      "adapter/adapter_config.json": {
+        "size": 1163,
+        "sha256": "7dc0659be2fbcccf7051b1c1f8faa6f0e9bc7c3846010c0c07646d82bb416ec5",
+        "md5": "ho1Hmg3EinzksFxDRfPZ2A=="
+      },
+      "adapter/adapter_model.safetensors": {
+        "size": 42067976,
+        "sha256": "77bb3ae0061814e8c525e3c6efaad244e0ebecd421ba45315511e446617e58d6",
+        "md5": "XCPxU75AiTMDuhHgKAJtAQ=="
+      },
+      "receipt.json": {
+        "size": 363,
+        "sha256": "80656280ffb420481474ed0b4cef1218146af796034bdef365702137a6b80670",
+        "md5": "m5dMGgZrGZKxt4QQuKeqJQ=="
+      }
+    },
+    "object_generations": {
+      "adapter/README.md": "1794716324463139",
+      "adapter/adapter_config.json": "1794716324454391",
+      "adapter/adapter_model.safetensors": "1794716326468908",
+      "receipt.json": "1794716324406407"
+    },
+    "specification_sha256": "f519dbd30cacb619ce1ea987ebeb7803bcc7c3f0d9b4a91bd9834d3030d46881",
+    "uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/fixed-sft-snapshots/seed-17/step-586/67cd602b6a11ee200fca876858579590c1c15f874cbb99a73612b4557756ca11/",
+    "no_local_deletion": true,
+    "parent_training_unchanged": true,
+    "automatic_promotion": false
+  },
+  "continued_training_metric": {
+    "step": 597,
+    "at": "2026-11-15T04:19:12.389978+00:00",
+    "loss": 0.4544193744659424,
+    "grad_norm": 3.0509984493255615,
+    "learning_rate": 2.5233271127699282e-05,
+    "entropy": 0.3980880454182625,
+    "mean_token_accuracy": 0.8253771066665649,
+    "num_tokens": 933918.0,
+    "epoch": 0.5093856655290102
+  }
+}

@@ -41,7 +41,16 @@
     "observed_real_mission_action_count": 12,
     "observed_flight_elapsed_s": 53.2
   },
-  "smoke_final_score_pending": true,
+  "smoke_final_score_pending": false,
   "accepted_carbon_trial_preserved": true,
-  "previous_failed_trials_not_retried": true
+  "previous_failed_trials_not_retried": true,
+  "smoke_final": {
+    "finished_at": "2026-11-15T04:08:57.620311",
+    "infrastructure_errors": 0,
+    "score": 0.0,
+    "harbor_result_sha256": "0fc63d6475ab10f5912ff97fedf10a7ebb78f4390790cf7697bd0da7e4811af8",
+    "verifier_ledger_sha256": "e8870293107099bfd5b8c7c4923d61f4edacaf002a754798c46e22820241a39a",
+    "job": "/opt/aerorozum/harbor/jobs/ops-prebuilt-smoke-941999",
+    "not_part_of_declared_model_cohort": true
+  }
 }

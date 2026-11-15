@@ -25,7 +25,7 @@ for row, color in zip(data['seeds'], colors):
                             textcoords='offset points', fontsize=9, color=color)
         if len(xs) < 2:
             ax.text(.02, .07 + .06 * (17, 43, 91).index(row['seed']),
-                    f"Seed {row['seed']}: " + ', '.join(s['stage'] + ' pending' for s in values
+                    f"Seed {row['seed']}: " + ', '.join(s['stage'] + ' ' + s['state'] for s in values
                                                      if s['state'] != 'completed'),
                     transform=ax.transAxes, color=color, fontsize=9)
 axes[0].set_xticks([0, 1], ['1,920 SFT updates', 'Then guarded GRPO'])

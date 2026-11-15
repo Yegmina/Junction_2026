@@ -142,3 +142,25 @@ Cache cleanup exposed a dependency on cached Docker build layers: new Harbor tri
 Remaining trials now use a separate operational task copy that names the **exact original retained image IDs**. Only `task.toml` and the Compose image-routing fields differ; instructions, tests, solution, budgets and runtime image contents are unchanged. All 52 packaged runtime/scene/SDK files matched their original image contents by SHA256. No rebuilt image or upgraded package is used for the resumed comparisons. A diagnostic legacy main-image build was retained as an unused infrastructure probe, not a new benchmark image.
 
 The unchanged metadata firewall and daemon remain in place. Old dispatchers were held and replaced; accepted independent workers continued. Previously attempted worlds are never retried. A separate unscored-for-comparison smoke mission at seed 941999 reached ready state and executed actual flight/evidence actions; its terminal verifier result remains pending at this timestamp. The new dispatchers preserve their own source hashes and explicit package path. [Recovery receipt](evidence/native-prebuilt-recovery-v1.json).
+
+The recovery smoke finished at 04:08:57 UTC with no infrastructure error and a valid verifier score of **0.000**. Its reference recovered all three inserted targets, covered both regions and returned home, but spent **75.572 / 75.000 flight seconds**. This is a real task failure despite successful execution; it is not added to the declared model cohort and will not be retried to obtain a favorable score.
+
+## Completed temporal diagnostic
+
+All 6,000 temporal requests settled: 5,966 schema-valid outputs and 34 invalid outputs, all retained. There are **2,967 valid pairs / 3,000 original frame identities**; one frame has invalid responses in both arms. Of those valid pairs, 1,867 had no accepted candidate in either arm, 586 had accepted candidates in both, 363 changed from no accepted candidate to accepted with proposals, and 151 changed in the reverse direction. Acceptance disagreement is therefore **17.324%**. Accepted candidate records total 859 for blind context and 1,191 with earlier proposals; uncertain records total 1,800 and 2,771 respectively.
+
+This is a descriptive same-provider, single-completion diagnostic on correlated frames. Neither arm is a reference; it does not measure precision, recall or confirmed absence. Every review is training-ineligible. [Paired counts and frozen protocol](evidence/temporal-review-diagnostic-v1.json). The figure and PDF are linked on the live research page.
+
+## First fixed checkpoint, 04:18 UTC
+
+The HIGH-teacher seed-17 run saved its first fixed adapter at **step 586 / 0.5 epochs**, at 04:18:35 UTC. Actual CUDA/CPU/Python/NumPy RNG and parameter/gradient-version guards passed. Training continued beyond the snapshot (step 597 recorded at 04:19:12 with a finite nonzero gradient norm). Its development evaluation remains queued until the parent releases its GPU. [Snapshot, continued metric and archive receipt](evidence/first-fixed-snapshot-evidence.json).
+
+A separate read-only archive worker now uploads each completed fixed snapshot as it appears, checks every remote file's byte count and server MD5 against local SHA256/MD5 records, and writes a generation-pinned manifest. The first backup verified at 04:18:48 UTC. It never deletes or modifies an active training checkpoint. The worker uses the existing cloud-auth dependencies in the ML virtual environment; an initial standard-library interpreter launch failed before any archival work and was replaced without installing packages or changing training.
+
+The doubled-domain physical solve reached 61.2% of its full physical day at 04:16 UTC, with about 7.2 hours estimated remaining at that snapshot. The completed local 3D solve is still separate from full numerical admission. Full heterogeneous scenes and the planned 30,000 synthetic observations remain incomplete.
+
+## Exact runtime preserved
+
+The two original native benchmark images were streamed directly from `docker image save` through gzip to private GCS. The **1,044,707,190-byte** archive passed server MD5/size verification and has a recorded SHA256 and immutable object generation. No local tarball was created, and no original image or running container was removed. A fresh image-restore test has not been performed. [Archive identity and original image IDs](evidence/native-runtime-image-archive.json).
+
+After image routing was repaired, the first resumed native Gemma episode completed without an infrastructure error at reward 0.000; the resumed Argon warming episode completed without an infrastructure error at reward 0.500. These are retained outcomes from the predeclared worlds, with the original model/checkpoint, inference allowances and verifier.
