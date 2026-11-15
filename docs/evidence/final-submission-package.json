@@ -1,0 +1,40 @@
+{
+  "output": "AeroRozum-Junction-2026-final.pdf",
+  "pages": 8,
+  "size_bytes": 2229035,
+  "sha256": "51e64e43baf8720c8721595db96574a4a4c33ced462a52fd7d9f6cf7ec1a2e2a",
+  "sources": [
+    {
+      "file": "submission-main-deck-original.pdf",
+      "sha256": "c0dc7b71fafff1485683cd664866e0d33a602879b8e04d81759f7025428bdeff",
+      "pages": [
+        1,
+        2,
+        3,
+        4,
+        6
+      ]
+    },
+    {
+      "file": "overnight-research-brief.pdf",
+      "sha256": "97d487c7b56e63a6d732bb3278a5bf487b6a71742975b283bd80972727153993",
+      "pages": [
+        3,
+        4,
+        7
+      ]
+    }
+  ],
+  "page_order": [
+    "main:1",
+    "main:2",
+    "main:3",
+    "main:4",
+    "research:3",
+    "research:4",
+    "main:6",
+    "research:7"
+  ],
+  "submission_mode": "User submits manually",
+  "submission_clicked_by_assistant": false
+}

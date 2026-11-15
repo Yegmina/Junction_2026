@@ -1,0 +1,9 @@
+{
+  "at": "2026-11-14T23:33:06.609014+00:00",
+  "unit": "aerorozum-followup-preparation-v2.service",
+  "decoder_preflight_passed": true,
+  "original_attempt_preserved": "/opt/aerorozum/airborne-followup-v1/attempts/missing-host-ffprobe",
+  "cached_pinned_downloads_reused": true,
+  "source_sha256": "8dd99b3ac3d205123fb523d8d2c1c715b7c8bf4730271d2e010f6b6ed811669a",
+  "model_requests_enabled": false
+}

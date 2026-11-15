@@ -1,0 +1,19 @@
+{
+  "at": "2026-11-15T04:21:56.623280+00:00",
+  "status": "server_digest_verified",
+  "uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/native-runtime-images/20261115T042020Z-8f9d5aca/original-images.tar.gz",
+  "generation": "1794716515321200",
+  "size_bytes": 1044707190,
+  "sha256": "dcf36ede44c029b6e16620b282337c1f66dc721baf82f930e206247f34ccd942",
+  "md5": "3lK5JLEMaucnxwaH5zoemQ==",
+  "images": {
+    "main": "sha256:aaf0d1ced16396939cc6b067bd101200b3f93e8fa20e5114793a2423a5c8063c",
+    "simulator": "sha256:8def4fb08951de782ede7ac6b7d01ba5e13f6d1f67b3bf35caab82e502fef45d"
+  },
+  "archive_format": "docker image save | gzip -1 -n",
+  "local_tarball_created": false,
+  "original_images_deleted": false,
+  "active_containers_changed": false,
+  "restore_test_performed": false,
+  "original_published_submission_unchanged": true
+}

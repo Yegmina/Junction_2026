@@ -1,0 +1,51 @@
+{
+  "at": "2026-11-15T00:43:53.214787+00:00",
+  "status": "passed",
+  "equivalent_statistics": true,
+  "unchanged_gradients": true,
+  "identical_optimizer_trajectory": true,
+  "nan_and_infinity_detected": true,
+  "tensor_count": 128,
+  "shape": [
+    16,
+    6144
+  ],
+  "dtype": "bfloat16",
+  "timing": {
+    "original": {
+      "samples_s": [
+        0.11514461799743003,
+        0.10766978799802018,
+        0.10786010899755638,
+        0.10630550200221478,
+        0.11254834699866478,
+        0.11547495400009211,
+        0.10323741400134168,
+        0.10748348900233395,
+        0.11042298800020944,
+        0.10897774000113714
+      ],
+      "mean_s": 0.10951249489990005
+    },
+    "device_aggregated": {
+      "samples_s": [
+        0.02270777800003998,
+        0.022144416001538048,
+        0.021972919999825535,
+        0.02152337599909515,
+        0.02054054999825894,
+        0.014460938000411261,
+        0.016135549998580245,
+        0.02020722799716168,
+        0.021268139000312658,
+        0.018532988000515616
+      ],
+      "mean_s": 0.019949388299573913
+    }
+  },
+  "monitor_only_speedup": 5.489516433054694,
+  "end_to_end_training_speedup_measured": false,
+  "actual_training_quality_change_claimed": false,
+  "source_sha256": "77746edc4ac830e3df54c8c555cdfbfe5c163d8bb291b03d723e3a29db5fa04c",
+  "monitor_source_sha256": "8e3865e8e9d0f3795e82405bbc6f709180108651e44d0fd3219b0d8fff9bca8b"
+}

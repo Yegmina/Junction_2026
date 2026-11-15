@@ -1,0 +1,2139 @@
+{
+  "at": "2026-11-15T03:05:22.024913+00:00",
+  "status": "completed",
+  "checkpoints": [
+    {
+      "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/sft-control-17/initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-96",
+      "namespace": "postsubmission-visual-replication-v1/sft-control-17",
+      "files": [
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/sft-control-17/initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-96/adapter_model.safetensors",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/sft-control-17/initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-96/adapter_model.safetensors",
+          "size": 42067976,
+          "inode": 2124896,
+          "mtime_ns": 1794700281503971649,
+          "sha256": "2d01705ce4e69fcd0adc9d6c176e491ce35b9e3b971b3a8df7536939e892e090",
+          "md5_base64": "sxE3jsI3uo3NjOYfyV8haA==",
+          "gcs_generation": "1794704166940433",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/sft-control-17/initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-96/adapter_model.safetensors#1794704166940433"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/sft-control-17/initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-96/tokenizer_config.json",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/sft-control-17/initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-96/tokenizer_config.json",
+          "size": 3734,
+          "inode": 2124905,
+          "mtime_ns": 1794700281508349465,
+          "sha256": "9669970d5b0bcfcb47a09256f9e66837c313926ff15e9ba4c60e8bbe3c6bdf84",
+          "md5_base64": "XKa5NgUe1UiWDdS3WxtGyg==",
+          "gcs_generation": "1794704163951709",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/sft-control-17/initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-96/tokenizer_config.json#1794704163951709"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/sft-control-17/initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-96/chat_template.jinja",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/sft-control-17/initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-96/chat_template.jinja",
+          "size": 18683,
+          "inode": 2124899,
+          "mtime_ns": 1794700282014513991,
+          "sha256": "ae53464bf3be25802b3a5b37def7fd89667067d7577049b3b2d74c4d8de4c6d4",
+          "md5_base64": "8Ba9S8KEbglNWW5KsCZErw==",
+          "gcs_generation": "1794704164467876",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/sft-control-17/initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-96/chat_template.jinja#1794704164467876"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/sft-control-17/initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-96/optimizer.pt",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/sft-control-17/initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-96/optimizer.pt",
+          "size": 84235275,
+          "inode": 2124913,
+          "mtime_ns": 1794700282150029931,
+          "sha256": "173010bd106d337665cb00b27f7d6b04055e098ef1ea2c1f01686f41ba1cd93e",
+          "md5_base64": "UH+78HqvnbkuOYVsT1+rJA==",
+          "gcs_generation": "1794704168986907",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/sft-control-17/initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-96/optimizer.pt#1794704168986907"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/sft-control-17/initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-96/processor_config.json",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/sft-control-17/initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-96/processor_config.json",
+          "size": 1382,
+          "inode": 2124907,
+          "mtime_ns": 1794700282015485828,
+          "sha256": "6b938e76555b3e9946890770e1abcd442a4718f34041a58e8139dc8ad34545c9",
+          "md5_base64": "qf5RMsAWaWu0I4BvBtLT5w==",
+          "gcs_generation": "1794704163938948",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/sft-control-17/initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-96/processor_config.json#1794704163938948"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/sft-control-17/initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-96/scheduler.pt",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/sft-control-17/initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-96/scheduler.pt",
+          "size": 1465,
+          "inode": 2124914,
+          "mtime_ns": 1794700282151030021,
+          "sha256": "f7344d660f9303dc4bfeef40151269e54cfb8a9476b16a35ba502c42a6b8659a",
+          "md5_base64": "YWU4JnYbSywA4a2Dw8SQew==",
+          "gcs_generation": "1794704164460143",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/sft-control-17/initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-96/scheduler.pt#1794704164460143"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/sft-control-17/initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-96/tokenizer.json",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/sft-control-17/initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-96/tokenizer.json",
+          "size": 32157316,
+          "inode": 2124892,
+          "mtime_ns": 1794700281997016127,
+          "sha256": "31ca8db812b9ac5693b4e5546382490e8b882c1a811e277ea9f904cda165ba63",
+          "md5_base64": "H/vnp5qVzcfyVOV+19PqWA==",
+          "gcs_generation": "1794704166904698",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/sft-control-17/initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-96/tokenizer.json#1794704166904698"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/sft-control-17/initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-96/training_args.bin",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/sft-control-17/initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-96/training_args.bin",
+          "size": 5905,
+          "inode": 2124908,
+          "mtime_ns": 1794700282015485828,
+          "sha256": "0192fcf37bf897e8746872366754304644b9dd8fa759cb3be233983fb3e9c5d6",
+          "md5_base64": "Bba2qdH0x29dfz8MjQxJow==",
+          "gcs_generation": "1794704163936511",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/sft-control-17/initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-96/training_args.bin#1794704163936511"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/sft-control-17/initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-96/rng_state.pth",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/sft-control-17/initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-96/rng_state.pth",
+          "size": 14709,
+          "inode": 2124915,
+          "mtime_ns": 1794700282152030111,
+          "sha256": "9a15dd8b3e9e8ce65fbdd917943589f82cba8f5625c482b7ce5bf88ddf223cba",
+          "md5_base64": "rg8I1bnt5D38mUyxo9Yzcg==",
+          "gcs_generation": "1794704164422493",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/sft-control-17/initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-96/rng_state.pth#1794704164422493"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/sft-control-17/initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-96/trainer_state.json",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/sft-control-17/initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-96/trainer_state.json",
+          "size": 29217,
+          "inode": 2124958,
+          "mtime_ns": 1794700282155283069,
+          "sha256": "9899822cd389fb43a37c91c96e54b76df752d551a001983e872bfce69ad295bd",
+          "md5_base64": "SdsqsEHKdSIBDo8VKGY7PA==",
+          "gcs_generation": "1794704164527596",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/sft-control-17/initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-96/trainer_state.json#1794704164527596"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/sft-control-17/initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-96/adapter_config.json",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/sft-control-17/initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-96/adapter_config.json",
+          "size": 1163,
+          "inode": 2124897,
+          "mtime_ns": 1794700281506516878,
+          "sha256": "cf4bb7152a513378c93bab2b6595a205bff74f8f7be2526c6c37c76d34bcd456",
+          "md5_base64": "/hmZM+Df6ljEONQliyl/8w==",
+          "gcs_generation": "1794704163948736",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/sft-control-17/initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-96/adapter_config.json#1794704163948736"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/sft-control-17/initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-96/README.md",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/sft-control-17/initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-96/README.md",
+          "size": 5238,
+          "inode": 2124894,
+          "mtime_ns": 1794700281434558157,
+          "sha256": "ea8115d41e0222b84275fda09d3efbc308ae702c2b3c4c8d5130994a0692ad74",
+          "md5_base64": "kEfjgGLEaCUfB3kY1E/2rA==",
+          "gcs_generation": "1794704164413408",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/sft-control-17/initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-96/README.md#1794704164413408"
+        }
+      ],
+      "evicted": true
+    },
+    {
+      "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/sft-control-17/initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-75",
+      "namespace": "postsubmission-visual-replication-v1/sft-control-17",
+      "files": [
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/sft-control-17/initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-75/adapter_model.safetensors",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/sft-control-17/initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-75/adapter_model.safetensors",
+          "size": 42067976,
+          "inode": 2124960,
+          "mtime_ns": 1794700214395580204,
+          "sha256": "cb9507b83f44de93156a695ef6142f27cd689cfc9887c5f190a359ab915dc5f4",
+          "md5_base64": "L0cORO4S3XBtItbHBRORsA==",
+          "gcs_generation": "1794704167775294",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/sft-control-17/initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-75/adapter_model.safetensors#1794704167775294"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/sft-control-17/initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-75/tokenizer_config.json",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/sft-control-17/initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-75/tokenizer_config.json",
+          "size": 3734,
+          "inode": 2124963,
+          "mtime_ns": 1794700214398656637,
+          "sha256": "9669970d5b0bcfcb47a09256f9e66837c313926ff15e9ba4c60e8bbe3c6bdf84",
+          "md5_base64": "XKa5NgUe1UiWDdS3WxtGyg==",
+          "gcs_generation": "1794704163952038",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/sft-control-17/initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-75/tokenizer_config.json#1794704163952038"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/sft-control-17/initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-75/chat_template.jinja",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/sft-control-17/initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-75/chat_template.jinja",
+          "size": 18683,
+          "inode": 2124962,
+          "mtime_ns": 1794700214927965713,
+          "sha256": "ae53464bf3be25802b3a5b37def7fd89667067d7577049b3b2d74c4d8de4c6d4",
+          "md5_base64": "8Ba9S8KEbglNWW5KsCZErw==",
+          "gcs_generation": "1794704164523751",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/sft-control-17/initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-75/chat_template.jinja#1794704164523751"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/sft-control-17/initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-75/optimizer.pt",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/sft-control-17/initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-75/optimizer.pt",
+          "size": 84235275,
+          "inode": 2124967,
+          "mtime_ns": 1794700215059977622,
+          "sha256": "304d59ce91eb63601f04756aef4c8513ec625a6a4f2e8f146a9dd74a58f4e64e",
+          "md5_base64": "xqyDNr2JSQ0qqpyap3beZA==",
+          "gcs_generation": "1794704169123419",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/sft-control-17/initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-75/optimizer.pt#1794704169123419"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/sft-control-17/initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-75/processor_config.json",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/sft-control-17/initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-75/processor_config.json",
+          "size": 1382,
+          "inode": 2124965,
+          "mtime_ns": 1794700214929682214,
+          "sha256": "6b938e76555b3e9946890770e1abcd442a4718f34041a58e8139dc8ad34545c9",
+          "md5_base64": "qf5RMsAWaWu0I4BvBtLT5w==",
+          "gcs_generation": "1794704164440818",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/sft-control-17/initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-75/processor_config.json#1794704164440818"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/sft-control-17/initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-75/scheduler.pt",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/sft-control-17/initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-75/scheduler.pt",
+          "size": 1465,
+          "inode": 2124968,
+          "mtime_ns": 1794700215060977713,
+          "sha256": "8db24b760242ff762e063d8294e4a139b1722359e66baf46445fe2a2a5236a3d",
+          "md5_base64": "CMOjKhP3k+ws8ZWMBnGjBw==",
+          "gcs_generation": "1794704163946724",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/sft-control-17/initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-75/scheduler.pt#1794704163946724"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/sft-control-17/initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-75/tokenizer.json",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/sft-control-17/initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-75/tokenizer.json",
+          "size": 32157316,
+          "inode": 2124964,
+          "mtime_ns": 1794700214911964270,
+          "sha256": "31ca8db812b9ac5693b4e5546382490e8b882c1a811e277ea9f904cda165ba63",
+          "md5_base64": "H/vnp5qVzcfyVOV+19PqWA==",
+          "gcs_generation": "1794704167044937",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/sft-control-17/initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-75/tokenizer.json#1794704167044937"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/sft-control-17/initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-75/training_args.bin",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/sft-control-17/initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-75/training_args.bin",
+          "size": 5905,
+          "inode": 2124966,
+          "mtime_ns": 1794700214929682214,
+          "sha256": "0192fcf37bf897e8746872366754304644b9dd8fa759cb3be233983fb3e9c5d6",
+          "md5_base64": "Bba2qdH0x29dfz8MjQxJow==",
+          "gcs_generation": "1794704165033279",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/sft-control-17/initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-75/training_args.bin#1794704165033279"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/sft-control-17/initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-75/rng_state.pth",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/sft-control-17/initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-75/rng_state.pth",
+          "size": 14709,
+          "inode": 2124969,
+          "mtime_ns": 1794700215062465309,
+          "sha256": "c962a7dacd727817bbb5fc8eb2ad9fe93ecd51dab77a8c89a6f42d176c265f74",
+          "md5_base64": "gronDAbqmiyWSdhFTCNRGw==",
+          "gcs_generation": "1794704165000943",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/sft-control-17/initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-75/rng_state.pth#1794704165000943"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/sft-control-17/initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-75/trainer_state.json",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/sft-control-17/initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-75/trainer_state.json",
+          "size": 23009,
+          "inode": 2124970,
+          "mtime_ns": 1794700215065621863,
+          "sha256": "63d63ff967c1db8c170d96115e62ca08bd38e5e3496d27beeed096ceb75ad981",
+          "md5_base64": "vDPqTnR2P6JyeP6TtbDtbg==",
+          "gcs_generation": "1794704165011384",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/sft-control-17/initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-75/trainer_state.json#1794704165011384"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/sft-control-17/initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-75/adapter_config.json",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/sft-control-17/initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-75/adapter_config.json",
+          "size": 1163,
+          "inode": 2124961,
+          "mtime_ns": 1794700214396648476,
+          "sha256": "cf4bb7152a513378c93bab2b6595a205bff74f8f7be2526c6c37c76d34bcd456",
+          "md5_base64": "/hmZM+Df6ljEONQliyl/8w==",
+          "gcs_generation": "1794704165008065",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/sft-control-17/initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-75/adapter_config.json#1794704165008065"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/sft-control-17/initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-75/README.md",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/sft-control-17/initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-75/README.md",
+          "size": 5238,
+          "inode": 2124959,
+          "mtime_ns": 1794700214325286142,
+          "sha256": "ea8115d41e0222b84275fda09d3efbc308ae702c2b3c4c8d5130994a0692ad74",
+          "md5_base64": "kEfjgGLEaCUfB3kY1E/2rA==",
+          "gcs_generation": "1794704163930140",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/sft-control-17/initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-75/README.md#1794704163930140"
+        }
+      ],
+      "evicted": true
+    },
+    {
+      "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-43/continuation/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-96",
+      "namespace": "postsubmission-visual-replication-v1/seed-43",
+      "files": [
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-43/continuation/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-96/adapter_model.safetensors",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/continuation/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-96/adapter_model.safetensors",
+          "size": 42067976,
+          "inode": 2151439,
+          "mtime_ns": 1794705319328452321,
+          "sha256": "75ba6305445a620b847a8357dfb3378836b3010cb7372592e61da43ea0c04f8c",
+          "md5_base64": "OsvFwayTIHhtbgsMHJ5c8g==",
+          "gcs_generation": "1794706220848056",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/continuation/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-96/adapter_model.safetensors#1794706220848056"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-43/continuation/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-96/tokenizer_config.json",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/continuation/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-96/tokenizer_config.json",
+          "size": 3734,
+          "inode": 2151445,
+          "mtime_ns": 1794705320072519447,
+          "sha256": "9669970d5b0bcfcb47a09256f9e66837c313926ff15e9ba4c60e8bbe3c6bdf84",
+          "md5_base64": "XKa5NgUe1UiWDdS3WxtGyg==",
+          "gcs_generation": "1794706218180257",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/continuation/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-96/tokenizer_config.json#1794706218180257"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-43/continuation/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-96/chat_template.jinja",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/continuation/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-96/chat_template.jinja",
+          "size": 18683,
+          "inode": 2151444,
+          "mtime_ns": 1794705320764102744,
+          "sha256": "ae53464bf3be25802b3a5b37def7fd89667067d7577049b3b2d74c4d8de4c6d4",
+          "md5_base64": "8Ba9S8KEbglNWW5KsCZErw==",
+          "gcs_generation": "1794706218282890",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/continuation/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-96/chat_template.jinja#1794706218282890"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-43/continuation/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-96/optimizer.pt",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/continuation/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-96/optimizer.pt",
+          "size": 84235275,
+          "inode": 2151454,
+          "mtime_ns": 1794705321111613189,
+          "sha256": "758187932c455b7c656ab73747061514b40344a330fac50ab7404b364b41d160",
+          "md5_base64": "LCmmqXt6agD/rfTEvb90Yg==",
+          "gcs_generation": "1794706221286847",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/continuation/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-96/optimizer.pt#1794706221286847"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-43/continuation/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-96/processor_config.json",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/continuation/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-96/processor_config.json",
+          "size": 1382,
+          "inode": 2151452,
+          "mtime_ns": 1794705320765581972,
+          "sha256": "6b938e76555b3e9946890770e1abcd442a4718f34041a58e8139dc8ad34545c9",
+          "md5_base64": "qf5RMsAWaWu0I4BvBtLT5w==",
+          "gcs_generation": "1794706216920646",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/continuation/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-96/processor_config.json#1794706216920646"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-43/continuation/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-96/scheduler.pt",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/continuation/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-96/scheduler.pt",
+          "size": 1465,
+          "inode": 2151458,
+          "mtime_ns": 1794705321111613189,
+          "sha256": "f7344d660f9303dc4bfeef40151269e54cfb8a9476b16a35ba502c42a6b8659a",
+          "md5_base64": "YWU4JnYbSywA4a2Dw8SQew==",
+          "gcs_generation": "1794706216906826",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/continuation/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-96/scheduler.pt#1794706216906826"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-43/continuation/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-96/tokenizer.json",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/continuation/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-96/tokenizer.json",
+          "size": 32157315,
+          "inode": 2151451,
+          "mtime_ns": 1794705320741579807,
+          "sha256": "9fcea7c6ab2ade331c6ff13318e74207e5de5252b0d3c48c4b3d4c087d9a5654",
+          "md5_base64": "CpoYn60pw2fkhsrjDdc5VQ==",
+          "gcs_generation": "1794706220455047",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/continuation/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-96/tokenizer.json#1794706220455047"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-43/continuation/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-96/training_args.bin",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/continuation/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-96/training_args.bin",
+          "size": 7761,
+          "inode": 2151453,
+          "mtime_ns": 1794705320766582062,
+          "sha256": "bb7960ec7d9b617f083e6dfbaf544b2992f5549132b25327346caa238fc08305",
+          "md5_base64": "sJ2QLQU94zDOa2lFmF4SZA==",
+          "gcs_generation": "1794706218170844",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/continuation/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-96/training_args.bin#1794706218170844"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-43/continuation/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-96/rng_state.pth",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/continuation/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-96/rng_state.pth",
+          "size": 14645,
+          "inode": 2151459,
+          "mtime_ns": 1794705321113613370,
+          "sha256": "0d15f616862e90e86b65c8f5b7258c440f5804f4a8613ca2b346db972e226656",
+          "md5_base64": "3vnFTEh7WHQe74k6xmq1jw==",
+          "gcs_generation": "1794706217432163",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/continuation/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-96/rng_state.pth#1794706217432163"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-43/continuation/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-96/trainer_state.json",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/continuation/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-96/trainer_state.json",
+          "size": 99199,
+          "inode": 2151460,
+          "mtime_ns": 1794705321124456007,
+          "sha256": "338d99eac9ba079683f7c9b902dbb4d1d943bde22bf188b95e69cfb32dea28e9",
+          "md5_base64": "mN18aXKwtlceJ/3QI+L1cg==",
+          "gcs_generation": "1794706218382133",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/continuation/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-96/trainer_state.json#1794706218382133"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-43/continuation/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-96/adapter_config.json",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/continuation/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-96/adapter_config.json",
+          "size": 1163,
+          "inode": 2151440,
+          "mtime_ns": 1794705319330452502,
+          "sha256": "8bd98fed3ae74844541b4785e293ccf36b1cb13fc10a0a7ef3f30be2bbb78454",
+          "md5_base64": "Ra4cWeAGWORBKJVOxe7AyQ==",
+          "gcs_generation": "1794706218291521",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/continuation/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-96/adapter_config.json#1794706218291521"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-43/continuation/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-96/README.md",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/continuation/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-96/README.md",
+          "size": 5239,
+          "inode": 2151438,
+          "mtime_ns": 1794705319218099926,
+          "sha256": "d9766db468a70822f94f050e57177a674055b825e7ed8ead6e3026d28e238ef1",
+          "md5_base64": "G5cBsJh+DVQ8UcAg0DAbcA==",
+          "gcs_generation": "1794706217464240",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/continuation/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-96/README.md#1794706217464240"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-43/continuation/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-96/ref/adapter_model.safetensors",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/continuation/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-96/ref/adapter_model.safetensors",
+          "size": 42067976,
+          "inode": 2151442,
+          "mtime_ns": 1794705320067104587,
+          "sha256": "46ec64ae212c04e35238f135d0e8c0f5e74cf62965fe052ac50cfa6b8fc5d95d",
+          "md5_base64": "5Bj05XTy1zU7ygK2zQ+93g==",
+          "gcs_generation": "1794706220192509",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/continuation/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-96/ref/adapter_model.safetensors#1794706220192509"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-43/continuation/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-96/ref/adapter_config.json",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/continuation/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-96/ref/adapter_config.json",
+          "size": 1163,
+          "inode": 2151434,
+          "mtime_ns": 1794705320069301317,
+          "sha256": "8bd98fed3ae74844541b4785e293ccf36b1cb13fc10a0a7ef3f30be2bbb78454",
+          "md5_base64": "Ra4cWeAGWORBKJVOxe7AyQ==",
+          "gcs_generation": "1794706216892886",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/continuation/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-96/ref/adapter_config.json#1794706216892886"
+        }
+      ],
+      "evicted": true
+    },
+    {
+      "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-43/continuation/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-75",
+      "namespace": "postsubmission-visual-replication-v1/seed-43",
+      "files": [
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-43/continuation/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-75/adapter_model.safetensors",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/continuation/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-75/adapter_model.safetensors",
+          "size": 42067976,
+          "inode": 2143182,
+          "mtime_ns": 1794704946626829037,
+          "sha256": "0f9b00bfaee8cdb86d6f7cd452c8b6cb3542881e3f8061d9c78ccb1cb8935777",
+          "md5_base64": "5z2Y59sZxMZ2NPZ1FOehZg==",
+          "gcs_generation": "1794706220393085",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/continuation/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-75/adapter_model.safetensors#1794706220393085"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-43/continuation/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-75/tokenizer_config.json",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/continuation/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-75/tokenizer_config.json",
+          "size": 3734,
+          "inode": 2143198,
+          "mtime_ns": 1794704946725743369,
+          "sha256": "9669970d5b0bcfcb47a09256f9e66837c313926ff15e9ba4c60e8bbe3c6bdf84",
+          "md5_base64": "XKa5NgUe1UiWDdS3WxtGyg==",
+          "gcs_generation": "1794706218040349",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/continuation/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-75/tokenizer_config.json#1794706218040349"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-43/continuation/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-75/chat_template.jinja",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/continuation/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-75/chat_template.jinja",
+          "size": 18683,
+          "inode": 2143197,
+          "mtime_ns": 1794704947412899953,
+          "sha256": "ae53464bf3be25802b3a5b37def7fd89667067d7577049b3b2d74c4d8de4c6d4",
+          "md5_base64": "8Ba9S8KEbglNWW5KsCZErw==",
+          "gcs_generation": "1794706216879975",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/continuation/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-75/chat_template.jinja#1794706216879975"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-43/continuation/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-75/optimizer.pt",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/continuation/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-75/optimizer.pt",
+          "size": 84235275,
+          "inode": 2143202,
+          "mtime_ns": 1794704947692925215,
+          "sha256": "c354a17e670c5342c415c9f281d093577214d727d1389da6506b35d2fd0af1cc",
+          "md5_base64": "v4zBAUVoSJRRgh58ZDTXGw==",
+          "gcs_generation": "1794706220621758",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/continuation/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-75/optimizer.pt#1794706220621758"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-43/continuation/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-75/processor_config.json",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/continuation/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-75/processor_config.json",
+          "size": 1382,
+          "inode": 2143200,
+          "mtime_ns": 1794704947413900043,
+          "sha256": "6b938e76555b3e9946890770e1abcd442a4718f34041a58e8139dc8ad34545c9",
+          "md5_base64": "qf5RMsAWaWu0I4BvBtLT5w==",
+          "gcs_generation": "1794706218033120",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/continuation/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-75/processor_config.json#1794706218033120"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-43/continuation/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-75/scheduler.pt",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/continuation/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-75/scheduler.pt",
+          "size": 1465,
+          "inode": 2138637,
+          "mtime_ns": 1794704947693925305,
+          "sha256": "8db24b760242ff762e063d8294e4a139b1722359e66baf46445fe2a2a5236a3d",
+          "md5_base64": "CMOjKhP3k+ws8ZWMBnGjBw==",
+          "gcs_generation": "1794706217899109",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/continuation/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-75/scheduler.pt#1794706217899109"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-43/continuation/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-75/tokenizer.json",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/continuation/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-75/tokenizer.json",
+          "size": 32157315,
+          "inode": 2143199,
+          "mtime_ns": 1794704947390897968,
+          "sha256": "9fcea7c6ab2ade331c6ff13318e74207e5de5252b0d3c48c4b3d4c087d9a5654",
+          "md5_base64": "CpoYn60pw2fkhsrjDdc5VQ==",
+          "gcs_generation": "1794706220688884",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/continuation/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-75/tokenizer.json#1794706220688884"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-43/continuation/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-75/training_args.bin",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/continuation/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-75/training_args.bin",
+          "size": 7761,
+          "inode": 2143201,
+          "mtime_ns": 1794704947415900223,
+          "sha256": "bb7960ec7d9b617f083e6dfbaf544b2992f5549132b25327346caa238fc08305",
+          "md5_base64": "sJ2QLQU94zDOa2lFmF4SZA==",
+          "gcs_generation": "1794706218273416",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/continuation/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-75/training_args.bin#1794706218273416"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-43/continuation/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-75/rng_state.pth",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/continuation/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-75/rng_state.pth",
+          "size": 14645,
+          "inode": 2143204,
+          "mtime_ns": 1794704947696088367,
+          "sha256": "009fc9dd09a33a4a58b40419523ea051219402bcf289a33beb93cc149dbd49cd",
+          "md5_base64": "Zb8bIT8Ja4yo7OpcYielbA==",
+          "gcs_generation": "1794706217446646",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/continuation/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-75/rng_state.pth#1794706217446646"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-43/continuation/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-75/trainer_state.json",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/continuation/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-75/trainer_state.json",
+          "size": 77609,
+          "inode": 2143205,
+          "mtime_ns": 1794704947706382553,
+          "sha256": "e9e5efdcf53e412c7a52a8c7aaace4de568ff6ae334969ef0d1e2b5b206dc23c",
+          "md5_base64": "o3M+DmHY/HpYizsRBzGvMQ==",
+          "gcs_generation": "1794706218473871",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/continuation/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-75/trainer_state.json#1794706218473871"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-43/continuation/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-75/adapter_config.json",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/continuation/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-75/adapter_config.json",
+          "size": 1163,
+          "inode": 2143193,
+          "mtime_ns": 1794704946629476730,
+          "sha256": "8bd98fed3ae74844541b4785e293ccf36b1cb13fc10a0a7ef3f30be2bbb78454",
+          "md5_base64": "Ra4cWeAGWORBKJVOxe7AyQ==",
+          "gcs_generation": "1794706218330237",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/continuation/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-75/adapter_config.json#1794706218330237"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-43/continuation/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-75/README.md",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/continuation/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-75/README.md",
+          "size": 5239,
+          "inode": 2143191,
+          "mtime_ns": 1794704946518449982,
+          "sha256": "d9766db468a70822f94f050e57177a674055b825e7ed8ead6e3026d28e238ef1",
+          "md5_base64": "G5cBsJh+DVQ8UcAg0DAbcA==",
+          "gcs_generation": "1794706218073917",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/continuation/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-75/README.md#1794706218073917"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-43/continuation/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-75/ref/adapter_model.safetensors",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/continuation/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-75/ref/adapter_model.safetensors",
+          "size": 42067976,
+          "inode": 2143195,
+          "mtime_ns": 1794704946720837518,
+          "sha256": "46ec64ae212c04e35238f135d0e8c0f5e74cf62965fe052ac50cfa6b8fc5d95d",
+          "md5_base64": "5Bj05XTy1zU7ygK2zQ+93g==",
+          "gcs_generation": "1794706220068646",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/continuation/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-75/ref/adapter_model.safetensors#1794706220068646"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-43/continuation/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-75/ref/adapter_config.json",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/continuation/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-75/ref/adapter_config.json",
+          "size": 1163,
+          "inode": 2143196,
+          "mtime_ns": 1794704946723634409,
+          "sha256": "8bd98fed3ae74844541b4785e293ccf36b1cb13fc10a0a7ef3f30be2bbb78454",
+          "md5_base64": "Ra4cWeAGWORBKJVOxe7AyQ==",
+          "gcs_generation": "1794706217448214",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/continuation/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-75/ref/adapter_config.json#1794706217448214"
+        }
+      ],
+      "evicted": true
+    },
+    {
+      "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-480",
+      "namespace": "postsubmission-visual-replication-v1/seed-43",
+      "files": [
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-480/adapter_model.safetensors",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-480/adapter_model.safetensors",
+          "size": 42067976,
+          "inode": 2125158,
+          "mtime_ns": 1794701494901434396,
+          "sha256": "0a72d8838a1925c4eb0206a25e627a543470a6e42575360727d39a56a7d2002f",
+          "md5_base64": "G6QWwMWbrn7YL2KUbPjXtw==",
+          "gcs_generation": "1794706220493319",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-480/adapter_model.safetensors#1794706220493319"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-480/tokenizer_config.json",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-480/tokenizer_config.json",
+          "size": 3734,
+          "inode": 2125161,
+          "mtime_ns": 1794701494904434667,
+          "sha256": "9669970d5b0bcfcb47a09256f9e66837c313926ff15e9ba4c60e8bbe3c6bdf84",
+          "md5_base64": "XKa5NgUe1UiWDdS3WxtGyg==",
+          "gcs_generation": "1794706217498205",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-480/tokenizer_config.json#1794706217498205"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-480/chat_template.jinja",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-480/chat_template.jinja",
+          "size": 18683,
+          "inode": 2125160,
+          "mtime_ns": 1794701495353475176,
+          "sha256": "ae53464bf3be25802b3a5b37def7fd89667067d7577049b3b2d74c4d8de4c6d4",
+          "md5_base64": "8Ba9S8KEbglNWW5KsCZErw==",
+          "gcs_generation": "1794706217564683",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-480/chat_template.jinja#1794706217564683"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-480/optimizer.pt",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-480/optimizer.pt",
+          "size": 84235275,
+          "inode": 2125165,
+          "mtime_ns": 1794701495483486904,
+          "sha256": "7606c17c1f53f27700387b714eef45d29531042617a57fca0f25aadf8ac101cc",
+          "md5_base64": "Or+WWl2zmdiNe9UeTRBR0A==",
+          "gcs_generation": "1794706222554593",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-480/optimizer.pt#1794706222554593"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-480/processor_config.json",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-480/processor_config.json",
+          "size": 1382,
+          "inode": 2125163,
+          "mtime_ns": 1794701495354475266,
+          "sha256": "6b938e76555b3e9946890770e1abcd442a4718f34041a58e8139dc8ad34545c9",
+          "md5_base64": "qf5RMsAWaWu0I4BvBtLT5w==",
+          "gcs_generation": "1794706218076886",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-480/processor_config.json#1794706218076886"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-480/scheduler.pt",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-480/scheduler.pt",
+          "size": 1465,
+          "inode": 2125166,
+          "mtime_ns": 1794701495484486994,
+          "sha256": "93c4a02eb2d02209c0ccd3159b71ec2d139ef2732b816585606f88985c2577a7",
+          "md5_base64": "EjkRz6EgLPuHxKd5oi3b/g==",
+          "gcs_generation": "1794706218044608",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-480/scheduler.pt#1794706218044608"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-480/tokenizer.json",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-480/tokenizer.json",
+          "size": 32157316,
+          "inode": 2125162,
+          "mtime_ns": 1794701495337473732,
+          "sha256": "31ca8db812b9ac5693b4e5546382490e8b882c1a811e277ea9f904cda165ba63",
+          "md5_base64": "H/vnp5qVzcfyVOV+19PqWA==",
+          "gcs_generation": "1794706220165677",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-480/tokenizer.json#1794706220165677"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-480/training_args.bin",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-480/training_args.bin",
+          "size": 5905,
+          "inode": 2125164,
+          "mtime_ns": 1794701495354475266,
+          "sha256": "b6c8fb795f1985ed7daafa2989ac95a207485c3afd4c3f55643bac9caa1b9627",
+          "md5_base64": "rYgFu6QrssY3umMjLyZOoQ==",
+          "gcs_generation": "1794706217409761",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-480/training_args.bin#1794706217409761"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-480/rng_state.pth",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-480/rng_state.pth",
+          "size": 14645,
+          "inode": 2125167,
+          "mtime_ns": 1794701495485487085,
+          "sha256": "8c9610de82144780dbea60eda3429ce4a5ceb82c186d83d8d4cbc37d27a6fb76",
+          "md5_base64": "lcCf8wHbRl7qR/+EAMjEsw==",
+          "gcs_generation": "1794706217529616",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-480/rng_state.pth#1794706217529616"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-480/trainer_state.json",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-480/trainer_state.json",
+          "size": 140818,
+          "inode": 2125168,
+          "mtime_ns": 1794701495496187556,
+          "sha256": "67e2eff542af1408e558a0c08f4835a66ac0a46e041342901e377c55be7c7a24",
+          "md5_base64": "MHpFjZpv165ABS5dOhCPBw==",
+          "gcs_generation": "1794706217919601",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-480/trainer_state.json#1794706217919601"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-480/adapter_config.json",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-480/adapter_config.json",
+          "size": 1163,
+          "inode": 2125159,
+          "mtime_ns": 1794701494903034684,
+          "sha256": "6d8fb0265d5f8cf071c7117cdcfa44d31fa8bcf4ed8a20549c9d813e70a1137f",
+          "md5_base64": "Q7vDUhfdFLiUyLSDAhkkZw==",
+          "gcs_generation": "1794706217560803",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-480/adapter_config.json#1794706217560803"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-480/README.md",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-480/README.md",
+          "size": 5238,
+          "inode": 2125157,
+          "mtime_ns": 1794701494833561201,
+          "sha256": "ea8115d41e0222b84275fda09d3efbc308ae702c2b3c4c8d5130994a0692ad74",
+          "md5_base64": "kEfjgGLEaCUfB3kY1E/2rA==",
+          "gcs_generation": "1794706216968045",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-480/README.md#1794706216968045"
+        }
+      ],
+      "evicted": true
+    },
+    {
+      "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-475",
+      "namespace": "postsubmission-visual-replication-v1/seed-43",
+      "files": [
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-475/adapter_model.safetensors",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-475/adapter_model.safetensors",
+          "size": 42067976,
+          "inode": 2124943,
+          "mtime_ns": 1794701478617965432,
+          "sha256": "98578378ccfbdeb9694fbc46ccaaff828ce585b21abe9484bdaac2ca86ce63cf",
+          "md5_base64": "0GHcPltUGpwZ40xRL1c+CQ==",
+          "gcs_generation": "1794706219942351",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-475/adapter_model.safetensors#1794706219942351"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-475/tokenizer_config.json",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-475/tokenizer_config.json",
+          "size": 3734,
+          "inode": 2125125,
+          "mtime_ns": 1794701478622423401,
+          "sha256": "9669970d5b0bcfcb47a09256f9e66837c313926ff15e9ba4c60e8bbe3c6bdf84",
+          "md5_base64": "XKa5NgUe1UiWDdS3WxtGyg==",
+          "gcs_generation": "1794706217517342",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-475/tokenizer_config.json#1794706217517342"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-475/chat_template.jinja",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-475/chat_template.jinja",
+          "size": 18683,
+          "inode": 2125124,
+          "mtime_ns": 1794701479142344554,
+          "sha256": "ae53464bf3be25802b3a5b37def7fd89667067d7577049b3b2d74c4d8de4c6d4",
+          "md5_base64": "8Ba9S8KEbglNWW5KsCZErw==",
+          "gcs_generation": "1794706217029240",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-475/chat_template.jinja#1794706217029240"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-475/optimizer.pt",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-475/optimizer.pt",
+          "size": 84235275,
+          "inode": 2125130,
+          "mtime_ns": 1794701479275024706,
+          "sha256": "a5addb8b4f8d4441bae3eec4d2b4c4246bccaecfef363853ccbc6a358c864d1d",
+          "md5_base64": "GKQ0FXmN98tYnJEz02ywdw==",
+          "gcs_generation": "1794706222270643",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-475/optimizer.pt#1794706222270643"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-475/processor_config.json",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-475/processor_config.json",
+          "size": 1382,
+          "inode": 2125127,
+          "mtime_ns": 1794701479143334797,
+          "sha256": "6b938e76555b3e9946890770e1abcd442a4718f34041a58e8139dc8ad34545c9",
+          "md5_base64": "qf5RMsAWaWu0I4BvBtLT5w==",
+          "gcs_generation": "1794706217563282",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-475/processor_config.json#1794706217563282"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-475/scheduler.pt",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-475/scheduler.pt",
+          "size": 1465,
+          "inode": 2125131,
+          "mtime_ns": 1794701479275024706,
+          "sha256": "a3755a927b43fbd6647aa8aca3d73c95e73788ab5d49eb9c1345f51d392f60de",
+          "md5_base64": "Wx4b0YTTR3629WL8zLF0RQ==",
+          "gcs_generation": "1794706217455690",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-475/scheduler.pt#1794706217455690"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-475/tokenizer.json",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-475/tokenizer.json",
+          "size": 32157316,
+          "inode": 2125126,
+          "mtime_ns": 1794701479125011173,
+          "sha256": "31ca8db812b9ac5693b4e5546382490e8b882c1a811e277ea9f904cda165ba63",
+          "md5_base64": "H/vnp5qVzcfyVOV+19PqWA==",
+          "gcs_generation": "1794706220293716",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-475/tokenizer.json#1794706220293716"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-475/training_args.bin",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-475/training_args.bin",
+          "size": 5905,
+          "inode": 2125128,
+          "mtime_ns": 1794701479143334797,
+          "sha256": "b6c8fb795f1985ed7daafa2989ac95a207485c3afd4c3f55643bac9caa1b9627",
+          "md5_base64": "rYgFu6QrssY3umMjLyZOoQ==",
+          "gcs_generation": "1794706217467964",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-475/training_args.bin#1794706217467964"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-475/rng_state.pth",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-475/rng_state.pth",
+          "size": 14645,
+          "inode": 2125132,
+          "mtime_ns": 1794701479276467077,
+          "sha256": "37c6dfd0e37fd7d137b6463603246fea8dbab1b223163d0bbf184ae3da9910e1",
+          "md5_base64": "2vONSzWi1g+YnCAEIo6ZvA==",
+          "gcs_generation": "1794706217986602",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-475/rng_state.pth#1794706217986602"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-475/trainer_state.json",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-475/trainer_state.json",
+          "size": 139369,
+          "inode": 2125135,
+          "mtime_ns": 1794701479287451201,
+          "sha256": "c63eca57ca39b6cbc70b2d51956d35b3927a978adbb99761ceba8787429f779e",
+          "md5_base64": "46TaOFbTTLAr9SiXld+Jkg==",
+          "gcs_generation": "1794706217866170",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-475/trainer_state.json#1794706217866170"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-475/adapter_config.json",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-475/adapter_config.json",
+          "size": 1163,
+          "inode": 2125123,
+          "mtime_ns": 1794701478620583667,
+          "sha256": "6d8fb0265d5f8cf071c7117cdcfa44d31fa8bcf4ed8a20549c9d813e70a1137f",
+          "md5_base64": "Q7vDUhfdFLiUyLSDAhkkZw==",
+          "gcs_generation": "1794706217403167",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-475/adapter_config.json#1794706217403167"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-475/README.md",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-475/README.md",
+          "size": 5238,
+          "inode": 2125121,
+          "mtime_ns": 1794701478547959116,
+          "sha256": "ea8115d41e0222b84275fda09d3efbc308ae702c2b3c4c8d5130994a0692ad74",
+          "md5_base64": "kEfjgGLEaCUfB3kY1E/2rA==",
+          "gcs_generation": "1794706217565056",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-475/README.md#1794706217565056"
+        }
+      ],
+      "evicted": true
+    },
+    {
+      "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-24",
+      "namespace": "postsubmission-visual-replication-v1/seed-43",
+      "files": [
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-24/adapter_model.safetensors",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-24/adapter_model.safetensors",
+          "size": 42067976,
+          "inode": 2125200,
+          "mtime_ns": 1794701805625465432,
+          "sha256": "4da5e7c9791cae43138cec8305bb037fadd0f3dcee6633413e3320647a6c923f",
+          "md5_base64": "TGPBlIZXE6q4xMddvLUF8w==",
+          "gcs_generation": "1794706220627056",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-24/adapter_model.safetensors#1794706220627056"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-24/tokenizer_config.json",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-24/tokenizer_config.json",
+          "size": 3734,
+          "inode": 2125206,
+          "mtime_ns": 1794701805730554585,
+          "sha256": "9669970d5b0bcfcb47a09256f9e66837c313926ff15e9ba4c60e8bbe3c6bdf84",
+          "md5_base64": "XKa5NgUe1UiWDdS3WxtGyg==",
+          "gcs_generation": "1794706218109652",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-24/tokenizer_config.json#1794706218109652"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-24/chat_template.jinja",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-24/chat_template.jinja",
+          "size": 18683,
+          "inode": 2125205,
+          "mtime_ns": 1794701806213391581,
+          "sha256": "ae53464bf3be25802b3a5b37def7fd89667067d7577049b3b2d74c4d8de4c6d4",
+          "md5_base64": "8Ba9S8KEbglNWW5KsCZErw==",
+          "gcs_generation": "1794706217704744",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-24/chat_template.jinja#1794706217704744"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-24/optimizer.pt",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-24/optimizer.pt",
+          "size": 84235275,
+          "inode": 2125213,
+          "mtime_ns": 1794701806380533548,
+          "sha256": "a9ad297b95626495dcdd96bb9842fcff106d989edd36280ce2ae9cfdf32725ef",
+          "md5_base64": "AHTgHdmcqCbo/v4Dm5ydMw==",
+          "gcs_generation": "1794706221871331",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-24/optimizer.pt#1794706221871331"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-24/processor_config.json",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-24/processor_config.json",
+          "size": 1382,
+          "inode": 2125211,
+          "mtime_ns": 1794701806213518482,
+          "sha256": "6b938e76555b3e9946890770e1abcd442a4718f34041a58e8139dc8ad34545c9",
+          "md5_base64": "qf5RMsAWaWu0I4BvBtLT5w==",
+          "gcs_generation": "1794706218042881",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-24/processor_config.json#1794706218042881"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-24/scheduler.pt",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-24/scheduler.pt",
+          "size": 1465,
+          "inode": 2125221,
+          "mtime_ns": 1794701806380533548,
+          "sha256": "ef88b20aef03a8a4318db9db4833d04458aa71d19bdba3986678a54dc0cfc5fe",
+          "md5_base64": "5sVM5/T1D0nyJP0w84oD6w==",
+          "gcs_generation": "1794706217635923",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-24/scheduler.pt#1794706217635923"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-24/tokenizer.json",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-24/tokenizer.json",
+          "size": 32157315,
+          "inode": 2125210,
+          "mtime_ns": 1794701806197517038,
+          "sha256": "9fcea7c6ab2ade331c6ff13318e74207e5de5252b0d3c48c4b3d4c087d9a5654",
+          "md5_base64": "CpoYn60pw2fkhsrjDdc5VQ==",
+          "gcs_generation": "1794706219923512",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-24/tokenizer.json#1794706219923512"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-24/training_args.bin",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-24/training_args.bin",
+          "size": 7761,
+          "inode": 2125212,
+          "mtime_ns": 1794701806214518572,
+          "sha256": "2da661e0c23b37e669b7e8fb4bee8f61bd670a3dff078e5d4a0643047c9763d0",
+          "md5_base64": "NWNyNek4ko/hRwuIDLKnVA==",
+          "gcs_generation": "1794706217651670",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-24/training_args.bin#1794706217651670"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-24/rng_state.pth",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-24/rng_state.pth",
+          "size": 14645,
+          "inode": 2125222,
+          "mtime_ns": 1794701806382533729,
+          "sha256": "33aa94052cebc9430d978af51556d16c06bb36bda6e219a8620edc2b706bd90e",
+          "md5_base64": "5Oe18oDxaFRGSqiwHA4UVA==",
+          "gcs_generation": "1794706218090268",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-24/rng_state.pth#1794706218090268"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-24/trainer_state.json",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-24/trainer_state.json",
+          "size": 25220,
+          "inode": 2125223,
+          "mtime_ns": 1794701806386069049,
+          "sha256": "3425c9d4d1cecb9ecb44af7d0df6a12143f2557d2745526bade23a69b0569025",
+          "md5_base64": "ZHUs6x1khDMUxcXhGWc3ag==",
+          "gcs_generation": "1794706217541697",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-24/trainer_state.json#1794706217541697"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-24/adapter_config.json",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-24/adapter_config.json",
+          "size": 1163,
+          "inode": 2125201,
+          "mtime_ns": 1794701805627036054,
+          "sha256": "6d8fb0265d5f8cf071c7117cdcfa44d31fa8bcf4ed8a20549c9d813e70a1137f",
+          "md5_base64": "Q7vDUhfdFLiUyLSDAhkkZw==",
+          "gcs_generation": "1794706218040630",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-24/adapter_config.json#1794706218040630"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-24/README.md",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-24/README.md",
+          "size": 5239,
+          "inode": 2125199,
+          "mtime_ns": 1794701805528456681,
+          "sha256": "d9766db468a70822f94f050e57177a674055b825e7ed8ead6e3026d28e238ef1",
+          "md5_base64": "G5cBsJh+DVQ8UcAg0DAbcA==",
+          "gcs_generation": "1794706218023135",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-24/README.md#1794706218023135"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-24/ref/adapter_model.safetensors",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-24/ref/adapter_model.safetensors",
+          "size": 42067976,
+          "inode": 2125203,
+          "mtime_ns": 1794701805725474454,
+          "sha256": "0a72d8838a1925c4eb0206a25e627a543470a6e42575360727d39a56a7d2002f",
+          "md5_base64": "G6QWwMWbrn7YL2KUbPjXtw==",
+          "gcs_generation": "1794706220759303",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-24/ref/adapter_model.safetensors#1794706220759303"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-24/ref/adapter_config.json",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-24/ref/adapter_config.json",
+          "size": 1163,
+          "inode": 2125204,
+          "mtime_ns": 1794701805727619933,
+          "sha256": "6d8fb0265d5f8cf071c7117cdcfa44d31fa8bcf4ed8a20549c9d813e70a1137f",
+          "md5_base64": "Q7vDUhfdFLiUyLSDAhkkZw==",
+          "gcs_generation": "1794706218074087",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-24/ref/adapter_config.json#1794706218074087"
+        }
+      ],
+      "evicted": true
+    },
+    {
+      "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-48",
+      "namespace": "postsubmission-visual-replication-v1/seed-43",
+      "files": [
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-48/adapter_model.safetensors",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-48/adapter_model.safetensors",
+          "size": 42067976,
+          "inode": 2125320,
+          "mtime_ns": 1794702182364451809,
+          "sha256": "46ec64ae212c04e35238f135d0e8c0f5e74cf62965fe052ac50cfa6b8fc5d95d",
+          "md5_base64": "5Bj05XTy1zU7ygK2zQ+93g==",
+          "gcs_generation": "1794706220237582",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-48/adapter_model.safetensors#1794706220237582"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-48/tokenizer_config.json",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-48/tokenizer_config.json",
+          "size": 3734,
+          "inode": 2125326,
+          "mtime_ns": 1794702182446619720,
+          "sha256": "9669970d5b0bcfcb47a09256f9e66837c313926ff15e9ba4c60e8bbe3c6bdf84",
+          "md5_base64": "XKa5NgUe1UiWDdS3WxtGyg==",
+          "gcs_generation": "1794706218027986",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-48/tokenizer_config.json#1794706218027986"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-48/chat_template.jinja",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-48/chat_template.jinja",
+          "size": 18683,
+          "inode": 2125325,
+          "mtime_ns": 1794702183013339614,
+          "sha256": "ae53464bf3be25802b3a5b37def7fd89667067d7577049b3b2d74c4d8de4c6d4",
+          "md5_base64": "8Ba9S8KEbglNWW5KsCZErw==",
+          "gcs_generation": "1794706217978312",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-48/chat_template.jinja#1794706217978312"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-48/optimizer.pt",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-48/optimizer.pt",
+          "size": 84235275,
+          "inode": 2125330,
+          "mtime_ns": 1794702183150522722,
+          "sha256": "0548e04b3efa122462952aca3fd0a1a9aa3c9bcbba3d82f7aa65361b410967ca",
+          "md5_base64": "I63KR5UX+LLv+xASA3fASQ==",
+          "gcs_generation": "1794706221698603",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-48/optimizer.pt#1794706221698603"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-48/processor_config.json",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-48/processor_config.json",
+          "size": 1382,
+          "inode": 2125328,
+          "mtime_ns": 1794702183013510362,
+          "sha256": "6b938e76555b3e9946890770e1abcd442a4718f34041a58e8139dc8ad34545c9",
+          "md5_base64": "qf5RMsAWaWu0I4BvBtLT5w==",
+          "gcs_generation": "1794706218063263",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-48/processor_config.json#1794706218063263"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-48/scheduler.pt",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-48/scheduler.pt",
+          "size": 1465,
+          "inode": 2125331,
+          "mtime_ns": 1794702183150522722,
+          "sha256": "658e4d05472ceaf57614346804f4a99f9ef42877580e2aef2cf1951996d1d3ff",
+          "md5_base64": "yimnbIUFUvJLFTG3czsSTQ==",
+          "gcs_generation": "1794706217489932",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-48/scheduler.pt#1794706217489932"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-48/tokenizer.json",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-48/tokenizer.json",
+          "size": 32157315,
+          "inode": 2125327,
+          "mtime_ns": 1794702182997508919,
+          "sha256": "9fcea7c6ab2ade331c6ff13318e74207e5de5252b0d3c48c4b3d4c087d9a5654",
+          "md5_base64": "CpoYn60pw2fkhsrjDdc5VQ==",
+          "gcs_generation": "1794706220523628",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-48/tokenizer.json#1794706220523628"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-48/training_args.bin",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-48/training_args.bin",
+          "size": 7761,
+          "inode": 2125329,
+          "mtime_ns": 1794702183014510452,
+          "sha256": "2da661e0c23b37e669b7e8fb4bee8f61bd670a3dff078e5d4a0643047c9763d0",
+          "md5_base64": "NWNyNek4ko/hRwuIDLKnVA==",
+          "gcs_generation": "1794706217586892",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-48/training_args.bin#1794706217586892"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-48/rng_state.pth",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-48/rng_state.pth",
+          "size": 14645,
+          "inode": 2125332,
+          "mtime_ns": 1794702183151522812,
+          "sha256": "8247a425399b9d2f41168283a9a7ea2683d06a9ad11d5d1617d840880af7eb31",
+          "md5_base64": "W/QN7epH6VA8W0kNRYITow==",
+          "gcs_generation": "1794706218026635",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-48/rng_state.pth#1794706218026635"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-48/trainer_state.json",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-48/trainer_state.json",
+          "size": 49760,
+          "inode": 2125333,
+          "mtime_ns": 1794702183155932960,
+          "sha256": "d8b4df56f277958d7b51fbe6be63b593b7039faa886a0c4a0f4b1eb49f4cfbf3",
+          "md5_base64": "tnUm23YrdcQIeWMlORXqdA==",
+          "gcs_generation": "1794706218041778",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-48/trainer_state.json#1794706218041778"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-48/adapter_config.json",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-48/adapter_config.json",
+          "size": 1163,
+          "inode": 2125321,
+          "mtime_ns": 1794702182366214629,
+          "sha256": "6d8fb0265d5f8cf071c7117cdcfa44d31fa8bcf4ed8a20549c9d813e70a1137f",
+          "md5_base64": "Q7vDUhfdFLiUyLSDAhkkZw==",
+          "gcs_generation": "1794706217513530",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-48/adapter_config.json#1794706217513530"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-48/README.md",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-48/README.md",
+          "size": 5239,
+          "inode": 2125275,
+          "mtime_ns": 1794702182257442156,
+          "sha256": "d9766db468a70822f94f050e57177a674055b825e7ed8ead6e3026d28e238ef1",
+          "md5_base64": "G5cBsJh+DVQ8UcAg0DAbcA==",
+          "gcs_generation": "1794706217984345",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-48/README.md#1794706217984345"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-48/ref/adapter_model.safetensors",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-48/ref/adapter_model.safetensors",
+          "size": 42067976,
+          "inode": 2125323,
+          "mtime_ns": 1794702182442458846,
+          "sha256": "0a72d8838a1925c4eb0206a25e627a543470a6e42575360727d39a56a7d2002f",
+          "md5_base64": "G6QWwMWbrn7YL2KUbPjXtw==",
+          "gcs_generation": "1794706221214992",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-48/ref/adapter_model.safetensors#1794706221214992"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-48/ref/adapter_config.json",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-48/ref/adapter_config.json",
+          "size": 1163,
+          "inode": 2125324,
+          "mtime_ns": 1794702182444661961,
+          "sha256": "6d8fb0265d5f8cf071c7117cdcfa44d31fa8bcf4ed8a20549c9d813e70a1137f",
+          "md5_base64": "Q7vDUhfdFLiUyLSDAhkkZw==",
+          "gcs_generation": "1794706217626966",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-43/initial/google_gemma-4-12B-it/stream_grpo/seed-43/checkpoint-48/ref/adapter_config.json#1794706217626966"
+        }
+      ],
+      "evicted": true
+    },
+    {
+      "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-91/continuation/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-96",
+      "namespace": "postsubmission-visual-replication-v1/seed-91",
+      "files": [
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-91/continuation/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-96/adapter_model.safetensors",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/continuation/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-96/adapter_model.safetensors",
+          "size": 42067976,
+          "inode": 2138700,
+          "mtime_ns": 1794705116450149651,
+          "sha256": "b32b2544831cef983837183ad4a6ac9c6c10d6f885b3a40dbaa568c61f3af0cb",
+          "md5_base64": "gNj4Vf2MMjtrhQllCXkIHw==",
+          "gcs_generation": "1794706072200374",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/continuation/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-96/adapter_model.safetensors#1794706072200374"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-91/continuation/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-96/tokenizer_config.json",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/continuation/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-96/tokenizer_config.json",
+          "size": 3734,
+          "inode": 2138711,
+          "mtime_ns": 1794705116568160298,
+          "sha256": "9669970d5b0bcfcb47a09256f9e66837c313926ff15e9ba4c60e8bbe3c6bdf84",
+          "md5_base64": "XKa5NgUe1UiWDdS3WxtGyg==",
+          "gcs_generation": "1794706069110917",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/continuation/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-96/tokenizer_config.json#1794706069110917"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-91/continuation/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-96/chat_template.jinja",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/continuation/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-96/chat_template.jinja",
+          "size": 18683,
+          "inode": 2138710,
+          "mtime_ns": 1794705117323117332,
+          "sha256": "ae53464bf3be25802b3a5b37def7fd89667067d7577049b3b2d74c4d8de4c6d4",
+          "md5_base64": "8Ba9S8KEbglNWW5KsCZErw==",
+          "gcs_generation": "1794706068355196",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/continuation/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-96/chat_template.jinja#1794706068355196"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-91/continuation/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-96/optimizer.pt",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/continuation/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-96/optimizer.pt",
+          "size": 84235275,
+          "inode": 2138716,
+          "mtime_ns": 1794705117505244837,
+          "sha256": "c196d90d05cdb2d1d570e35a88567f71b17a1f631b7e6c4a70910f6c834e1a23",
+          "md5_base64": "j2n31vQWwU8iTyaKKYkHYw==",
+          "gcs_generation": "1794706073231883",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/continuation/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-96/optimizer.pt#1794706073231883"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-91/continuation/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-96/processor_config.json",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/continuation/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-96/processor_config.json",
+          "size": 1382,
+          "inode": 2138714,
+          "mtime_ns": 1794705117324228506,
+          "sha256": "6b938e76555b3e9946890770e1abcd442a4718f34041a58e8139dc8ad34545c9",
+          "md5_base64": "qf5RMsAWaWu0I4BvBtLT5w==",
+          "gcs_generation": "1794706068458070",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/continuation/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-96/processor_config.json#1794706068458070"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-91/continuation/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-96/scheduler.pt",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/continuation/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-96/scheduler.pt",
+          "size": 1465,
+          "inode": 2151396,
+          "mtime_ns": 1794705117506244927,
+          "sha256": "f7344d660f9303dc4bfeef40151269e54cfb8a9476b16a35ba502c42a6b8659a",
+          "md5_base64": "YWU4JnYbSywA4a2Dw8SQew==",
+          "gcs_generation": "1794706069203273",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/continuation/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-96/scheduler.pt#1794706069203273"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-91/continuation/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-96/tokenizer.json",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/continuation/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-96/tokenizer.json",
+          "size": 32157315,
+          "inode": 2136144,
+          "mtime_ns": 1794705117301226431,
+          "sha256": "9fcea7c6ab2ade331c6ff13318e74207e5de5252b0d3c48c4b3d4c087d9a5654",
+          "md5_base64": "CpoYn60pw2fkhsrjDdc5VQ==",
+          "gcs_generation": "1794706071871606",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/continuation/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-96/tokenizer.json#1794706071871606"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-91/continuation/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-96/training_args.bin",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/continuation/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-96/training_args.bin",
+          "size": 7761,
+          "inode": 2138715,
+          "mtime_ns": 1794705117325228597,
+          "sha256": "07f3b7505860181ec081a8df2a3579623c179a4827a453c87b2ce07e9b4d527e",
+          "md5_base64": "9YgRZoj7szgXcvrCM/IQjA==",
+          "gcs_generation": "1794706069121723",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/continuation/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-96/training_args.bin#1794706069121723"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-91/continuation/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-96/rng_state.pth",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/continuation/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-96/rng_state.pth",
+          "size": 14645,
+          "inode": 2151397,
+          "mtime_ns": 1794705117507245017,
+          "sha256": "980c23acd4bcbfb5165b0679629a9ee50bcf9d58fd43c22cb4707c6d38a855e3",
+          "md5_base64": "EzXfwIk6EXjGKZc/s0blzQ==",
+          "gcs_generation": "1794706069185133",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/continuation/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-96/rng_state.pth#1794706069185133"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-91/continuation/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-96/trainer_state.json",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/continuation/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-96/trainer_state.json",
+          "size": 98796,
+          "inode": 2151398,
+          "mtime_ns": 1794705117519844499,
+          "sha256": "899c54c803f86ad331eb02f6ba36d10152860a361757e3e638202b3cad31912d",
+          "md5_base64": "Xaz7jPojfIY9RuVs9/kjcA==",
+          "gcs_generation": "1794706069347543",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/continuation/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-96/trainer_state.json#1794706069347543"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-91/continuation/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-96/adapter_config.json",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/continuation/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-96/adapter_config.json",
+          "size": 1163,
+          "inode": 2138701,
+          "mtime_ns": 1794705116453124850,
+          "sha256": "7dc0659be2fbcccf7051b1c1f8faa6f0e9bc7c3846010c0c07646d82bb416ec5",
+          "md5_base64": "ho1Hmg3EinzksFxDRfPZ2A==",
+          "gcs_generation": "1794706068943926",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/continuation/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-96/adapter_config.json#1794706068943926"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-91/continuation/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-96/README.md",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/continuation/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-96/README.md",
+          "size": 5239,
+          "inode": 2138698,
+          "mtime_ns": 1794705116328138644,
+          "sha256": "d9766db468a70822f94f050e57177a674055b825e7ed8ead6e3026d28e238ef1",
+          "md5_base64": "G5cBsJh+DVQ8UcAg0DAbcA==",
+          "gcs_generation": "1794706068929810",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/continuation/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-96/README.md#1794706068929810"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-91/continuation/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-96/ref/adapter_model.safetensors",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/continuation/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-96/ref/adapter_model.safetensors",
+          "size": 42067976,
+          "inode": 2138703,
+          "mtime_ns": 1794705116563159847,
+          "sha256": "fe480cc9f7957abc10cb3acd9bbe19250cf5ca225f78dceda48156aad6101b3b",
+          "md5_base64": "BxWJMtqGiHgM6FY5as1GnA==",
+          "gcs_generation": "1794706072456978",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/continuation/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-96/ref/adapter_model.safetensors#1794706072456978"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-91/continuation/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-96/ref/adapter_config.json",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/continuation/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-96/ref/adapter_config.json",
+          "size": 1163,
+          "inode": 2138709,
+          "mtime_ns": 1794705116565692361,
+          "sha256": "7dc0659be2fbcccf7051b1c1f8faa6f0e9bc7c3846010c0c07646d82bb416ec5",
+          "md5_base64": "ho1Hmg3EinzksFxDRfPZ2A==",
+          "gcs_generation": "1794706069181720",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/continuation/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-96/ref/adapter_config.json#1794706069181720"
+        }
+      ],
+      "evicted": true
+    },
+    {
+      "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-91/continuation/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-75",
+      "namespace": "postsubmission-visual-replication-v1/seed-91",
+      "files": [
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-91/continuation/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-75/adapter_model.safetensors",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/continuation/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-75/adapter_model.safetensors",
+          "size": 42067976,
+          "inode": 2132883,
+          "mtime_ns": 1794704702380794376,
+          "sha256": "de10483b8645fb64ed6625d54d88b7d993f5daad8220d1c380494df758abf917",
+          "md5_base64": "3BO6i8LEhdnWr52lStkpdw==",
+          "gcs_generation": "1794706070776848",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/continuation/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-75/adapter_model.safetensors#1794706070776848"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-91/continuation/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-75/tokenizer_config.json",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/continuation/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-75/tokenizer_config.json",
+          "size": 3734,
+          "inode": 2132889,
+          "mtime_ns": 1794704702463693295,
+          "sha256": "9669970d5b0bcfcb47a09256f9e66837c313926ff15e9ba4c60e8bbe3c6bdf84",
+          "md5_base64": "XKa5NgUe1UiWDdS3WxtGyg==",
+          "gcs_generation": "1794706068882153",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/continuation/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-75/tokenizer_config.json#1794706068882153"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-91/continuation/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-75/chat_template.jinja",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/continuation/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-75/chat_template.jinja",
+          "size": 18683,
+          "inode": 2132888,
+          "mtime_ns": 1794704703099370691,
+          "sha256": "ae53464bf3be25802b3a5b37def7fd89667067d7577049b3b2d74c4d8de4c6d4",
+          "md5_base64": "8Ba9S8KEbglNWW5KsCZErw==",
+          "gcs_generation": "1794706068341389",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/continuation/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-75/chat_template.jinja#1794706068341389"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-91/continuation/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-75/optimizer.pt",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/continuation/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-75/optimizer.pt",
+          "size": 84235275,
+          "inode": 2132897,
+          "mtime_ns": 1794704703370883697,
+          "sha256": "5eef8985d74f613c24ae6170abd1bdd7d354cba92daea26f33c11dac287e3768",
+          "md5_base64": "6vqcNTtpGh4+eqCgo7tBLg==",
+          "gcs_generation": "1794706073912559",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/continuation/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-75/optimizer.pt#1794706073912559"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-91/continuation/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-75/processor_config.json",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/continuation/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-75/processor_config.json",
+          "size": 1382,
+          "inode": 2132891,
+          "mtime_ns": 1794704703099859247,
+          "sha256": "6b938e76555b3e9946890770e1abcd442a4718f34041a58e8139dc8ad34545c9",
+          "md5_base64": "qf5RMsAWaWu0I4BvBtLT5w==",
+          "gcs_generation": "1794706069203901",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/continuation/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-75/processor_config.json#1794706069203901"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-91/continuation/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-75/scheduler.pt",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/continuation/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-75/scheduler.pt",
+          "size": 1465,
+          "inode": 2132900,
+          "mtime_ns": 1794704703371883787,
+          "sha256": "8db24b760242ff762e063d8294e4a139b1722359e66baf46445fe2a2a5236a3d",
+          "md5_base64": "CMOjKhP3k+ws8ZWMBnGjBw==",
+          "gcs_generation": "1794706068491976",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/continuation/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-75/scheduler.pt#1794706068491976"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-91/continuation/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-75/tokenizer.json",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/continuation/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-75/tokenizer.json",
+          "size": 32157315,
+          "inode": 2132818,
+          "mtime_ns": 1794704703078188003,
+          "sha256": "9fcea7c6ab2ade331c6ff13318e74207e5de5252b0d3c48c4b3d4c087d9a5654",
+          "md5_base64": "CpoYn60pw2fkhsrjDdc5VQ==",
+          "gcs_generation": "1794706071760511",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/continuation/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-75/tokenizer.json#1794706071760511"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-91/continuation/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-75/training_args.bin",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/continuation/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-75/training_args.bin",
+          "size": 7761,
+          "inode": 2132892,
+          "mtime_ns": 1794704703101634006,
+          "sha256": "07f3b7505860181ec081a8df2a3579623c179a4827a453c87b2ce07e9b4d527e",
+          "md5_base64": "9YgRZoj7szgXcvrCM/IQjA==",
+          "gcs_generation": "1794706069193292",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/continuation/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-75/training_args.bin#1794706069193292"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-91/continuation/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-75/rng_state.pth",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/continuation/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-75/rng_state.pth",
+          "size": 14645,
+          "inode": 2132901,
+          "mtime_ns": 1794704703373883968,
+          "sha256": "fb39b0e8efea4fdc8d821208da2833158748089ba89a1dacb24a343a5983c8aa",
+          "md5_base64": "wSzsrgHTxCXsOzPrOB0ihA==",
+          "gcs_generation": "1794706069211937",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/continuation/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-75/rng_state.pth#1794706069211937"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-91/continuation/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-75/trainer_state.json",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/continuation/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-75/trainer_state.json",
+          "size": 77282,
+          "inode": 2132902,
+          "mtime_ns": 1794704703384439847,
+          "sha256": "a3175ec4c4d969136bd8a820bf513e3ae1b4285200f185f989726663b8e33942",
+          "md5_base64": "+4bwRPWfhRdrxwluNDzcbw==",
+          "gcs_generation": "1794706069025121",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/continuation/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-75/trainer_state.json#1794706069025121"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-91/continuation/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-75/adapter_config.json",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/continuation/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-75/adapter_config.json",
+          "size": 1163,
+          "inode": 2132884,
+          "mtime_ns": 1794704702383595167,
+          "sha256": "7dc0659be2fbcccf7051b1c1f8faa6f0e9bc7c3846010c0c07646d82bb416ec5",
+          "md5_base64": "ho1Hmg3EinzksFxDRfPZ2A==",
+          "gcs_generation": "1794706069023016",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/continuation/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-75/adapter_config.json#1794706069023016"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-91/continuation/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-75/README.md",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/continuation/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-75/README.md",
+          "size": 5239,
+          "inode": 2132882,
+          "mtime_ns": 1794704702267784181,
+          "sha256": "d9766db468a70822f94f050e57177a674055b825e7ed8ead6e3026d28e238ef1",
+          "md5_base64": "G5cBsJh+DVQ8UcAg0DAbcA==",
+          "gcs_generation": "1794706069587310",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/continuation/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-75/README.md#1794706069587310"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-91/continuation/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-75/ref/adapter_model.safetensors",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/continuation/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-75/ref/adapter_model.safetensors",
+          "size": 42067976,
+          "inode": 2132886,
+          "mtime_ns": 1794704702458801414,
+          "sha256": "fe480cc9f7957abc10cb3acd9bbe19250cf5ca225f78dceda48156aad6101b3b",
+          "md5_base64": "BxWJMtqGiHgM6FY5as1GnA==",
+          "gcs_generation": "1794706071541740",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/continuation/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-75/ref/adapter_model.safetensors#1794706071541740"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-91/continuation/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-75/ref/adapter_config.json",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/continuation/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-75/ref/adapter_config.json",
+          "size": 1163,
+          "inode": 2132887,
+          "mtime_ns": 1794704702461492918,
+          "sha256": "7dc0659be2fbcccf7051b1c1f8faa6f0e9bc7c3846010c0c07646d82bb416ec5",
+          "md5_base64": "ho1Hmg3EinzksFxDRfPZ2A==",
+          "gcs_generation": "1794706068398886",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/continuation/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-75/ref/adapter_config.json#1794706068398886"
+        }
+      ],
+      "evicted": true
+    },
+    {
+      "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-480",
+      "namespace": "postsubmission-visual-replication-v1/seed-91",
+      "files": [
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-480/adapter_model.safetensors",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-480/adapter_model.safetensors",
+          "size": 42067976,
+          "inode": 2125180,
+          "mtime_ns": 1794701500833969582,
+          "sha256": "1d43c821e3fafa5f4ba10e756e76459b6ca122ce59c6553139d7cbb6689f5376",
+          "md5_base64": "GWPrhij4mGTagpKFA3e9PA==",
+          "gcs_generation": "1794706071189225",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-480/adapter_model.safetensors#1794706071189225"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-480/tokenizer_config.json",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-480/tokenizer_config.json",
+          "size": 3734,
+          "inode": 2125183,
+          "mtime_ns": 1794701500838234873,
+          "sha256": "9669970d5b0bcfcb47a09256f9e66837c313926ff15e9ba4c60e8bbe3c6bdf84",
+          "md5_base64": "XKa5NgUe1UiWDdS3WxtGyg==",
+          "gcs_generation": "1794706068555737",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-480/tokenizer_config.json#1794706068555737"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-480/chat_template.jinja",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-480/chat_template.jinja",
+          "size": 18683,
+          "inode": 2125182,
+          "mtime_ns": 1794701501324142598,
+          "sha256": "ae53464bf3be25802b3a5b37def7fd89667067d7577049b3b2d74c4d8de4c6d4",
+          "md5_base64": "8Ba9S8KEbglNWW5KsCZErw==",
+          "gcs_generation": "1794706068920742",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-480/chat_template.jinja#1794706068920742"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-480/optimizer.pt",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-480/optimizer.pt",
+          "size": 84235275,
+          "inode": 2125187,
+          "mtime_ns": 1794701501457025789,
+          "sha256": "1aeb3e00c98cadb1a6efba06247b01fcaa12b2d62afa57a1226f421dca002fa0",
+          "md5_base64": "VnEpQengvK6zRVaxMfugGw==",
+          "gcs_generation": "1794706073485008",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-480/optimizer.pt#1794706073485008"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-480/processor_config.json",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-480/processor_config.json",
+          "size": 1382,
+          "inode": 2125185,
+          "mtime_ns": 1794701501325135663,
+          "sha256": "6b938e76555b3e9946890770e1abcd442a4718f34041a58e8139dc8ad34545c9",
+          "md5_base64": "qf5RMsAWaWu0I4BvBtLT5w==",
+          "gcs_generation": "1794706068437695",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-480/processor_config.json#1794706068437695"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-480/scheduler.pt",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-480/scheduler.pt",
+          "size": 1465,
+          "inode": 2125188,
+          "mtime_ns": 1794701501458025879,
+          "sha256": "93c4a02eb2d02209c0ccd3159b71ec2d139ef2732b816585606f88985c2577a7",
+          "md5_base64": "EjkRz6EgLPuHxKd5oi3b/g==",
+          "gcs_generation": "1794706069140166",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-480/scheduler.pt#1794706069140166"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-480/tokenizer.json",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-480/tokenizer.json",
+          "size": 32157316,
+          "inode": 2125184,
+          "mtime_ns": 1794701501307012256,
+          "sha256": "31ca8db812b9ac5693b4e5546382490e8b882c1a811e277ea9f904cda165ba63",
+          "md5_base64": "H/vnp5qVzcfyVOV+19PqWA==",
+          "gcs_generation": "1794706071321621",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-480/tokenizer.json#1794706071321621"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-480/training_args.bin",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-480/training_args.bin",
+          "size": 5905,
+          "inode": 2125186,
+          "mtime_ns": 1794701501325135663,
+          "sha256": "54b90564eb8d6dc72a3ad058611dda67b8badbdc7ebf48efb7d61407a3d81d80",
+          "md5_base64": "U40JmkxAOSPJCS9+3xtYwQ==",
+          "gcs_generation": "1794706068625162",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-480/training_args.bin#1794706068625162"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-480/rng_state.pth",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-480/rng_state.pth",
+          "size": 14645,
+          "inode": 2125189,
+          "mtime_ns": 1794701501459025970,
+          "sha256": "74291673a7894fdc25107ec8b3beda346befc19b97b9d41f2c608d40b877edc5",
+          "md5_base64": "/Jizm1CS29z/UPp+OGaMLw==",
+          "gcs_generation": "1794706068620284",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-480/rng_state.pth#1794706068620284"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-480/trainer_state.json",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-480/trainer_state.json",
+          "size": 140776,
+          "inode": 2125190,
+          "mtime_ns": 1794701501470155541,
+          "sha256": "647c3580a937d1cbf473379862e24776fdcf5ff6e1c08161032c21c2c7660335",
+          "md5_base64": "zIkV+K6BFHzz/895gcPLsQ==",
+          "gcs_generation": "1794706069435799",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-480/trainer_state.json#1794706069435799"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-480/adapter_config.json",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-480/adapter_config.json",
+          "size": 1163,
+          "inode": 2125181,
+          "mtime_ns": 1794701500836343526,
+          "sha256": "7dc0659be2fbcccf7051b1c1f8faa6f0e9bc7c3846010c0c07646d82bb416ec5",
+          "md5_base64": "ho1Hmg3EinzksFxDRfPZ2A==",
+          "gcs_generation": "1794706068977023",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-480/adapter_config.json#1794706068977023"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-480/README.md",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-480/README.md",
+          "size": 5238,
+          "inode": 2125179,
+          "mtime_ns": 1794701500761963086,
+          "sha256": "ea8115d41e0222b84275fda09d3efbc308ae702c2b3c4c8d5130994a0692ad74",
+          "md5_base64": "kEfjgGLEaCUfB3kY1E/2rA==",
+          "gcs_generation": "1794706069176323",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-480/README.md#1794706069176323"
+        }
+      ],
+      "evicted": true
+    },
+    {
+      "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-475",
+      "namespace": "postsubmission-visual-replication-v1/seed-91",
+      "files": [
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-475/adapter_model.safetensors",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-475/adapter_model.safetensors",
+          "size": 42067976,
+          "inode": 2124986,
+          "mtime_ns": 1794701484651509730,
+          "sha256": "157bc38665f52895a8bddc0b3653d2c1d3fe63fa2bcf186368c12fa709f992ac",
+          "md5_base64": "xI2fWVO1XdfoAQ/2XnRunA==",
+          "gcs_generation": "1794706071667758",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-475/adapter_model.safetensors#1794706071667758"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-475/tokenizer_config.json",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-475/tokenizer_config.json",
+          "size": 3734,
+          "inode": 2125045,
+          "mtime_ns": 1794701484655654646,
+          "sha256": "9669970d5b0bcfcb47a09256f9e66837c313926ff15e9ba4c60e8bbe3c6bdf84",
+          "md5_base64": "XKa5NgUe1UiWDdS3WxtGyg==",
+          "gcs_generation": "1794706068629560",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-475/tokenizer_config.json#1794706068629560"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-475/chat_template.jinja",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-475/chat_template.jinja",
+          "size": 18683,
+          "inode": 2125025,
+          "mtime_ns": 1794701485139596996,
+          "sha256": "ae53464bf3be25802b3a5b37def7fd89667067d7577049b3b2d74c4d8de4c6d4",
+          "md5_base64": "8Ba9S8KEbglNWW5KsCZErw==",
+          "gcs_generation": "1794706068259592",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-475/chat_template.jinja#1794706068259592"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-475/optimizer.pt",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-475/optimizer.pt",
+          "size": 84235275,
+          "inode": 2125118,
+          "mtime_ns": 1794701485270565576,
+          "sha256": "2f2e972ff43d8b3644146f0fe27cc9d628bdb4765ed7ff007eaadf5b2b625710",
+          "md5_base64": "G9i6M38fTBI0cZZ536vWpQ==",
+          "gcs_generation": "1794706073435536",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-475/optimizer.pt#1794706073435536"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-475/processor_config.json",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-475/processor_config.json",
+          "size": 1382,
+          "inode": 2125115,
+          "mtime_ns": 1794701485140560534,
+          "sha256": "6b938e76555b3e9946890770e1abcd442a4718f34041a58e8139dc8ad34545c9",
+          "md5_base64": "qf5RMsAWaWu0I4BvBtLT5w==",
+          "gcs_generation": "1794706068927556",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-475/processor_config.json#1794706068927556"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-475/scheduler.pt",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-475/scheduler.pt",
+          "size": 1465,
+          "inode": 2125120,
+          "mtime_ns": 1794701485270565576,
+          "sha256": "a3755a927b43fbd6647aa8aca3d73c95e73788ab5d49eb9c1345f51d392f60de",
+          "md5_base64": "Wx4b0YTTR3629WL8zLF0RQ==",
+          "gcs_generation": "1794706068608654",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-475/scheduler.pt#1794706068608654"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-475/tokenizer.json",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-475/tokenizer.json",
+          "size": 32157316,
+          "inode": 2125046,
+          "mtime_ns": 1794701485122552224,
+          "sha256": "31ca8db812b9ac5693b4e5546382490e8b882c1a811e277ea9f904cda165ba63",
+          "md5_base64": "H/vnp5qVzcfyVOV+19PqWA==",
+          "gcs_generation": "1794706071471053",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-475/tokenizer.json#1794706071471053"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-475/training_args.bin",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-475/training_args.bin",
+          "size": 5905,
+          "inode": 2125117,
+          "mtime_ns": 1794701485140560534,
+          "sha256": "54b90564eb8d6dc72a3ad058611dda67b8badbdc7ebf48efb7d61407a3d81d80",
+          "md5_base64": "U40JmkxAOSPJCS9+3xtYwQ==",
+          "gcs_generation": "1794706069138964",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-475/training_args.bin#1794706069138964"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-475/rng_state.pth",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-475/rng_state.pth",
+          "size": 14645,
+          "inode": 2125122,
+          "mtime_ns": 1794701485271670792,
+          "sha256": "195c9931f341cf07f243bb7b76d6b6550c9b90ec1bd23c90d983d5736f05b8a1",
+          "md5_base64": "phq/0v1G6XGVOPlKCEQavw==",
+          "gcs_generation": "1794706068538417",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-475/rng_state.pth#1794706068538417"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-475/trainer_state.json",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-475/trainer_state.json",
+          "size": 139331,
+          "inode": 2125129,
+          "mtime_ns": 1794701485282963032,
+          "sha256": "6bfbec2618066ae94f9e24957b5fbc538f29be412cb854ee78dc080b32d26941",
+          "md5_base64": "UrBphDKx7WAcUk/S7TpT+A==",
+          "gcs_generation": "1794706069461980",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-475/trainer_state.json#1794706069461980"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-475/adapter_config.json",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-475/adapter_config.json",
+          "size": 1163,
+          "inode": 2124987,
+          "mtime_ns": 1794701484653514161,
+          "sha256": "7dc0659be2fbcccf7051b1c1f8faa6f0e9bc7c3846010c0c07646d82bb416ec5",
+          "md5_base64": "ho1Hmg3EinzksFxDRfPZ2A==",
+          "gcs_generation": "1794706069198439",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-475/adapter_config.json#1794706069198439"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-475/README.md",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-475/README.md",
+          "size": 5238,
+          "inode": 2124985,
+          "mtime_ns": 1794701484579503234,
+          "sha256": "ea8115d41e0222b84275fda09d3efbc308ae702c2b3c4c8d5130994a0692ad74",
+          "md5_base64": "kEfjgGLEaCUfB3kY1E/2rA==",
+          "gcs_generation": "1794706068629097",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-475/README.md#1794706068629097"
+        }
+      ],
+      "evicted": true
+    },
+    {
+      "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-24",
+      "namespace": "postsubmission-visual-replication-v1/seed-91",
+      "files": [
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-24/adapter_model.safetensors",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-24/adapter_model.safetensors",
+          "size": 42067976,
+          "inode": 2125214,
+          "mtime_ns": 1794701806244521278,
+          "sha256": "29658f03d6f0bf49906cea94e42f7319bdfaf04c2ce101f9de736b16dd595f7b",
+          "md5_base64": "HixJnBSWMN2Hef2Nr0mmkQ==",
+          "gcs_generation": "1794706072098676",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-24/adapter_model.safetensors#1794706072098676"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-24/tokenizer_config.json",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-24/tokenizer_config.json",
+          "size": 3734,
+          "inode": 2125220,
+          "mtime_ns": 1794701806340529940,
+          "sha256": "9669970d5b0bcfcb47a09256f9e66837c313926ff15e9ba4c60e8bbe3c6bdf84",
+          "md5_base64": "XKa5NgUe1UiWDdS3WxtGyg==",
+          "gcs_generation": "1794706069302565",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-24/tokenizer_config.json#1794706069302565"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-24/chat_template.jinja",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-24/chat_template.jinja",
+          "size": 18683,
+          "inode": 2125219,
+          "mtime_ns": 1794701806928582989,
+          "sha256": "ae53464bf3be25802b3a5b37def7fd89667067d7577049b3b2d74c4d8de4c6d4",
+          "md5_base64": "8Ba9S8KEbglNWW5KsCZErw==",
+          "gcs_generation": "1794706069089401",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-24/chat_template.jinja#1794706069089401"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-24/optimizer.pt",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-24/optimizer.pt",
+          "size": 84235275,
+          "inode": 2125227,
+          "mtime_ns": 1794701807080596702,
+          "sha256": "00a98b32c1595af33a975c642282e13edfd6bb5419cc5bab267e83a913073183",
+          "md5_base64": "dVFmEmt/IeuKyoORRSlZbw==",
+          "gcs_generation": "1794706072994293",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-24/optimizer.pt#1794706072994293"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-24/processor_config.json",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-24/processor_config.json",
+          "size": 1382,
+          "inode": 2125225,
+          "mtime_ns": 1794701806929583079,
+          "sha256": "6b938e76555b3e9946890770e1abcd442a4718f34041a58e8139dc8ad34545c9",
+          "md5_base64": "qf5RMsAWaWu0I4BvBtLT5w==",
+          "gcs_generation": "1794706069245936",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-24/processor_config.json#1794706069245936"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-24/scheduler.pt",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-24/scheduler.pt",
+          "size": 1465,
+          "inode": 2125228,
+          "mtime_ns": 1794701807080596702,
+          "sha256": "ef88b20aef03a8a4318db9db4833d04458aa71d19bdba3986678a54dc0cfc5fe",
+          "md5_base64": "5sVM5/T1D0nyJP0w84oD6w==",
+          "gcs_generation": "1794706068921937",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-24/scheduler.pt#1794706068921937"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-24/tokenizer.json",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-24/tokenizer.json",
+          "size": 32157315,
+          "inode": 2125224,
+          "mtime_ns": 1794701806912581545,
+          "sha256": "9fcea7c6ab2ade331c6ff13318e74207e5de5252b0d3c48c4b3d4c087d9a5654",
+          "md5_base64": "CpoYn60pw2fkhsrjDdc5VQ==",
+          "gcs_generation": "1794706071235143",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-24/tokenizer.json#1794706071235143"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-24/training_args.bin",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-24/training_args.bin",
+          "size": 7761,
+          "inode": 2125226,
+          "mtime_ns": 1794701806930583169,
+          "sha256": "88a14e1569ce8a47c67d83467f86b9cd1e45677b360fe1e4005f354fc2f064df",
+          "md5_base64": "Kspr94At/lcEb5W0EBkGtQ==",
+          "gcs_generation": "1794706067851333",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-24/training_args.bin#1794706067851333"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-24/rng_state.pth",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-24/rng_state.pth",
+          "size": 14645,
+          "inode": 2125229,
+          "mtime_ns": 1794701807081596793,
+          "sha256": "49cbedde61a6fb7b397efa2417d387e4277e279fc0f4c60cef82a06a9adc1366",
+          "md5_base64": "zws2gs0Eh6B34ebEdw+KBA==",
+          "gcs_generation": "1794706068763952",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-24/rng_state.pth#1794706068763952"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-24/trainer_state.json",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-24/trainer_state.json",
+          "size": 25124,
+          "inode": 2125230,
+          "mtime_ns": 1794701807084644376,
+          "sha256": "e9deafd9a5527bee5cb77164c8a5a098a90710c92c1b66edfc3d177e96976874",
+          "md5_base64": "X917ym15vaxmUb98dBXCCA==",
+          "gcs_generation": "1794706069025111",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-24/trainer_state.json#1794706069025111"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-24/adapter_config.json",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-24/adapter_config.json",
+          "size": 1163,
+          "inode": 2125215,
+          "mtime_ns": 1794701806246332206,
+          "sha256": "7dc0659be2fbcccf7051b1c1f8faa6f0e9bc7c3846010c0c07646d82bb416ec5",
+          "md5_base64": "ho1Hmg3EinzksFxDRfPZ2A==",
+          "gcs_generation": "1794706069194238",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-24/adapter_config.json#1794706069194238"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-24/README.md",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-24/README.md",
+          "size": 5239,
+          "inode": 2125209,
+          "mtime_ns": 1794701806144512256,
+          "sha256": "d9766db468a70822f94f050e57177a674055b825e7ed8ead6e3026d28e238ef1",
+          "md5_base64": "G5cBsJh+DVQ8UcAg0DAbcA==",
+          "gcs_generation": "1794706069176247",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-24/README.md#1794706069176247"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-24/ref/adapter_model.safetensors",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-24/ref/adapter_model.safetensors",
+          "size": 42067976,
+          "inode": 2125217,
+          "mtime_ns": 1794701806335529488,
+          "sha256": "1d43c821e3fafa5f4ba10e756e76459b6ca122ce59c6553139d7cbb6689f5376",
+          "md5_base64": "GWPrhij4mGTagpKFA3e9PA==",
+          "gcs_generation": "1794706072124140",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-24/ref/adapter_model.safetensors#1794706072124140"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-24/ref/adapter_config.json",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-24/ref/adapter_config.json",
+          "size": 1163,
+          "inode": 2125218,
+          "mtime_ns": 1794701806337668293,
+          "sha256": "7dc0659be2fbcccf7051b1c1f8faa6f0e9bc7c3846010c0c07646d82bb416ec5",
+          "md5_base64": "ho1Hmg3EinzksFxDRfPZ2A==",
+          "gcs_generation": "1794706069193825",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-24/ref/adapter_config.json#1794706069193825"
+        }
+      ],
+      "evicted": true
+    },
+    {
+      "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-48",
+      "namespace": "postsubmission-visual-replication-v1/seed-91",
+      "files": [
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-48/adapter_model.safetensors",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-48/adapter_model.safetensors",
+          "size": 42067976,
+          "inode": 2125359,
+          "mtime_ns": 1794702224136220125,
+          "sha256": "fe480cc9f7957abc10cb3acd9bbe19250cf5ca225f78dceda48156aad6101b3b",
+          "md5_base64": "BxWJMtqGiHgM6FY5as1GnA==",
+          "gcs_generation": "1794706072009160",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-48/adapter_model.safetensors#1794706072009160"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-48/tokenizer_config.json",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-48/tokenizer_config.json",
+          "size": 3734,
+          "inode": 2125365,
+          "mtime_ns": 1794702224216754000,
+          "sha256": "9669970d5b0bcfcb47a09256f9e66837c313926ff15e9ba4c60e8bbe3c6bdf84",
+          "md5_base64": "XKa5NgUe1UiWDdS3WxtGyg==",
+          "gcs_generation": "1794706068612305",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-48/tokenizer_config.json#1794706068612305"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-48/chat_template.jinja",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-48/chat_template.jinja",
+          "size": 18683,
+          "inode": 2125364,
+          "mtime_ns": 1794702224784103919,
+          "sha256": "ae53464bf3be25802b3a5b37def7fd89667067d7577049b3b2d74c4d8de4c6d4",
+          "md5_base64": "8Ba9S8KEbglNWW5KsCZErw==",
+          "gcs_generation": "1794706069148016",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-48/chat_template.jinja#1794706069148016"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-48/optimizer.pt",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-48/optimizer.pt",
+          "size": 84235275,
+          "inode": 2125369,
+          "mtime_ns": 1794702224923291129,
+          "sha256": "67c8e238908d15311a774bc2a2e5b484704568cc225654fe06bd0f84fdcec233",
+          "md5_base64": "XG+j20wQ364OdQHk3TDdfA==",
+          "gcs_generation": "1794706072744106",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-48/optimizer.pt#1794706072744106"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-48/processor_config.json",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-48/processor_config.json",
+          "size": 1382,
+          "inode": 2125367,
+          "mtime_ns": 1794702224784278588,
+          "sha256": "6b938e76555b3e9946890770e1abcd442a4718f34041a58e8139dc8ad34545c9",
+          "md5_base64": "qf5RMsAWaWu0I4BvBtLT5w==",
+          "gcs_generation": "1794706068709464",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-48/processor_config.json#1794706068709464"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-48/scheduler.pt",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-48/scheduler.pt",
+          "size": 1465,
+          "inode": 2125370,
+          "mtime_ns": 1794702224923291129,
+          "sha256": "658e4d05472ceaf57614346804f4a99f9ef42877580e2aef2cf1951996d1d3ff",
+          "md5_base64": "yimnbIUFUvJLFTG3czsSTQ==",
+          "gcs_generation": "1794706068413355",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-48/scheduler.pt#1794706068413355"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-48/tokenizer.json",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-48/tokenizer.json",
+          "size": 32157315,
+          "inode": 2125366,
+          "mtime_ns": 1794702224766276964,
+          "sha256": "9fcea7c6ab2ade331c6ff13318e74207e5de5252b0d3c48c4b3d4c087d9a5654",
+          "md5_base64": "CpoYn60pw2fkhsrjDdc5VQ==",
+          "gcs_generation": "1794706071345040",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-48/tokenizer.json#1794706071345040"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-48/training_args.bin",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-48/training_args.bin",
+          "size": 7761,
+          "inode": 2125368,
+          "mtime_ns": 1794702224785278678,
+          "sha256": "88a14e1569ce8a47c67d83467f86b9cd1e45677b360fe1e4005f354fc2f064df",
+          "md5_base64": "Kspr94At/lcEb5W0EBkGtQ==",
+          "gcs_generation": "1794706069101767",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-48/training_args.bin#1794706069101767"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-48/rng_state.pth",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-48/rng_state.pth",
+          "size": 14645,
+          "inode": 2125371,
+          "mtime_ns": 1794702224924291219,
+          "sha256": "cd361c69c1cd2bc409c1fcf8be94de8bad76fe1fddaa93b178f0ee458d011d65",
+          "md5_base64": "gOMaq2ZdbqCER0zszl8ExQ==",
+          "gcs_generation": "1794706068642554",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-48/rng_state.pth#1794706068642554"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-48/trainer_state.json",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-48/trainer_state.json",
+          "size": 49655,
+          "inode": 2125372,
+          "mtime_ns": 1794702224928767151,
+          "sha256": "1cb984fbcc0d04a73aaeccc7d40f3b84c4911acf8725c371fa87f6875fdb5a37",
+          "md5_base64": "paamMIqy0ujVm8FtFafbEQ==",
+          "gcs_generation": "1794706068682852",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-48/trainer_state.json#1794706068682852"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-48/adapter_config.json",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-48/adapter_config.json",
+          "size": 1163,
+          "inode": 2125360,
+          "mtime_ns": 1794702224138111403,
+          "sha256": "7dc0659be2fbcccf7051b1c1f8faa6f0e9bc7c3846010c0c07646d82bb416ec5",
+          "md5_base64": "ho1Hmg3EinzksFxDRfPZ2A==",
+          "gcs_generation": "1794706068763336",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-48/adapter_config.json#1794706068763336"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-48/README.md",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-48/README.md",
+          "size": 5239,
+          "inode": 2125358,
+          "mtime_ns": 1794702224027582760,
+          "sha256": "d9766db468a70822f94f050e57177a674055b825e7ed8ead6e3026d28e238ef1",
+          "md5_base64": "G5cBsJh+DVQ8UcAg0DAbcA==",
+          "gcs_generation": "1794706068374289",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-48/README.md#1794706068374289"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-48/ref/adapter_model.safetensors",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-48/ref/adapter_model.safetensors",
+          "size": 42067976,
+          "inode": 2125362,
+          "mtime_ns": 1794702224213227072,
+          "sha256": "1d43c821e3fafa5f4ba10e756e76459b6ca122ce59c6553139d7cbb6689f5376",
+          "md5_base64": "GWPrhij4mGTagpKFA3e9PA==",
+          "gcs_generation": "1794706071337065",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-48/ref/adapter_model.safetensors#1794706071337065"
+        },
+        {
+          "path": "/opt/aerorozum/artifacts/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-48/ref/adapter_config.json",
+          "object": "research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-48/ref/adapter_config.json",
+          "size": 1163,
+          "inode": 2125363,
+          "mtime_ns": 1794702224214638959,
+          "sha256": "7dc0659be2fbcccf7051b1c1f8faa6f0e9bc7c3846010c0c07646d82bb416ec5",
+          "md5_base64": "ho1Hmg3EinzksFxDRfPZ2A==",
+          "gcs_generation": "1794706069059501",
+          "restore_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/training/postsubmission-visual-replication-v1/seed-91/initial/google_gemma-4-12B-it/stream_grpo/seed-91/checkpoint-48/ref/adapter_config.json#1794706069059501"
+        }
+      ],
+      "evicted": true
+    }
+  ],
+  "final_adapters_preserved": true,
+  "active_training_preserved": true,
+  "original_data_preserved": true,
+  "archive_remote_delete_enabled": false,
+  "cloud_server_digest": "MD5",
+  "local_content_digest": "SHA256",
+  "restore_method": "Copy each recorded generation-pinned restore_uri back to its path and verify SHA256",
+  "removed_bytes": 2556862201,
+  "pre_eviction_restore_manifest_uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/checkpoint-restore-manifests/progress/187afee704044bea5dd966df1a27f0029cdd242814446d00e1f3c1166c95d720.json",
+  "finished_at": "2026-11-15T03:05:22.906425+00:00",
+  "cloud_disk_free_gib": 30.59054183959961
+}

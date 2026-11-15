@@ -1,0 +1,140 @@
+{
+  "status": "launched",
+  "plans": [
+    {
+      "seed": 17,
+      "kind": "matched_sft_updates",
+      "sft_steps": 96,
+      "grpo_steps": 0,
+      "continuation_steps": 0,
+      "learning_rate": 1e-06,
+      "microbatch": 1,
+      "gradient_accumulation": 4,
+      "lora_scope": "language_visual_projection",
+      "test_access": false,
+      "automatic_promotion": false,
+      "compute_matching_claimed": false,
+      "selection_rule": "Report all declared runs; no test-based selection",
+      "root": "/opt/aerorozum",
+      "namespace": "postsubmission-visual-replication-v1/sft-control-17",
+      "manifest": "/opt/aerorozum/artifacts/submission-refinement-v1/train.json",
+      "validation": "/opt/aerorozum/artifacts/pipeline/validation.json",
+      "output": "/opt/aerorozum/artifacts/postsubmission-visual-replication-v1/sft-control-17",
+      "source_initial": "/opt/aerorozum/harbor/visual-training-source",
+      "source_continuation": "/opt/aerorozum/harbor/grpo-only-source-v1",
+      "parent_adapter": "/opt/aerorozum/artifacts/training/submission-visual-projection-v2/updates-480/google_gemma-4-12B-it/stream_grpo/seed-17/adapter",
+      "input_hashes": {
+        "/opt/aerorozum/postsubmission/replicate_visual_recipe.py": "9f8a2e1b6b5c944aaacd7bab1df1e14b3b9fda05b41faef369659c8154981430",
+        "/opt/aerorozum/artifacts/submission-visual-projection-v2/updates-480/result.json": "b7da2c4fefa41d45e9caf64e51ef4376451ad4a00027f51de373ee6303b7e712",
+        "/opt/aerorozum/artifacts/submission-refinement-v1/train.json": "c41a4d10d8b811059f2a517df4e7a839a2f5f4c94f1347e27e25318c4a79b093",
+        "/opt/aerorozum/artifacts/pipeline/validation.json": "70e6fcd869d88acd5cb73887a946e4b0b9c794ebc21d2204cbf01aa7ea6ff8ee",
+        "/opt/aerorozum/harbor/visual-training-source/aerorozum/training.py": "abf2720892be38abb68aa1e5ffff03f0817667ef3062f5e40c3fe106b0571fb0",
+        "/opt/aerorozum/harbor/visual-training-source/aerorozum/stream_training.py": "5b62b0a5079289ddd4c20ba50ffb395683fd7f38b821d10b4668eb548c6c0b92",
+        "/opt/aerorozum/harbor/visual-training-source/configs/research.json": "ad7e9ee415087616afa4554d32665384ecae775119963b262b61f1e3e5f2c799",
+        "/opt/aerorozum/harbor/grpo-only-source-v1/aerorozum/training.py": "8540ca4f55b90d8e6f61a5002625d23e0727fdfc432508f1a8d0d61b44c8453e",
+        "/opt/aerorozum/harbor/grpo-only-source-v1/aerorozum/stream_training.py": "5b62b0a5079289ddd4c20ba50ffb395683fd7f38b821d10b4668eb548c6c0b92",
+        "/opt/aerorozum/harbor/grpo-only-source-v1/configs/research.json": "ad7e9ee415087616afa4554d32665384ecae775119963b262b61f1e3e5f2c799",
+        "/opt/aerorozum/artifacts/training/submission-visual-projection-v2/updates-480/google_gemma-4-12B-it/stream_grpo/seed-17/adapter/adapter_model.safetensors": "f9bd1c6e2913f6f8446d995624d1e9f953ddce281bc03d1f1e99d7c6eac215e3"
+      },
+      "lease": {
+        "id": "visual-replication-sft-control-17",
+        "gpu_ids": [
+          1
+        ],
+        "expires_at": "2026-11-15T03:00:54.891647+00:00",
+        "purpose": "Declared fixed-recipe replication or matched-update control"
+      }
+    },
+    {
+      "seed": 43,
+      "kind": "fixed_recipe_replication",
+      "sft_steps": 480,
+      "grpo_steps": 48,
+      "continuation_steps": 96,
+      "learning_rate": 3e-05,
+      "microbatch": 1,
+      "gradient_accumulation": 4,
+      "lora_scope": "language_visual_projection",
+      "test_access": false,
+      "automatic_promotion": false,
+      "compute_matching_claimed": false,
+      "selection_rule": "Report all declared runs; no test-based selection",
+      "root": "/opt/aerorozum",
+      "namespace": "postsubmission-visual-replication-v1/seed-43",
+      "manifest": "/opt/aerorozum/artifacts/submission-refinement-v1/train.json",
+      "validation": "/opt/aerorozum/artifacts/pipeline/validation.json",
+      "output": "/opt/aerorozum/artifacts/postsubmission-visual-replication-v1/seed-43",
+      "source_initial": "/opt/aerorozum/harbor/visual-training-source",
+      "source_continuation": "/opt/aerorozum/harbor/grpo-only-source-v1",
+      "parent_adapter": "/opt/aerorozum/artifacts/training/submission-visual-projection-v2/updates-480/google_gemma-4-12B-it/stream_grpo/seed-17/adapter",
+      "input_hashes": {
+        "/opt/aerorozum/postsubmission/replicate_visual_recipe.py": "9f8a2e1b6b5c944aaacd7bab1df1e14b3b9fda05b41faef369659c8154981430",
+        "/opt/aerorozum/artifacts/submission-visual-projection-v2/updates-480/result.json": "b7da2c4fefa41d45e9caf64e51ef4376451ad4a00027f51de373ee6303b7e712",
+        "/opt/aerorozum/artifacts/submission-refinement-v1/train.json": "c41a4d10d8b811059f2a517df4e7a839a2f5f4c94f1347e27e25318c4a79b093",
+        "/opt/aerorozum/artifacts/pipeline/validation.json": "70e6fcd869d88acd5cb73887a946e4b0b9c794ebc21d2204cbf01aa7ea6ff8ee",
+        "/opt/aerorozum/harbor/visual-training-source/aerorozum/training.py": "abf2720892be38abb68aa1e5ffff03f0817667ef3062f5e40c3fe106b0571fb0",
+        "/opt/aerorozum/harbor/visual-training-source/aerorozum/stream_training.py": "5b62b0a5079289ddd4c20ba50ffb395683fd7f38b821d10b4668eb548c6c0b92",
+        "/opt/aerorozum/harbor/visual-training-source/configs/research.json": "ad7e9ee415087616afa4554d32665384ecae775119963b262b61f1e3e5f2c799",
+        "/opt/aerorozum/harbor/grpo-only-source-v1/aerorozum/training.py": "8540ca4f55b90d8e6f61a5002625d23e0727fdfc432508f1a8d0d61b44c8453e",
+        "/opt/aerorozum/harbor/grpo-only-source-v1/aerorozum/stream_training.py": "5b62b0a5079289ddd4c20ba50ffb395683fd7f38b821d10b4668eb548c6c0b92",
+        "/opt/aerorozum/harbor/grpo-only-source-v1/configs/research.json": "ad7e9ee415087616afa4554d32665384ecae775119963b262b61f1e3e5f2c799",
+        "/opt/aerorozum/artifacts/training/submission-visual-projection-v2/updates-480/google_gemma-4-12B-it/stream_grpo/seed-17/adapter/adapter_model.safetensors": "f9bd1c6e2913f6f8446d995624d1e9f953ddce281bc03d1f1e99d7c6eac215e3"
+      },
+      "lease": {
+        "id": "visual-replication-seed-43",
+        "gpu_ids": [
+          2
+        ],
+        "expires_at": "2026-11-15T03:00:54.891718+00:00",
+        "purpose": "Declared fixed-recipe replication or matched-update control"
+      }
+    },
+    {
+      "seed": 91,
+      "kind": "fixed_recipe_replication",
+      "sft_steps": 480,
+      "grpo_steps": 48,
+      "continuation_steps": 96,
+      "learning_rate": 3e-05,
+      "microbatch": 1,
+      "gradient_accumulation": 4,
+      "lora_scope": "language_visual_projection",
+      "test_access": false,
+      "automatic_promotion": false,
+      "compute_matching_claimed": false,
+      "selection_rule": "Report all declared runs; no test-based selection",
+      "root": "/opt/aerorozum",
+      "namespace": "postsubmission-visual-replication-v1/seed-91",
+      "manifest": "/opt/aerorozum/artifacts/submission-refinement-v1/train.json",
+      "validation": "/opt/aerorozum/artifacts/pipeline/validation.json",
+      "output": "/opt/aerorozum/artifacts/postsubmission-visual-replication-v1/seed-91",
+      "source_initial": "/opt/aerorozum/harbor/visual-training-source",
+      "source_continuation": "/opt/aerorozum/harbor/grpo-only-source-v1",
+      "parent_adapter": "/opt/aerorozum/artifacts/training/submission-visual-projection-v2/updates-480/google_gemma-4-12B-it/stream_grpo/seed-17/adapter",
+      "input_hashes": {
+        "/opt/aerorozum/postsubmission/replicate_visual_recipe.py": "9f8a2e1b6b5c944aaacd7bab1df1e14b3b9fda05b41faef369659c8154981430",
+        "/opt/aerorozum/artifacts/submission-visual-projection-v2/updates-480/result.json": "b7da2c4fefa41d45e9caf64e51ef4376451ad4a00027f51de373ee6303b7e712",
+        "/opt/aerorozum/artifacts/submission-refinement-v1/train.json": "c41a4d10d8b811059f2a517df4e7a839a2f5f4c94f1347e27e25318c4a79b093",
+        "/opt/aerorozum/artifacts/pipeline/validation.json": "70e6fcd869d88acd5cb73887a946e4b0b9c794ebc21d2204cbf01aa7ea6ff8ee",
+        "/opt/aerorozum/harbor/visual-training-source/aerorozum/training.py": "abf2720892be38abb68aa1e5ffff03f0817667ef3062f5e40c3fe106b0571fb0",
+        "/opt/aerorozum/harbor/visual-training-source/aerorozum/stream_training.py": "5b62b0a5079289ddd4c20ba50ffb395683fd7f38b821d10b4668eb548c6c0b92",
+        "/opt/aerorozum/harbor/visual-training-source/configs/research.json": "ad7e9ee415087616afa4554d32665384ecae775119963b262b61f1e3e5f2c799",
+        "/opt/aerorozum/harbor/grpo-only-source-v1/aerorozum/training.py": "8540ca4f55b90d8e6f61a5002625d23e0727fdfc432508f1a8d0d61b44c8453e",
+        "/opt/aerorozum/harbor/grpo-only-source-v1/aerorozum/stream_training.py": "5b62b0a5079289ddd4c20ba50ffb395683fd7f38b821d10b4668eb548c6c0b92",
+        "/opt/aerorozum/harbor/grpo-only-source-v1/configs/research.json": "ad7e9ee415087616afa4554d32665384ecae775119963b262b61f1e3e5f2c799",
+        "/opt/aerorozum/artifacts/training/submission-visual-projection-v2/updates-480/google_gemma-4-12B-it/stream_grpo/seed-17/adapter/adapter_model.safetensors": "f9bd1c6e2913f6f8446d995624d1e9f953ddce281bc03d1f1e99d7c6eac215e3"
+      },
+      "lease": {
+        "id": "visual-replication-seed-91",
+        "gpu_ids": [
+          3
+        ],
+        "expires_at": "2026-11-15T03:00:54.891743+00:00",
+        "purpose": "Declared fixed-recipe replication or matched-update control"
+      }
+    }
+  ],
+  "submission_artifacts_changed": false,
+  "sealed_tests_accessed": false,
+  "comparison": "Replicate the fixed successful recipe across seeds; report matched optimizer steps separately from compute"
+}

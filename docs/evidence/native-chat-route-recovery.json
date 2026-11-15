@@ -1,0 +1,9 @@
+{
+  "at": "2026-11-15T03:06:36.840643+00:00",
+  "old_probe_http_status": 422,
+  "old_route": "/generate requires the flattened prompt schema",
+  "new_route": "/v1/chat/completions accepts canonical messages",
+  "original_probe_error_preserved": true,
+  "no_harbor_task_started_before_fix": true,
+  "model_and_task_and_context_unchanged": true
+}

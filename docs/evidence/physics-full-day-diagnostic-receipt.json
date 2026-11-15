@@ -1,0 +1,28 @@
+{
+  "at": "2026-11-15T02:31:01.073617+00:00",
+  "source_field": "/opt/aerorozum/physics/cases/three-d-correspondence-v2/object-h4-local/field.npz",
+  "source_sha256": "7861d91e54c1812a3daf8704685c54071e6171f508619185bffb28f2d37fceb2",
+  "source_metadata_sha256": "f01550212c94ff270c2cac3aefd52206aa1ec35ded0300f3bb3087724c3a7f04",
+  "source_research_accepted": false,
+  "physical_duration_s": 86400.0,
+  "actual_surface_samples": 2887,
+  "displayed_actual_times_s": [
+    21605.997153562555,
+    43205.99715356255,
+    64805.99715356255,
+    86400.0
+  ],
+  "center_disk_radius_m": 0.08,
+  "background_ring_m": [
+    0.3,
+    0.4
+  ],
+  "background_statistic": "per-state ring median",
+  "reference_is_counterfactual": false,
+  "unchanged_source_files": true,
+  "center_minus_ring_min_k": -1.3813263089786005,
+  "center_minus_ring_max_k": 2.8954831579048914,
+  "movie_frames": 96,
+  "movie_fps": 8,
+  "temporal_interpolation": "linear between actual solved states; no extrapolation"
+}

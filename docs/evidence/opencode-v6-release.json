@@ -1,0 +1,34 @@
+{
+  "archive": "aerorozum-harbor-close-inspection-v6.zip",
+  "archive_sha256": "f1cf87c6344c74fa1bc7b4d3d9b1901af45a9f89c28ec19b968b5e303b74fb3d",
+  "bytes": 362530767,
+  "generation": 1794729304162542,
+  "verified_cloud_md5": true,
+  "result": {
+    "reward": 0.62828571,
+    "completed": true,
+    "true_positives": 2,
+    "false_positives": 0,
+    "false_negatives": 1,
+    "f2": 0.7142857142857143,
+    "qualified_coverage": 0.57,
+    "multi_view_matches": 1,
+    "invalid_candidates": 0,
+    "observations": 6,
+    "actions": 15,
+    "flight_elapsed_s": 68.512,
+    "budget_s": 75.0,
+    "returned_home": true,
+    "scope": "Inserted synthetic-object retrieval in experimental composed thermal imagery; not physical mine confirmation"
+  },
+  "trial": "/opt/aerorozum/postsubmission/flight-sdk-v6/jobs/sdk-v6-flight-operator-seed-8047543173386242928/thermal-investigation-budgeted__ohUQBNU",
+  "model": "gemini-4-argon",
+  "thinking_budget": 1024,
+  "flight_agent": true,
+  "output_tokens": 8192,
+  "opencode": "1.19.5",
+  "public_starter_pty_check": {
+    "passed": true,
+    "stopped_before_setup_or_inference": true
+  }
+}

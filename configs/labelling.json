@@ -1,0 +1,16 @@
+{
+  "model": "gemini-robotics-er-2-preview",
+  "api_version": "v1beta",
+  "thinking_budget": 0,
+  "sample_fps": 5,
+  "accepted_confidence": 0.6,
+  "label_provenance": "user_accepted_model",
+  "human_reviewed": false,
+  "background_policy": "no candidate at any confidence; keep uncertain separately",
+  "gcs_bucket": "aerorozum-jetson-testdata-smart-bird",
+  "session_split": "whole_recording_session",
+  "concurrency": 16,
+  "requests_per_minute": 120,
+  "input_tokens_per_minute": 500000,
+  "max_requests": 200000
+}

@@ -1,0 +1,25 @@
+{
+  "at": "2026-11-15T00:41:21.726544+00:00",
+  "disk_before_free_mib": 45,
+  "disk_after_free_gib": 15,
+  "ram_available_gib": 48,
+  "swap_used_gib": 0,
+  "actions": [
+    "Removed non-symlink pip cache directory",
+    "Removed non-symlink thumbnail cache directory",
+    "docker builder prune --all --force: inactive build cache only"
+  ],
+  "preserved": [
+    "All flight recordings and original datasets",
+    "Code and worktrees",
+    "Docker images, containers and volumes",
+    "Codex history and credentials"
+  ],
+  "new_large_outputs": "Existing cloud VM and private Google Cloud Storage only",
+  "source_recovery": {
+    "frames": 354,
+    "method": "Direct streaming tar from read-only SSD to VM; SHA256 checked before transfer; no laptop image archive",
+    "source_mount": "/mnt/aerorozum-recovery-readonly",
+    "write_repair_attempted": false
+  }
+}

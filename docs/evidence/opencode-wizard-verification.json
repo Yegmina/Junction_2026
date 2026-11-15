@@ -1,0 +1,43 @@
+{
+  "at": "2026-11-14T23:25:47.951141+00:00",
+  "status": "fresh_setup_and_native_smoke_verified",
+  "setup": {
+    "archive_sha256": "b49f5b89bd7fc64bbaff071da08bfaa145b65015daea0665f00708039c98de79",
+    "harbor_version": "0.26.0",
+    "opencode_version": "1.19.5",
+    "package": "/opt/aerorozum/opencode-wizard-smoke/aerorozum-submission",
+    "contains_credentials": false
+  },
+  "native_harbor": {
+    "agent": "nop",
+    "exception_info": null,
+    "reward": 0.0,
+    "expected_reward": 0,
+    "instance": {
+      "seed": 930121,
+      "field_hashes": {
+        "warming": "0a9022a5b58567f5ef0ea7f6ff45d77ee3fe04743c3a2c926be470008e9060ab",
+        "cooling": "c0cad4764ec25b99b9bf41132bd04dde97a6bd5564a987c621a144ab031c8238",
+        "dawn": "c993836c6cb3de640294fc8cc3bed09ff09b7ef8f848b87422a8fe654dd78efa",
+        "late_warming": "de43a04bc5a7011498856acab382d70f7bd507238172ef24fbd5084a4237e590"
+      },
+      "frozen_before_run": true,
+      "budget_s": 75.0,
+      "thermal_condition": {
+        "phase": "dawn",
+        "physics_elapsed_hours": 1.0
+      }
+    },
+    "job": "wizard-native-smoke"
+  },
+  "short_url": "https://136.115.179.240/start.sh",
+  "bootstrap_sha256": "4bd2186190440f659c29d460c91dfb0453075884bbb060ca0d7903e136e50185",
+  "model_key_catalog_validation": {
+    "accepted": true,
+    "default_argon_available": true,
+    "paid_inference_issued": false
+  },
+  "wizard_stores_api_key": false,
+  "opencode_model_run_repeated": false,
+  "submission_package_modified": false
+}

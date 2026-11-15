@@ -1,0 +1,28 @@
+{
+  "at": "2026-11-15T02:53:21.108567+00:00",
+  "prompt_version": "thermal-v2-recall-calibrated",
+  "thinking_level": "high",
+  "report": {
+    "status": "partial",
+    "manifest": "/opt/aerorozum/airborne-labeler/artifacts/labelling/robotics-er2-high-thinking-v1/manifest.json",
+    "labelled": 14626,
+    "positive_frames": 2697,
+    "uncertain_frames": 6787,
+    "zero_candidate_frames": 6190,
+    "training_frames": 7839,
+    "failed": 31,
+    "model": "gemini-robotics-er-2-preview",
+    "cloud_sync": {
+      "cloud_cache_hits": 0,
+      "local_cache_hits": 0,
+      "uploaded": 14626,
+      "upload_pending": 0
+    }
+  },
+  "actual_requests": 14657,
+  "available_unique_frames": 14657,
+  "missing_source_pixels": 0,
+  "deadline_reached": false,
+  "original_labels_overwritten": false,
+  "test_accessed": false
+}

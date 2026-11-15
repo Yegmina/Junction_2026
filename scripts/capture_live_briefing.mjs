@@ -1,0 +1,44 @@
+/** Capture real dashboard state and render the presentation. Never inject results. */
+import {createRequire} from 'node:module';
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import {fileURLToPath} from 'node:url';
+import {execFileSync} from 'node:child_process';
+const require=createRequire(import.meta.url);
+const {chromium}=require('/home/yehormsi/codex/pilotix-t640-flat-mount/viewer/node_modules/playwright-core');
+const project=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
+const out=path.join(project,'docs/presentation'),assets=path.join(out,'assets');
+const browser=await chromium.launch({executablePath:'/usr/bin/google-chrome',headless:true,args:['--no-sandbox']});
+const errors=[];
+try {
+ const context=await browser.newContext({viewport:{width:1920,height:1080},recordVideo:{dir:path.join(out,'.recordings'),size:{width:1920,height:1080}}});
+ const page=await context.newPage();page.on('pageerror',e=>errors.push(e.message));
+ await page.goto('http://127.0.0.1:18900/',{waitUntil:'domcontentloaded'});
+ await page.locator('.pl-case').first().waitFor();
+ await page.screenshot({path:path.join(assets,'27-live-dashboard.png')});
+ await page.waitForTimeout(3500);
+ await page.locator('.pl-main-grid').scrollIntoViewIfNeeded();
+ await page.waitForTimeout(3500);
+ await page.locator('.pl-main-grid').screenshot({path:path.join(assets,'28-live-physics-progress.png')});
+ await page.locator('.robotics-gallery').scrollIntoViewIfNeeded();
+ await page.getByRole('button',{name:'Saved candidate examples',exact:true}).click();
+ await page.waitForFunction(()=>[...document.querySelectorAll('.robotics-card img')].every(i=>i.complete&&i.naturalWidth>0));
+ await page.locator('.robotics-gallery').screenshot({path:path.join(assets,'29-recorded-thermal-evidence.png')});
+ await page.waitForTimeout(6000);
+ await page.locator('.pl-learning').scrollIntoViewIfNeeded();
+ await page.waitForTimeout(4000);
+ await page.locator('.pl-learning').screenshot({path:path.join(assets,'30-actual-learning-signals.png')});
+ const video=page.video();await page.close();await context.close();
+ const original=await video.path();
+ execFileSync('ffmpeg',['-hide_banner','-loglevel','error','-y','-i',original,'-an','-c:v','libx264','-threads','2','-preset','fast','-crf','20','-pix_fmt','yuv420p','-movflags','+faststart',path.join(assets,'dashboard-walkthrough.mp4')]);
+ await fs.rm(original);
+ const slides=await browser.newPage({viewport:{width:1600,height:1000}});slides.on('pageerror',e=>errors.push(e.message));
+ await slides.goto('http://127.0.0.1:18901/presentation/live-briefing.html',{waitUntil:'domcontentloaded'});
+ await slides.waitForFunction(()=>[...document.images].every(i=>i.complete&&i.naturalWidth>0));
+ const count=await slides.locator('section').count();
+ for(let i=0;i<count;i++)await slides.locator('section').nth(i).screenshot({path:path.join(assets,`slide-${String(i+1).padStart(2,'0')}.png`)});
+ await slides.pdf({path:path.join(out,'live-briefing.pdf'),width:'1600px',height:'1000px',printBackground:true,preferCSSPageSize:true});
+ await fs.writeFile(path.join(out,'capture-receipt.json'),JSON.stringify({captured_at:new Date().toISOString(),browser_errors:errors,slides:count,method:'Real page navigation, screenshots and screen recording; no state or image substitution'},null,2));
+ if(errors.length)throw Error(JSON.stringify(errors));
+ console.log(JSON.stringify({slides:count,errors,pdf:path.join(out,'live-briefing.pdf'),video:path.join(assets,'dashboard-walkthrough.mp4')}));
+}finally{await browser.close();}

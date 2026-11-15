@@ -1,0 +1,19 @@
+{
+  "at": "2026-11-15T03:50:08.956932+00:00",
+  "action": "Remove unused Docker build cache older than six hours",
+  "command": [
+    "docker",
+    "builder",
+    "prune",
+    "--all",
+    "--force",
+    "--filter",
+    "until=6h"
+  ],
+  "exit_code": 0,
+  "output": "ID\t\t\t\t\t\tRECLAIMABLE\tSIZE\t\tLAST ACCESSED\ndpq8880pdlqlj6bl5vjkygyhn               \ttrue \t\t8.224kB   \t8 hours ago\niqeqbig3w6cnfkaes0rayk1ht               \ttrue \t8.224kB   \t8 hours ago\n664rvqungcxpxjv2tmsq3pzu5               \ttrue \t8.224kB   \t8 hours ago\nipjw81ooydbhdyakudwilvqaf               \ttrue \t8.224kB   \t9 hours ago\niibyql0f6b9w2z7sferc177ai               \ttrue \t4.128kB   \t8 hours ago\ni4dzbsb3muk8fin3i80gl47r3               \ttrue \t8.224kB   \t7 hours ago\naf479kaolwclzpvbmkiio748w               \ttrue \t8.224kB   \t7 hours ago\nw57031ikmtdemwr5erg0hmwm7               \ttrue \t8.495kB   \t9 hours ago\n425w92sldjckwexug86efk7cz               \ttrue \t8.529kB   \t8 hours ago\nzal9low94aakeai2vo6gi5sl3               \ttrue \t8.529kB   \t8 hours ago\nufy84zza8m13xbao5n2jn0go4               \ttrue \t8.529kB   \t8 hours ago\n41t4txmh54rmb4nvdg1gm4nd1               \ttrue \t8.495kB   \t9 hours ago\nlmp5lnasv7m0eyyrglbwx93v3               \ttrue \t32.8kB    \t9 hours ago\n0k9ry0a4o1pej3t8jkuzo7c0f               \ttrue \t8.529kB   \t7 hours ago\nsr6t53l8e90igxi6u9lqgbw9r               \ttrue \t29.5kB    \t9 hours ago\n6779hh100l507j4no543er3ki               \ttrue \t29.67kB   \t9 hours ago\n3j8nszgiw2qopatd6kolqb6ss               \ttrue \t29.7kB    \t9 hours ago\nwkfxw4g8brip04gi0fypqu29f               \ttrue \t29.93kB   \t8 hours ago\n3qrtonveclt8b0lkqwnrdzbqz               \ttrue \t30.11kB   \t8 hours ago\ng0o5m6yx91pjef7jrevtx0ami               \ttrue \t30.13kB   \t7 hours ago\nt9vepog3zu4dpw815a46f6uvu               \ttrue \t29.74kB   \t8 hours ago\nwrolq5culfqu0p9hpwhn0k2ml               \ttrue \t45.25kB   \t9 hours ago\nqs5oql63uooy3krek4y8ldrxq               \ttrue \t65.45kB   \t8 hours ago\n9uifpae2uq104dh56pjg5vw6y               \ttrue \t65.31kB   \t8 hours ago\nq9cv85gxged3cugiq70qwnh0b               \ttrue \t45.25kB   \t9 hours ago\ntwyl6zqtongiveba11tm89zra               \ttrue \t292.3MB   \t9 hours ago\nqi53vjora8jdxm54oyvsg8lci               \ttrue \t516.5MB   \t8 hours ago\nlw99uqoqtr7y4efxrkzdv8iol               \ttrue \t279MB     \t9 hours ago\n6ppd5qyhcf8cndgwssv5pay3c               \ttrue \t292.3MB   \t8 hours ago\nTotal:\t1.381GB\n",
+  "error": "",
+  "free_before_gib": 25.816062927246094,
+  "free_after_gib": 26.69788360595703,
+  "images_containers_volumes_and_original_data_preserved": true
+}

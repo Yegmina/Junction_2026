@@ -1,0 +1,19 @@
+{
+  "new_unique_eligible": 1199,
+  "excluded": {
+    "existing_high_thinking_pixels": 7
+  },
+  "conflicts": [],
+  "original_audits_modified": false,
+  "known_decisions_overridden": false,
+  "paid_inference_issued": false,
+  "at": "2026-11-15T01:21:05.747731+00:00",
+  "original_audit_sha256": {
+    "/opt/aerorozum/airborne-labeler/artifacts/pipeline/inputs/airborne-snapshots/followup-20261114T233943/airborne-eligibility.json": "4dc9aa56535d42177f0cf12d507ea0d1039c4810ca2b320d972eb2ca0c2ca767",
+    "/opt/aerorozum/airborne-labeler/artifacts/pipeline/inputs/airborne-snapshots/2ae37a3ce30850ac/airborne-eligibility.json": "2ae37a3ce30850ac0bfb6de2aefd6d8674bf8b3f0d07251eb501bb6d7c37d0c4"
+  },
+  "new_audit_sha256": "357b916c01d7456254ae3ecd1a69a8be6219d7787553efa8f6e2d59f502a2060",
+  "prepared_eligible_frames": 1206,
+  "session_registry_sha256": "d266c4d4fa8ec2de6ad58cdf8b410bc858a17916278e181546c5ab5d955bfbea",
+  "quarantined_sources": 8
+}

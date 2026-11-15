@@ -1,0 +1,15 @@
+{
+  "at": "2026-11-15T05:34:05.006711+00:00",
+  "status": "completed",
+  "mode": "background-tiles",
+  "completed": 6000,
+  "expected": 6000,
+  "actual_requests": 5999,
+  "provider_hold": false,
+  "valid_reviews": 5992,
+  "candidate_bearing_review_outputs": 180,
+  "archive_errors": [],
+  "training_eligible": false,
+  "first_pass_labels_overwritten": false,
+  "interpretation": "Same-provider temporal/proposal diagnostic and machine-zero background audit. No physical mine identity or confirmed absence is established; no first-pass label is overwritten."
+}

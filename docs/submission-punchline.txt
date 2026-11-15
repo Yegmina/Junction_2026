@@ -1,0 +1,1 @@
+A drone investigation that challenges AI agents to find thermal evidence and make it home on time.

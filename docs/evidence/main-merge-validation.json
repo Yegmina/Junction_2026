@@ -1,0 +1,22 @@
+{
+  "incoming_main": "3d14f71d268d6a306aff34b34dc059a2927e311f",
+  "integration_branch": "codex/research-replication",
+  "integration_commit": "e211b4d3d25994efac85165520fbcec27c3c8d62",
+  "preserved_pitch_deck_blob": "c1373e5e2afc56a7df87cefb290f8bbd60fc91de",
+  "readme_resolution": "Preserved incoming RE:VISION pitch; added runnable V6 entry points and moved technical setup to docs/development.md",
+  "portability_fix": "Removed tracked absolute frontend/node_modules symlink; dependencies remain ignored",
+  "frontend_build": "passed",
+  "scoped_harbor_tests": {
+    "passed": 38
+  },
+  "credential_pattern_scan": "no matches in tracked text",
+  "full_research_sweep": {
+    "status": "incomplete_with_failures",
+    "passed": 293,
+    "failed": 38,
+    "interrupted": true,
+    "known_missing_input": "Original recorded thermal frame bank is not in the isolated checkout",
+    "unresolved_streaming_assertions": 4
+  },
+  "live_services_restarted": false
+}

@@ -1,0 +1,25 @@
+services:
+  main:
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      simulator:
+        condition: service_healthy
+    environment:
+      DRONE_API: http://simulator:8080
+  simulator:
+    build:
+      context: ./backend
+    cpus: 8
+    mem_limit: 12g
+    shm_size: 1gb
+    environment:
+      AEROROZUM_TASK_SEED: ${AEROROZUM_TASK_SEED:-}
+      AEROROZUM_TASK_PHASE: ${AEROROZUM_TASK_PHASE:-warming}
+      AEROROZUM_TASK_BUDGET: ${AEROROZUM_TASK_BUDGET:-180}
+    healthcheck:
+      test: ["CMD", "python3", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8080/health',timeout=5)"]
+      interval: 5s
+      timeout: 8s
+      retries: 60
+      start_period: 15s

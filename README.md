@@ -8,6 +8,33 @@ Inspired by humanitarian mine-survey research, RE:VISION asks a question beyond 
 
 > The Renaissance transformed the way humanity understood the visible world. But can we trust what artificial intelligence believes it sees?
 
+## Run RE:VISION
+
+[Live mission dashboard](https://136.115.179.240/) · [Verified OpenCode replay](https://136.115.179.240/presentation/submission/playthrough/sdk-v6/index.html) · [Annotated thermal/RGB clip](https://136.115.179.240/presentation/submission/playthrough/sdk-v6/media/harbor-evidence-replay.mp4)
+
+On an x86_64 Linux machine with an interactive terminal:
+
+```bash
+bash <(curl -fsSL https://136.115.179.240/start.sh)
+```
+
+The wizard checks dependencies, installs the pinned Harbor/OpenCode stack and
+asks privately for your Gemini API key. It downloads the checksummed V6 task,
+including scene assets and real scored run logs. Windows users need an x86_64
+Linux environment; the command is Bash syntax.
+
+The repaired flight-operator profile scored **0.628**, with **2 of 3 simulated
+targets matched, zero false positives, six close captures and home landing in
+68.5 / 75 simulated seconds**. This is a single verified run on the same seed
+and physical fields as the failed laptop trial. The SDK and agent configuration
+changed; the flight budget and verifier did not. The earlier runs below retain
+their original results.
+
+[Download the runnable V6 Harbor bundle](https://storage.googleapis.com/aerorozum-junction2026-submission-avid-relic-509408-e4/aerorozum-harbor-close-inspection-v6.zip) · [Task and scoring](harbor/thermal-investigation-budgeted/README.md) · [Starter details](docs/opencode-starter.md) · [Verification record](docs/evidence/opencode-v6-flight-result.json)
+
+For development from source, see [development and research setup](docs/development.md).
+Large scene assets are provided in the prepared bundle rather than Git.
+
 ## The challenge
 
 Recognizing a suspicious object in an image is not the same as completing an investigation. An agent must decide what to observe, where to fly, when to revisit uncertain evidence, what to report, and when to return. An agent may identify the right objects and still fail the mission.
@@ -89,7 +116,7 @@ RE:VISION provides a reproducible environment for exposing failures that convent
 
 **Because trustworthy autonomy begins with understanding where AI fails.**
 
-**[View the pitch deck](RE VISION.pptx)**
+**[View the pitch deck](<RE VISION.pptx>)**
 
 [Video](https://youtu.be/aA5_dlPKcpE)
 **The next Renaissance begins when AI learns not just to see, but to judge.**

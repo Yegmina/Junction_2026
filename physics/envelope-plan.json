@@ -1,0 +1,17 @@
+{
+  "status": "planned_not_qualified",
+  "research_accepted": false,
+  "scope": "Bounded representative numerical qualification; not automatic scene-specific admission of 184 trajectories",
+  "physical_parameter_binding": "pending: current frozen study records IDs/seeds/counts, not actual per-seed soil/weather/material values",
+  "frozen_protocol_counts": {"train_pairs":64,"validation_pairs":16,"direct_scenes":24,"main_trajectories":184},
+  "representative_pair_budget":16,
+  "selection": "Freeze physical inputs first; deterministic maximin coverage of soil/material categories and numerical stiffness descriptors, including extrema; reuse the 16 planned validation pairs where their frozen coverage permits",
+  "descriptors": ["thermal diffusivity and skin Fourier number", "hydraulic diffusivity/initial saturation", "evaporation relative to water supply", "solid/soil conductivity contrast", "burial depth and radius relative to cell width", "forcing amplitude and cooling/heating extrema"],
+  "representative_protocol": {"full_trajectories_per_pair":9,"total_trajectories_for_16_pairs":144,"main_trajectories_already_in_184":32,"additional_verification_trajectories":112,"physical_duration_s":86400,"initial_and_max_dt_refinement":2,"all_axis_grid_refinement":2,"domain_enlargement":2,"target_fluid_regularization_refinement":10},
+  "unchanged_gates": {"mass_energy_relative":0.005,"maximum_surface_temperature_difference_k":0.02,"time_weighted_relative_thermal_and_moisture_difference":0.02,"interface_continuity":"actual DuMux fluxes","target_fluid_leakage":"actual DuMux storage/exchange","field_validation":"not performed"},
+  "production_admission": "Own source/input/physical bounds and executed conservation checks on every trajectory. Representative passing results are empirical envelope evidence, not an individual refinement certificate. Existing scene-specific accepted metadata remains reserved for actual passing direct certificates; no automatic promotion from this plan.",
+  "strict_full_protocol_accounting": {"paired_cases":80,"paired_full_trajectories":720,"unpaired_direct_cases":24,"unpaired_full_trajectories":120,"total_if_every_unique_scene_needs_existing_direct_grade":840,"note":"Before exact source/input deduplication, and excluding any extra counterfactuals demanded for the unpaired direct scenes. This is not 9 times 184; absence requires no target-regularization solve."},
+  "capacity_guard": "Use measured full-day fine runtimes and an actual Cloud Billing SKU quote before any CPU-only farm. No new VM launched by this plan. Current GPU VM is insufficient for all per-scene refinements within 20h at the present throughput; do not assert otherwise.",
+  "budget_guard": "Root coordinates remaining EUR1000 project cap. Freeze and price a finite qualification stage first; never expand unboundedly after a failing representative.",
+  "failure_policy": "Keep failing strata unaccepted, preserve evidence, revise their discretization and repeat their actual gates. Never reduce the physical day, spin-up, convergence thresholds or scene counts to claim completion."
+}

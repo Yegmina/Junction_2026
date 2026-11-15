@@ -1,0 +1,19 @@
+[Unit]
+Description=AeroRozum read-only label-health observation
+After=aerorozum-airborne-labeler.service
+[Service]
+Type=simple
+User=aerorozum-labeler
+Group=aerorozum-labeler
+ExecStart=/opt/aerorozum/venv/bin/python -u /opt/aerorozum/airborne-labeler/source/cloud/monitor_airborne_labels.py
+Restart=on-failure
+RestartSec=30
+CPUQuota=50%
+MemoryMax=256M
+RuntimeMaxSec=14400
+NoNewPrivileges=true
+ProtectHome=true
+ProtectSystem=strict
+ReadWritePaths=/opt/aerorozum/airborne-labeler/artifacts/labelling/robotics-er2-airborne/labels
+[Install]
+WantedBy=multi-user.target

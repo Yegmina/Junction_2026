@@ -1,0 +1,491 @@
+{
+  "recorded_at": "2026-11-14T19:58:36.558493+00:00",
+  "validation_manifest_sha256": "70e6fcd869d88acd5cb73887a946e4b0b9c794ebc21d2204cbf01aa7ea6ff8ee",
+  "scope": "Single-seed development selection on 120 images: 88 positive reference boxes and 32 screened negatives. Perception, not native mission-policy performance.",
+  "frontier_superiority_verified": false,
+  "runs": [
+    {
+      "family": "submission-refinement-v1",
+      "arm": "lr-1e-05",
+      "finished_at": "2026-11-14T18:54:50.163143+00:00",
+      "specification": {
+        "namespace": "submission-refinement-v1/lr-1e-05",
+        "manifest": "/opt/aerorozum/artifacts/submission-refinement-v1/train.json",
+        "validation": "/opt/aerorozum/artifacts/pipeline/validation.json",
+        "output": "/opt/aerorozum/artifacts/submission-refinement-v1/lr-1e-05",
+        "learning_rate": 1e-05,
+        "sft_steps": 120,
+        "grpo_steps": 48
+      },
+      "source_result_sha256": "58b32b7bd8063fb4f015cacd9250bf04c22de1f56302ed35794bb7f842ed3a19",
+      "reward_signal": {
+        "measured_steps": 5,
+        "informative_steps": 1,
+        "task_signal_verified": true,
+        "mean_zero_reward_variance_fraction": 0.8,
+        "interpretation": "Nonzero gradients alone do not establish a task-learning signal or an RL improvement"
+      },
+      "evaluations": {
+        "sft_evaluation": {
+          "status": "completed",
+          "protocol_hash": "0cb77cfb64ddb6353fca1df155d84b28629d8593f134a2becd9d0c0f7a800c98",
+          "examples": 120,
+          "tp": 7,
+          "fp": 6,
+          "fn": 81,
+          "micro_f2": 0.0958904109589041,
+          "valid_json_fraction": 0.9916666666666667,
+          "negative_false_alarm_rate": 0.0625,
+          "elapsed_s": 199.68149766999977,
+          "use_cache": true,
+          "decoding_protocol": "explicit-kv-cache-v2",
+          "interpretation": "Development label agreement, not verified physical mine accuracy"
+        },
+        "grpo_evaluation": {
+          "status": "completed",
+          "protocol_hash": "0c3b03f8ea6561c18a1ad0a6951b04d76cef4fb4338df6424f87192ca1365805",
+          "examples": 120,
+          "tp": 7,
+          "fp": 6,
+          "fn": 81,
+          "micro_f2": 0.0958904109589041,
+          "valid_json_fraction": 0.9916666666666667,
+          "negative_false_alarm_rate": 0.0625,
+          "elapsed_s": 198.69685724800001,
+          "use_cache": true,
+          "decoding_protocol": "explicit-kv-cache-v2",
+          "interpretation": "Development label agreement, not verified physical mine accuracy"
+        }
+      },
+      "training": {
+        "sft": {
+          "adapter": "training/submission-refinement-v1/lr-1e-05/google_gemma-4-12B-it/stream_sft/seed-17/adapter",
+          "optimizer_updates": 120,
+          "requested_optimizer_updates": 120,
+          "early_stopped": false,
+          "early_stop_reason": null,
+          "manifest_hash": "c66ecfbfcb34b6a2b5d4acb19eade6f82ff1c2c2f2a9628d3dcf1c04c95d7f8b",
+          "image_influence": {
+            "mean_absolute_logit_change": 1.5139899253845215,
+            "passed": true
+          }
+        },
+        "grpo": {
+          "adapter": "training/submission-refinement-v1/lr-1e-05/google_gemma-4-12B-it/stream_grpo/seed-17/adapter",
+          "optimizer_updates": 5,
+          "requested_optimizer_updates": 48,
+          "early_stopped": true,
+          "early_stop_reason": "Four consecutive zero-variance task reward groups; do not extend KL-only updates",
+          "manifest_hash": "c66ecfbfcb34b6a2b5d4acb19eade6f82ff1c2c2f2a9628d3dcf1c04c95d7f8b",
+          "image_influence": {
+            "mean_absolute_logit_change": 1.9978028535842896,
+            "passed": true
+          }
+        }
+      }
+    },
+    {
+      "family": "submission-refinement-v1",
+      "arm": "lr-2e-06",
+      "finished_at": "2026-11-14T18:55:40.287426+00:00",
+      "specification": {
+        "namespace": "submission-refinement-v1/lr-2e-06",
+        "manifest": "/opt/aerorozum/artifacts/submission-refinement-v1/train.json",
+        "validation": "/opt/aerorozum/artifacts/pipeline/validation.json",
+        "output": "/opt/aerorozum/artifacts/submission-refinement-v1/lr-2e-06",
+        "learning_rate": 2e-06,
+        "sft_steps": 120,
+        "grpo_steps": 48
+      },
+      "source_result_sha256": "fa65f64d5c40a3c8ce35d0a568e733ff7797dcac9b77b8a4b3f33a8c54b2d6de",
+      "reward_signal": {
+        "measured_steps": 5,
+        "informative_steps": 1,
+        "task_signal_verified": true,
+        "mean_zero_reward_variance_fraction": 0.8,
+        "interpretation": "Nonzero gradients alone do not establish a task-learning signal or an RL improvement"
+      },
+      "evaluations": {
+        "sft_evaluation": {
+          "status": "completed",
+          "protocol_hash": "57e026e97ae63451167239e28e502c52e76d0c26c10b2009732f1db9286b32f9",
+          "examples": 120,
+          "tp": 4,
+          "fp": 5,
+          "fn": 84,
+          "micro_f2": 0.055401662049861494,
+          "valid_json_fraction": 0.9916666666666667,
+          "negative_false_alarm_rate": 0.0625,
+          "elapsed_s": 220.62180285199975,
+          "use_cache": true,
+          "decoding_protocol": "explicit-kv-cache-v2",
+          "interpretation": "Development label agreement, not verified physical mine accuracy"
+        },
+        "grpo_evaluation": {
+          "status": "completed",
+          "protocol_hash": "3d6f2234d4cff79ee3d922f0d8212af58f8cc114965cd32489357edae4461ef1",
+          "examples": 120,
+          "tp": 4,
+          "fp": 5,
+          "fn": 84,
+          "micro_f2": 0.055401662049861494,
+          "valid_json_fraction": 0.9916666666666667,
+          "negative_false_alarm_rate": 0.0625,
+          "elapsed_s": 221.6579952430002,
+          "use_cache": true,
+          "decoding_protocol": "explicit-kv-cache-v2",
+          "interpretation": "Development label agreement, not verified physical mine accuracy"
+        }
+      },
+      "training": {
+        "sft": {
+          "adapter": "training/submission-refinement-v1/lr-2e-06/google_gemma-4-12B-it/stream_sft/seed-17/adapter",
+          "optimizer_updates": 120,
+          "requested_optimizer_updates": 120,
+          "early_stopped": false,
+          "early_stop_reason": null,
+          "manifest_hash": "c66ecfbfcb34b6a2b5d4acb19eade6f82ff1c2c2f2a9628d3dcf1c04c95d7f8b",
+          "image_influence": {
+            "mean_absolute_logit_change": 1.5139899253845215,
+            "passed": true
+          }
+        },
+        "grpo": {
+          "adapter": "training/submission-refinement-v1/lr-2e-06/google_gemma-4-12B-it/stream_grpo/seed-17/adapter",
+          "optimizer_updates": 5,
+          "requested_optimizer_updates": 48,
+          "early_stopped": true,
+          "early_stop_reason": "Four consecutive zero-variance task reward groups; do not extend KL-only updates",
+          "manifest_hash": "c66ecfbfcb34b6a2b5d4acb19eade6f82ff1c2c2f2a9628d3dcf1c04c95d7f8b",
+          "image_influence": {
+            "mean_absolute_logit_change": 1.7055652141571045,
+            "passed": true
+          }
+        }
+      }
+    },
+    {
+      "family": "submission-refinement-v1",
+      "arm": "lr-3e-05",
+      "finished_at": "2026-11-14T18:56:26.424162+00:00",
+      "specification": {
+        "namespace": "submission-refinement-v1/lr-3e-05",
+        "manifest": "/opt/aerorozum/artifacts/submission-refinement-v1/train.json",
+        "validation": "/opt/aerorozum/artifacts/pipeline/validation.json",
+        "output": "/opt/aerorozum/artifacts/submission-refinement-v1/lr-3e-05",
+        "learning_rate": 3e-05,
+        "sft_steps": 120,
+        "grpo_steps": 48
+      },
+      "source_result_sha256": "55205d95991016569f746373e44c7d78399e7caa02b00c1c28fbd73fe767e7bf",
+      "reward_signal": {
+        "measured_steps": 5,
+        "informative_steps": 1,
+        "task_signal_verified": true,
+        "mean_zero_reward_variance_fraction": 0.8,
+        "interpretation": "Nonzero gradients alone do not establish a task-learning signal or an RL improvement"
+      },
+      "evaluations": {
+        "sft_evaluation": {
+          "status": "completed",
+          "protocol_hash": "ff58804569e003df9dec1dfaeac57c9c622229d1dbcf5b05774bde8639b9d177",
+          "examples": 120,
+          "tp": 8,
+          "fp": 3,
+          "fn": 80,
+          "micro_f2": 0.11019283746556474,
+          "valid_json_fraction": 0.9916666666666667,
+          "negative_false_alarm_rate": 0.03125,
+          "elapsed_s": 240.92173954099962,
+          "use_cache": true,
+          "decoding_protocol": "explicit-kv-cache-v2",
+          "interpretation": "Development label agreement, not verified physical mine accuracy"
+        },
+        "grpo_evaluation": {
+          "status": "completed",
+          "protocol_hash": "e1953e20e6e20b087e9a749a7db388debf5ff0d0ff73c0e837360dccbd579c5f",
+          "examples": 120,
+          "tp": 9,
+          "fp": 3,
+          "fn": 79,
+          "micro_f2": 0.12362637362637363,
+          "valid_json_fraction": 0.9916666666666667,
+          "negative_false_alarm_rate": 0.03125,
+          "elapsed_s": 244.17254973200033,
+          "use_cache": true,
+          "decoding_protocol": "explicit-kv-cache-v2",
+          "interpretation": "Development label agreement, not verified physical mine accuracy"
+        }
+      },
+      "training": {
+        "sft": {
+          "adapter": "training/submission-refinement-v1/lr-3e-05/google_gemma-4-12B-it/stream_sft/seed-17/adapter",
+          "optimizer_updates": 120,
+          "requested_optimizer_updates": 120,
+          "early_stopped": false,
+          "early_stop_reason": null,
+          "manifest_hash": "c66ecfbfcb34b6a2b5d4acb19eade6f82ff1c2c2f2a9628d3dcf1c04c95d7f8b",
+          "image_influence": {
+            "mean_absolute_logit_change": 1.5139899253845215,
+            "passed": true
+          }
+        },
+        "grpo": {
+          "adapter": "training/submission-refinement-v1/lr-3e-05/google_gemma-4-12B-it/stream_grpo/seed-17/adapter",
+          "optimizer_updates": 5,
+          "requested_optimizer_updates": 48,
+          "early_stopped": true,
+          "early_stop_reason": "Four consecutive zero-variance task reward groups; do not extend KL-only updates",
+          "manifest_hash": "c66ecfbfcb34b6a2b5d4acb19eade6f82ff1c2c2f2a9628d3dcf1c04c95d7f8b",
+          "image_influence": {
+            "mean_absolute_logit_change": 2.5534491539001465,
+            "passed": true
+          }
+        }
+      }
+    },
+    {
+      "family": "submission-refinement-v2",
+      "arm": "updates-120",
+      "finished_at": "2026-11-14T19:17:21.556084+00:00",
+      "specification": {
+        "namespace": "submission-refinement-v2/updates-120",
+        "manifest": "/opt/aerorozum/artifacts/submission-refinement-v1/train.json",
+        "validation": "/opt/aerorozum/artifacts/pipeline/validation.json",
+        "output": "/opt/aerorozum/artifacts/submission-refinement-v2/updates-120",
+        "learning_rate": 1e-05,
+        "sft_steps": 120,
+        "grpo_steps": 48,
+        "warm_start": "/opt/aerorozum/artifacts/training/submission-refinement-v1/lr-3e-05/google_gemma-4-12B-it/stream_grpo/seed-17/adapter"
+      },
+      "source_result_sha256": "bde77c1aac54c2364c5e54f4fc9839df0b712a9fd604c92e78c77502ba6aa828",
+      "reward_signal": {
+        "measured_steps": 5,
+        "informative_steps": 1,
+        "task_signal_verified": true,
+        "mean_zero_reward_variance_fraction": 0.8,
+        "interpretation": "Nonzero gradients alone do not establish a task-learning signal or an RL improvement"
+      },
+      "evaluations": {
+        "sft_evaluation": {
+          "status": "completed",
+          "protocol_hash": "0fab4f8a7816e5a95c24f4f6d8a4cc39ce92495d43a934aa217250a50d28b488",
+          "examples": 120,
+          "tp": 9,
+          "fp": 4,
+          "fn": 79,
+          "micro_f2": 0.1232876712328767,
+          "valid_json_fraction": 0.9916666666666667,
+          "negative_false_alarm_rate": 0.03125,
+          "elapsed_s": 241.43896703399878,
+          "use_cache": true,
+          "decoding_protocol": "explicit-kv-cache-v2",
+          "interpretation": "Development label agreement, not verified physical mine accuracy"
+        },
+        "grpo_evaluation": {
+          "status": "completed",
+          "protocol_hash": "6a2b714b9a1578e69f29e2d1e815d6a7eb92f2b964a53c0d3bca2eb6c6dec290",
+          "examples": 120,
+          "tp": 9,
+          "fp": 3,
+          "fn": 79,
+          "micro_f2": 0.12362637362637363,
+          "valid_json_fraction": 0.9916666666666667,
+          "negative_false_alarm_rate": 0.03125,
+          "elapsed_s": 241.18097660700005,
+          "use_cache": true,
+          "decoding_protocol": "explicit-kv-cache-v2",
+          "interpretation": "Development label agreement, not verified physical mine accuracy"
+        }
+      },
+      "training": {
+        "sft": {
+          "adapter": "training/submission-refinement-v2/updates-120/google_gemma-4-12B-it/stream_sft/seed-17/adapter",
+          "optimizer_updates": 120,
+          "requested_optimizer_updates": 120,
+          "early_stopped": false,
+          "early_stop_reason": null,
+          "manifest_hash": "c66ecfbfcb34b6a2b5d4acb19eade6f82ff1c2c2f2a9628d3dcf1c04c95d7f8b",
+          "image_influence": {
+            "mean_absolute_logit_change": 2.5440382957458496,
+            "passed": true
+          }
+        },
+        "grpo": {
+          "adapter": "training/submission-refinement-v2/updates-120/google_gemma-4-12B-it/stream_grpo/seed-17/adapter",
+          "optimizer_updates": 5,
+          "requested_optimizer_updates": 48,
+          "early_stopped": true,
+          "early_stop_reason": "Four consecutive zero-variance task reward groups; do not extend KL-only updates",
+          "manifest_hash": "c66ecfbfcb34b6a2b5d4acb19eade6f82ff1c2c2f2a9628d3dcf1c04c95d7f8b",
+          "image_influence": {
+            "mean_absolute_logit_change": 2.619454860687256,
+            "passed": true
+          }
+        }
+      }
+    },
+    {
+      "family": "submission-refinement-v2",
+      "arm": "updates-240",
+      "finished_at": "2026-11-14T19:26:26.116752+00:00",
+      "specification": {
+        "namespace": "submission-refinement-v2/updates-240",
+        "manifest": "/opt/aerorozum/artifacts/submission-refinement-v1/train.json",
+        "validation": "/opt/aerorozum/artifacts/pipeline/validation.json",
+        "output": "/opt/aerorozum/artifacts/submission-refinement-v2/updates-240",
+        "learning_rate": 1e-05,
+        "sft_steps": 240,
+        "grpo_steps": 48,
+        "warm_start": "/opt/aerorozum/artifacts/training/submission-refinement-v1/lr-3e-05/google_gemma-4-12B-it/stream_grpo/seed-17/adapter"
+      },
+      "source_result_sha256": "7ff2ccf6adfce31a21d05be5e54580414aff6bfc5708edb913c52525ce692ead",
+      "reward_signal": {
+        "measured_steps": 15,
+        "informative_steps": 5,
+        "task_signal_verified": true,
+        "mean_zero_reward_variance_fraction": 0.6666666666666666,
+        "interpretation": "Nonzero gradients alone do not establish a task-learning signal or an RL improvement"
+      },
+      "evaluations": {
+        "sft_evaluation": {
+          "status": "completed",
+          "protocol_hash": "467b015b440fdcf43be28a09f7f6ffc39e137a62310cf344fd341a8f8991a671",
+          "examples": 120,
+          "tp": 9,
+          "fp": 8,
+          "fn": 79,
+          "micro_f2": 0.12195121951219512,
+          "valid_json_fraction": 0.9916666666666667,
+          "negative_false_alarm_rate": 0.0625,
+          "elapsed_s": 234.5206261910007,
+          "use_cache": true,
+          "decoding_protocol": "explicit-kv-cache-v2",
+          "interpretation": "Development label agreement, not verified physical mine accuracy"
+        },
+        "grpo_evaluation": {
+          "status": "completed",
+          "protocol_hash": "67a5bbc63c12959166b2d76a96707273a134a5b7990e380e08010f1c2ce077a2",
+          "examples": 120,
+          "tp": 15,
+          "fp": 11,
+          "fn": 73,
+          "micro_f2": 0.1984126984126984,
+          "valid_json_fraction": 0.9916666666666667,
+          "negative_false_alarm_rate": 0.09375,
+          "elapsed_s": 315.59812698300084,
+          "use_cache": true,
+          "decoding_protocol": "explicit-kv-cache-v2",
+          "interpretation": "Development label agreement, not verified physical mine accuracy"
+        }
+      },
+      "training": {
+        "sft": {
+          "adapter": "training/submission-refinement-v2/updates-240/google_gemma-4-12B-it/stream_sft/seed-17/adapter",
+          "optimizer_updates": 240,
+          "requested_optimizer_updates": 240,
+          "early_stopped": false,
+          "early_stop_reason": null,
+          "manifest_hash": "c66ecfbfcb34b6a2b5d4acb19eade6f82ff1c2c2f2a9628d3dcf1c04c95d7f8b",
+          "image_influence": {
+            "mean_absolute_logit_change": 2.5440382957458496,
+            "passed": true
+          }
+        },
+        "grpo": {
+          "adapter": "training/submission-refinement-v2/updates-240/google_gemma-4-12B-it/stream_grpo/seed-17/adapter",
+          "optimizer_updates": 15,
+          "requested_optimizer_updates": 48,
+          "early_stopped": true,
+          "early_stop_reason": "Four consecutive zero-variance task reward groups; do not extend KL-only updates",
+          "manifest_hash": "c66ecfbfcb34b6a2b5d4acb19eade6f82ff1c2c2f2a9628d3dcf1c04c95d7f8b",
+          "image_influence": {
+            "mean_absolute_logit_change": 3.004007577896118,
+            "passed": true
+          }
+        }
+      }
+    },
+    {
+      "family": "submission-refinement-v2",
+      "arm": "updates-480",
+      "finished_at": "2026-11-14T19:47:10.978499+00:00",
+      "specification": {
+        "namespace": "submission-refinement-v2/updates-480",
+        "manifest": "/opt/aerorozum/artifacts/submission-refinement-v1/train.json",
+        "validation": "/opt/aerorozum/artifacts/pipeline/validation.json",
+        "output": "/opt/aerorozum/artifacts/submission-refinement-v2/updates-480",
+        "learning_rate": 1e-05,
+        "sft_steps": 480,
+        "grpo_steps": 48,
+        "warm_start": "/opt/aerorozum/artifacts/training/submission-refinement-v1/lr-3e-05/google_gemma-4-12B-it/stream_grpo/seed-17/adapter"
+      },
+      "source_result_sha256": "cdd77bb150bbed0205d9233c5eba1e0ad8b95b604070c4a939e03e2cdafdbbce",
+      "reward_signal": {
+        "measured_steps": 37,
+        "informative_steps": 18,
+        "task_signal_verified": true,
+        "mean_zero_reward_variance_fraction": 0.5135135135135135,
+        "interpretation": "Nonzero gradients alone do not establish a task-learning signal or an RL improvement"
+      },
+      "evaluations": {
+        "sft_evaluation": {
+          "status": "completed",
+          "protocol_hash": "16f61e8747d91930bc8c33e114b7c2569969cebcb85b70aa17de53ec7cc4c20b",
+          "examples": 120,
+          "tp": 20,
+          "fp": 7,
+          "fn": 68,
+          "micro_f2": 0.2638522427440633,
+          "valid_json_fraction": 0.9916666666666667,
+          "negative_false_alarm_rate": 0.09375,
+          "elapsed_s": 331.23415843800103,
+          "use_cache": true,
+          "decoding_protocol": "explicit-kv-cache-v2",
+          "interpretation": "Development label agreement, not verified physical mine accuracy"
+        },
+        "grpo_evaluation": {
+          "status": "completed",
+          "protocol_hash": "c3e83112ef9d45c1d60ebef90fddec506ad0927c62039990e17a235cc75ebedf",
+          "examples": 120,
+          "tp": 29,
+          "fp": 9,
+          "fn": 59,
+          "micro_f2": 0.3717948717948718,
+          "valid_json_fraction": 0.9833333333333333,
+          "negative_false_alarm_rate": 0.09375,
+          "elapsed_s": 417.8379925099998,
+          "use_cache": true,
+          "decoding_protocol": "explicit-kv-cache-v2",
+          "interpretation": "Development label agreement, not verified physical mine accuracy"
+        }
+      },
+      "training": {
+        "sft": {
+          "adapter": "training/submission-refinement-v2/updates-480/google_gemma-4-12B-it/stream_sft/seed-17/adapter",
+          "optimizer_updates": 480,
+          "requested_optimizer_updates": 480,
+          "early_stopped": false,
+          "early_stop_reason": null,
+          "manifest_hash": "c66ecfbfcb34b6a2b5d4acb19eade6f82ff1c2c2f2a9628d3dcf1c04c95d7f8b",
+          "image_influence": {
+            "mean_absolute_logit_change": 2.5440382957458496,
+            "passed": true
+          }
+        },
+        "grpo": {
+          "adapter": "training/submission-refinement-v2/updates-480/google_gemma-4-12B-it/stream_grpo/seed-17/adapter",
+          "optimizer_updates": 37,
+          "requested_optimizer_updates": 48,
+          "early_stopped": true,
+          "early_stop_reason": "Four consecutive zero-variance task reward groups; do not extend KL-only updates",
+          "manifest_hash": "c66ecfbfcb34b6a2b5d4acb19eade6f82ff1c2c2f2a9628d3dcf1c04c95d7f8b",
+          "image_influence": {
+            "mean_absolute_logit_change": 2.6092777252197266,
+            "passed": true
+          }
+        }
+      }
+    }
+  ]
+}

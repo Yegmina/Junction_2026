@@ -1,0 +1,38 @@
+import { useEffect, useRef } from 'react';
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+type Pose={x_m:number;y_m:number;altitude_m:number;yaw_deg?:number};
+export default function World({pose,time,width=64,onPick,targets=[]}:{pose:Pose;time:number;width?:number;onPick:(x:number,y:number)=>void;targets?:any[]}){
+ const host=useRef<HTMLDivElement>(null), live=useRef({pose,time,onPick,targets}); live.current={pose,time,onPick,targets};
+ useEffect(()=>{
+  if(!host.current)return;
+  const node=host.current,scene=new THREE.Scene();scene.background=new THREE.Color('#101a1e');scene.fog=new THREE.Fog('#101a1e',100,220);
+  const camera=new THREE.PerspectiveCamera(42,1,.1,350);camera.position.set(48,43,56);
+  const renderer=new THREE.WebGLRenderer({antialias:true,alpha:false});renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;renderer.outputColorSpace=THREE.SRGBColorSpace;node.appendChild(renderer.domElement);
+  const controls=new OrbitControls(camera,renderer.domElement);controls.enableDamping=true;controls.maxPolarAngle=Math.PI/2.08;controls.minDistance=22;controls.maxDistance=150;controls.target.set(0,0,0);
+  scene.add(new THREE.HemisphereLight('#c6e3db','#4a4636',2.2));const sun=new THREE.DirectionalLight('#ffdfa5',3.5);sun.position.set(30,70,30);sun.castShadow=true;sun.shadow.mapSize.set(2048,2048);Object.assign(sun.shadow.camera,{left:-48,right:48,top:48,bottom:-48});scene.add(sun);
+  const ground=new THREE.PlaneGeometry(width,width,100,100);ground.rotateX(-Math.PI/2);
+  const colors=[];const positions=ground.attributes.position;
+  for(let i=0;i<positions.count;i++){const x=positions.getX(i),z=positions.getZ(i);const n=Math.sin(x*.47+Math.sin(z*.32)*2)*Math.cos(z*.36)+Math.sin(z*.8+x*.11)*.3;const c=new THREE.Color().setHSL(.20+n*.014,.17,.21+n*.022);colors.push(c.r,c.g,c.b);}
+  ground.setAttribute('color',new THREE.Float32BufferAttribute(colors,3));const plane=new THREE.Mesh(ground,new THREE.MeshStandardMaterial({vertexColors:true,roughness:1}));plane.receiveShadow=true;scene.add(plane);
+  const base=new THREE.Mesh(new THREE.BoxGeometry(width,.8,width),new THREE.MeshStandardMaterial({color:'#172d2c',roughness:.9}));base.position.y=-.44;scene.add(base);
+  const grid=new THREE.GridHelper(width,16,'#76958b','#516b62');grid.position.y=.035;(grid.material as THREE.Material).transparent=true;(grid.material as THREE.Material).opacity=.2;scene.add(grid);
+  const boundary=new THREE.LineLoop(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(-width/2,.1,-width/2),new THREE.Vector3(width/2,.1,-width/2),new THREE.Vector3(width/2,.1,width/2),new THREE.Vector3(-width/2,.1,width/2)]),new THREE.LineBasicMaterial({color:'#8caf92',transparent:true,opacity:.6}));scene.add(boundary);
+  const drone=new THREE.Group();const body=new THREE.Mesh(new THREE.BoxGeometry(1.6,.45,1.05),new THREE.MeshStandardMaterial({color:'#e3ecdf',metalness:.3,roughness:.5}));body.castShadow=true;drone.add(body);
+  const rotors:THREE.Mesh[]=[];for(const x of [-1.2,1.2])for(const z of [-1.2,1.2]){const arm=new THREE.Mesh(new THREE.BoxGeometry(.22,.16,2.6),new THREE.MeshStandardMaterial({color:'#8caaa0'}));arm.rotation.y=x*z>0?Math.PI/4:-Math.PI/4;drone.add(arm);const ring=new THREE.Mesh(new THREE.TorusGeometry(.64,.055,6,30),new THREE.MeshStandardMaterial({color:'#bdcfc2'}));ring.rotation.x=Math.PI/2;ring.position.set(x,.18,z);drone.add(ring);const rotor=new THREE.Mesh(new THREE.BoxGeometry(1.15,.035,.1),new THREE.MeshStandardMaterial({color:'#dcebe0'}));rotor.position.set(x,.18,z);drone.add(rotor);rotors.push(rotor);}
+  drone.add(new THREE.PointLight('#b2f7c8',2,6));scene.add(drone);
+  const footprint=new THREE.LineLoop(new THREE.BufferGeometry(),new THREE.LineBasicMaterial({color:'#c2ec93',transparent:true,opacity:.8}));scene.add(footprint);
+  const pole=new THREE.Line(new THREE.BufferGeometry(),new THREE.LineDashedMaterial({color:'#aacc9b',dashSize:.5,gapSize:.4,transparent:true,opacity:.6}));scene.add(pole);
+  const trail=new THREE.Line(new THREE.BufferGeometry(),new THREE.LineBasicMaterial({color:'#b6e88a',transparent:true,opacity:.65}));scene.add(trail);const path:THREE.Vector3[]=[];
+  const marks=new THREE.Group();scene.add(marks);let marksKey='';
+  const home=new THREE.Mesh(new THREE.RingGeometry(1.1,1.25,50),new THREE.MeshBasicMaterial({color:'#d4e8b6',side:THREE.DoubleSide}));home.rotation.x=-Math.PI/2;home.position.set(-width/2+2,.08,width/2-2);scene.add(home);
+  const raycaster=new THREE.Raycaster();const pointer=new THREE.Vector2();let down={x:0,y:0};
+  const pd=(e:PointerEvent)=>{down={x:e.clientX,y:e.clientY}};const pu=(e:PointerEvent)=>{if(Math.hypot(e.clientX-down.x,e.clientY-down.y)>5)return;const rect=node.getBoundingClientRect();pointer.set((e.clientX-rect.left)/rect.width*2-1,-(e.clientY-rect.top)/rect.height*2+1);raycaster.setFromCamera(pointer,camera);const hit=raycaster.intersectObject(plane)[0];if(hit)live.current.onPick(Math.max(0,Math.min(width,hit.point.x+width/2)),Math.max(0,Math.min(width,hit.point.z+width/2)));};
+  renderer.domElement.addEventListener('pointerdown',pd);renderer.domElement.addEventListener('pointerup',pu);
+  const observer=new ResizeObserver(()=>{const w=node.clientWidth,h=node.clientHeight;renderer.setSize(w,h);camera.aspect=w/h;camera.updateProjectionMatrix()});observer.observe(node);
+  let frame=0;const animate=()=>{frame=requestAnimationFrame(animate);const {pose:p,time:t,targets:ts}=live.current;const x=(p.x_m||0)-width/2,z=(p.y_m||0)-width/2,h=Math.max(.6,p.altitude_m||0);drone.position.lerp(new THREE.Vector3(x,h,z),.12);drone.rotation.y=-(p.yaw_deg||0)*Math.PI/180;rotors.forEach(r=>r.rotation.y+=(p.altitude_m>0?.6:0));const f=Math.max(1,h*Math.tan(50*Math.PI/180));footprint.geometry.dispose();footprint.geometry=new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(x-f,.15,z-f*.8),new THREE.Vector3(x+f,.15,z-f*.8),new THREE.Vector3(x+f,.15,z+f*.8),new THREE.Vector3(x-f,.15,z+f*.8)]);pole.geometry.dispose();pole.geometry=new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(x,.1,z),new THREE.Vector3(x,h,z)]);pole.computeLineDistances();const last=path[path.length-1];if(!last||Math.hypot(last.x-x,last.z-z)>.05){path.push(new THREE.Vector3(x,.2,z));if(path.length>500)path.shift();trail.geometry.dispose();trail.geometry=new THREE.BufferGeometry().setFromPoints(path)}const angle=t/86400*Math.PI*2-Math.PI/2;sun.position.set(Math.cos(angle)*60,Math.max(8,Math.sin(angle)*70),30);sun.intensity=Math.max(.6,Math.sin(angle)*3.5);const key=JSON.stringify(ts);if(key!==marksKey){marksKey=key;marks.clear();for(const target of ts){const tx=target.x_m??target.position?.x_m,ty=target.y_m??target.position?.y_m;if(typeof tx!=='number'||typeof ty!=='number')continue;const m=new THREE.Mesh(new THREE.RingGeometry(.5,.7,32),new THREE.MeshBasicMaterial({color:'#f5ad73',side:THREE.DoubleSide}));m.rotation.x=-Math.PI/2;m.position.set(tx-width/2,.22,ty-width/2);marks.add(m);}}controls.update();renderer.render(scene,camera)};animate();
+  return()=>{cancelAnimationFrame(frame);observer.disconnect();controls.dispose();renderer.domElement.removeEventListener('pointerdown',pd);renderer.domElement.removeEventListener('pointerup',pu);scene.traverse(o=>{if(o instanceof THREE.Mesh||o instanceof THREE.Line){o.geometry.dispose();const mats=Array.isArray(o.material)?o.material:[o.material];mats.forEach(m=>m.dispose())}});renderer.dispose();node.removeChild(renderer.domElement)};
+ },[width]);
+ return <div className="world-canvas" ref={host} aria-label="Interactive 3D campaign terrain. Drag to orbit, click to select a waypoint."/>;
+}

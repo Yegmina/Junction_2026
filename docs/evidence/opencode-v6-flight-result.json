@@ -1,0 +1,111 @@
+{
+  "result": {
+    "reward": 0.62828571,
+    "completed": true,
+    "true_positives": 2,
+    "false_positives": 0,
+    "false_negatives": 1,
+    "f2": 0.7142857142857143,
+    "qualified_coverage": 0.57,
+    "multi_view_matches": 1,
+    "invalid_candidates": 0,
+    "observations": 6,
+    "actions": 15,
+    "flight_elapsed_s": 68.512,
+    "budget_s": 75.0,
+    "returned_home": true,
+    "scope": "Inserted synthetic-object retrieval in experimental composed thermal imagery; not physical mine confirmation"
+  },
+  "instance": {
+    "seed": 8047543173386242928,
+    "field_hashes": {
+      "warming": "7724a06561b0f397647781f67ab004dcf398b99ff51267af47364de8377e1703",
+      "cooling": "e00bd7d739c9e147ae20458571e446b148529e8369e9e49d1ef7104ce286363c",
+      "dawn": "89b3057c68b7fe825a709fa43425d50c40b274d4d65abeaf4e9b28a46a1dcb7c",
+      "late_warming": "1a8a92b00a35faaa5c5f6b399443e29fb63c2cac724301949d242167da9c0724"
+    },
+    "frozen_before_run": true,
+    "budget_s": 75.0,
+    "thermal_condition": {
+      "phase": "dawn",
+      "physics_elapsed_hours": 1.0
+    }
+  },
+  "job": "sdk-v6-flight-operator-seed-8047543173386242928",
+  "trial": "thermal-investigation-budgeted__ohUQBNU",
+  "task_checksum": "df8e4650d924f91f0690d3ce3ca88ff74881f2ac569c9bcaf3e30f05129c0c05",
+  "agent": "opencode",
+  "model": "gemini/gemini-4-argon",
+  "agent_configuration": {
+    "provider": {
+      "google": {
+        "options": {
+          "apiKey": "{env:GOOGLE_GENERATIVE_AI_API_KEY}"
+        },
+        "models": {
+          "gemini-4-argon": {
+            "name": "gemini-4-argon",
+            "limit": {
+              "context": 131072,
+              "output": 8192
+            },
+            "modalities": {
+              "input": [
+                "text",
+                "image"
+              ],
+              "output": [
+                "text"
+              ]
+            },
+            "reasoning": false,
+            "options": {
+              "thinkingConfig": {
+                "thinkingBudget": 1024,
+                "includeThoughts": true
+              }
+            }
+          }
+        }
+      }
+    },
+    "agent": {
+      "build": {
+        "prompt": "You operate a simulated drone using the public drone CLI. Complete the mission through real tool calls before ending your response. Use concise decisions. First run drone status and the documented SDK import check. Choose a short set of inspection waypoints covering the public regions, at an altitude eligible for close evidence. Write only a small waypoint JSON plan, then execute drone collect with a 240000ms tool timeout. Do not implement a detector, inspect library internals, install packages, or write a long analysis program before collecting images. After landing, read the evidence index and actual thermal/RGB images, associate supported sightings using the public camera geometry, and submit the required JSON report. Respect the task instructions and flight budget. Never manufacture observations or target locations. The mission is unfinished until drone submit has returned."
+      }
+    }
+  },
+  "finished_at": "2026-11-15T07:53:29.328944Z",
+  "previous_result": {
+    "reward": 0.0,
+    "completed": false,
+    "true_positives": 0,
+    "false_positives": 0,
+    "false_negatives": 3,
+    "f2": 0.0,
+    "qualified_coverage": 0.5,
+    "multi_view_matches": 0,
+    "invalid_candidates": 0,
+    "observations": 1,
+    "actions": 8,
+    "flight_elapsed_s": 142.15600000000006,
+    "budget_s": 75.0,
+    "returned_home": true,
+    "scope": "Inserted synthetic-object retrieval in experimental composed thermal imagery; not physical mine confirmation"
+  },
+  "same_world_fields": true,
+  "same_seed": true,
+  "tests": {
+    "passed": 38
+  },
+  "validated_tool_timeout_ms": 240000,
+  "released_tool_timeout_ms": 600000,
+  "flight_budget_unchanged": true,
+  "verifier_unchanged": true,
+  "source_sha256": {
+    "harbor/thermal-investigation-budgeted/environment/flight_plan.py": "6ac09c551d393b59e27f8a505e5bfb2ebb45524df8bc88a46c5297ddd12f32e2",
+    "harbor/thermal-investigation-budgeted/environment/drone.py": "17070cff3b9c4f38b2af366a43b026fc6fc7923fdbaabfebf8a5b7a3f7b056b3",
+    "harbor/thermal-investigation-budgeted/environment/Dockerfile": "a6d1d20ef6859b1402603440d07fe69a69d08d907f461f6d12022d7c55bcd90f",
+    "cloud/run_harbor_trial.py": "75b36055f3ba2601eedebea29fe1c69c1c2378dd54de7f2e13f12394ac19ad4f"
+  }
+}

@@ -1,0 +1,58 @@
+[TimeLoop]
+DtInitial = 1
+TEnd = 3600
+MaxTimeStepSize = 120
+
+[Grid]
+UpperRight = 1 1 0.4
+Cells = 8 8 10
+
+[Problem]
+Name = aerorozum_coupled_smoke
+EnableGravity = true
+InitialLiquidPressure = 96000
+InitialTemperature = 289.15
+
+[Richards]
+UsePrimaryVariableSwitch = true
+
+[Newton]
+EnableChop = false
+
+[Component]
+SolidDensity = 2700
+SolidThermalConductivity = 2.8
+SolidHeatCapacity = 790
+
+[SpatialParams]
+Swr = 0.08
+Snr = 0
+VanGenuchtenAlpha = 0.00036
+VanGenuchtenN = 1.56
+Permeability = 2e-12
+Porosity = 0.43
+
+[Target]
+Enabled = true
+X = 0.5
+Y = 0.5
+Depth = 0.03
+Radius = 0.12
+Thickness = 0.05
+Porosity = 0.000001
+Permeability = 1e-24
+ThermalConductivity = 0.2
+Density = 1400
+HeatCapacity = 1200
+
+[Weather]
+StartHour = 6
+AirTemperature = 289.15
+AirAmplitude = 5
+RelativeHumidity = 0.55
+Wind = 2
+SolarPeak = 650
+SkyOffset = 15
+Albedo = 0.22
+Emissivity = 0.95
+BoundaryLayerThickness = 0.005
