@@ -107,6 +107,12 @@ def prepare(args):
     storage = PinnedObjects(root, args.bucket, datetime.fromisoformat(args.deadline_utc))
     inventory = storage.inventory()
     selected = [s for s in inventory if (s['name'], str(s['generation'])) not in done]
+    if getattr(args,'only_sources',None):
+        requested=json.loads(args.only_sources.read_text())
+        allowed={(row['object'],str(row['generation'])) for row in requested['sources']}
+        selected=[s for s in selected if (s['name'],str(s['generation'])) in allowed]
+        if {(s['name'],str(s['generation'])) for s in selected}!=allowed:
+            raise ValueError('A requested pinned source version is absent from the current inventory or was not released for requalification')
     save(root / 'inventory.json', {'at': utcnow(), 'normal_raw_sources': len(inventory),
                                  'sources': selected, 'previous_source_versions': len(done), 'paid_inference_issued': False})
     registry = root / 'session-splits.json'
@@ -187,6 +193,7 @@ if __name__ == '__main__':
     parser.add_argument('--bucket', default='aerorozum-jetson-testdata-smart-bird')
     parser.add_argument('--deadline-utc', required=True)
     parser.add_argument('--workers', type=int, choices=range(1, 5), default=4)
+    parser.add_argument('--only-sources',type=Path,help='Optional frozen source-version selection for explicit requalification')
     args = parser.parse_args()
     if datetime.fromisoformat(args.deadline_utc).tzinfo is None:
         parser.error('An explicit UTC-offset deadline is required')

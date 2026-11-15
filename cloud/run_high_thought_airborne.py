@@ -61,7 +61,7 @@ def prepare():
     result=dict(created_at=utcnow(),images=rows,missing=missing,duplicates_avoided=duplicates,
         held_out_test_frames_excluded=excluded_test,snapshots={str(p):sha(p) for p in manifests},
         original_labels_overwritten=False,thinking_level='high',max_output_tokens=65536,
-        prompt_selection_rule='Highest mean manual-zone-7 F2 across three HIGH replicas; prefer v2 on a tie. Require all six HIGH arms complete.',
+        prompt_selection_rule='Highest mean archived-zone-7 reference F2 across three HIGH replicas; prefer v2 on a tie. Require all six HIGH arms complete.',
         dispatch_deadline=DEADLINE.isoformat(),unique_eligible_available=len(rows))
     result['sha256']=digest(result);save(path,result)
     return result
@@ -72,7 +72,8 @@ def select_prompt():
     choice=OUTPUT/'prompt-selection.json'
     if choice.exists():return json.loads(choice.read_text())['prompt_version']
     protocol=json.loads((STUDY/'protocol.json').read_text())
-    ids={r['id'] for r in protocol['images'] if r.get('zone')=='zone7'}
+    references=[r for r in protocol['images'] if r.get('zone')=='zone7']
+    ids={r['id'] for r in references}
     groups=defaultdict(list);counts=defaultdict(int)
     for path in (STUDY/'results').glob('*.json'):
         row=json.loads(path.read_text())
@@ -88,8 +89,10 @@ def select_prompt():
         scores[prompt].append(5*tp/max(1,5*tp+4*fn+fp))
     means={p:sum(values)/len(values) for p,values in scores.items()}
     selected=sorted(means,key=lambda p:(-means[p],p))[0]
-    save(choice,dict(at=utcnow(),prompt_version=selected,mean_manual_development_f2=means,
-        per_replica_manual_development_f2=dict(scores),study_protocol_sha256=protocol['sha256'],
+    from collections import Counter
+    save(choice,dict(at=utcnow(),prompt_version=selected,mean_archived_development_f2=means,
+        per_replica_archived_development_f2=dict(scores),study_protocol_sha256=protocol['sha256'],
+        reference_provenance_counts=dict(Counter(r.get('provenance') for r in references)),
         selected_before_relabeling=True,test_accessed=False,
         interpretation='Development label agreement selects this prompt; physical mine accuracy and native-flight transfer remain unverified'))
     return selected

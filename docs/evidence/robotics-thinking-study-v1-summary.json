@@ -1,0 +1,50 @@
+[
+  {
+    "prompt": "thermal-v2-recall-calibrated",
+    "thinking_level": "minimal",
+    "mean_development_f2": 0.298471261589507,
+    "std_development_f2": 0.019205132702361318,
+    "mean_original_manual_f2": 0.2126984126984127,
+    "mean_rpc_s": 1.2373347772333152
+  },
+  {
+    "prompt": "thermal-v2-recall-calibrated",
+    "thinking_level": "medium",
+    "mean_development_f2": 0.5563959292490889,
+    "std_development_f2": 0.030344045344066723,
+    "mean_original_manual_f2": 0.566022124495625,
+    "mean_rpc_s": 3.3450177076611505
+  },
+  {
+    "prompt": "thermal-v2-recall-calibrated",
+    "thinking_level": "high",
+    "mean_development_f2": 0.6042391894030155,
+    "std_development_f2": 0.03895723144512495,
+    "mean_original_manual_f2": 0.6220452209660843,
+    "mean_rpc_s": 3.9818271619139423
+  },
+  {
+    "prompt": "thermal-v3-two-scale-review",
+    "thinking_level": "minimal",
+    "mean_development_f2": 0.38848887626547307,
+    "std_development_f2": 0.013502636898616931,
+    "mean_original_manual_f2": 0.28688274430812427,
+    "mean_rpc_s": 1.2235200157655295
+  },
+  {
+    "prompt": "thermal-v3-two-scale-review",
+    "thinking_level": "medium",
+    "mean_development_f2": 0.5783362803389293,
+    "std_development_f2": 0.023952557384986552,
+    "mean_original_manual_f2": 0.6068638552216907,
+    "mean_rpc_s": 3.332162968449989
+  },
+  {
+    "prompt": "thermal-v3-two-scale-review",
+    "thinking_level": "high",
+    "mean_development_f2": 0.5673162813569843,
+    "std_development_f2": 0.02901190105641868,
+    "mean_original_manual_f2": 0.5923876592890677,
+    "mean_rpc_s": 4.113838603680486
+  }
+]

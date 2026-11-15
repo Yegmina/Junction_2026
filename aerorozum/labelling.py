@@ -243,7 +243,7 @@ def _failure_kind(error):
     if 'GCS cache read failed: HTTP 401' in text:return 'cloud_cache_authentication'
     if 'GCS cache read failed:' in text:return 'cloud_cache_read'
     if 'Configured Gemini request allowance reached' in text:return 'configured_request_allowance'
-    if 'schema' in text or 'detections array' in text or 'Malformed model' in text or text.startswith(('Expecting ','Unterminated ')):return 'invalid_paid_response'
+    if 'schema' in text or 'detections array' in text or 'Malformed model' in text or text.startswith(('Expecting ','Unterminated ','Extra data:')):return 'invalid_paid_response'
     if 'Source image' in text:return 'source_integrity'
     return 'other'
 
