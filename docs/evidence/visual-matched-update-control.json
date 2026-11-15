@@ -1,0 +1,43 @@
+{
+  "at": "2026-11-15T00:07:26.393031+00:00",
+  "scope": "Single-seed development comparison; matched optimizer-update counts, unequal compute",
+  "seed": 17,
+  "parent_adapter_sha256": "f9bd1c6e2913f6f8446d995624d1e9f953ddce281bc03d1f1e99d7c6eac215e3",
+  "metrics": {
+    "parent": {
+      "micro_f2": 0.6009615384615384,
+      "tp": 50,
+      "fp": 14,
+      "fn": 38,
+      "valid_json_fraction": 0.9916666666666667,
+      "negative_false_alarm_rate": 0.09375,
+      "examples": 120
+    },
+    "grpo_96": {
+      "micro_f2": 0.6501182033096927,
+      "tp": 55,
+      "fp": 16,
+      "fn": 33,
+      "valid_json_fraction": 0.9916666666666667,
+      "negative_false_alarm_rate": 0.15625,
+      "examples": 120
+    },
+    "sft_96": {
+      "micro_f2": 0.5295566502463054,
+      "tp": 43,
+      "fp": 11,
+      "fn": 45,
+      "valid_json_fraction": 0.9916666666666667,
+      "negative_false_alarm_rate": 0.03125,
+      "examples": 120
+    }
+  },
+  "result_sha256": {
+    "parent": "b7da2c4fefa41d45e9caf64e51ef4376451ad4a00027f51de373ee6303b7e712",
+    "grpo_96": "fc3c00070632b05ee8de91180406586d47587d1d14063aee0ad166ef32ba232e",
+    "sft_96": "0dbf084132213bcc9b32ef76e592820b1c2172f079fb51cb42b7537fe13304c0"
+  },
+  "test_accessed": false,
+  "frozen_submission_changed": false,
+  "interpretation": "GRPO96 improved development recall/F2; SFT96 reduced false alarms and recall. No uniform dominance or independent causal advantage claimed."
+}
