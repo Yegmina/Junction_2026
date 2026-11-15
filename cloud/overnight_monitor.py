@@ -39,15 +39,22 @@ def sample(previous):
     training=[]
     for family in ['postsubmission-visual-replication-v1','postsubmission-expanded-visual-v1',
                    'postsubmission-expanded-controls-v1','postsubmission-high-teacher-visual-v1',
-                   'postsubmission-high-teacher-snapshots-v1']:
+                   'postsubmission-high-teacher-snapshots-v1','postsubmission-high-teacher-replay-v1']:
         for spec_path in (ART/family).rglob('specification.json'):
             spec=read(spec_path);folder=spec_path.parent;state=read(folder/'status.json')
             phases=[]
             for name in ['initial','continuation']:
                 status=read(folder/name/'status.json');result=read(folder/name/'result.json')
                 if status or result:
+                    if not status and result and name=='initial' and spec.get('continuation_steps'):
+                        status=dict(status='parent_reference')
                     evaluations={k:v for k,v in result.get('results',{}).items() if k.endswith('_evaluation')}
                     phases.append(dict(phase=name,status=status,evaluations={k:{n:v.get(n) for n in ['micro_f2','tp','fp','fn','valid_json_fraction','negative_false_alarm_rate']} for k,v in evaluations.items()}))
+            direct=read(folder/'result.json')
+            if direct.get('status')=='completed':
+                evaluations={k:v for k,v in direct.get('results',{}).items() if k.endswith('_evaluation')}
+                phases.append(dict(phase='result',status=dict(status='completed'),
+                    evaluations={k:{n:v.get(n) for n in ['micro_f2','tp','fp','fn','valid_json_fraction','negative_false_alarm_rate']} for k,v in evaluations.items()}))
             if family=='postsubmission-high-teacher-snapshots-v1':
                 for path in sorted(folder.glob('step-*/summary.json')):
                     value=read(path)

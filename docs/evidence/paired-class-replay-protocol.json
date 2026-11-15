@@ -1,0 +1,20 @@
+{
+  "status": "predeclared_before_high_teacher_results",
+  "seeds": [
+    17,
+    43,
+    91
+  ],
+  "parent": "Each seed exact full HIGH-teacher SFT adapter",
+  "arms": {
+    "balanced": 1,
+    "positive_replay": 4
+  },
+  "every_source_example_retained": true,
+  "maximum_grpo_updates_per_arm": 96,
+  "zero_variance_patience": 4,
+  "fixed_development_images": 120,
+  "test_accessed": false,
+  "automatic_promotion": false,
+  "hypothesis": "An explicit positive replay curriculum may reduce runs of zero-variance model-zero groups without weakening the four-group stop rule. All outcomes, false-alarm rates and actual update counts are retained."
+}

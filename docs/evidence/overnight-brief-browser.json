@@ -1,0 +1,36 @@
+{
+  "at": "2026-11-15T03:37:43.963Z",
+  "slides": 7,
+  "overflow": [
+    {
+      "slide": 1,
+      "overflow": false
+    },
+    {
+      "slide": 2,
+      "overflow": false
+    },
+    {
+      "slide": 3,
+      "overflow": false
+    },
+    {
+      "slide": 4,
+      "overflow": false
+    },
+    {
+      "slide": 5,
+      "overflow": false
+    },
+    {
+      "slide": 6,
+      "overflow": false
+    },
+    {
+      "slide": 7,
+      "overflow": false
+    }
+  ],
+  "browser_errors": [],
+  "metrics_injected": false
+}

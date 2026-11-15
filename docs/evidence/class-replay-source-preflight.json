@@ -1,0 +1,16 @@
+{
+  "at": "2026-11-15T03:23:39.236590+00:00",
+  "status": "passed",
+  "source": "/opt/aerorozum/postsubmission/high-teacher-visual-source-512-snapshots-v1-class-replay-v1",
+  "real_source_examples": 2400,
+  "balanced_entries": 2400,
+  "weighted_entries": 6000,
+  "exact_frozen_sft_parent_validation_passed": true,
+  "manifest_hash_unchanged": "402f94bd3730d2233b9a7786d89a8901e0f7df35f20f6a0ae87cec11b638a1b7",
+  "every_source_example_retained": true,
+  "balanced_rows_identical": true,
+  "weighted_positive_fraction": 0.8,
+  "no_gpu_allocated": true,
+  "no_training_launched": true,
+  "zero_variance_guard_unchanged": 4
+}

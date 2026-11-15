@@ -1,0 +1,66 @@
+{
+  "at": "2026-11-15T03:11:45.618749+00:00",
+  "status": "planned_deterministic_inputs",
+  "dataset_signature": "7eefedd4ee5a7a5fca7b71cc25317eb71cc34c6f75ceecb42ee9b3b774416f6e",
+  "seeds": [
+    {
+      "seed": 17,
+      "images": 4688,
+      "positive_frames": 2344,
+      "zero_candidate_frames": 2344,
+      "provenance": {
+        "user_accepted_model": 4206,
+        "original_manual": 162,
+        "reviewed_ai": 320
+      },
+      "source_groups": 22,
+      "sft_updates": 3751,
+      "fixed_snapshot_steps": [
+        586,
+        1172,
+        2344
+      ],
+      "manifest_sha256": "629d6bd564057bf02a609c0d27b02a89a53e795aa54e4e85e25ea59ff59ecd3d"
+    },
+    {
+      "seed": 43,
+      "images": 4688,
+      "positive_frames": 2344,
+      "zero_candidate_frames": 2344,
+      "provenance": {
+        "reviewed_ai": 320,
+        "user_accepted_model": 4206,
+        "original_manual": 162
+      },
+      "source_groups": 22,
+      "sft_updates": 3751,
+      "fixed_snapshot_steps": [
+        586,
+        1172,
+        2344
+      ],
+      "manifest_sha256": "2e19e9f700efbbce98ca47d3701ef330471629b071795d50e4cf7eeb02cb11c9"
+    },
+    {
+      "seed": 91,
+      "images": 4688,
+      "positive_frames": 2344,
+      "zero_candidate_frames": 2344,
+      "provenance": {
+        "user_accepted_model": 4206,
+        "original_manual": 162,
+        "reviewed_ai": 320
+      },
+      "source_groups": 22,
+      "sft_updates": 3751,
+      "fixed_snapshot_steps": [
+        586,
+        1172,
+        2344
+      ],
+      "manifest_sha256": "9ad83d139b51e4830d2a1e1bfbc8acb7e5ed3f0ffe5031d6f81dc4ac00c165c0"
+    }
+  ],
+  "test_accessed": false,
+  "training_started_by_this_script": false
+}

@@ -69,6 +69,7 @@ def main():
         logs=out/name;logs.mkdir(parents=True,exist_ok=True)
         command=['systemd-run','--unit='+proxy_unit,'--property=RuntimeMaxSec=2800','--property=CPUQuota=100%','--property=MemoryMax=2G',
             '--setenv=AEROROZUM_NATIVE_CHAT=1','--setenv=AEROROZUM_PROXY_HOST=172.17.0.1','--setenv=AEROROZUM_PROXY_PORT=18945',
+            '--setenv=AEROROZUM_INFERENCE_URL=http://127.0.0.1:18940/v1/chat/completions',
             '--setenv=AEROROZUM_PROXY_MODEL=gemma-4-12b-refined-grpo-native16k','--setenv=AEROROZUM_PROXY_LOGS='+str(logs/'proxy'),'/usr/bin/python3',str(proxy)]
         subprocess.run(command,check=True,timeout=30)
         try:

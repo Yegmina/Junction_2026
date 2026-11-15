@@ -1,5 +1,5 @@
 {
-  "at": "2026-11-15T02:33:49.485894+00:00",
+  "at": "2026-11-15T03:32:05.866293+00:00",
   "planned_worlds": [
     {
       "seed": 940201,
@@ -90,6 +90,62 @@
     "gemma-native16k"
   ],
   "records": [
+    {
+      "model": "gemini-4-argon",
+      "phase": "dawn",
+      "seed": 940205,
+      "reward": 0.945375,
+      "infrastructure_error": false,
+      "budget_exceeded": false,
+      "outcome_category": "completed_task",
+      "verifier": {
+        "reward": 0.945375,
+        "completed": true,
+        "true_positives": 3,
+        "false_positives": 1,
+        "false_negatives": 0,
+        "f2": 0.9375,
+        "qualified_coverage": 0.93,
+        "multi_view_matches": 3,
+        "invalid_candidates": 0,
+        "observations": 6,
+        "actions": 17,
+        "flight_elapsed_s": 74.62799999999999,
+        "budget_s": 75.0,
+        "returned_home": true,
+        "scope": "Inserted synthetic-object retrieval in experimental composed thermal imagery; not physical mine confirmation"
+      },
+      "terminal_result_sha256": "f03941181d56b6fbc2f07f27c3c3711fa8c415c70a6f1c775aab0a7873268c2a",
+      "finished_at": "2026-11-15T02:40:50.154514"
+    },
+    {
+      "model": "gemma-native16k",
+      "phase": "dawn",
+      "seed": 940202,
+      "reward": 0.0,
+      "infrastructure_error": false,
+      "budget_exceeded": true,
+      "outcome_category": "flight_budget_exceeded",
+      "verifier": {
+        "reward": 0.0,
+        "completed": false,
+        "true_positives": 0,
+        "false_positives": 0,
+        "false_negatives": 3,
+        "f2": 0.0,
+        "qualified_coverage": 0.4,
+        "multi_view_matches": 0,
+        "invalid_candidates": 0,
+        "observations": 2,
+        "actions": 8,
+        "flight_elapsed_s": 83.49600000000001,
+        "budget_s": 75.0,
+        "returned_home": true,
+        "scope": "Inserted synthetic-object retrieval in experimental composed thermal imagery; not physical mine confirmation"
+      },
+      "terminal_result_sha256": "3f9bf534b894a11b7c9dd8359dcefe0385baa0c56e4cd897c110c281dd38b3b6",
+      "finished_at": "2026-11-15T03:31:27.175003"
+    },
     {
       "model": "gemma-local-deployed",
       "phase": "dawn",
@@ -343,6 +399,62 @@
       "finished_at": "2026-11-15T00:31:45.982147"
     },
     {
+      "model": "gemma-native16k",
+      "phase": "warming",
+      "seed": 940201,
+      "reward": 0.0,
+      "infrastructure_error": false,
+      "budget_exceeded": true,
+      "outcome_category": "flight_budget_exceeded",
+      "verifier": {
+        "reward": 0.0,
+        "completed": false,
+        "true_positives": 0,
+        "false_positives": 0,
+        "false_negatives": 3,
+        "f2": 0.0,
+        "qualified_coverage": 0.12,
+        "multi_view_matches": 0,
+        "invalid_candidates": 0,
+        "observations": 1,
+        "actions": 4,
+        "flight_elapsed_s": 105.076,
+        "budget_s": 75.0,
+        "returned_home": false,
+        "scope": "Inserted synthetic-object retrieval in experimental composed thermal imagery; not physical mine confirmation"
+      },
+      "terminal_result_sha256": "6e4712c7c9c589d0fdc58a21441870988c58208fa63214670166271c57e87c77",
+      "finished_at": "2026-11-15T03:20:06.343890"
+    },
+    {
+      "model": "gemini-4-argon",
+      "phase": "warming",
+      "seed": 940206,
+      "reward": 0.0,
+      "infrastructure_error": false,
+      "budget_exceeded": true,
+      "outcome_category": "flight_budget_exceeded",
+      "verifier": {
+        "reward": 0.0,
+        "completed": false,
+        "true_positives": 3,
+        "false_positives": 0,
+        "false_negatives": 0,
+        "f2": 1.0,
+        "qualified_coverage": 0.855,
+        "multi_view_matches": 3,
+        "invalid_candidates": 0,
+        "observations": 7,
+        "actions": 18,
+        "flight_elapsed_s": 83.8,
+        "budget_s": 75.0,
+        "returned_home": true,
+        "scope": "Inserted synthetic-object retrieval in experimental composed thermal imagery; not physical mine confirmation"
+      },
+      "terminal_result_sha256": "04ec478ddbbd4b6fca11cb7d6cd00c476d8d7715dcb42cfcb5c3bc17f2016289",
+      "finished_at": "2026-11-15T03:26:44.094064"
+    },
+    {
       "model": "gemini-4-argon",
       "phase": "dawn",
       "seed": 940203,
@@ -397,6 +509,34 @@
       },
       "terminal_result_sha256": "1e04f5293819d0da284f420277bb6f04fd58298f359296f7f4ff59c99800fc75",
       "finished_at": "2026-11-15T01:38:48.739154"
+    },
+    {
+      "model": "gemini-4-carbon",
+      "phase": "warming",
+      "seed": 940204,
+      "reward": 0.9,
+      "infrastructure_error": false,
+      "budget_exceeded": false,
+      "outcome_category": "completed_task",
+      "verifier": {
+        "reward": 0.9,
+        "completed": true,
+        "true_positives": 3,
+        "false_positives": 0,
+        "false_negatives": 0,
+        "f2": 1.0,
+        "qualified_coverage": 1.0,
+        "multi_view_matches": 1,
+        "invalid_candidates": 0,
+        "observations": 6,
+        "actions": 22,
+        "flight_elapsed_s": 74.452,
+        "budget_s": 75.0,
+        "returned_home": true,
+        "scope": "Inserted synthetic-object retrieval in experimental composed thermal imagery; not physical mine confirmation"
+      },
+      "terminal_result_sha256": "f42a94488bbb4709c2b2b4ddffa6486f048fa9cf5b5c81923531cb7c8aaa932f",
+      "finished_at": "2026-11-15T03:16:19.021394"
     },
     {
       "model": "gemini-4-argon",
@@ -651,6 +791,34 @@
       "finished_at": "2026-11-15T00:50:34.014723"
     },
     {
+      "model": "gemma-local-deployed",
+      "phase": "dawn",
+      "seed": 940209,
+      "reward": 0.0,
+      "infrastructure_error": true,
+      "budget_exceeded": true,
+      "outcome_category": "infrastructure_error",
+      "verifier": {
+        "reward": 0.0,
+        "completed": false,
+        "true_positives": 0,
+        "false_positives": 0,
+        "false_negatives": 3,
+        "f2": 0.0,
+        "qualified_coverage": 0.24,
+        "multi_view_matches": 0,
+        "invalid_candidates": 0,
+        "observations": 2,
+        "actions": 8,
+        "flight_elapsed_s": 96.88000000000002,
+        "budget_s": 75.0,
+        "returned_home": false,
+        "scope": "Inserted synthetic-object retrieval in experimental composed thermal imagery; not physical mine confirmation"
+      },
+      "terminal_result_sha256": "2be36b4c54b96d73013b78ec738c003a25e6d2128f20394d8a03ac4f20fab6db",
+      "finished_at": "2026-11-15T02:38:48.545652"
+    },
+    {
       "model": "gemini-4-carbon",
       "phase": "dawn",
       "seed": 940203,
@@ -763,6 +931,62 @@
       "finished_at": "2026-11-15T01:20:48.856910"
     },
     {
+      "model": "gemini-4-carbon",
+      "phase": "dawn",
+      "seed": 940204,
+      "reward": 0.0,
+      "infrastructure_error": false,
+      "budget_exceeded": true,
+      "outcome_category": "flight_budget_exceeded",
+      "verifier": {
+        "reward": 0.0,
+        "completed": false,
+        "true_positives": 0,
+        "false_positives": 0,
+        "false_negatives": 3,
+        "f2": 0.0,
+        "qualified_coverage": 0.5,
+        "multi_view_matches": 0,
+        "invalid_candidates": 0,
+        "observations": 3,
+        "actions": 10,
+        "flight_elapsed_s": 92.62799999999999,
+        "budget_s": 75.0,
+        "returned_home": true,
+        "scope": "Inserted synthetic-object retrieval in experimental composed thermal imagery; not physical mine confirmation"
+      },
+      "terminal_result_sha256": "f4769e2c6c237959b5a8acedfa65559af0f73253deea08c2ff1d2073e9eb643c",
+      "finished_at": "2026-11-15T02:54:30.232377"
+    },
+    {
+      "model": "gemma-local-deployed",
+      "phase": "warming",
+      "seed": 940210,
+      "reward": 0.0,
+      "infrastructure_error": false,
+      "budget_exceeded": true,
+      "outcome_category": "flight_budget_exceeded",
+      "verifier": {
+        "reward": 0.0,
+        "completed": false,
+        "true_positives": 0,
+        "false_positives": 0,
+        "false_negatives": 3,
+        "f2": 0.0,
+        "qualified_coverage": 0.24,
+        "multi_view_matches": 0,
+        "invalid_candidates": 0,
+        "observations": 3,
+        "actions": 11,
+        "flight_elapsed_s": 88.73600000000002,
+        "budget_s": 75.0,
+        "returned_home": false,
+        "scope": "Inserted synthetic-object retrieval in experimental composed thermal imagery; not physical mine confirmation"
+      },
+      "terminal_result_sha256": "2e3c38515625f03c5dd1315aa806ed6fdcb24017267ed1e6b7d2d24877895b66",
+      "finished_at": "2026-11-15T03:01:42.815571"
+    },
+    {
       "model": "oracle",
       "phase": "dawn",
       "seed": 940202,
@@ -791,6 +1015,62 @@
       "finished_at": "2026-11-15T00:44:43.052258"
     },
     {
+      "model": "gemma-native16k",
+      "phase": "dawn",
+      "seed": 940201,
+      "reward": 0.0,
+      "infrastructure_error": false,
+      "budget_exceeded": false,
+      "outcome_category": "other_completion_gate",
+      "verifier": {
+        "reward": 0.0,
+        "completed": false,
+        "true_positives": 0,
+        "false_positives": 0,
+        "false_negatives": 3,
+        "f2": 0.0,
+        "qualified_coverage": 0.0,
+        "multi_view_matches": 0,
+        "invalid_candidates": 0,
+        "observations": 0,
+        "actions": 1,
+        "flight_elapsed_s": 8.875999999999998,
+        "budget_s": 75.0,
+        "returned_home": false,
+        "scope": "Inserted synthetic-object retrieval in experimental composed thermal imagery; not physical mine confirmation"
+      },
+      "terminal_result_sha256": "6c36ea05073c0f92c79572893f1a1afe7451b2d92702b8a289434c340df1f025",
+      "finished_at": "2026-11-15T03:10:27.971136"
+    },
+    {
+      "model": "gemma-local-deployed",
+      "phase": "warming",
+      "seed": 940209,
+      "reward": 0.0,
+      "infrastructure_error": false,
+      "budget_exceeded": false,
+      "outcome_category": "other_completion_gate",
+      "verifier": {
+        "reward": 0.0,
+        "completed": false,
+        "true_positives": 0,
+        "false_positives": 0,
+        "false_negatives": 3,
+        "f2": 0.0,
+        "qualified_coverage": 0.15,
+        "multi_view_matches": 0,
+        "invalid_candidates": 0,
+        "observations": 3,
+        "actions": 10,
+        "flight_elapsed_s": 46.25600000000001,
+        "budget_s": 75.0,
+        "returned_home": false,
+        "scope": "Inserted synthetic-object retrieval in experimental composed thermal imagery; not physical mine confirmation"
+      },
+      "terminal_result_sha256": "a07a88f728fcabb826e6472953ec2d6c7dce3ac9892f22e9aa8bb5fee8ba51c9",
+      "finished_at": "2026-11-15T02:45:40.606318"
+    },
+    {
       "model": "oracle",
       "phase": "dawn",
       "seed": 940209,
@@ -817,6 +1097,34 @@
       },
       "terminal_result_sha256": "abc19661b2ff4724b1a4ac9a69b2f6a64191b960e74bb05903271d71efca005a",
       "finished_at": "2026-11-15T02:08:57.133987"
+    },
+    {
+      "model": "gemini-4-argon",
+      "phase": "warming",
+      "seed": 940205,
+      "reward": 0.0,
+      "infrastructure_error": false,
+      "budget_exceeded": true,
+      "outcome_category": "flight_budget_exceeded",
+      "verifier": {
+        "reward": 0.0,
+        "completed": false,
+        "true_positives": 3,
+        "false_positives": 0,
+        "false_negatives": 0,
+        "f2": 1.0,
+        "qualified_coverage": 0.95,
+        "multi_view_matches": 3,
+        "invalid_candidates": 0,
+        "observations": 7,
+        "actions": 18,
+        "flight_elapsed_s": 81.14000000000001,
+        "budget_s": 75.0,
+        "returned_home": true,
+        "scope": "Inserted synthetic-object retrieval in experimental composed thermal imagery; not physical mine confirmation"
+      },
+      "terminal_result_sha256": "0b876011bb00410161181fd8f18a763fef84c1fd570dc5d8b9d0eb682f117298",
+      "finished_at": "2026-11-15T02:56:08.360730"
     },
     {
       "model": "gemma-local-deployed",
@@ -987,6 +1295,34 @@
       "finished_at": "2026-11-15T01:25:28.743160"
     },
     {
+      "model": "gemini-4-argon",
+      "phase": "dawn",
+      "seed": 940206,
+      "reward": 0.0,
+      "infrastructure_error": false,
+      "budget_exceeded": true,
+      "outcome_category": "flight_budget_exceeded",
+      "verifier": {
+        "reward": 0.0,
+        "completed": false,
+        "true_positives": 2,
+        "false_positives": 0,
+        "false_negatives": 1,
+        "f2": 0.7142857142857143,
+        "qualified_coverage": 0.95,
+        "multi_view_matches": 2,
+        "invalid_candidates": 0,
+        "observations": 5,
+        "actions": 21,
+        "flight_elapsed_s": 89.572,
+        "budget_s": 75.0,
+        "returned_home": true,
+        "scope": "Inserted synthetic-object retrieval in experimental composed thermal imagery; not physical mine confirmation"
+      },
+      "terminal_result_sha256": "30ed8fa5a5922522236ca19f1ef2817ca2eaf3bff4062656893ca0127b2d4f64",
+      "finished_at": "2026-11-15T03:10:09.654345"
+    },
+    {
       "model": "gemma-local-deployed",
       "phase": "warming",
       "seed": 940205,
@@ -1041,6 +1377,34 @@
       },
       "terminal_result_sha256": "d2b076fe8475cf5e483eef7d75a40d83c28d1ef87a966e738955dc78cc1d0193",
       "finished_at": "2026-11-15T02:21:47.456572"
+    },
+    {
+      "model": "gemma-local-deployed",
+      "phase": "dawn",
+      "seed": 940210,
+      "reward": 0.0,
+      "infrastructure_error": false,
+      "budget_exceeded": false,
+      "outcome_category": "other_completion_gate",
+      "verifier": {
+        "reward": 0.0,
+        "completed": false,
+        "true_positives": 0,
+        "false_positives": 0,
+        "false_negatives": 3,
+        "f2": 0.0,
+        "qualified_coverage": 0.17,
+        "multi_view_matches": 0,
+        "invalid_candidates": 0,
+        "observations": 2,
+        "actions": 8,
+        "flight_elapsed_s": 52.07999999999999,
+        "budget_s": 75.0,
+        "returned_home": false,
+        "scope": "Inserted synthetic-object retrieval in experimental composed thermal imagery; not physical mine confirmation"
+      },
+      "terminal_result_sha256": "427194569c17bc0c6a4b02f585446b968cf628097601e3e1101ac0e96515304d",
+      "finished_at": "2026-11-15T02:52:25.792839"
     },
     {
       "model": "oracle",
@@ -1495,7 +1859,7 @@
     "oracle": true,
     "gemini-4-carbon": false,
     "gemini-4-argon": false,
-    "gemma-local-deployed": false,
+    "gemma-local-deployed": true,
     "gemma-native16k": false
   },
   "outcome_counts": {
@@ -1504,20 +1868,24 @@
       "flight_budget_exceeded": 1
     },
     "gemini-4-carbon": {
-      "flight_budget_exceeded": 5,
-      "infrastructure_error": 1
+      "flight_budget_exceeded": 6,
+      "infrastructure_error": 1,
+      "completed_task": 1
     },
     "gemini-4-argon": {
+      "completed_task": 3,
       "infrastructure_error": 1,
-      "flight_budget_exceeded": 5,
-      "completed_task": 2
+      "flight_budget_exceeded": 8
     },
     "gemma-local-deployed": {
-      "other_completion_gate": 5,
-      "infrastructure_error": 10,
-      "flight_budget_exceeded": 1
+      "other_completion_gate": 7,
+      "infrastructure_error": 11,
+      "flight_budget_exceeded": 2
     },
-    "gemma-native16k": {}
+    "gemma-native16k": {
+      "flight_budget_exceeded": 2,
+      "other_completion_gate": 1
+    }
   },
   "context_output_tokens": {
     "oracle": null,
