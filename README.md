@@ -89,7 +89,7 @@ RE:VISION provides a reproducible environment for exposing failures that convent
 
 **Because trustworthy autonomy begins with understanding where AI fails.**
 
-**[View the pitch deck](RE VISION.pptx)**
+**[View the pitch deck](RE%20VISION.pptx)**
 
 [Video](https://youtu.be/aA5_dlPKcpE)
 **The next Renaissance begins when AI learns not just to see, but to judge.**
