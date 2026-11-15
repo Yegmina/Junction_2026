@@ -1,0 +1,17 @@
+[Unit]
+Description=AeroRozum read-only live research dashboard
+After=network-online.target
+[Service]
+WorkingDirectory=/opt/aerorozum/research-live
+ExecStart=/opt/aerorozum/venv/bin/python -u /opt/aerorozum/research-live/server.py --port 18960
+Restart=on-failure
+RestartSec=3
+CPUQuota=100%
+MemoryMax=512M
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectHome=true
+ProtectSystem=strict
+Environment=PYTHONDONTWRITEBYTECODE=1
+[Install]
+WantedBy=multi-user.target
