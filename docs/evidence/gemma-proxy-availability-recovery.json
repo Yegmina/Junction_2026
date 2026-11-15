@@ -1,0 +1,11 @@
+{
+  "at": "2026-11-15T02:21:57.569389+00:00",
+  "proxy_failure": "Original six-hour RuntimeMaxSec expired at 2026-11-15T01:56:30Z",
+  "restored_proxy_code_sha256": "395b7a33e3e695729a9a2fe27a53807e06341171e2664b5b2add228c94baf45d",
+  "deployed_checkpoint_unchanged": true,
+  "protocol_context_and_output_limits_unchanged": true,
+  "new_controller_sha256": "b2b67bf9a43efadd7ddbaca372349985ec299b3055d73c4a7541681fa22b9729",
+  "controller_change": "Wait for the existing proxy and loaded inference service before dispatch; preserve all existing attempts",
+  "original_protocol_and_failed_trials_preserved": true,
+  "score_based_retries": false
+}

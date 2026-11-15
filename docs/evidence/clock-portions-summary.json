@@ -1,0 +1,79 @@
+{
+  "at": "2026-11-15T02:02:39.031463+00:00",
+  "sources": 3,
+  "eligible_frames": 0,
+  "paid_inference_issued": false,
+  "timestamps_modified": false,
+  "original_quarantines_preserved": true,
+  "source_reports": [
+    {
+      "source": {
+        "bucket": "aerorozum-jetson-testdata-smart-bird",
+        "object": "jetson/2026-11-04/recordings/2026-11-04_162621/thermal-0000.avi",
+        "generation": "1793989371169014",
+        "session_id": "2026-11-04_162621",
+        "segment": 0,
+        "video_sha256": "2701652b686e9564751c4fc2cd1fe36e8c4b7fc4f657f8f91b26358b7097f467",
+        "clock_recovery": {
+          "protocol": "unambiguous-clock-portions-v1",
+          "proof_sha256": "cbd2f882cf883d15612a4ee5b1c8abbbc45d4e537245936e7dfd44a9c416736a",
+          "timestamps_modified": false,
+          "guard_s": 2
+        }
+      },
+      "status": "qualified_only_outside_clock_ambiguity",
+      "counts": {
+        "total_frames": 277,
+        "airborne_eligible": 0,
+        "ground_excluded": 277,
+        "unknown_skipped": 0
+      }
+    },
+    {
+      "source": {
+        "bucket": "aerorozum-jetson-testdata-smart-bird",
+        "object": "jetson/2026-11-14/recordings/2026-11-14_143512/thermal-0000.avi",
+        "generation": "1794662709509631",
+        "session_id": "2026-11-14_143512",
+        "segment": 0,
+        "video_sha256": "f0b82b6a7ce5a8dfea5a17e5784dc4c5e197d94b993ab46962dac8a4abaab9a2",
+        "clock_recovery": {
+          "protocol": "unambiguous-clock-portions-v1",
+          "proof_sha256": "5aa762d5504c756e62e6f54387a1fbb0951a26629d243f6af8de3f3e57890294",
+          "timestamps_modified": false,
+          "guard_s": 2
+        }
+      },
+      "status": "qualified_only_outside_clock_ambiguity",
+      "counts": {
+        "total_frames": 276,
+        "airborne_eligible": 0,
+        "ground_excluded": 276,
+        "unknown_skipped": 0
+      }
+    },
+    {
+      "source": {
+        "bucket": "aerorozum-jetson-testdata-smart-bird",
+        "object": "jetson/2026-11-03/recordings/2026-11-03_184330/thermal-0000.avi",
+        "generation": "1793989371074915",
+        "session_id": "2026-11-03_184330",
+        "segment": 0,
+        "video_sha256": "1ffb6f689299ab5fc22c8609ac6bed8c57ae66a1952c6e345a6f61cf19ecf1ad",
+        "clock_recovery": {
+          "protocol": "unambiguous-clock-portions-v1",
+          "proof_sha256": "22f574fff5600985206840d876efe9ee03a80958b22dd2f2a46387bb01dffb98",
+          "timestamps_modified": false,
+          "guard_s": 2
+        }
+      },
+      "status": "qualified_only_outside_clock_ambiguity",
+      "counts": {
+        "total_frames": 275,
+        "airborne_eligible": 0,
+        "ground_excluded": 275,
+        "unknown_skipped": 0
+      }
+    }
+  ]
+}

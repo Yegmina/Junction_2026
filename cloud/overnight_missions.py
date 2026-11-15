@@ -8,6 +8,7 @@ import os
 from pathlib import Path
 import subprocess
 import time
+import urllib.request
 
 ROOT=Path('/opt/aerorozum')
 STUDY=ROOT/'artifacts/overnight-20261115T000942'
@@ -65,6 +66,19 @@ def play(model,phase,seed):
         # seed is more informative than silently replaying an unfavorable run.
         if (JOBS/name).exists():
             return collect(model,phase,seed)
+        if model=='gemma-local-deployed':
+            while datetime.now(timezone.utc)<DEADLINE:
+                try:
+                    with urllib.request.urlopen('http://172.17.0.1:18941/v1/models',timeout=10) as response:
+                        if not json.load(response).get('data'):raise ValueError('Empty proxy model list')
+                    with urllib.request.urlopen('http://127.0.0.1:18940/health',timeout=10) as response:
+                        if json.load(response).get('ready') is not True:raise ValueError('Inference model is not ready')
+                    break
+                except Exception as error:
+                    save(folder/'availability-wait.json',dict(at=datetime.now(timezone.utc).isoformat(),
+                        error=str(error)[:800],trial_not_started=True,protocol_and_checkpoint_unchanged=True))
+                    time.sleep(30)
+            else:return dict(model=model,phase=phase,seed=seed,status='not_dispatched_infrastructure_unavailable')
         command=['systemd-run','--unit='+unit,'--property=RuntimeMaxSec=2700',
             '--property=CPUQuota=200%','--property=MemoryMax=8G',
             '--property=StandardOutput=append:'+str(folder/'worker.log'),

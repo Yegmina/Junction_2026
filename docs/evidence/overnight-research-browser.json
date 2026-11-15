@@ -1,11 +1,11 @@
 {
-  "at": "2026-11-15T00:44:09.335Z",
-  "url": "https://136.115.179.240/presentation/research-overnight/index.html",
+  "at": "2026-11-15T02:23:45.108Z",
+  "url": "http://127.0.0.1:18900/presentation/research-overnight/index.html",
   "measured": {
-    "status": "11/15/2026, 2:43:48 AM",
-    "robotics": "1651 / 2160",
-    "high": "0 / 14,657",
-    "cpu": "69.5%"
+    "status": "11/15/2026, 4:23:30 AM",
+    "robotics": "2160 / 2160",
+    "high": "11,229 / 14,657",
+    "cpu": "53.1%"
   },
   "browser_errors": [],
   "mobile_horizontal_overflow": false,

@@ -1,0 +1,12 @@
+{
+  "at": "2026-11-15T02:21:00.038911+00:00",
+  "status": "verified",
+  "unique_pixel_objects": 1199,
+  "frame_bindings": 1199,
+  "failures": [],
+  "uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/requalified-input-pixels-v1/",
+  "server_digest": "MD5",
+  "local_content_identity": "SHA256",
+  "no_local_originals_deleted": true,
+  "no_api_inference_issued": true
+}

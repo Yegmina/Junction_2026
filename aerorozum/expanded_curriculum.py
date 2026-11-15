@@ -5,6 +5,7 @@ from .common import digest
 
 def select(catalog, development_hashes=(), seed=17):
     held = set(catalog.get('sealed_test_image_hashes', ())) | set(development_hashes)
+    held.update(catalog.get('nontraining_image_hashes', ()))
     held.update(r['sha256'] for r in catalog['images'] if r['split'] != 'train')
     unique = {}
     for row in catalog['images']:

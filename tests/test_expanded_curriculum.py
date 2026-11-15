@@ -25,3 +25,9 @@ def test_no_invented_backgrounds_or_negative_shortage():
     bad=row('bad');bad['detections']=[{'confidence':.2}]
     with pytest.raises(ValueError,match='explicit zero'):
         select(dict(images=[row('p',True),bad],dataset_signature='frozen',session_splits={}))
+
+
+def test_new_nontraining_hashes_are_excluded_without_reclassifying_them_as_test():
+    catalog=dict(images=[row('p',True),row('held',True),row('n')],dataset_signature='frozen',session_splits={},nontraining_image_hashes=['held'],sealed_test_image_hashes=[])
+    assert {r['id'] for r in select(catalog)['images']}=={'p','n'}
+    assert catalog['sealed_test_image_hashes']==[]

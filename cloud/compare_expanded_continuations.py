@@ -96,7 +96,7 @@ def run(seed,gpu):
 
 
 def queue():
-    pending={17:1,43:2,91:3};deadline=datetime.fromisoformat('2026-11-15T04:00:00+00:00')
+    pending={17:1,43:2,91:3};deadline=datetime.fromisoformat('2026-11-15T05:30:00+00:00')
     while pending and datetime.now(timezone.utc)<deadline:
         for seed,gpu in list(pending.items()):
             parent=ART/f'postsubmission-expanded-visual-v1/seed-{seed}/status.json'

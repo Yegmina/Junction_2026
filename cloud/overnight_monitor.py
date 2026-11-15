@@ -37,8 +37,9 @@ def sample(previous):
     high=read(ROOT/'airborne-labeler/artifacts/labelling/robotics-er2-high-thinking-v1/progress.json')
     declared=read(ROOT/'airborne-labeler/artifacts/labelling/robotics-er2-high-thinking-v1/frozen-inputs.json')
     training=[]
-    for family in ['postsubmission-visual-replication-v1','postsubmission-expanded-visual-v1']:
-        for spec_path in (ART/family).glob('*/specification.json'):
+    for family in ['postsubmission-visual-replication-v1','postsubmission-expanded-visual-v1',
+                   'postsubmission-expanded-controls-v1','postsubmission-high-teacher-visual-v1']:
+        for spec_path in (ART/family).rglob('specification.json'):
             spec=read(spec_path);folder=spec_path.parent;state=read(folder/'status.json')
             phases=[]
             for name in ['initial','continuation']:
@@ -53,7 +54,10 @@ def sample(previous):
                     lines=file.read_text().splitlines();last=json.loads(lines[-1]) if lines else {}
                     metrics.append(dict(stage=file.parent.parent.name,last=last))
                 except (OSError,ValueError):pass
-            row=dict(id=family+'-'+str(spec['seed']),seed=spec['seed'],gpu_ids=spec['lease']['gpu_ids'],
+            if not state and phases:
+                latest=phases[-1]['status']
+                state=dict(status=latest.get('status','unknown'),stage=latest.get('stage'))
+            row=dict(id=family+'-'+str(folder.relative_to(ART/family)).replace('/','-'),seed=spec['seed'],gpu_ids=spec['lease']['gpu_ids'],
                 state=state,phases=phases,metrics=metrics,sft_steps=spec['sft_steps'],grpo_steps=spec['grpo_steps'])
             training.append(row)
             detail='; '.join(p['phase']+': '+p['status'].get('stage',p['status'].get('status','unknown')) for p in phases)
@@ -70,10 +74,18 @@ def sample(previous):
     physics=read(ART/'pipeline/physics.json')
     physical=[{k:r.get(k) for k in ['case_id','status','progress','remaining_wall_s_estimate','virtual_time_s','duration_s','research_accepted','linear_backend']}
               for r in physics.get('cases',[]) if r.get('case_id') in ['object-h4-local','object-h4-domain2']]
+    extra_folder=ROOT/'airborne-labeler/artifacts/labelling/robotics-er2-high-thinking-requalified-v1'
+    extra_inputs=read(ROOT/'airborne-requalification-v1/frozen-new-high-inputs.json')
+    extra=dict(progress=read(extra_folder/'progress.json'),settled=read(extra_folder/'settled.json'),
+               available_unique_frames=len(extra_inputs.get('images',[])))
+    reviews={mode:dict(progress=read(STUDY/('post-label-'+mode+'-v1/progress.json')),
+                            report=read(STUDY/('post-label-'+mode+'-v1/report.json')))
+             for mode in ['temporal','background-tiles']}
     receipt=dict(at=utcnow(),cpu_utilization_percent=cpu,host_cores=48,core_quota=43,
         disk_free_gib=shutil.disk_usage(ROOT).free/1024**3,gpus=gpus,reasoning=reasoning,
         high_thinking=dict(progress=high,available_unique_frames=declared.get('unique_eligible_available'),
-                           missing_source_pixels=len(declared.get('missing',[]))),
+                           missing_source_pixels=len(declared.get('missing',[])),settled=read(ROOT/'airborne-labeler/artifacts/labelling/robotics-er2-high-thinking-v1/settled.json')),
+        requalified_high_thinking=extra,post_label_reviews=reviews,
         training=training,native=native,physics=physical,accepted_physical_pairs=physics.get('accepted_pairs'),
         submission_unchanged=True,opened_test_reused_for_selection=False,
         interpretation='Development research. Model labels are not human-confirmed physical mine locations.')

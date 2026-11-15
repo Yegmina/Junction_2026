@@ -9,7 +9,7 @@ const browser=await chromium.launch({executablePath:'/usr/bin/google-chrome',hea
 const page=await browser.newPage({viewport:{width:1600,height:1100},deviceScaleFactor:1});
 const errors=[];page.on('pageerror',e=>errors.push(e.message));
 try{
- await page.goto('https://136.115.179.240/presentation/research-overnight/index.html',{waitUntil:'networkidle'});
+ await page.goto(process.env.AEROROZUM_RESEARCH_URL||'https://136.115.179.240/presentation/research-overnight/index.html',{waitUntil:'networkidle'});
  await page.waitForFunction(()=>document.querySelector('#live').textContent==='Live measurements');
  await page.screenshot({path:path.join(out,'overnight-research-desktop.png'),fullPage:true});
  const measured=await page.evaluate(()=>({status:document.querySelector('#stamp').textContent,robotics:document.querySelector('#reason').textContent,high:document.querySelector('#high').textContent,cpu:document.querySelector('#cpu').textContent}));

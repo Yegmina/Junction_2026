@@ -1,0 +1,151 @@
+{
+  "at": "2026-11-15T02:22:51.846979+00:00",
+  "status": "completed",
+  "seeds": [
+    {
+      "seed": 17,
+      "evaluations": [
+        {
+          "stage": "480 SFT",
+          "micro_f2": 0.5086848635235732,
+          "tp": 41,
+          "fp": 10,
+          "fn": 47,
+          "valid_json_fraction": 0.9916666666666667,
+          "negative_false_alarm_rate": 0.03125
+        },
+        {
+          "stage": "480 SFT + 48 GRPO",
+          "micro_f2": 0.6009615384615384,
+          "tp": 50,
+          "fp": 14,
+          "fn": 38,
+          "valid_json_fraction": 0.9916666666666667,
+          "negative_false_alarm_rate": 0.09375
+        },
+        {
+          "stage": "480 SFT + 144 GRPO",
+          "micro_f2": 0.6501182033096927,
+          "tp": 55,
+          "fp": 16,
+          "fn": 33,
+          "valid_json_fraction": 0.9916666666666667,
+          "negative_false_alarm_rate": 0.15625
+        }
+      ],
+      "reward_signal": {
+        "measured_steps": 96,
+        "informative_steps": 57,
+        "task_signal_verified": true,
+        "mean_zero_reward_variance_fraction": 0.40625,
+        "interpretation": "Nonzero gradients alone do not establish a task-learning signal or an RL improvement"
+      }
+    },
+    {
+      "seed": 43,
+      "evaluations": [
+        {
+          "stage": "480 SFT",
+          "micro_f2": 0.5134474327628362,
+          "tp": 42,
+          "fp": 15,
+          "fn": 46,
+          "valid_json_fraction": 1.0,
+          "negative_false_alarm_rate": 0.0625
+        },
+        {
+          "stage": "480 SFT + 48 GRPO",
+          "micro_f2": 0.6146572104018913,
+          "tp": 52,
+          "fp": 19,
+          "fn": 36,
+          "valid_json_fraction": 0.9916666666666667,
+          "negative_false_alarm_rate": 0.09375
+        },
+        {
+          "stage": "480 SFT + 144 GRPO",
+          "micro_f2": 0.6697459584295612,
+          "tp": 58,
+          "fp": 23,
+          "fn": 30,
+          "valid_json_fraction": 0.9916666666666667,
+          "negative_false_alarm_rate": 0.125
+        }
+      ],
+      "reward_signal": {
+        "measured_steps": 96,
+        "informative_steps": 71,
+        "task_signal_verified": true,
+        "mean_zero_reward_variance_fraction": 0.2604166666666667,
+        "interpretation": "Nonzero gradients alone do not establish a task-learning signal or an RL improvement"
+      }
+    },
+    {
+      "seed": 91,
+      "evaluations": [
+        {
+          "stage": "480 SFT",
+          "micro_f2": 0.4671717171717172,
+          "tp": 37,
+          "fp": 7,
+          "fn": 51,
+          "valid_json_fraction": 1.0,
+          "negative_false_alarm_rate": 0.0
+        },
+        {
+          "stage": "480 SFT + 48 GRPO",
+          "micro_f2": 0.6053268765133172,
+          "tp": 50,
+          "fp": 11,
+          "fn": 38,
+          "valid_json_fraction": 0.9916666666666667,
+          "negative_false_alarm_rate": 0.0625
+        },
+        {
+          "stage": "480 SFT + 144 GRPO",
+          "micro_f2": 0.7060185185185185,
+          "tp": 61,
+          "fp": 19,
+          "fn": 27,
+          "valid_json_fraction": 0.9916666666666667,
+          "negative_false_alarm_rate": 0.125
+        }
+      ],
+      "reward_signal": {
+        "measured_steps": 96,
+        "informative_steps": 65,
+        "task_signal_verified": true,
+        "mean_zero_reward_variance_fraction": 0.3229166666666667,
+        "interpretation": "Nonzero gradients alone do not establish a task-learning signal or an RL improvement"
+      }
+    }
+  ],
+  "source_sha256": {
+    "submission-visual-projection-v2/updates-480/result.json": "b7da2c4fefa41d45e9caf64e51ef4376451ad4a00027f51de373ee6303b7e712",
+    "submission-grpo-continuation-v1/updates-96/result.json": "fc3c00070632b05ee8de91180406586d47587d1d14063aee0ad166ef32ba232e",
+    "postsubmission-visual-replication-v1/seed-43/initial/result.json": "1da94220a6e9d9d99153ba11a1032354d0a82389567a800baa1099f84e227c04",
+    "postsubmission-visual-replication-v1/seed-43/continuation/result.json": "46211f622282eb08e28a645260e65abac72113f53bb94b53ca1f828a88b82e1a",
+    "postsubmission-visual-replication-v1/seed-91/initial/result.json": "044d317cfa65824b49b1c26bfb6b061c4f2a2697df21352c420263945c453fa0",
+    "postsubmission-visual-replication-v1/seed-91/continuation/result.json": "c57f66dd1743e6b3f19d92453b8a72aad266ab107ea94d427bdb0a65de6199e4",
+    "postsubmission-visual-replication-v1/sft-control-17/initial/result.json": "0dbf084132213bcc9b32ef76e592820b1c2172f079fb51cb42b7537fe13304c0"
+  },
+  "additional_96_sft_seed17": {
+    "micro_f2": 0.5295566502463054,
+    "tp": 43,
+    "fp": 11,
+    "fn": 45,
+    "valid_json_fraction": 0.9916666666666667,
+    "negative_false_alarm_rate": 0.03125
+  },
+  "training_images": 602,
+  "development_images": 120,
+  "development_reference_provenance": {
+    "original_manual": 30,
+    "reviewed_ai": 58,
+    "machine_screened_zero": 32
+  },
+  "production_model_changed": false,
+  "test_accessed": false,
+  "automatic_promotion": false,
+  "interpretation": "Repeated development comparison; reused development references do not establish field generalization. Additional SFT/GRPO controls match update counts, not compute. Model-zero references are not verified absence."
+}

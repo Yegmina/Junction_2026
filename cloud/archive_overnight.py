@@ -22,11 +22,12 @@ def sync(path,relative):
         'gs://'+BUCKET+'/'+PREFIX+'/'+relative,'--quiet'],check=True,timeout=3600)
 
 
-def archive_inputs():
+def archive_inputs(input_path=None,relative='airborne-input-pixels-v1',receipt_name='input-pixels-cloud-verification.json'):
     from aerorozum.common import save,utcnow
     from cloud.airborne_worker import metadata_record_store
-    out=ROOT/'archives/overnight-airborne-inputs-v1';out.mkdir(parents=True,exist_ok=True)
-    frozen=json.loads((ROOT/'airborne-labeler/artifacts/labelling/robotics-er2-high-thinking-v1/frozen-inputs.json').read_text())
+    out=ROOT/'archives'/relative;out.mkdir(parents=True,exist_ok=True)
+    input_path=input_path or ROOT/'airborne-labeler/artifacts/labelling/robotics-er2-high-thinking-v1/frozen-inputs.json'
+    frozen=json.loads(Path(input_path).read_text())
     images={};bindings=[]
     for row in frozen['images']:
         source=Path(row['image']);name=row['sha256']+source.suffix.lower();target=out/name
@@ -38,7 +39,7 @@ def archive_inputs():
         bindings.append(dict(id=row['id'],file=name,source=row['source'],frame_index=row['frame_index'],eligibility=row['eligibility']))
     save(out/'manifest.json',dict(at=utcnow(),frozen_input_sha256=frozen['sha256'],
         originals_preserved=True,hard_links_only=True,images=images,bindings=bindings))
-    relative='airborne-input-pixels-v1';sync(out,relative)
+    sync(out,relative)
     # Verify every uploaded source pixel using GCS's server-computed digest,
     # byte count and immutable content-addressed filename. No inference calls.
     store=metadata_record_store(BUCKET);indexed={};page=None
@@ -59,7 +60,7 @@ def archive_inputs():
         unique_pixel_objects=len(images),frame_bindings=len(bindings),failures=failures,
         uri='gs://'+BUCKET+'/'+PREFIX+'/'+relative+'/',server_digest='MD5',local_content_identity='SHA256',
         no_local_originals_deleted=True,no_api_inference_issued=True)
-    save(STUDY/'input-pixels-cloud-verification.json',receipt)
+    save(STUDY/receipt_name,receipt)
     store.put(hashlib.sha256(json.dumps(receipt,sort_keys=True).encode()).hexdigest(),receipt,'progress')
     if failures:raise ValueError('Input-pixel archive verification failed')
     return receipt
@@ -67,14 +68,22 @@ def archive_inputs():
 
 def terminal_paths():
     paths=[]
-    for family in ['postsubmission-visual-replication-v1','postsubmission-expanded-visual-v1']:
-        for p in (ART/family).glob('*/status.json'):
-            state=json.loads(p.read_text())
+    for family in ['postsubmission-visual-replication-v1','postsubmission-expanded-visual-v1',
+                   'postsubmission-expanded-controls-v1','postsubmission-high-teacher-visual-v1']:
+        for p in (ART/family).rglob('specification.json'):
+            spec=json.loads(p.read_text());folder=p.parent
+            state_path=folder/'status.json'
+            if not state_path.exists():
+                state_path=folder/('continuation' if spec.get('continuation_steps') else 'initial')/'status.json'
+            if not state_path.exists():continue
+            state=json.loads(state_path.read_text())
             if state.get('status') not in ('completed','failed'):continue
-            paths.append((p.parent,'experiments/'+str(p.parent.relative_to(ART))))
-            spec=json.loads((p.parent/'specification.json').read_text())
+            paths.append((folder,'experiments/'+str(folder.relative_to(ART))))
             training=ART/'training'/spec['namespace']
             if training.is_dir():paths.append((training,'training/'+spec['namespace']))
+            for key in ['source_initial','source_continuation']:
+                source=Path(spec[key])
+                if source.is_dir():paths.append((source,'sources/'+source.name))
     for p in (ROOT/'harbor/jobs').glob('overnight-*/result.json'):
         result=json.loads(p.read_text());stats=result.get('stats',{})
         if not result.get('finished_at') or stats.get('n_running_trials') or stats.get('n_pending_trials'):continue
@@ -82,6 +91,9 @@ def terminal_paths():
     report=STUDY/'robotics-reasoning-v1/report.json'
     if report.exists() and json.loads(report.read_text()).get('status')=='completed':
         paths.append((report.parent,'robotics-development-study-v1'))
+    for mode in ['temporal','background-tiles']:
+        report=STUDY/('post-label-'+mode+'-v1/report.json')
+        if report.exists():paths.append((report.parent,'post-label-reviews/'+mode))
     return paths
 
 
@@ -91,10 +103,14 @@ if __name__=='__main__':
     ledger=json.loads(ledger_path.read_text()) if ledger_path.exists() else dict(completed={},errors=[])
     if not (STUDY/'input-pixels-cloud-verification.json').exists():
         print(json.dumps(archive_inputs()),flush=True)
-    for name in ['reasoning-source-v1','high-thinking-source-v1','optimized-training-source-v1','expanded-visual-source-v1','expanded-visual-source-v2']:
+    extra=ROOT/'airborne-requalification-v1/frozen-new-high-inputs.json'
+    if extra.exists() and not (STUDY/'requalified-input-pixels-cloud-verification.json').exists():
+        print(json.dumps(archive_inputs(extra,'requalified-input-pixels-v1','requalified-input-pixels-cloud-verification.json')),flush=True)
+    for name in ['reasoning-source-v1','high-thinking-source-v1','optimized-training-source-v1','expanded-visual-source-v1','expanded-visual-source-v2',
+                 'post-label-review-source-v1','high-teacher-students-source-v1','grpo-expanded-source-v1']:
         path=ROOT/'postsubmission'/name
         if path.exists():sync(path,'sources/'+name)
-    deadline=datetime.fromisoformat('2026-11-15T06:30:00+00:00').timestamp()
+    deadline=datetime.fromisoformat('2026-11-16T16:30:00+00:00').timestamp()
     while time.time()<deadline:
         for path,relative in terminal_paths():
             if relative in ledger['completed']:continue

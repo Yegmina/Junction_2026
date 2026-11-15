@@ -177,7 +177,9 @@ class GeminiProvider:
         await self._check_accepting()
         contents = [types.Part.from_bytes(data=b,mime_type=mimetypes.guess_type(str(p))[0] or 'image/jpeg') for p,b in zip(paths,blobs)] + [prompt]
         # Conservative input estimate; provider token usage retained for recalibration.
-        estimate = max(1,len(prompt)//3) + 4096 * len(blobs)
+        image_estimate=self.cfg.get('input_tokens_per_image_estimate',4096)
+        if type(image_estimate) is not int or not 1<=image_estimate<=4096:raise ValueError('Invalid input image token estimate')
+        estimate = max(1,len(prompt)//3) + image_estimate * len(blobs)
         async with self.semaphore:
             for attempt in range(self.cfg.get('max_retries',5)):
                 if reuse and cache.exists():return json.loads(cache.read_text())['output']
