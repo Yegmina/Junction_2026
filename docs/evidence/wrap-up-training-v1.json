@@ -1,0 +1,851 @@
+{
+  "at": "2026-11-15T05:35:59.800330+00:00",
+  "status": "checkpointing_finished",
+  "results": {
+    "17": {
+      "at": "2026-11-15T05:35:04.499853+00:00",
+      "seed": 17,
+      "status": "checkpointed_on_user_request",
+      "checkpoint": "/opt/aerorozum/artifacts/training/postsubmission-high-teacher-visual-v1/seed-17/initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-1925",
+      "saved_optimizer_updates": 1925,
+      "planned_optimizer_updates": 3751,
+      "optimizer_scheduler_rng_saved": true,
+      "training_archive": {
+        "uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/wrap-up-v1/training/seed-17/",
+        "files": {
+          "initial/google_gemma-4-12B-it/stream_sft/seed-17/README.md": {
+            "size": 1342,
+            "sha256": "6f02ac3ed0e190b61e06d0846a79777e7ae6c2628270f98b0a0dbe4693e1bad1",
+            "md5": "H3mH7X1PjwL3Lj4j+jyY7Q=="
+          },
+          "initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-1900/README.md": {
+            "size": 5238,
+            "sha256": "ea8115d41e0222b84275fda09d3efbc308ae702c2b3c4c8d5130994a0692ad74",
+            "md5": "kEfjgGLEaCUfB3kY1E/2rA=="
+          },
+          "initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-1900/adapter_config.json": {
+            "size": 1163,
+            "sha256": "7dc0659be2fbcccf7051b1c1f8faa6f0e9bc7c3846010c0c07646d82bb416ec5",
+            "md5": "ho1Hmg3EinzksFxDRfPZ2A=="
+          },
+          "initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-1900/adapter_model.safetensors": {
+            "size": 42067976,
+            "sha256": "59c927c669cfa29f74eb15020c665495cccf794551e093b2b414f81309d58e13",
+            "md5": "lxiPrhNZH/fdjN54GZI+wA=="
+          },
+          "initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-1900/chat_template.jinja": {
+            "size": 18683,
+            "sha256": "ae53464bf3be25802b3a5b37def7fd89667067d7577049b3b2d74c4d8de4c6d4",
+            "md5": "8Ba9S8KEbglNWW5KsCZErw=="
+          },
+          "initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-1900/optimizer.pt": {
+            "size": 84235275,
+            "sha256": "acb61804c162c66c40a93cb40ad62592c218782df3f6472eed47241b20935800",
+            "md5": "e3uJUT2LHxZF08qSlUqk8w=="
+          },
+          "initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-1900/processor_config.json": {
+            "size": 1382,
+            "sha256": "6b938e76555b3e9946890770e1abcd442a4718f34041a58e8139dc8ad34545c9",
+            "md5": "qf5RMsAWaWu0I4BvBtLT5w=="
+          },
+          "initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-1900/rng_state.pth": {
+            "size": 14709,
+            "sha256": "ac4c24abf307d00211a7fdfb1edebe4885038b8ee7f5807da739f84c96a0d09b",
+            "md5": "ErFVx4ofeYy/sdaDpx8/3g=="
+          },
+          "initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-1900/scheduler.pt": {
+            "size": 1465,
+            "sha256": "f59a0080438e5bbafc71369cc285d1a8d01750382094eaa8b8b4514edd294fbf",
+            "md5": "ZWL36aalZYatbr2PPqh7UQ=="
+          },
+          "initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-1900/tokenizer.json": {
+            "size": 32157316,
+            "sha256": "31ca8db812b9ac5693b4e5546382490e8b882c1a811e277ea9f904cda165ba63",
+            "md5": "H/vnp5qVzcfyVOV+19PqWA=="
+          },
+          "initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-1900/tokenizer_config.json": {
+            "size": 3734,
+            "sha256": "9669970d5b0bcfcb47a09256f9e66837c313926ff15e9ba4c60e8bbe3c6bdf84",
+            "md5": "XKa5NgUe1UiWDdS3WxtGyg=="
+          },
+          "initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-1900/trainer_state.json": {
+            "size": 576792,
+            "sha256": "79da5e7aef38eff06fe8b78e63a198746356e84e7834916576675a1479cc7950",
+            "md5": "qITLXafPqYGKBo+feqLHFA=="
+          },
+          "initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-1900/training_args.bin": {
+            "size": 5905,
+            "sha256": "0c519405d1ccc8be13d40b81b65d3f610d5826b113aceab2d5761449c97315e0",
+            "md5": "bNyVwJd0C8p+ClTr3sdb6g=="
+          },
+          "initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-1925/README.md": {
+            "size": 5238,
+            "sha256": "ea8115d41e0222b84275fda09d3efbc308ae702c2b3c4c8d5130994a0692ad74",
+            "md5": "kEfjgGLEaCUfB3kY1E/2rA=="
+          },
+          "initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-1925/adapter_config.json": {
+            "size": 1163,
+            "sha256": "7dc0659be2fbcccf7051b1c1f8faa6f0e9bc7c3846010c0c07646d82bb416ec5",
+            "md5": "ho1Hmg3EinzksFxDRfPZ2A=="
+          },
+          "initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-1925/adapter_model.safetensors": {
+            "size": 42067976,
+            "sha256": "a6cfb466b7724835426faa638d41c5ef0799cc261ed8a5c7f718604291b6ac9b",
+            "md5": "9qbNorCwylFciJyPrkm0cQ=="
+          },
+          "initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-1925/chat_template.jinja": {
+            "size": 18683,
+            "sha256": "ae53464bf3be25802b3a5b37def7fd89667067d7577049b3b2d74c4d8de4c6d4",
+            "md5": "8Ba9S8KEbglNWW5KsCZErw=="
+          },
+          "initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-1925/optimizer.pt": {
+            "size": 84235275,
+            "sha256": "0228f688365d3ec7f12bf7aa478660a151a61a1096a704501d589471e64a0507",
+            "md5": "Vnd4qG4ZXh58mQsxjjt2mA=="
+          },
+          "initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-1925/processor_config.json": {
+            "size": 1382,
+            "sha256": "6b938e76555b3e9946890770e1abcd442a4718f34041a58e8139dc8ad34545c9",
+            "md5": "qf5RMsAWaWu0I4BvBtLT5w=="
+          },
+          "initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-1925/rng_state.pth": {
+            "size": 14709,
+            "sha256": "4244a2ca28a5beb045e00fbe8d2b82805867a9ab50d10f8450f3f97978a2c50a",
+            "md5": "Sjj4DDLIC7oAzi9NkD3tvg=="
+          },
+          "initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-1925/scheduler.pt": {
+            "size": 1465,
+            "sha256": "383e9aa8e7953c7d46a63db5847f9aaecfc876b8fb7e327ac7585d1bab0cf0dd",
+            "md5": "0lIAP/uVqtT9lfkZAWTXXA=="
+          },
+          "initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-1925/tokenizer.json": {
+            "size": 32157316,
+            "sha256": "31ca8db812b9ac5693b4e5546382490e8b882c1a811e277ea9f904cda165ba63",
+            "md5": "H/vnp5qVzcfyVOV+19PqWA=="
+          },
+          "initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-1925/tokenizer_config.json": {
+            "size": 3734,
+            "sha256": "9669970d5b0bcfcb47a09256f9e66837c313926ff15e9ba4c60e8bbe3c6bdf84",
+            "md5": "XKa5NgUe1UiWDdS3WxtGyg=="
+          },
+          "initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-1925/trainer_state.json": {
+            "size": 584385,
+            "sha256": "56dbefa3ec1c5ba6153b634493f7bf02c39d0e0269ec4189a529fb0e583eb2ec",
+            "md5": "o2EvYqPcslHA8zDuPoRwUA=="
+          },
+          "initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-1925/training_args.bin": {
+            "size": 5905,
+            "sha256": "0c519405d1ccc8be13d40b81b65d3f610d5826b113aceab2d5761449c97315e0",
+            "md5": "bNyVwJd0C8p+ClTr3sdb6g=="
+          },
+          "initial/google_gemma-4-12B-it/stream_sft/seed-17/fixed-sft-snapshots/step-1172/adapter/README.md": {
+            "size": 5238,
+            "sha256": "ea8115d41e0222b84275fda09d3efbc308ae702c2b3c4c8d5130994a0692ad74",
+            "md5": "kEfjgGLEaCUfB3kY1E/2rA=="
+          },
+          "initial/google_gemma-4-12B-it/stream_sft/seed-17/fixed-sft-snapshots/step-1172/adapter/adapter_config.json": {
+            "size": 1163,
+            "sha256": "7dc0659be2fbcccf7051b1c1f8faa6f0e9bc7c3846010c0c07646d82bb416ec5",
+            "md5": "ho1Hmg3EinzksFxDRfPZ2A=="
+          },
+          "initial/google_gemma-4-12B-it/stream_sft/seed-17/fixed-sft-snapshots/step-1172/adapter/adapter_model.safetensors": {
+            "size": 42067976,
+            "sha256": "01450aaf226adc6559281428452324ebe399bf1510e67c6f7f890478588c8c80",
+            "md5": "Gjbo3GJO8Qum/B03WU7rEg=="
+          },
+          "initial/google_gemma-4-12B-it/stream_sft/seed-17/fixed-sft-snapshots/step-1172/receipt.json": {
+            "size": 365,
+            "sha256": "27d632c828214dd6b41f7bacb67b7df1a5ca13de6038fdc5af7a41413b07abda",
+            "md5": "cx7r3RgiMxd7Q3mbda8vBA=="
+          },
+          "initial/google_gemma-4-12B-it/stream_sft/seed-17/fixed-sft-snapshots/step-586/adapter/README.md": {
+            "size": 5238,
+            "sha256": "ea8115d41e0222b84275fda09d3efbc308ae702c2b3c4c8d5130994a0692ad74",
+            "md5": "kEfjgGLEaCUfB3kY1E/2rA=="
+          },
+          "initial/google_gemma-4-12B-it/stream_sft/seed-17/fixed-sft-snapshots/step-586/adapter/adapter_config.json": {
+            "size": 1163,
+            "sha256": "7dc0659be2fbcccf7051b1c1f8faa6f0e9bc7c3846010c0c07646d82bb416ec5",
+            "md5": "ho1Hmg3EinzksFxDRfPZ2A=="
+          },
+          "initial/google_gemma-4-12B-it/stream_sft/seed-17/fixed-sft-snapshots/step-586/adapter/adapter_model.safetensors": {
+            "size": 42067976,
+            "sha256": "77bb3ae0061814e8c525e3c6efaad244e0ebecd421ba45315511e446617e58d6",
+            "md5": "XCPxU75AiTMDuhHgKAJtAQ=="
+          },
+          "initial/google_gemma-4-12B-it/stream_sft/seed-17/fixed-sft-snapshots/step-586/receipt.json": {
+            "size": 363,
+            "sha256": "80656280ffb420481474ed0b4cef1218146af796034bdef365702137a6b80670",
+            "md5": "m5dMGgZrGZKxt4QQuKeqJQ=="
+          },
+          "initial/google_gemma-4-12B-it/stream_sft/seed-17/gradient_checks.json": {
+            "size": 163,
+            "sha256": "60fcd1094e3aa3a6d8bec506de973c53d01af75ca3e3339c1965d68e656ef71d",
+            "md5": "bRauDDOOJUEB64IQRhenSw=="
+          },
+          "initial/google_gemma-4-12B-it/stream_sft/seed-17/image_influence.json": {
+            "size": 73,
+            "sha256": "3b2708bd25a9f89cb1ef52dfc87e0f906be09c2daf991da946dcc5bdc73ac642",
+            "md5": "3yMVsCkPzOcgYC/ewS1Ydg=="
+          },
+          "initial/google_gemma-4-12B-it/stream_sft/seed-17/metrics.jsonl": {
+            "size": 550871,
+            "sha256": "82e78462586f15486067b3e0983dd520ec946f1d3f4acf5ea932de46ecada1f4",
+            "md5": "+t6Y8oQl0MienNZo5fiIRA=="
+          },
+          "initial/google_gemma-4-12B-it/stream_sft/seed-17/protocol.json": {
+            "size": 766,
+            "sha256": "e66f7935ed3c20fdca6e0a41ca1c6eebd729411fbb553b65bd260344e165b692",
+            "md5": "2IM2szLCu5puM5shLJYj4Q=="
+          }
+        },
+        "object_generations": {
+          "initial/google_gemma-4-12B-it/stream_sft/seed-17/README.md": "1794720896694690",
+          "initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-1900/README.md": "1794720896683347",
+          "initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-1900/adapter_config.json": "1794720896747313",
+          "initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-1900/adapter_model.safetensors": "1794720900159765",
+          "initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-1900/chat_template.jinja": "1794720896712971",
+          "initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-1900/optimizer.pt": "1794720901069662",
+          "initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-1900/processor_config.json": "1794720897342560",
+          "initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-1900/rng_state.pth": "1794720896784633",
+          "initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-1900/scheduler.pt": "1794720896723181",
+          "initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-1900/tokenizer.json": "1794720899026742",
+          "initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-1900/tokenizer_config.json": "1794720897328858",
+          "initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-1900/trainer_state.json": "1794720898020165",
+          "initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-1900/training_args.bin": "1794720896777545",
+          "initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-1925/README.md": "1794720896963030",
+          "initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-1925/adapter_config.json": "1794720896368175",
+          "initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-1925/adapter_model.safetensors": "1794720899669604",
+          "initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-1925/chat_template.jinja": "1794720896242037",
+          "initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-1925/optimizer.pt": "1794720901115717",
+          "initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-1925/processor_config.json": "1794720897351614",
+          "initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-1925/rng_state.pth": "1794720896701881",
+          "initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-1925/scheduler.pt": "1794720897277499",
+          "initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-1925/tokenizer.json": "1794720899296376",
+          "initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-1925/tokenizer_config.json": "1794720896694778",
+          "initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-1925/trainer_state.json": "1794720896815220",
+          "initial/google_gemma-4-12B-it/stream_sft/seed-17/checkpoint-1925/training_args.bin": "1794720896223358",
+          "initial/google_gemma-4-12B-it/stream_sft/seed-17/fixed-sft-snapshots/step-1172/adapter/README.md": "1794720896713673",
+          "initial/google_gemma-4-12B-it/stream_sft/seed-17/fixed-sft-snapshots/step-1172/adapter/adapter_config.json": "1794720896717898",
+          "initial/google_gemma-4-12B-it/stream_sft/seed-17/fixed-sft-snapshots/step-1172/adapter/adapter_model.safetensors": "1794720899691593",
+          "initial/google_gemma-4-12B-it/stream_sft/seed-17/fixed-sft-snapshots/step-1172/receipt.json": "1794720897256904",
+          "initial/google_gemma-4-12B-it/stream_sft/seed-17/fixed-sft-snapshots/step-586/adapter/README.md": "1794720897249595",
+          "initial/google_gemma-4-12B-it/stream_sft/seed-17/fixed-sft-snapshots/step-586/adapter/adapter_config.json": "1794720897224830",
+          "initial/google_gemma-4-12B-it/stream_sft/seed-17/fixed-sft-snapshots/step-586/adapter/adapter_model.safetensors": "1794720898678568",
+          "initial/google_gemma-4-12B-it/stream_sft/seed-17/fixed-sft-snapshots/step-586/receipt.json": "1794720897311681",
+          "initial/google_gemma-4-12B-it/stream_sft/seed-17/gradient_checks.json": "1794720896747305",
+          "initial/google_gemma-4-12B-it/stream_sft/seed-17/image_influence.json": "1794720896727854",
+          "initial/google_gemma-4-12B-it/stream_sft/seed-17/metrics.jsonl": "1794720897318205",
+          "initial/google_gemma-4-12B-it/stream_sft/seed-17/protocol.json": "1794720896722389"
+        },
+        "server_digest_verified": true,
+        "no_local_deletion": true
+      },
+      "full_training_completed": false,
+      "grpo_completed": false,
+      "automatic_promotion": false,
+      "source_and_training_configuration_unchanged": true,
+      "experiment_archive": {
+        "uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/wrap-up-v1/experiments/seed-17/",
+        "files": {
+          "initial/status.json": {
+            "size": 245,
+            "sha256": "b470ed8291169d39c2fd228326283817413b8687adde898db751aeb244c55fba",
+            "md5": "6z/pKRiqmgq1hL2tNsNoLw=="
+          },
+          "specification.json": {
+            "size": 3089,
+            "sha256": "f519dbd30cacb619ce1ea987ebeb7803bcc7c3f0d9b4a91bd9834d3030d46881",
+            "md5": "1xziz1mV9w8Qha5qmLHLsA=="
+          },
+          "status.json": {
+            "size": 245,
+            "sha256": "e73447357c2851fafdabcb9a87bbf7ef6d2fc4b8a577ac997d951c91629ebd43",
+            "md5": "RVoHq3SVTb/wiEkpkcLpEw=="
+          },
+          "train.json": {
+            "size": 21527936,
+            "sha256": "5e4a66e8c55c5f1ed6892f0d9c1cdb14825f05d81aeeb362e0f1557574d7e10a",
+            "md5": "YLkll7Kqoq5Zjv4sye1MYA=="
+          },
+          "worker.log": {
+            "size": 672129,
+            "sha256": "4131d493d284b5d1e1cc1a29511fd8af3d70f8c2244ecdbe0c712d8cd5d0d6c9",
+            "md5": "tu5YqVXqOkkkrHslw+Yjig=="
+          },
+          "wrap-up.json": {
+            "size": 14445,
+            "sha256": "57acaf9ed60e3b12c7a79d2e271bdfede91054eb5a905463a86bf4ef0474aa7b",
+            "md5": "ciFIL9QT8aOTrkYvo/b8jQ=="
+          }
+        },
+        "object_generations": {
+          "initial/status.json": "1794720906745865",
+          "specification.json": "1794720907752308",
+          "status.json": "1794720907251072",
+          "train.json": "1794720909497239",
+          "worker.log": "1794720908183121",
+          "wrap-up.json": "1794720907882246"
+        },
+        "server_digest_verified": true,
+        "no_local_deletion": true
+      }
+    },
+    "43": {
+      "at": "2026-11-15T05:35:08.872549+00:00",
+      "seed": 43,
+      "status": "checkpointed_on_user_request",
+      "checkpoint": "/opt/aerorozum/artifacts/training/postsubmission-high-teacher-visual-v1/seed-43/initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-850",
+      "saved_optimizer_updates": 850,
+      "planned_optimizer_updates": 3751,
+      "optimizer_scheduler_rng_saved": true,
+      "training_archive": {
+        "uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/wrap-up-v1/training/seed-43/",
+        "files": {
+          "initial/google_gemma-4-12B-it/stream_sft/seed-43/README.md": {
+            "size": 1342,
+            "sha256": "c187a558edbd5ec4e336eedb8c3d4a8b98a8d4486978a1e112b5bf96f1a555c8",
+            "md5": "5+r3KSaJbhuSAk95qhZF0w=="
+          },
+          "initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-825/README.md": {
+            "size": 5238,
+            "sha256": "ea8115d41e0222b84275fda09d3efbc308ae702c2b3c4c8d5130994a0692ad74",
+            "md5": "kEfjgGLEaCUfB3kY1E/2rA=="
+          },
+          "initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-825/adapter_config.json": {
+            "size": 1163,
+            "sha256": "62a741ad888fb08ffaa9c726bafc1beadb82e4e78b30e39d396c920a1f87c47f",
+            "md5": "r6lQdO99RTKqR79p1bKwsw=="
+          },
+          "initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-825/adapter_model.safetensors": {
+            "size": 42067976,
+            "sha256": "faa1465fd6f0b5fa020ebe402944dcda3dc570ae3dc032eff623fec7266c68e0",
+            "md5": "ZxwrxBr2HYim8xG1Y3Wdig=="
+          },
+          "initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-825/chat_template.jinja": {
+            "size": 18683,
+            "sha256": "ae53464bf3be25802b3a5b37def7fd89667067d7577049b3b2d74c4d8de4c6d4",
+            "md5": "8Ba9S8KEbglNWW5KsCZErw=="
+          },
+          "initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-825/optimizer.pt": {
+            "size": 84235275,
+            "sha256": "0ca9472b8198e6e00b1614439bd02e61c1f61ddfc994b4807bb63ce91516e661",
+            "md5": "nGm8OCTcpS8yq+VC3EmOeA=="
+          },
+          "initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-825/processor_config.json": {
+            "size": 1382,
+            "sha256": "6b938e76555b3e9946890770e1abcd442a4718f34041a58e8139dc8ad34545c9",
+            "md5": "qf5RMsAWaWu0I4BvBtLT5w=="
+          },
+          "initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-825/rng_state.pth": {
+            "size": 14645,
+            "sha256": "987c2565178e24819be2d5de5eac8e5cb3da518c40a5a181fb30ec5f2cd72a5b",
+            "md5": "z+2iM/1dolN2jQvH9qooSA=="
+          },
+          "initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-825/scheduler.pt": {
+            "size": 1465,
+            "sha256": "067672f699eebec87019769a08d5e9eafd60c7899dfc60d72f8765453a6cb3b3",
+            "md5": "BE3yiWeZ3L+n+qacs+Op/g=="
+          },
+          "initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-825/tokenizer.json": {
+            "size": 32157316,
+            "sha256": "31ca8db812b9ac5693b4e5546382490e8b882c1a811e277ea9f904cda165ba63",
+            "md5": "H/vnp5qVzcfyVOV+19PqWA=="
+          },
+          "initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-825/tokenizer_config.json": {
+            "size": 3734,
+            "sha256": "9669970d5b0bcfcb47a09256f9e66837c313926ff15e9ba4c60e8bbe3c6bdf84",
+            "md5": "XKa5NgUe1UiWDdS3WxtGyg=="
+          },
+          "initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-825/trainer_state.json": {
+            "size": 250243,
+            "sha256": "739729b9a6ef69b35670e502234d0cfaef6878a5f967244f27cf52770b296eca",
+            "md5": "6Onp1LiCN4qC3RqW31EKOQ=="
+          },
+          "initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-825/training_args.bin": {
+            "size": 5905,
+            "sha256": "e53563fb856bf3da4209c4f11dcd0c9ad4f87fb4ccf61fa6c659b27790e692a5",
+            "md5": "OGgtvI3i3jrcyOKQ155hvA=="
+          },
+          "initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-850/README.md": {
+            "size": 5238,
+            "sha256": "ea8115d41e0222b84275fda09d3efbc308ae702c2b3c4c8d5130994a0692ad74",
+            "md5": "kEfjgGLEaCUfB3kY1E/2rA=="
+          },
+          "initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-850/adapter_config.json": {
+            "size": 1163,
+            "sha256": "62a741ad888fb08ffaa9c726bafc1beadb82e4e78b30e39d396c920a1f87c47f",
+            "md5": "r6lQdO99RTKqR79p1bKwsw=="
+          },
+          "initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-850/adapter_model.safetensors": {
+            "size": 42067976,
+            "sha256": "cc28312e6c74681ece349e4c59e45dfdc269b7501c401630fe1f88f880fbec86",
+            "md5": "3xwqsS2HAnU+G4erJnSQ1Q=="
+          },
+          "initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-850/chat_template.jinja": {
+            "size": 18683,
+            "sha256": "ae53464bf3be25802b3a5b37def7fd89667067d7577049b3b2d74c4d8de4c6d4",
+            "md5": "8Ba9S8KEbglNWW5KsCZErw=="
+          },
+          "initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-850/optimizer.pt": {
+            "size": 84235275,
+            "sha256": "498c3a627aa736ebba1f55d3c59f459182b23030d5eae2874b0df1c120436f2e",
+            "md5": "jEpRCRCMTiDcEGFBsEQgkg=="
+          },
+          "initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-850/processor_config.json": {
+            "size": 1382,
+            "sha256": "6b938e76555b3e9946890770e1abcd442a4718f34041a58e8139dc8ad34545c9",
+            "md5": "qf5RMsAWaWu0I4BvBtLT5w=="
+          },
+          "initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-850/rng_state.pth": {
+            "size": 14645,
+            "sha256": "91fa5782857622e1120ed0c1b31a6f752f33bc0e5bee85cb85af52c25f15fc11",
+            "md5": "dF8IpaAbOztSHIcGvjH0aQ=="
+          },
+          "initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-850/scheduler.pt": {
+            "size": 1465,
+            "sha256": "cfea45faf43efcf89ffd459f23e0c8b5288aa2f4c1b5157710fdef1835d23fce",
+            "md5": "ek4e9vYVIpOpGxVu6dU1jQ=="
+          },
+          "initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-850/tokenizer.json": {
+            "size": 32157316,
+            "sha256": "31ca8db812b9ac5693b4e5546382490e8b882c1a811e277ea9f904cda165ba63",
+            "md5": "H/vnp5qVzcfyVOV+19PqWA=="
+          },
+          "initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-850/tokenizer_config.json": {
+            "size": 3734,
+            "sha256": "9669970d5b0bcfcb47a09256f9e66837c313926ff15e9ba4c60e8bbe3c6bdf84",
+            "md5": "XKa5NgUe1UiWDdS3WxtGyg=="
+          },
+          "initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-850/trainer_state.json": {
+            "size": 257817,
+            "sha256": "8d6bd380d5cfd7670c08a6374693a6c64aae7b8ab89dec17eeffa94ac779d2c7",
+            "md5": "waAiWq0Hmbw09poD12pk/w=="
+          },
+          "initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-850/training_args.bin": {
+            "size": 5905,
+            "sha256": "e53563fb856bf3da4209c4f11dcd0c9ad4f87fb4ccf61fa6c659b27790e692a5",
+            "md5": "OGgtvI3i3jrcyOKQ155hvA=="
+          },
+          "initial/google_gemma-4-12B-it/stream_sft/seed-43/fixed-sft-snapshots/step-586/adapter/README.md": {
+            "size": 5238,
+            "sha256": "ea8115d41e0222b84275fda09d3efbc308ae702c2b3c4c8d5130994a0692ad74",
+            "md5": "kEfjgGLEaCUfB3kY1E/2rA=="
+          },
+          "initial/google_gemma-4-12B-it/stream_sft/seed-43/fixed-sft-snapshots/step-586/adapter/adapter_config.json": {
+            "size": 1163,
+            "sha256": "62a741ad888fb08ffaa9c726bafc1beadb82e4e78b30e39d396c920a1f87c47f",
+            "md5": "r6lQdO99RTKqR79p1bKwsw=="
+          },
+          "initial/google_gemma-4-12B-it/stream_sft/seed-43/fixed-sft-snapshots/step-586/adapter/adapter_model.safetensors": {
+            "size": 42067976,
+            "sha256": "fbaf73cb8125d51480f8c5825053d80a131a8fd7b1a5b99785f45786da253a6a",
+            "md5": "RCSy5Uoa3hsBUnE1K/9NuA=="
+          },
+          "initial/google_gemma-4-12B-it/stream_sft/seed-43/fixed-sft-snapshots/step-586/receipt.json": {
+            "size": 363,
+            "sha256": "eef634a9a898a66f23963fe563d60c9bf28a2772615e37cebc4a8aaadff2089e",
+            "md5": "20YrurSIHFjwHWfWkeYU0Q=="
+          },
+          "initial/google_gemma-4-12B-it/stream_sft/seed-43/gradient_checks.json": {
+            "size": 161,
+            "sha256": "c954d8374579afc20ff9a1904080baf9c369e6993e7574e6416d2ed549c58428",
+            "md5": "U/GSZ74Rfc4hIqFgQvfmDw=="
+          },
+          "initial/google_gemma-4-12B-it/stream_sft/seed-43/image_influence.json": {
+            "size": 73,
+            "sha256": "fd10494d0b238953589ff4dea5dfdc7d3d25d66a26ac2d47008df9f71c45acaa",
+            "md5": "RSztuAHusTAD0bU2CGpk8g=="
+          },
+          "initial/google_gemma-4-12B-it/stream_sft/seed-43/metrics.jsonl": {
+            "size": 242580,
+            "sha256": "be97c629c2da90de19ba0cc7caa619aa2dc0fd67ce4a05f822755a2a1fa233f2",
+            "md5": "g9lYzL/xC0WLVHycbC+c4w=="
+          },
+          "initial/google_gemma-4-12B-it/stream_sft/seed-43/protocol.json": {
+            "size": 766,
+            "sha256": "a9bd495edc3535345c1e8cd730ba291bb8be3fbde61db608be1b6061c04f30ad",
+            "md5": "dHinPCVPav5Z1B1YIKQh8g=="
+          }
+        },
+        "object_generations": {
+          "initial/google_gemma-4-12B-it/stream_sft/seed-43/README.md": "1794720900640306",
+          "initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-825/README.md": "1794720900958930",
+          "initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-825/adapter_config.json": "1794720901014703",
+          "initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-825/adapter_model.safetensors": "1794720903487060",
+          "initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-825/chat_template.jinja": "1794720900531622",
+          "initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-825/optimizer.pt": "1794720905327833",
+          "initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-825/processor_config.json": "1794720900469373",
+          "initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-825/rng_state.pth": "1794720900877334",
+          "initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-825/scheduler.pt": "1794720899974927",
+          "initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-825/tokenizer.json": "1794720902326293",
+          "initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-825/tokenizer_config.json": "1794720901039166",
+          "initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-825/trainer_state.json": "1794720901139074",
+          "initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-825/training_args.bin": "1794720901083518",
+          "initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-850/README.md": "1794720900499648",
+          "initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-850/adapter_config.json": "1794720901060296",
+          "initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-850/adapter_model.safetensors": "1794720902403323",
+          "initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-850/chat_template.jinja": "1794720900546972",
+          "initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-850/optimizer.pt": "1794720904995228",
+          "initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-850/processor_config.json": "1794720901075928",
+          "initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-850/rng_state.pth": "1794720900484428",
+          "initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-850/scheduler.pt": "1794720900572427",
+          "initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-850/tokenizer.json": "1794720903124467",
+          "initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-850/tokenizer_config.json": "1794720901040308",
+          "initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-850/trainer_state.json": "1794720901072494",
+          "initial/google_gemma-4-12B-it/stream_sft/seed-43/checkpoint-850/training_args.bin": "1794720901009461",
+          "initial/google_gemma-4-12B-it/stream_sft/seed-43/fixed-sft-snapshots/step-586/adapter/README.md": "1794720900373189",
+          "initial/google_gemma-4-12B-it/stream_sft/seed-43/fixed-sft-snapshots/step-586/adapter/adapter_config.json": "1794720901049343",
+          "initial/google_gemma-4-12B-it/stream_sft/seed-43/fixed-sft-snapshots/step-586/adapter/adapter_model.safetensors": "1794720904662109",
+          "initial/google_gemma-4-12B-it/stream_sft/seed-43/fixed-sft-snapshots/step-586/receipt.json": "1794720901005702",
+          "initial/google_gemma-4-12B-it/stream_sft/seed-43/gradient_checks.json": "1794720901043217",
+          "initial/google_gemma-4-12B-it/stream_sft/seed-43/image_influence.json": "1794720901017121",
+          "initial/google_gemma-4-12B-it/stream_sft/seed-43/metrics.jsonl": "1794720901533784",
+          "initial/google_gemma-4-12B-it/stream_sft/seed-43/protocol.json": "1794720901091728"
+        },
+        "server_digest_verified": true,
+        "no_local_deletion": true
+      },
+      "full_training_completed": false,
+      "grpo_completed": false,
+      "automatic_promotion": false,
+      "source_and_training_configuration_unchanged": true,
+      "experiment_archive": {
+        "uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/wrap-up-v1/experiments/seed-43/",
+        "files": {
+          "initial/status.json": {
+            "size": 244,
+            "sha256": "8bd596992100ccbd68fca40a5efb04fbb23678e3f92d52269644bf1df8f2e438",
+            "md5": "iJ6j5/RA+/Id47rCs+CoPQ=="
+          },
+          "specification.json": {
+            "size": 3089,
+            "sha256": "cac9c8b172d92936a5d13e4420051325765cb4ec161825a3b742a45b9776c64d",
+            "md5": "iUOzvcOktjB47EcQkN68wQ=="
+          },
+          "status.json": {
+            "size": 244,
+            "sha256": "a1457b3bea23f7d97059376d7030303a77a8763c47102bccd1ec1aa4f53d0822",
+            "md5": "BhJ3IYCVMEtcTLSjTf1i1Q=="
+          },
+          "train.json": {
+            "size": 21533874,
+            "sha256": "9feea6eaf0267e09be9caf09a891686f47a75a26a845ac46d8c439b66f32e525",
+            "md5": "KG49b24G2b9ZjOeWFS1n9A=="
+          },
+          "worker.log": {
+            "size": 291221,
+            "sha256": "8612dcc86dbc7be2fb6473eee56ca0a0819a66f8de0838647aadd839a54d9811",
+            "md5": "USQ7DRI27mfJ1WnqZVgM7A=="
+          },
+          "wrap-up.json": {
+            "size": 12778,
+            "sha256": "b58b0620f434ab9d2eef0b15c153bae3da44a9d660aea6307a4c5f7a384d2890",
+            "md5": "hDzpKTX04yuXXZefqfjREQ=="
+          }
+        },
+        "object_generations": {
+          "initial/status.json": "1794720911875946",
+          "specification.json": "1794720912431526",
+          "status.json": "1794720911879260",
+          "train.json": "1794720914821634",
+          "worker.log": "1794720912889359",
+          "wrap-up.json": "1794720913000433"
+        },
+        "server_digest_verified": true,
+        "no_local_deletion": true
+      }
+    },
+    "91": {
+      "at": "2026-11-15T05:35:52.873869+00:00",
+      "seed": 91,
+      "status": "checkpointed_on_user_request",
+      "checkpoint": "/opt/aerorozum/artifacts/training/postsubmission-high-teacher-visual-v1/seed-91/initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-1175",
+      "saved_optimizer_updates": 1175,
+      "planned_optimizer_updates": 3751,
+      "optimizer_scheduler_rng_saved": true,
+      "training_archive": {
+        "uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/wrap-up-v1/training/seed-91/",
+        "files": {
+          "initial/google_gemma-4-12B-it/stream_sft/seed-91/README.md": {
+            "size": 1342,
+            "sha256": "d4fa5f0872b9536df5aff00d8d4bac753bbac2cee7cf3335c72ea248e3ffa787",
+            "md5": "7eXBkXPIhVQfjT48UrYPSQ=="
+          },
+          "initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-1150/README.md": {
+            "size": 5238,
+            "sha256": "ea8115d41e0222b84275fda09d3efbc308ae702c2b3c4c8d5130994a0692ad74",
+            "md5": "kEfjgGLEaCUfB3kY1E/2rA=="
+          },
+          "initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-1150/adapter_config.json": {
+            "size": 1163,
+            "sha256": "24a1a8105902fbb7b20b67b799670a39973654e0887052d01b6df0cd2388bf71",
+            "md5": "/26gsFctCrefuPQpxRhCww=="
+          },
+          "initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-1150/adapter_model.safetensors": {
+            "size": 42067976,
+            "sha256": "9f7649e1774ee7cf07bc592eb895bfc27e271554fb32a9b90ec2e1b6cd8f137e",
+            "md5": "GP2oJWilgG9B52HjF3/ecA=="
+          },
+          "initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-1150/chat_template.jinja": {
+            "size": 18683,
+            "sha256": "ae53464bf3be25802b3a5b37def7fd89667067d7577049b3b2d74c4d8de4c6d4",
+            "md5": "8Ba9S8KEbglNWW5KsCZErw=="
+          },
+          "initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-1150/optimizer.pt": {
+            "size": 84235275,
+            "sha256": "411766e04a3497995525ac42d4b8d788d5a20ce9b94e0a164b1e6e3702c58484",
+            "md5": "ygmhl+TsS/mqXL5J8hi25g=="
+          },
+          "initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-1150/processor_config.json": {
+            "size": 1382,
+            "sha256": "6b938e76555b3e9946890770e1abcd442a4718f34041a58e8139dc8ad34545c9",
+            "md5": "qf5RMsAWaWu0I4BvBtLT5w=="
+          },
+          "initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-1150/rng_state.pth": {
+            "size": 14645,
+            "sha256": "1f698113c2b5eef2a059877e076e6dd8230ae9bde2a8135626ce5895f610bbd5",
+            "md5": "SfCnStFhrBtpA7bTk9j/MA=="
+          },
+          "initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-1150/scheduler.pt": {
+            "size": 1465,
+            "sha256": "0ee803748e2a09978c52677f064d8a777572d388d05f033fce3f3b7f8ef8cf69",
+            "md5": "gNCiiz5J3fQA9oaSK9nuEA=="
+          },
+          "initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-1150/tokenizer.json": {
+            "size": 32157316,
+            "sha256": "31ca8db812b9ac5693b4e5546382490e8b882c1a811e277ea9f904cda165ba63",
+            "md5": "H/vnp5qVzcfyVOV+19PqWA=="
+          },
+          "initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-1150/tokenizer_config.json": {
+            "size": 3734,
+            "sha256": "9669970d5b0bcfcb47a09256f9e66837c313926ff15e9ba4c60e8bbe3c6bdf84",
+            "md5": "XKa5NgUe1UiWDdS3WxtGyg=="
+          },
+          "initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-1150/trainer_state.json": {
+            "size": 348687,
+            "sha256": "8b9847055965da4ebf8d48851350ab47d6db6ebd5c2f09f1a074cd2274539fab",
+            "md5": "fGJBTMeARRHMdIJVz6s+1w=="
+          },
+          "initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-1150/training_args.bin": {
+            "size": 5905,
+            "sha256": "e004949f888ccd4837cbf80a6d6d3ef504f5cadf121de93c3c293e30ed96176d",
+            "md5": "cA0VsQNVtVuX4g1TzIASew=="
+          },
+          "initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-1175/README.md": {
+            "size": 5238,
+            "sha256": "ea8115d41e0222b84275fda09d3efbc308ae702c2b3c4c8d5130994a0692ad74",
+            "md5": "kEfjgGLEaCUfB3kY1E/2rA=="
+          },
+          "initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-1175/adapter_config.json": {
+            "size": 1163,
+            "sha256": "24a1a8105902fbb7b20b67b799670a39973654e0887052d01b6df0cd2388bf71",
+            "md5": "/26gsFctCrefuPQpxRhCww=="
+          },
+          "initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-1175/adapter_model.safetensors": {
+            "size": 42067976,
+            "sha256": "98528cd52e536333d3bdefdc6ae85e8b96179a253dd41746ce6c3c757d297742",
+            "md5": "KDZwvszj/L9/hz/35KX1BA=="
+          },
+          "initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-1175/chat_template.jinja": {
+            "size": 18683,
+            "sha256": "ae53464bf3be25802b3a5b37def7fd89667067d7577049b3b2d74c4d8de4c6d4",
+            "md5": "8Ba9S8KEbglNWW5KsCZErw=="
+          },
+          "initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-1175/optimizer.pt": {
+            "size": 84235275,
+            "sha256": "197b68f9c0f18161b14dfbf04f21b9f11462a401a3d6551fd4411ca431d238af",
+            "md5": "bv3XmeeTfW5v/c6F1LS11A=="
+          },
+          "initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-1175/processor_config.json": {
+            "size": 1382,
+            "sha256": "6b938e76555b3e9946890770e1abcd442a4718f34041a58e8139dc8ad34545c9",
+            "md5": "qf5RMsAWaWu0I4BvBtLT5w=="
+          },
+          "initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-1175/rng_state.pth": {
+            "size": 14645,
+            "sha256": "edc5e245dcd97af88fa954717f23a18cf2838a2bdb87ab7af1365cb05d557517",
+            "md5": "LE/HAmI3zyDmZQq6ZLHSQw=="
+          },
+          "initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-1175/scheduler.pt": {
+            "size": 1465,
+            "sha256": "03a154fe75133bffa8f84362abe5c67636416407d5788705ce30a142a898cec1",
+            "md5": "P7gUIYIAgMTet4Mzd4efdA=="
+          },
+          "initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-1175/tokenizer.json": {
+            "size": 32157316,
+            "sha256": "31ca8db812b9ac5693b4e5546382490e8b882c1a811e277ea9f904cda165ba63",
+            "md5": "H/vnp5qVzcfyVOV+19PqWA=="
+          },
+          "initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-1175/tokenizer_config.json": {
+            "size": 3734,
+            "sha256": "9669970d5b0bcfcb47a09256f9e66837c313926ff15e9ba4c60e8bbe3c6bdf84",
+            "md5": "XKa5NgUe1UiWDdS3WxtGyg=="
+          },
+          "initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-1175/trainer_state.json": {
+            "size": 356239,
+            "sha256": "c331184ffeb3976d3c3ab1e675dff574f040e4b86762d49e6d44476dce65c492",
+            "md5": "QnnaNdXZMY6JfrZ0Ote4RQ=="
+          },
+          "initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-1175/training_args.bin": {
+            "size": 5905,
+            "sha256": "e004949f888ccd4837cbf80a6d6d3ef504f5cadf121de93c3c293e30ed96176d",
+            "md5": "cA0VsQNVtVuX4g1TzIASew=="
+          },
+          "initial/google_gemma-4-12B-it/stream_sft/seed-91/fixed-sft-snapshots/step-1172/adapter/README.md": {
+            "size": 5238,
+            "sha256": "ea8115d41e0222b84275fda09d3efbc308ae702c2b3c4c8d5130994a0692ad74",
+            "md5": "kEfjgGLEaCUfB3kY1E/2rA=="
+          },
+          "initial/google_gemma-4-12B-it/stream_sft/seed-91/fixed-sft-snapshots/step-1172/adapter/adapter_config.json": {
+            "size": 1163,
+            "sha256": "24a1a8105902fbb7b20b67b799670a39973654e0887052d01b6df0cd2388bf71",
+            "md5": "/26gsFctCrefuPQpxRhCww=="
+          },
+          "initial/google_gemma-4-12B-it/stream_sft/seed-91/fixed-sft-snapshots/step-1172/adapter/adapter_model.safetensors": {
+            "size": 42067976,
+            "sha256": "96fbe8e5cd97063ea8750792fd6537ca91c666a5faaa040d629cad3cb5adc100",
+            "md5": "sDX7te0krMqtdb9e+QPTYw=="
+          },
+          "initial/google_gemma-4-12B-it/stream_sft/seed-91/fixed-sft-snapshots/step-1172/receipt.json": {
+            "size": 365,
+            "sha256": "0282e66349daab5f2715be4119fab8f170866c26085afb55a7386691c5853069",
+            "md5": "C03xxO5jrk3vp5oIhD0tnA=="
+          },
+          "initial/google_gemma-4-12B-it/stream_sft/seed-91/fixed-sft-snapshots/step-586/adapter/README.md": {
+            "size": 5238,
+            "sha256": "ea8115d41e0222b84275fda09d3efbc308ae702c2b3c4c8d5130994a0692ad74",
+            "md5": "kEfjgGLEaCUfB3kY1E/2rA=="
+          },
+          "initial/google_gemma-4-12B-it/stream_sft/seed-91/fixed-sft-snapshots/step-586/adapter/adapter_config.json": {
+            "size": 1163,
+            "sha256": "24a1a8105902fbb7b20b67b799670a39973654e0887052d01b6df0cd2388bf71",
+            "md5": "/26gsFctCrefuPQpxRhCww=="
+          },
+          "initial/google_gemma-4-12B-it/stream_sft/seed-91/fixed-sft-snapshots/step-586/adapter/adapter_model.safetensors": {
+            "size": 42067976,
+            "sha256": "ddf22d8e35438f47497b527f1097525e569d15504478e161dc8259e0de715883",
+            "md5": "vIJ3NHrzmEjrm4XehmZF6A=="
+          },
+          "initial/google_gemma-4-12B-it/stream_sft/seed-91/fixed-sft-snapshots/step-586/receipt.json": {
+            "size": 363,
+            "sha256": "41777a085fffd3cecc16a9885da5fd82cf889f3efc9a4a589360425c9898b14e",
+            "md5": "lh10RIqXpuuprnf6FynLuQ=="
+          },
+          "initial/google_gemma-4-12B-it/stream_sft/seed-91/gradient_checks.json": {
+            "size": 167,
+            "sha256": "f6534453f6a938f9339e62363a70e57d50b1b05d1d73bc5a5858ef030851bf1e",
+            "md5": "/t656sMHhybUAtN/Y65/og=="
+          },
+          "initial/google_gemma-4-12B-it/stream_sft/seed-91/image_influence.json": {
+            "size": 72,
+            "sha256": "256ef484362514ee59ade6da6cbca4fb6b3ebcd5cf664599ca367fe0d1a57bbc",
+            "md5": "/+FHrXF95hSJBjxs9VBkBw=="
+          },
+          "initial/google_gemma-4-12B-it/stream_sft/seed-91/metrics.jsonl": {
+            "size": 335475,
+            "sha256": "bae0f01df92a6a929ebe7e46cbf84244b2299b05d41e227a626edb8f5a85a3f2",
+            "md5": "+uIR4pKyiD0ItPAgH0lOkA=="
+          },
+          "initial/google_gemma-4-12B-it/stream_sft/seed-91/protocol.json": {
+            "size": 766,
+            "sha256": "ec4ef386ce12714745542071dad2c8dce290c02c0f90fbecac5e996152bb6a6f",
+            "md5": "yLWec1Ss96lvyX+b7cX+FQ=="
+          }
+        },
+        "object_generations": {
+          "initial/google_gemma-4-12B-it/stream_sft/seed-91/README.md": "1794720946494419",
+          "initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-1150/README.md": "1794720946521756",
+          "initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-1150/adapter_config.json": "1794720945962323",
+          "initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-1150/adapter_model.safetensors": "1794720949248943",
+          "initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-1150/chat_template.jinja": "1794720945967578",
+          "initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-1150/optimizer.pt": "1794720950151885",
+          "initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-1150/processor_config.json": "1794720946570175",
+          "initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-1150/rng_state.pth": "1794720945469157",
+          "initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-1150/scheduler.pt": "1794720945936193",
+          "initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-1150/tokenizer.json": "1794720948099351",
+          "initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-1150/tokenizer_config.json": "1794720946054952",
+          "initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-1150/trainer_state.json": "1794720946491181",
+          "initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-1150/training_args.bin": "1794720945962510",
+          "initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-1175/README.md": "1794720946035155",
+          "initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-1175/adapter_config.json": "1794720946562780",
+          "initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-1175/adapter_model.safetensors": "1794720948420412",
+          "initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-1175/chat_template.jinja": "1794720945963826",
+          "initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-1175/optimizer.pt": "1794720949547829",
+          "initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-1175/processor_config.json": "1794720946562744",
+          "initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-1175/rng_state.pth": "1794720945460363",
+          "initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-1175/scheduler.pt": "1794720945973238",
+          "initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-1175/tokenizer.json": "1794720948282261",
+          "initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-1175/tokenizer_config.json": "1794720945959138",
+          "initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-1175/trainer_state.json": "1794720946043333",
+          "initial/google_gemma-4-12B-it/stream_sft/seed-91/checkpoint-1175/training_args.bin": "1794720945449324",
+          "initial/google_gemma-4-12B-it/stream_sft/seed-91/fixed-sft-snapshots/step-1172/adapter/README.md": "1794720945438680",
+          "initial/google_gemma-4-12B-it/stream_sft/seed-91/fixed-sft-snapshots/step-1172/adapter/adapter_config.json": "1794720945435737",
+          "initial/google_gemma-4-12B-it/stream_sft/seed-91/fixed-sft-snapshots/step-1172/adapter/adapter_model.safetensors": "1794720948167513",
+          "initial/google_gemma-4-12B-it/stream_sft/seed-91/fixed-sft-snapshots/step-1172/receipt.json": "1794720945938284",
+          "initial/google_gemma-4-12B-it/stream_sft/seed-91/fixed-sft-snapshots/step-586/adapter/README.md": "1794720946464907",
+          "initial/google_gemma-4-12B-it/stream_sft/seed-91/fixed-sft-snapshots/step-586/adapter/adapter_config.json": "1794720945993304",
+          "initial/google_gemma-4-12B-it/stream_sft/seed-91/fixed-sft-snapshots/step-586/adapter/adapter_model.safetensors": "1794720948760882",
+          "initial/google_gemma-4-12B-it/stream_sft/seed-91/fixed-sft-snapshots/step-586/receipt.json": "1794720945949059",
+          "initial/google_gemma-4-12B-it/stream_sft/seed-91/gradient_checks.json": "1794720945959993",
+          "initial/google_gemma-4-12B-it/stream_sft/seed-91/image_influence.json": "1794720945951192",
+          "initial/google_gemma-4-12B-it/stream_sft/seed-91/metrics.jsonl": "1794720946528896",
+          "initial/google_gemma-4-12B-it/stream_sft/seed-91/protocol.json": "1794720945977202"
+        },
+        "server_digest_verified": true,
+        "no_local_deletion": true
+      },
+      "full_training_completed": false,
+      "grpo_completed": false,
+      "automatic_promotion": false,
+      "source_and_training_configuration_unchanged": true,
+      "experiment_archive": {
+        "uri": "gs://aerorozum-thermal-rl-avid-relic-509408-e4/research/overnight-20261115/wrap-up-v1/experiments/seed-91/",
+        "files": {
+          "initial/status.json": {
+            "size": 245,
+            "sha256": "3744c3367bb170e47a7ebb1f8f81c54b972c387bf66f9c9388448cb8b0b29edf",
+            "md5": "1Tiz86zOJbAEXnHIuNHeEQ=="
+          },
+          "specification.json": {
+            "size": 3089,
+            "sha256": "d7f3a56eab50b5e69d0101c927bf6e44ab5f362838134286ec76c959e4ef0b91",
+            "md5": "e9il5KJXC1x2Ujn6p9cFHA=="
+          },
+          "status.json": {
+            "size": 245,
+            "sha256": "4ab6aebf0fb8eb3bcdd6397d73b58df18812cbc25462e3efe9a1ba9f594482d2",
+            "md5": "8tdnPGxTJKS7087pJeyYBw=="
+          },
+          "train.json": {
+            "size": 21533919,
+            "sha256": "c4802bccc541e5c667cb6338675d64ea13a84c0c6bd78451565304fd3cdfef65",
+            "md5": "BIRuNp2zKpZWrTLc9HE97w=="
+          },
+          "worker.log": {
+            "size": 403856,
+            "sha256": "9b5cb3334d41588eab1d440442a0da8a8cb60b1d994ccddda36f86ac06e6111e",
+            "md5": "NumDnm4Jtjnb8htBQzQt8g=="
+          },
+          "wrap-up.json": {
+            "size": 14445,
+            "sha256": "d36fe4dd827b55a7fc8050f0e857da51a7d6159d403fcbaf4c8b374efc92f6b5",
+            "md5": "YjwiRqMlVvi6VZhh1r7DhA=="
+          }
+        },
+        "object_generations": {
+          "initial/status.json": "1794720955275658",
+          "specification.json": "1794720956329577",
+          "status.json": "1794720955790633",
+          "train.json": "1794720958348562",
+          "worker.log": "1794720955871047",
+          "wrap-up.json": "1794720955783461"
+        },
+        "server_digest_verified": true,
+        "no_local_deletion": true
+      }
+    }
+  },
+  "full_research_completed": false,
+  "live_demo_unchanged": true
+}

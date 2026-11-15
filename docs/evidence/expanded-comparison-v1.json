@@ -1,5 +1,5 @@
 {
-  "at": "2026-11-15T04:28:25.444292+00:00",
+  "at": "2026-11-15T04:46:31.799851+00:00",
   "seeds": [
     {
       "seed": 17,
@@ -144,8 +144,22 @@
         },
         {
           "stage": "Extra GRPO",
-          "state": "pending",
-          "source": "postsubmission-expanded-controls-v1/seed-43/grpo/continuation/result.json"
+          "state": "completed",
+          "source": "postsubmission-expanded-controls-v1/seed-43/grpo/continuation/result.json",
+          "micro_f2": 0.75,
+          "tp": 66,
+          "fp": 22,
+          "fn": 22,
+          "valid_json_fraction": 1.0,
+          "negative_false_alarm_rate": 0.0,
+          "examples": 120,
+          "protocol_hash": "7567f935411a83464c92e268be0ae8d7a4061a1f463951817effeca64cf8a0e6",
+          "actual_updates": 35,
+          "maximum_requested_updates": 96,
+          "early_stopped": true,
+          "early_stop_reason": "Four consecutive zero-variance task reward groups; do not extend KL-only updates",
+          "train_runtime_s": 442.8793,
+          "manifest_hash": "9548896109bf4a7fcac74a6cd7f2472446dffc87f8472ffa98155d946f139409"
         }
       ]
     },
@@ -231,7 +245,7 @@
       ]
     }
   ],
-  "all_stages_completed": false,
+  "all_stages_completed": true,
   "training_images": 2400,
   "development_images": 120,
   "source_sha256": {
@@ -240,6 +254,7 @@
     "postsubmission-expanded-controls-v1/seed-17/grpo/continuation/result.json": "5c3c3214a6665463890c8bf056346a75bab4d3b1875ca6d6e98371120ddf1e8e",
     "postsubmission-expanded-visual-v1/seed-43/initial/result.json": "355ebc58ca13339e3694da1c98266bd6f64e62821927a1bec1254716c2c99542",
     "postsubmission-expanded-controls-v1/seed-43/sft-control/initial/result.json": "3c49c8a5a2ae228921e70a1e021e1d64cc112a862bb3f74f51abda9bc2245357",
+    "postsubmission-expanded-controls-v1/seed-43/grpo/continuation/result.json": "77805edca1e251f43552baf27640bf1718ec6b548c4dbddba4751860d047e739",
     "postsubmission-expanded-visual-v1/seed-91/initial/result.json": "4233dd96563c1aba262cf9bd5b89188368993aade7fffd4521e069bf442dc88d",
     "postsubmission-expanded-controls-v1/seed-91/sft-control/initial/result.json": "523a8f9836a5a19774f369d3f16b3cff698e5227ee00a187417816eb9cfae2f9",
     "postsubmission-expanded-controls-v1/seed-91/grpo/continuation/result.json": "cdf11c695cd973dadda9c2e70b469bd85d2d1e2a07937fb3a02c5880fc6ac0d2"
