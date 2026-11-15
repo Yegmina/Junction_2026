@@ -164,3 +164,14 @@ The doubled-domain physical solve reached 61.2% of its full physical day at 04:1
 The two original native benchmark images were streamed directly from `docker image save` through gzip to private GCS. The **1,044,707,190-byte** archive passed server MD5/size verification and has a recorded SHA256 and immutable object generation. No local tarball was created, and no original image or running container was removed. A fresh image-restore test has not been performed. [Archive identity and original image IDs](evidence/native-runtime-image-archive.json).
 
 After image routing was repaired, the first resumed native Gemma episode completed without an infrastructure error at reward 0.000; the resumed Argon warming episode completed without an infrastructure error at reward 0.500. These are retained outcomes from the predeclared worlds, with the original model/checkpoint, inference allowances and verifier.
+
+## Further control result, 04:24 UTC
+
+The expanded seed-43 extra-SFT control completed all 96 updates and scored F2 **0.727273**, below its initial SFT and GRPO parents (both **0.772727**). Its extra-GRPO arm is still running. Seed 91's extra-SFT control scored **0.633803**, versus **0.632319** for its initial GRPO parent; its extra-GRPO evaluation is still running. All declared outcomes remain visible, including regressions. No automatic model promotion follows these repeatedly used development comparisons.
+
+
+## Four-hour supervision window completed, 04:30 UTC
+
+Direct supervision ran for more than four hours from 00:28:41 UTC. At the closing measurement, the cloud retained all **15,856 qualified valid labels** from **15,892 issued labeling requests**, and had 80 terminal native benchmark jobs. Both 4,688-image HIGH-teacher seeds 17 and 91 were training; seed 43 remained in its declared continuation control. GPU 0 continued native-agent inference. The snapshot evaluator, paired replay queue, per-snapshot backup worker, result monitor and terminal archiver remain active independently of the laptop. [Closing measurement](evidence/four-hour-supervision-result.json).
+
+Seed 91’s extra-GRPO control completed at F2 **0.701149** after 28 of at most 96 updates (TP 61, FP 22, FN 27; valid JSON 120/120; zero disagreements on the 32 model-zero reference frames), compared with 0.633803 after its extra-SFT control. Actual steps and compute differ. The full heterogeneous physics pipeline is not complete, and no new checkpoint was automatically deployed.

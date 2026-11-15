@@ -1,0 +1,145 @@
+{
+  "at": "2026-11-15T04:30:42.675730+00:00",
+  "measured_at": "2026-11-15T04:30:35.171896+00:00",
+  "supervision_started_at": "2026-11-15T00:28:41+00:00",
+  "supervised_seconds": 14521.67573,
+  "minimum_four_hours_elapsed": true,
+  "qualified_frame_valid_labels": 15856,
+  "issued_label_requests": 15892,
+  "active_training": [
+    {
+      "id": "postsubmission-expanded-controls-v1-seed-43-grpo",
+      "state": "running",
+      "phases": [
+        "parent_reference",
+        "grpo_96"
+      ],
+      "actual_steps": [
+        23
+      ]
+    },
+    {
+      "id": "postsubmission-high-teacher-visual-v1-seed-91",
+      "state": "running",
+      "phases": [
+        "sft_3751"
+      ],
+      "actual_steps": [
+        32
+      ]
+    },
+    {
+      "id": "postsubmission-high-teacher-visual-v1-seed-17",
+      "state": "running",
+      "phases": [
+        "sft_3751"
+      ],
+      "actual_steps": [
+        790
+      ]
+    }
+  ],
+  "reviews": {
+    "temporal": {
+      "progress": {
+        "at": "2026-11-15T04:03:45.982919+00:00",
+        "status": "running",
+        "completed": 6000,
+        "expected": 6000,
+        "issued": 6000,
+        "archive_errors": 0,
+        "valid_reviews": 5966,
+        "training_eligible": false
+      },
+      "report": {
+        "at": "2026-11-15T04:03:46.003085+00:00",
+        "status": "completed",
+        "mode": "temporal",
+        "completed": 6000,
+        "expected": 6000,
+        "actual_requests": 6000,
+        "provider_hold": false,
+        "valid_reviews": 5966,
+        "candidate_bearing_review_outputs": 1697,
+        "archive_errors": [],
+        "training_eligible": false,
+        "first_pass_labels_overwritten": false,
+        "interpretation": "Same-provider temporal/proposal diagnostic and machine-zero background audit. No physical mine identity or confirmed absence is established; no first-pass label is overwritten."
+      }
+    },
+    "background-tiles": {
+      "progress": {
+        "at": "2026-11-15T04:30:35.016350+00:00",
+        "status": "running",
+        "completed": 1194,
+        "expected": 6000,
+        "issued": 1202,
+        "archive_errors": 0,
+        "valid_reviews": 1194,
+        "training_eligible": false
+      },
+      "report": {}
+    }
+  },
+  "cpu_utilization_percent": 42.50869662509918,
+  "gpus": [
+    {
+      "id": 0,
+      "utilization_percent": 0.0,
+      "memory_used_mib": 36417.0,
+      "memory_total_mib": 40960.0,
+      "power_w": 58.34
+    },
+    {
+      "id": 1,
+      "utilization_percent": 8.0,
+      "memory_used_mib": 24299.0,
+      "memory_total_mib": 40960.0,
+      "power_w": 148.85
+    },
+    {
+      "id": 2,
+      "utilization_percent": 41.0,
+      "memory_used_mib": 24939.0,
+      "memory_total_mib": 40960.0,
+      "power_w": 157.78
+    },
+    {
+      "id": 3,
+      "utilization_percent": 43.0,
+      "memory_used_mib": 24265.0,
+      "memory_total_mib": 40960.0,
+      "power_w": 155.91
+    }
+  ],
+  "cloud_disk_free_gib": 28.364242553710938,
+  "physics": [
+    {
+      "case_id": "object-h4-domain2",
+      "status": "running",
+      "progress": 0.6261110781662332,
+      "remaining_wall_s_estimate": 25058.66673867702,
+      "virtual_time_s": 54095.99715356255,
+      "duration_s": 86400.0,
+      "research_accepted": false,
+      "linear_backend": "ISTL_ILUBiCGSTAB_cpu"
+    },
+    {
+      "case_id": "object-h4-local",
+      "status": "completed",
+      "progress": 1.0,
+      "remaining_wall_s_estimate": null,
+      "virtual_time_s": 86400.0,
+      "duration_s": 86400.0,
+      "research_accepted": false,
+      "linear_backend": "ISTL_ILUBiCGSTAB_cpu"
+    }
+  ],
+  "terminal_native_jobs": 80,
+  "first_fixed_checkpoint_evidence_sha256": "7c2a1f3f136f87f30e75f3cf8608cfba1d9f4ccf7529cf2b7d96fbc799184cc6",
+  "source_branch": "codex/research-replication",
+  "full_physics_qualification_complete": false,
+  "production_checkpoint_replaced": false,
+  "junction_submission_clicked": false,
+  "cloud_jobs_continue_independently": true
+}
