@@ -18,5 +18,7 @@
     "known_missing_input": "Original recorded thermal frame bank is not in the isolated checkout",
     "unresolved_streaming_assertions": 4
   },
-  "live_services_restarted": false
+  "live_services_restarted": false,
+  "additional_pulled_commit": "44614360778f42921efcab0f545f58d611e1dc57",
+  "additional_readme_change": "Preserved latest GitHub pitch-deck URL encoding fix"
 }
