@@ -1,7 +1,7 @@
 """Predeclared paired update controls after expanded parents finish.
 
-Same parent, seed, images and optimizer-update count: +96 SFT versus +96 GRPO.
-Generation makes their compute unequal; this is explicitly not compute matching.
+Same parent, seed and images, with at most 96 updates requested per arm.
+The unchanged stop guard can shorten GRPO, so actual updates and compute differ.
 """
 import argparse
 from datetime import datetime,timedelta,timezone

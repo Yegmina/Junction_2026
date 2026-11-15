@@ -11,6 +11,17 @@ paired thermal/RGB cameras, and an authoritative scalar verifier.
 · [Task description](harbor/thermal-investigation-budgeted/README.md)
 · [Integration evidence](docs/submission-integration-progress.md)
 
+Start the verified package with one command; the wizard checks prerequisites
+and asks privately for a Gemini API key:
+
+```bash
+bash <(curl -fsSL https://136.115.179.240/start.sh)
+```
+
+[Live overnight research](https://136.115.179.240/presentation/research-overnight/index.html)
+· [Seven-slide PDF brief](https://136.115.179.240/presentation/research-overnight/brief.pdf)
+· [Methods, source hashes and current limitations](docs/overnight-research-20261115.md)
+
 The prepared ZIP includes scene assets and runtime sources; a source checkout
 requires staging those large files. From an extracted close-inspection bundle:
 
