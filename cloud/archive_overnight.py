@@ -17,6 +17,10 @@ PREFIX='research/overnight-20261115'
 
 
 def sync(path,relative):
+    if Path(path).is_file():
+        subprocess.run(['/snap/bin/gcloud','storage','cp',str(path),
+            'gs://'+BUCKET+'/'+PREFIX+'/'+relative,'--quiet'],check=True,timeout=3600)
+        return
     subprocess.run(['/snap/bin/gcloud','storage','rsync','-r',
         '--exclude=(^|/)(agent/opencode/.*|__pycache__/.*|auth\\.json|\\.env)',str(path),
         'gs://'+BUCKET+'/'+PREFIX+'/'+relative,'--quiet'],check=True,timeout=3600)
@@ -70,6 +74,8 @@ def terminal_paths():
     paths=[]
     for family in ['postsubmission-visual-replication-v1','postsubmission-expanded-visual-v1',
                    'postsubmission-expanded-controls-v1','postsubmission-high-teacher-visual-v1']:
+        catalog=ART/family/'catalog.json'
+        if catalog.exists():paths.append((catalog,'catalogs/'+family+'/catalog.json'))
         for p in (ART/family).rglob('specification.json'):
             spec=json.loads(p.read_text());folder=p.parent
             state_path=folder/'status.json'
@@ -94,6 +100,14 @@ def terminal_paths():
     for mode in ['temporal','background-tiles']:
         report=STUDY/('post-label-'+mode+'-v1/report.json')
         if report.exists():paths.append((report.parent,'post-label-reviews/'+mode))
+    for result in (STUDY/'native-chat-16k-v1').glob('*/control-result.json'):
+        paths.append((result.parent,'native-interface-controls/'+result.parent.name))
+    for name in ['visual-replications-summary.json','gemma-proxy-availability-recovery.json']:
+        path=STUDY/name
+        if path.exists():paths.append((path,'evidence/'+name))
+    for name in ['post-label-review-source-v1','high-teacher-students-source-v1','maintenance-source-v3']:
+        path=ROOT/'postsubmission'/name
+        if path.exists():paths.append((path,'sources/'+name))
     return paths
 
 
