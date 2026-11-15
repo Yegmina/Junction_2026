@@ -1,0 +1,114 @@
+\documentclass[10pt,a4paper,twocolumn]{article}
+\usepackage[margin=16mm,columnsep=7mm]{geometry}
+\usepackage{booktabs,graphicx,amsmath,amssymb}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{pdftitle={AeroRozum: Hackathon Experimental Report},pdfauthor={Team AeroRozum}}
+\setlength{\parindent}{1em}
+\setlength{\parskip}{2pt}
+\setlength{\textfloatsep}{8pt}
+\title{AeroRozum: Deadline-Constrained Drone Investigation\\as a Verifiable Agent Environment}
+\author{Team AeroRozum\\Junction 2026 --- AfterQuery: Break the Agent}
+\date{Hackathon experiment snapshot, 15 November 2026}
+\newcommand{\tbl}[2]{\begin{table}[ht]\centering\small\input{tables/#1.tex}\caption{#2}\end{table}}
+\begin{document}
+\maketitle
+\begin{abstract}
+We built a Harbor task in which an agent investigates suspected mine signatures using a drone in native Gazebo simulation. The agent chooses flight coordinates and altitude, captures thermal/RGB evidence, revisits uncertain sightings, returns home, and submits an evidence-linked report within a 75-second flight budget. Across 20 worlds and five controller arms, 93 runs reached terminal states. The public-observation reference controller completed 19/20 worlds; clean paired rewards were 0.069 for Carbon and 0.151 for Argon, versus 0.939 and 0.960 for the reference on their respective matched worlds. Separate perception experiments trained Gemma with supervised learning and GRPO. A frozen held-out comparison improved detection F$_2$ from 0.611 to 0.632 after GRPO; three-seed development experiments showed larger gains but false-alarm and continuation regressions. We report unsuccessful runs, infrastructure errors, unfinished physics work, and provenance boundaries alongside positive results. These are simulation and dataset results, not field validation of mine detection.
+\end{abstract}
+
+\section{Introduction}
+A useful survey agent must do more than identify an object in a single image. It must decide where to inspect, whether another view is worth its cost, how to finish within its flight budget, and which observations justify a report. We turned this investigation loop into an environment for the AfterQuery \emph{Break the Agent} challenge. The central test is reliable tool use and evidence management under a physical deadline.
+
+The submission uses Harbor task files (\texttt{instruction.md}, \texttt{task.toml}, an environment Dockerfile, tests, and solution), with OpenCode agent runs and a verifier that writes one scalar in $[0,1]$ to \texttt{/logs/verifier/reward.txt}. Recorded playthroughs, task packaging, and the one-command starter accompany the environment. The simulator runs with CPU rendering; judging does not require our training GPUs.
+
+We pursued three supporting research tracks in parallel: thermal-image labeling and prompt evaluation, Gemma perception post-training, and physical thermal-response simulation. These support the environment, but do not constitute a demonstrated end-to-end physics-to-flight-policy training pipeline. Throughout this report, \emph{candidate} means a provisional image signature. Model-generated labels are never described as independently verified physical mines.
+
+\section{Environment and experimental protocol}
+\subsection{Actions, observations, and reward}
+The native task exposes coordinate-and-altitude flight commands, thermal/RGB captures, evidence inspection, and final reporting. Gazebo owns motion and time; the drone continues flying while the model performs inference. An agent may prepare code before takeoff and inspect saved evidence after landing. A mission contains two regions, a 75-second airborne budget, and at most 64 actions. Positive claims require a capture at altitude at most 4.5\,m. Independent-view credit requires horizontal separation of at least 1\,m. Nominal thermal resolution is $640\times512$.
+
+The verifier uses private simulator state and an authoritative capture ledger. Agents see public observations rather than target coordinates or the private ledger. Captures are bound to image identities and hashes. The score is
+\[
+R=I_{\rm valid}\bigl(0.65F_2+0.20C+0.15V\bigr),
+\]
+where $C$ and $V$ are the task's coverage and view-evidence terms. The validity gate requires a report, airborne evidence, return home, and compliance with time/action limits. Matching is one-to-one; duplicate and unsupported claims cannot multiply credit. This reward is distinct from the perception-training reward below.
+
+\subsection{Matched pilot and verifier controls}
+Two frozen worlds (seeds 730171 and 730172) first exposed a repeatable failure: frontier agents located evidence but exceeded the deadline. Table~\ref{tab:pilot} records the original matched runs. Argon found two targets with no false positives and one missed target in each world, but returned too late. Carbon A had the same count profile. Carbon B ended with an agent timeout and is not treated as a clean model failure.
+
+\begin{table}[ht]\centering\small\input{tables/matched.tex}\caption{Frozen-world pilot. Asterisk denotes an agent timeout; remaining rows are clean terminal runs.}\label{tab:pilot}\end{table}
+
+Lower-budget pilots included Argon 8k A (reward 0.164, no true positives, two false positives, coverage 0.82), Argon 8k B and Carbon 8k A (no flight), and a deployed-Gemma visual-budget run (incomplete return/report). Earlier, easier tasks produced Carbon 1.000 and Argon 0.959; those tasks had different budgets and difficulty, so their scores are not a causal before/after comparison.
+
+Five actual native negative controls all scored zero: no-op, premature airborne report, reward-file spoofing, forged capture/local image mutation, and private-state probing. A separate offline association audit replayed three ledgers without a new flight; rewards stayed unchanged (reference 0.892, Carbon 1.000, Gemma 0). The audit is not counted as three additional native trials.
+
+\subsection{Twenty-world native comparison}
+We planned 100 runs: ten seeds (940201--940210), two thermal conditions (dawn and warming), and five arms. At wrap-up, 93 runs were terminal and seven were unstarted. Table~\ref{tab:native} excludes infrastructure errors from score comparisons and pairs every clean agent run with the reference on the same world. Missing or failed infrastructure runs are not inserted as zero rewards.
+
+\begin{table}[ht]\centering\scriptsize\input{tables/native.tex}\caption{Terminal runs, infrastructure errors, clean matched pairs, and paired mean reward. Reference means vary because paired subsets differ.}\label{tab:native}\end{table}
+
+The reference completed 19/20 worlds. Carbon had one successful completion and twelve budget failures among thirteen clean runs. Argon had four completions and twelve budget failures among sixteen clean runs. Both Gemma configurations had zero nonzero-reward clean runs. The reference's own failed world exceeded the budget by 0.236\,s; a separate operations smoke test exceeded it by 0.572\,s despite observing all targets. Thus feasibility is demonstrated, but timing robustness remains limited.
+
+The frontier configurations used a 131,072-token context and 32,768 output tokens; legacy Gemma used 24,576/4,096, and native-protocol Gemma 16,384/4,096. The latter changes protocol and context together, so it does not isolate a protocol effect. Reported errors include proxy expiry, context-memory failures, and Docker build DNS failures after cache cleanup. Pinned prebuilt images restored execution. We retain these errors and do not infer model quality from them.
+
+\section{Thermal data and model experiments}
+\subsection{Data provenance and scoring}
+The initial training cohort contained 602 images: 162 original manual labels, 320 reviewed AI labels, and 120 accepted model labels. The 120-image development set contained 30 manual, 58 reviewed AI, and 32 model-zero images. Splits excluded whole source zones/sessions and duplicate pixel hashes. Development data were reused for model and prompt selection; results on them are development evidence, not fresh generalization estimates. A machine-zero label means no accepted model candidate, not confirmed absence.
+
+Detection F$_2$ uses IoU $\geq0.5$, one-to-one box matching, and
+\[
+F_2=\frac{5\,TP}{5\,TP+4\,FN+FP}.
+\]
+The recorded base checkpoint was \texttt{google/gemma-4-12B-it}. Gemma training used BF16 LoRA, microbatch one, gradient accumulation four, supervised learning rate $3\times10^{-5}$, and GRPO rate $10^{-6}$ in the principal runs. Later runs included the visual embedding projection as well as language components; measured gradients and an image-influence probe checked that the visual path participated.
+
+The dense box reward was $5\sum\mathrm{IoU}/(4|G|+|P|)$ over the optimal one-to-one assignment. Empty truth and prediction earned one; a prediction on empty truth, or no prediction on positive truth, earned zero; malformed output earned $-1$. Earlier arms used a thresholded F$_2$ reward. Four consecutive zero-variance reward groups stopped GRPO: a nonzero KL gradient alone was not counted as task-reward learning.
+
+\subsection{Gemma supervised and GRPO results}
+Table~\ref{tab:rep} reports three seeds for the 602-image cohort. The principal schedule used 480 SFT updates, 48 GRPO updates, then 96 additional GRPO updates. Mean development F$_2$ rose from 0.496 to 0.675. This gain came with more candidate-bearing outputs on the 32 negative development images: final rates were 5/32, 4/32, and 4/32, versus 1/32, 2/32, and 0/32 after SFT.
+
+\begin{table}[ht]\centering\small\input{tables/replications.tex}\caption{602-image cohort: development F$_2$ across three seeds.}\label{tab:rep}\end{table}
+
+A seed-17 continuation control from the same parent gave 0.530 after 96 extra SFT updates versus 0.650 after 96 GRPO updates. These match update counts, not compute; false alarms were 1/32 versus 5/32. Early exploration, including strong regressions, appears in Appendix~\ref{sec:early} and the experiment ledger.
+
+The expanded cohort contained 2,400 images (1,200 positive and 1,200 model-zero) with 1,920 initial SFT updates. GRPO stopped after 15, 35, and 28 of at most 48 updates. Both continuation arms started from each seed's same initial-GRPO parent; extra SFT used 96 updates, while extra GRPO completed 25, 35, and 28 of at most 96. Table~\ref{tab:expanded} therefore compares practical schedules, not equal-compute treatments. Seed 43 regressed under both continuations.
+
+\begin{table}[ht]\centering\small\input{tables/expanded.tex}\caption{2,400-image cohort: development F$_2$. Continuation compute and completed GRPO updates differ.}\label{tab:expanded}\end{table}
+
+\subsection{Frozen held-out comparison}
+An earlier selected student was evaluated once on 182 held-out images; later models were not selected by rerunning this opened test set. Table~\ref{tab:test} shows a GRPO improvement of 2.12 percentage points over its parent. The student exceeded Robotics ER 2 by 4.45 points but trailed Carbon by 1.74 and Argon by 6.86 points. This is image-level detection performance, not improved flight control. Inference budgets also differ: Gemma used greedy decoding with a 192-token cap, whereas Gemini models used native JSON and an 8,192-token cap with default reasoning.
+
+\begin{table}[ht]\centering\small\input{tables/heldout.tex}\caption{Frozen 182-image detection comparison. Identifiers are the provider/model labels in the archived manifests.}\label{tab:test}\end{table}
+
+\subsection{Prompt, reasoning, and labeling studies}
+A factorial study evaluated two prompt versions, three thinking levels, and three replicas on 120 development images: 2,160 completions. All used a 65,536-token cap and temperature 0.1. Table~\ref{tab:thinking} reports replica means and recorded standard deviations; RPC time excludes quota waiting. More thinking helped both prompts relative to minimal, but V3 high underperformed V3 medium. V2 high was selected before full relabeling; repeated development use precludes treating the reported spread as a generalization confidence interval.
+
+\begin{table}[ht]\centering\small\input{tables/thinking.tex}\caption{Prompt/thinking ablation. RPC seconds measure completed request latency, not end-to-end throughput.}\label{tab:thinking}\end{table}
+
+Flight labeling sampled at 5\,fps only when fresh airborne telemetry qualified the frame; ground, unknown-state, and mismatched-receipt frames were excluded. Primary labeling produced 14,626 valid responses from 14,657 attempts; requalification produced 1,194 from 1,199. Bounded format recovery resolved all 36 original failures, giving 15,856 valid eligible identities from 15,892 issued requests. This is complete coverage of the qualified identities, not all raw video frames. Source generations, exact pixels, prompts, raw responses, usage, and errors were archived in cloud storage with prompt versions preserved.
+
+A temporal audit compared blind three-frame interpretation with interpretation given prior proposals: 3,000 centers, 6,000 cases, 5,966 valid outputs, and 2,967 valid pairs. The accepted/none pair counts were 586 both accepted, 1,867 neither accepted, 363 accepted only with proposals, and 151 only blind. Pair disagreement was 17.32\%; accepted candidate counts were 859 versus 1,191. This measures sensitivity to prior suggestions, not accuracy.
+
+A background-quadrant audit contained 6,000 cases, 5,999 new requests plus one cached result, 5,992 valid outputs, and eight invalid outputs. There were 180 candidate-bearing outputs at score at least 0.60. These same-provider diagnostics are correlated and were kept training-ineligible; they do not establish independently verified negatives.
+
+\section{Physics, scaling, and incomplete work}
+The thermal pipeline models heating/cooling response and combines fields with recorded-ground appearance and sensor blur/noise. One local axisymmetric present/absent pair for a homogeneous inert cylinder passed its numerical admission checks. This limited certificate does not validate all substrates, buried geometries, or real mines. A local 3D 24-hour solve finished with 2,887 adaptive samples and conservation/interface checks; broader admission remained pending. Its center-to-ring contrast ranged from $-1.381$ to $+2.895$\,K, a spatial statistic rather than a causal present/absent contrast. A doubled-domain solve remained running with the user's instruction to finish in the background.
+
+The preserved physics inventory contains 81 case-state records: 60 completed, ten failed, five retired/superseded, two superseded, two interrupted/preserved, one timed out, and one running. These include development, solver, and scaling variants; a completed process is not an accepted scientific case. Planned 184 trajectories and 30,000 synthetic observations were not completed and are not reported as delivered training data. The learning results above used recorded images.
+
+CPU/GPU solver and MPI variants were recorded. CPU profiles attributed approximately 62--64\% to assembly and 26.5--28.6\% to linear solves, limiting any hypothetical linear-solver-only acceleration to about $1.4\times$ overall. We do not claim a measured end-to-end GPU physics speedup. Separately, a gradient-monitor implementation was $5.49\times$ faster for monitoring, with equivalent gradient statistics, an identical ten-step optimization trajectory, and NaN/Inf detection. That is not a $5.49\times$ training speedup.
+
+A final HIGH-teacher cohort contained 4,688 images: 2,344 positive and 2,344 explicit model-zero, spanning 22 source groups (162 manual, 320 reviewed AI, 4,206 accepted model). Training was wrapped before completion: seeds 17/43/91 reached 1,925/850/1,175 of 3,751 planned SFT updates. Adapters and optimizer/scheduler/RNG states were saved and server checksums verified. Fixed-snapshot evaluation, this cohort's GRPO, and balanced-versus-80/20 positive replay were not executed. Preflight checks and a tiny dropout/RNG qualification are engineering checks, not evidence of improved model quality. A geometry-augmentation arm was canceled before execution.
+
+\section{Conclusion}
+AeroRozum supplies a runnable, evidence-grounded investigation task with a measurable frontier/reference gap. The strongest recurring failure was deadline management despite useful detections. The clean paired comparisons support that observation; errors, unstarted runs, and reference timing failures limit claims about absolute reliability. Verifier controls provide concrete checks against easy reward fabrication, not a proof against every exploit.
+
+Perception GRPO improved the frozen student's held-out F$_2$ by 2.12 points and improved mean development scores across three seeds, while increasing false alarms in some settings and failing to improve every continuation. No experiment yet demonstrates that these perception gains improve autonomous mission success. Next steps are fresh held-out missions, latency-robust policies, independent label adjudication, and physics admission before large-scale synthetic training.
+
+\appendix
+\section{Exploration and artifact coverage}\label{sec:early}
+\begin{table}[ht]\centering\scriptsize\resizebox{\columnwidth}{!}{\input{tables/early.tex}}\caption{Earlier exploratory development arms. Results share parents and are not independent replications; configurations and stopping rules changed.}\end{table}
+
+The accompanying \texttt{experiment-ledger.csv} contains 300 records spanning native runs, earlier pilot/control runs, training phases, prompt replicas, held-out models, physics case states, partial training, and unexecuted follow-ups. Rows may refer to shared parents or snapshots and must not be summed as independent experiments. The geometry cancellation is additionally documented in the main text. The source bundle includes source-data hashes and the machine-readable snapshot used to generate tables; underlying logs remain in the repository/evidence archive.
+
+\noindent\textbf{Reproduction.} Code and Harbor packaging: \url{https://github.com/Yegmina/Junction_2026/tree/codex/research-replication}. Demo, presentation, report, and starter: \url{https://136.115.179.240/presentation/submission/}. Environment versions recorded at wrap-up were Harbor 0.26.0, OpenCode 1.19.5, Docker 29.1.3, and Compose 2.39.4. This report introduces no additional inference or training runs.
+\end{document}

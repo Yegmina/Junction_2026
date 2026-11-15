@@ -1,0 +1,31 @@
+{
+  "scope": "Hackathon artifact snapshot; rows may share parents and are not independent trials. Physics rows are recorded case states, not numerical acceptance certificates.",
+  "source_sha256": {
+    "docs/report/data/native-outcomes-summary.json": "c48589869fdb8dff44aec10986e9a6fc2b98d3afb91f7f571b020fce92d23084",
+    "docs/evidence/submission-measurements-latest.json": "e7cee7f6bf074a2ec29ae81cafa74f9d88f34574f7cdeed8e10415174ded37c9",
+    "docs/evidence/visual-replications-summary.json": "86a848b43c3ccdf5935ac002377941aa343fbfcae3454f399bd04a4d7aa8dab8",
+    "docs/evidence/expanded-comparison-v1.json": "11e838f2fc8c58bf3a0217bba2e5938c3c9c949ba6e51921077f4c95d123dcfe",
+    "docs/evidence/measured-refinements.json": "65557ad4dcb9b297e5d0f10615aab17e39d8a77b440dcff23e265b8f937d91b2",
+    "docs/evidence/robotics-thinking-study-v1.json": "95c0e3cd819efee8ce0aeed4a43e9c986bd319b7fb00a9c18fe36753e263ed30",
+    "docs/evidence/robotics-thinking-study-v1-summary.json": "e7b20cd4e8f8b9c9d3ea4ac3690f82150840c6d32b93a35c47e20a54f63900c5",
+    "docs/report/data/physics-inventory.json": "e37491d02b09e3e0c1b268c8e80efa007e107d8dcc654a9da9c95313925be15b",
+    "docs/evidence/wrap-up-training-v1.json": "10307bbb5e720d33d87d887fbe298ac1c1d5ddaf21c7e51f3d0eeafcc1e12333",
+    "docs/evidence/paired-class-replay-protocol.json": "5ea006c91c25123f426f8f99a9bc2c44528bb445b8b2ffbf2d479bc795936aba",
+    "docs/evidence/snapshot-monitor-qualification.json": "01cc6161f24dc7672892808992a575fc97957559523cebcd0a1dea97bdad8c15",
+    "docs/evidence/temporal-review-diagnostic-v1.json": "f86bfb7300e75b8e9d05ec4987559b937955c36ef58f3fd52f3c84f93aff5406",
+    "docs/evidence/background-review-final-v1.json": "b2319c41c821de122095ef6b2df4f14fb60ff8cd16abae446bb8d3c5da2f7eb7",
+    "docs/evidence/high-thinking-primary-first-pass.json": "ae1eeb22d7b99a25f0f4be4918aa47b7671d849aba5f08771a8f584f856ea4aa",
+    "docs/evidence/high-thinking-requalified-first-pass.json": "7773e25d0fe86f26566890be17c2e3f2cb3f183b2ad7ad037d10198b183cb727",
+    "docs/evidence/high-thinking-bounded-recovery.json": "59b7bdf216eb7261329a121a38db4d1b9407fdb4a98cd1b645417a3f7c2abf57",
+    "docs/evidence/physics-full-day-diagnostic-receipt.json": "ee07a800c8280670370a06dc88aec857a485f3d9f12740196248f5ade95fa7c9",
+    "docs/evidence/gradient-monitor-benchmark.json": "8d34b1f255c82fe5a1af1ec0276f894d7043e6d73c0b3deb606331ec726c3a65",
+    "docs/evidence/association-audit.json": "cbd22a7a1a483eef55b2dd44df5a3bb98d070dea356e2e11609a7cd5eb62cedc",
+    "docs/evidence/opencode-wizard-terminal-fix-v3.json": "853e19e8c57e365d24e04081606788f64c0c7f211c9d4cdf571be16a8cdbd9b6",
+    "docs/evidence/visual-matched-update-control.json": "b59c692caf2ff1499693aa0f038a66c9c27ea3bbd66875fd6c3a90b2333cd85d"
+  },
+  "ledger_rows": 300,
+  "native_multiseed_trials": 93,
+  "physics_case_state_records": 81,
+  "training_and_mission_metrics_separate": true,
+  "field_accuracy_claimed": false
+}
