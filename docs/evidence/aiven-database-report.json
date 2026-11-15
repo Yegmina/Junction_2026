@@ -1,0 +1,418 @@
+{
+  "generated_at": "2026-11-15T07:10:02.767900+00:00",
+  "backend": "Aiven PostgreSQL",
+  "tls": true,
+  "stored_versions": {
+    "held_out_image": 6,
+    "mission": 50
+  },
+  "missions": [
+    {
+      "model": "aerorozum/gemma-4-12b-base",
+      "task_checksum": "3da1637df0d9d64591cd5b253269d9f9f437cd16df589d3124259b1b11c968ef",
+      "budget_s": "180.0",
+      "phase": "warming",
+      "trials": 1,
+      "errors": 0,
+      "over_budget": 0,
+      "mean_reward": 0.0
+    },
+    {
+      "model": "aerorozum/gemma-4-12b-base-native",
+      "task_checksum": "3da1637df0d9d64591cd5b253269d9f9f437cd16df589d3124259b1b11c968ef",
+      "budget_s": "180.0",
+      "phase": "warming",
+      "trials": 2,
+      "errors": 1,
+      "over_budget": 1,
+      "mean_reward": 0.0
+    },
+    {
+      "model": "aerorozum/gemma-4-12b-refined-grpo",
+      "task_checksum": "3d3efd91c256283d36d12cca0a8662fdc33865c85f864f6c80926b8e28481fca",
+      "budget_s": null,
+      "phase": null,
+      "trials": 1,
+      "errors": 1,
+      "over_budget": 0,
+      "mean_reward": 0.0
+    },
+    {
+      "model": "aerorozum/gemma-4-12b-refined-grpo",
+      "task_checksum": "3da1637df0d9d64591cd5b253269d9f9f437cd16df589d3124259b1b11c968ef",
+      "budget_s": "180.0",
+      "phase": "warming",
+      "trials": 1,
+      "errors": 0,
+      "over_budget": 0,
+      "mean_reward": 0.0
+    },
+    {
+      "model": "aerorozum/gemma-4-12b-refined-grpo",
+      "task_checksum": "d5a3c319b6ba2f62698c44e7e87065217054f1e1e4d31d503fe5f669cbf4a126",
+      "budget_s": "180.0",
+      "phase": "warming",
+      "trials": 1,
+      "errors": 1,
+      "over_budget": 0,
+      "mean_reward": 0.0
+    },
+    {
+      "model": "aerorozum/gemma-4-12b-refined-grpo-native",
+      "task_checksum": "3da1637df0d9d64591cd5b253269d9f9f437cd16df589d3124259b1b11c968ef",
+      "budget_s": "180.0",
+      "phase": "warming",
+      "trials": 2,
+      "errors": 2,
+      "over_budget": 0,
+      "mean_reward": 0.0
+    },
+    {
+      "model": "aerorozum/gemma-4-12b-refined-no-thinking",
+      "task_checksum": "603755a222d1e2c988fe46cdfe75fc13483640edf1facdf5625e53e566a32fe6",
+      "budget_s": "180.0",
+      "phase": "dawn",
+      "trials": 1,
+      "errors": 0,
+      "over_budget": 0,
+      "mean_reward": 0.0
+    },
+    {
+      "model": "aerorozum/gemma-4-12b-visual-frozen",
+      "task_checksum": "ed718fd1747779020d569898ef9a4babae10e3ad1e96c4dfb4af1cdfe46e1a7c",
+      "budget_s": "75.0",
+      "phase": "dawn",
+      "trials": 1,
+      "errors": 0,
+      "over_budget": 0,
+      "mean_reward": 0.0
+    },
+    {
+      "model": "aerorozum/gemma-4-12b-visual-selected-native",
+      "task_checksum": "603755a222d1e2c988fe46cdfe75fc13483640edf1facdf5625e53e566a32fe6",
+      "budget_s": "180.0",
+      "phase": "dawn",
+      "trials": 1,
+      "errors": 1,
+      "over_budget": 1,
+      "mean_reward": 0.0
+    },
+    {
+      "model": "gemini/gemini-4-argon",
+      "task_checksum": "3d3efd91c256283d36d12cca0a8662fdc33865c85f864f6c80926b8e28481fca",
+      "budget_s": null,
+      "phase": null,
+      "trials": 2,
+      "errors": 2,
+      "over_budget": 0,
+      "mean_reward": 0.0
+    },
+    {
+      "model": "gemini/gemini-4-argon",
+      "task_checksum": "7e414b3f6cc34296b222ef817670637b47f8263db456e15fe84be27dc481883a",
+      "budget_s": "180.0",
+      "phase": "dawn",
+      "trials": 1,
+      "errors": 0,
+      "over_budget": 0,
+      "mean_reward": 0.959375
+    },
+    {
+      "model": "gemini/gemini-4-argon",
+      "task_checksum": "d5a3c319b6ba2f62698c44e7e87065217054f1e1e4d31d503fe5f669cbf4a126",
+      "budget_s": "180.0",
+      "phase": "warming",
+      "trials": 1,
+      "errors": 1,
+      "over_budget": 0,
+      "mean_reward": 1.0
+    },
+    {
+      "model": "gemini/gemini-4-argon",
+      "task_checksum": "ed718fd1747779020d569898ef9a4babae10e3ad1e96c4dfb4af1cdfe46e1a7c",
+      "budget_s": "75.0",
+      "phase": "dawn",
+      "trials": 4,
+      "errors": 0,
+      "over_budget": 2,
+      "mean_reward": 0.041
+    },
+    {
+      "model": "gemini/gemini-4-carbon",
+      "task_checksum": "7e414b3f6cc34296b222ef817670637b47f8263db456e15fe84be27dc481883a",
+      "budget_s": "90.0",
+      "phase": "cooling",
+      "trials": 1,
+      "errors": 0,
+      "over_budget": 0,
+      "mean_reward": 1.0
+    },
+    {
+      "model": "gemini/gemini-4-carbon",
+      "task_checksum": "d5a3c319b6ba2f62698c44e7e87065217054f1e1e4d31d503fe5f669cbf4a126",
+      "budget_s": "180.0",
+      "phase": "warming",
+      "trials": 1,
+      "errors": 1,
+      "over_budget": 0,
+      "mean_reward": 1.0
+    },
+    {
+      "model": "gemini/gemini-4-carbon",
+      "task_checksum": "ed718fd1747779020d569898ef9a4babae10e3ad1e96c4dfb4af1cdfe46e1a7c",
+      "budget_s": "75.0",
+      "phase": "dawn",
+      "trials": 3,
+      "errors": 1,
+      "over_budget": 2,
+      "mean_reward": 0.0
+    },
+    {
+      "model": "openai/gemma-4-12b-refined-grpo",
+      "task_checksum": "3d3efd91c256283d36d12cca0a8662fdc33865c85f864f6c80926b8e28481fca",
+      "budget_s": null,
+      "phase": null,
+      "trials": 1,
+      "errors": 1,
+      "over_budget": 0,
+      "mean_reward": 0.0
+    },
+    {
+      "model": "unattributed/control",
+      "task_checksum": "3d3efd91c256283d36d12cca0a8662fdc33865c85f864f6c80926b8e28481fca",
+      "budget_s": null,
+      "phase": null,
+      "trials": 1,
+      "errors": 0,
+      "over_budget": 0,
+      "mean_reward": 0.2
+    },
+    {
+      "model": "unattributed/control",
+      "task_checksum": "3da1637df0d9d64591cd5b253269d9f9f437cd16df589d3124259b1b11c968ef",
+      "budget_s": "180.0",
+      "phase": "warming",
+      "trials": 1,
+      "errors": 0,
+      "over_budget": 0,
+      "mean_reward": 0.77391304
+    },
+    {
+      "model": "unattributed/control",
+      "task_checksum": "3da1637df0d9d64591cd5b253269d9f9f437cd16df589d3124259b1b11c968ef",
+      "budget_s": "90.0",
+      "phase": "cooling",
+      "trials": 1,
+      "errors": 0,
+      "over_budget": 0,
+      "mean_reward": 0.57111111
+    },
+    {
+      "model": "unattributed/control",
+      "task_checksum": "603755a222d1e2c988fe46cdfe75fc13483640edf1facdf5625e53e566a32fe6",
+      "budget_s": "180.0",
+      "phase": "dawn",
+      "trials": 5,
+      "errors": 0,
+      "over_budget": 0,
+      "mean_reward": 0.148
+    },
+    {
+      "model": "unattributed/control",
+      "task_checksum": "603755a222d1e2c988fe46cdfe75fc13483640edf1facdf5625e53e566a32fe6",
+      "budget_s": "180.0",
+      "phase": "warming",
+      "trials": 1,
+      "errors": 0,
+      "over_budget": 0,
+      "mean_reward": 0.7875
+    },
+    {
+      "model": "unattributed/control",
+      "task_checksum": "603755a222d1e2c988fe46cdfe75fc13483640edf1facdf5625e53e566a32fe6",
+      "budget_s": "90.0",
+      "phase": "cooling",
+      "trials": 1,
+      "errors": 0,
+      "over_budget": 0,
+      "mean_reward": 0.79166667
+    },
+    {
+      "model": "unattributed/control",
+      "task_checksum": "6e5c57ce28dee4fd10bf647bc938ff0446365f5c0526f50321000a2ccce14f2a",
+      "budget_s": null,
+      "phase": null,
+      "trials": 1,
+      "errors": 1,
+      "over_budget": 0,
+      "mean_reward": null
+    },
+    {
+      "model": "unattributed/control",
+      "task_checksum": "7e414b3f6cc34296b222ef817670637b47f8263db456e15fe84be27dc481883a",
+      "budget_s": "180.0",
+      "phase": "dawn",
+      "trials": 1,
+      "errors": 0,
+      "over_budget": 0,
+      "mean_reward": 0.2
+    },
+    {
+      "model": "unattributed/control",
+      "task_checksum": "d3eaf7273b6408d0ca318b4b4ab7c6dc8142a3603e016021f1fe3ee6fae4cb47",
+      "budget_s": null,
+      "phase": null,
+      "trials": 1,
+      "errors": 1,
+      "over_budget": 0,
+      "mean_reward": null
+    },
+    {
+      "model": "unattributed/control",
+      "task_checksum": "d4288ad0e34f2450cbcbaf6b6071724cbdabbec4da09c3158564e3f9e519b8dc",
+      "budget_s": "180.0",
+      "phase": "warming",
+      "trials": 1,
+      "errors": 0,
+      "over_budget": 0,
+      "mean_reward": 0.0
+    },
+    {
+      "model": "unattributed/control",
+      "task_checksum": "d5a3c319b6ba2f62698c44e7e87065217054f1e1e4d31d503fe5f669cbf4a126",
+      "budget_s": "180.0",
+      "phase": "warming",
+      "trials": 2,
+      "errors": 0,
+      "over_budget": 0,
+      "mean_reward": 0.445833335
+    },
+    {
+      "model": "unattributed/control",
+      "task_checksum": "ed718fd1747779020d569898ef9a4babae10e3ad1e96c4dfb4af1cdfe46e1a7c",
+      "budget_s": "75.0",
+      "phase": "dawn",
+      "trials": 9,
+      "errors": 0,
+      "over_budget": 0,
+      "mean_reward": 0.16296296222222223
+    }
+  ],
+  "held_out_images": [
+    {
+      "fn": 63,
+      "fp": 58,
+      "tp": 145,
+      "model": "gemini-4-argon",
+      "status": "completed",
+      "examples": 182,
+      "micro_f2": 0.7004830917874396,
+      "source_sha256": "4e551313a0dae1b95139c91f8dc5b6a4f0f53fc0f5eb1170e82749e604018853",
+      "valid_json_fraction": 0.9945054945054945,
+      "frozen_test_contract": {
+        "scope": "One-time held-out label agreement; not mission reward or physical mine accuracy",
+        "adapter_sha256": "fda258727f04777e4fdcfd7217bfdbd895b2dbd94f7975e0430c0d9cdbc00d44",
+        "manifest_sha256": "faeab5181b8f5e5f0f66d7480120bfa2a0db010a0b8ad35c6f83a2b74958fc89",
+        "selection_sha256": "63b26baad8e58bf6d5adc3a07fe59333a9537f246e2e30f6ee5664ca6dd74daa"
+      }
+    },
+    {
+      "fn": 74,
+      "fp": 66,
+      "tp": 134,
+      "model": "gemini-4-carbon",
+      "status": "completed",
+      "examples": 182,
+      "micro_f2": 0.6492248062015504,
+      "source_sha256": "364d65af6055ac3e759381573605d43cdf27af59a65cc2563375ddd8ad8240c9",
+      "valid_json_fraction": 0.9615384615384616,
+      "frozen_test_contract": {
+        "scope": "One-time held-out label agreement; not mission reward or physical mine accuracy",
+        "adapter_sha256": "fda258727f04777e4fdcfd7217bfdbd895b2dbd94f7975e0430c0d9cdbc00d44",
+        "manifest_sha256": "faeab5181b8f5e5f0f66d7480120bfa2a0db010a0b8ad35c6f83a2b74958fc89",
+        "selection_sha256": "63b26baad8e58bf6d5adc3a07fe59333a9537f246e2e30f6ee5664ca6dd74daa"
+      }
+    },
+    {
+      "fn": 91,
+      "fp": 47,
+      "tp": 117,
+      "model": "gemini-robotics-er-2-preview",
+      "status": "completed",
+      "examples": 182,
+      "micro_f2": 0.5873493975903614,
+      "source_sha256": "55c826f38e5d5b0c1170b676e351e44009c282139b26ea358b649d8d5360340d",
+      "valid_json_fraction": 0.9835164835164835,
+      "frozen_test_contract": {
+        "scope": "One-time held-out label agreement; not mission reward or physical mine accuracy",
+        "adapter_sha256": "fda258727f04777e4fdcfd7217bfdbd895b2dbd94f7975e0430c0d9cdbc00d44",
+        "manifest_sha256": "faeab5181b8f5e5f0f66d7480120bfa2a0db010a0b8ad35c6f83a2b74958fc89",
+        "selection_sha256": "63b26baad8e58bf6d5adc3a07fe59333a9537f246e2e30f6ee5664ca6dd74daa"
+      }
+    },
+    {
+      "fn": 81,
+      "fp": 46,
+      "tp": 127,
+      "model": "gemma",
+      "status": "completed",
+      "examples": 182,
+      "micro_f2": 0.6318407960199005,
+      "protocol_hash": "3b1f66260ce6dc7d6eb3343ef7b58c8bcc4559fe3632e28296715f53a0c22213",
+      "source_sha256": "e11613c029d5e278fe97d0a82833992c0688901087e5e50da4177a16a1515dea",
+      "decoding_protocol": "explicit-kv-cache-v2",
+      "valid_json_fraction": 1.0,
+      "frozen_test_contract": {
+        "scope": "One-time held-out label agreement; not mission reward or physical mine accuracy",
+        "adapter_sha256": "fda258727f04777e4fdcfd7217bfdbd895b2dbd94f7975e0430c0d9cdbc00d44",
+        "manifest_sha256": "faeab5181b8f5e5f0f66d7480120bfa2a0db010a0b8ad35c6f83a2b74958fc89",
+        "selection_sha256": "63b26baad8e58bf6d5adc3a07fe59333a9537f246e2e30f6ee5664ca6dd74daa"
+      }
+    },
+    {
+      "fn": 202,
+      "fp": 2,
+      "tp": 6,
+      "model": "gemma-base",
+      "status": "completed",
+      "examples": 182,
+      "micro_f2": 0.03571428571428571,
+      "protocol_hash": "3c4c42855263eefae64bb69dfc19073757897ff4110771bdb08d18d79f58fc21",
+      "source_sha256": "6cb522e5793795c6943e37e36e617b0ba6f692c6961676f8824cfb7159896a08",
+      "decoding_protocol": "explicit-kv-cache-v2",
+      "valid_json_fraction": 1.0,
+      "frozen_test_contract": {
+        "scope": "One-time held-out label agreement; not mission reward or physical mine accuracy",
+        "control": "base",
+        "adapter_sha256": "fda258727f04777e4fdcfd7217bfdbd895b2dbd94f7975e0430c0d9cdbc00d44",
+        "manifest_sha256": "faeab5181b8f5e5f0f66d7480120bfa2a0db010a0b8ad35c6f83a2b74958fc89",
+        "selection_sha256": "63b26baad8e58bf6d5adc3a07fe59333a9537f246e2e30f6ee5664ca6dd74daa",
+        "evaluated_adapter_sha256": null
+      }
+    },
+    {
+      "fn": 86,
+      "fp": 45,
+      "tp": 122,
+      "model": "gemma-parent",
+      "status": "completed",
+      "examples": 182,
+      "micro_f2": 0.6106106106106106,
+      "protocol_hash": "a738c9be4de240e0d5cd10a4a22054f52a02b12f28738f51748404eb89939281",
+      "source_sha256": "c4217dfcf1def5dfb5ae16120d2857e44c46b0aaa9a66aa5f104caab348f3fab",
+      "decoding_protocol": "explicit-kv-cache-v2",
+      "valid_json_fraction": 1.0,
+      "frozen_test_contract": {
+        "scope": "One-time held-out label agreement; not mission reward or physical mine accuracy",
+        "control": "parent",
+        "adapter_sha256": "fda258727f04777e4fdcfd7217bfdbd895b2dbd94f7975e0430c0d9cdbc00d44",
+        "manifest_sha256": "faeab5181b8f5e5f0f66d7480120bfa2a0db010a0b8ad35c6f83a2b74958fc89",
+        "selection_sha256": "63b26baad8e58bf6d5adc3a07fe59333a9537f246e2e30f6ee5664ca6dd74daa",
+        "evaluated_adapter_sha256": "f9bd1c6e2913f6f8446d995624d1e9f953ddce281bc03d1f1e99d7c6eac215e3"
+      }
+    }
+  ],
+  "scope": "Mission rewards and held-out image label agreement are separate measurements. Historical import; not field validation.",
+  "imported_records": 56,
+  "input_sha256": "e7cee7f6bf074a2ec29ae81cafa74f9d88f34574f7cdeed8e10415174ded37c9"
+}

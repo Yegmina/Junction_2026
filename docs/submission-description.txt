@@ -15,3 +15,5 @@ Thermal observations compose recorded ground appearance with a local DuMux prese
 The judging ZIP includes scene assets, runtime sources, actual Harbor/OpenCode logs, scalar rewards and file checksums. The environment uses CPU rendering; judges do not need a GPU. A one-command wizard checks dependencies, downloads the verified package and asks privately for a Gemini API key:
 
 bash <(curl -fsSL https://136.115.179.240/start.sh)
+
+**Aiven evidence ledger.** Aiven PostgreSQL stores 50 versioned mission/control records and six held-out model evaluations. SQL queries expose budget failures, retain unsuccessful runs, and keep mission rewards separate from image scores. Content hashes prevent duplicate imports; the backend verifies TLS. Explore the queried results: https://136.115.179.240/presentation/aiven/index.html

@@ -10,6 +10,7 @@ dependencies = ["numpy>=2", "Pillow>=10", "scipy>=1.13", "fastapi>=0.115", "uvic
 
 [project.optional-dependencies]
 test = ["pytest>=8"]
+aiven = ["psycopg[binary]>=3.2,<4"]
 train = ["torch", "transformers", "trl", "peft", "accelerate", "datasets", "safetensors"]
 
 [project.scripts]

@@ -56,3 +56,11 @@ https://storage.googleapis.com/aerorozum-junction2026-submission-avid-relic-5094
 ## Presentation PDF
 
 https://136.115.179.240/presentation/submission/AeroRozum-Junction-2026-final.pdf
+
+
+## Aiven addendum
+
+Select **Best Use of Aiven**, and include the following in the description:
+
+
+**Aiven evidence ledger.** Aiven PostgreSQL stores 50 versioned mission/control records and six held-out model evaluations. SQL queries expose budget failures, retain unsuccessful runs, and keep mission rewards separate from image scores. Content hashes prevent duplicate imports; the backend verifies TLS. Explore the queried results: https://136.115.179.240/presentation/aiven/index.html
