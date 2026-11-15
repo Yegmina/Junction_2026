@@ -8,7 +8,7 @@ from pathlib import Path
 
 
 def main():
-    p=argparse.ArgumentParser();p.add_argument('--task',required=True);p.add_argument('--job-name',required=True);p.add_argument('--jobs-dir',default='./jobs');p.add_argument('--harbor',default=shutil.which('harbor') or 'harbor');p.add_argument('--model',default='gemini-4-argon');p.add_argument('--local-gemma',action='store_true');p.add_argument('--local-model',default='gemma-4-12b-refined-grpo');p.add_argument('--base-url',default='http://host.docker.internal:18941/v1');p.add_argument('--seed',type=int);p.add_argument('--key-file');p.add_argument('--phase',choices=['warming','cooling','dawn','late_warming']);p.add_argument('--budget',type=int);p.add_argument('--output-tokens',type=int);a=p.parse_args()
+    p=argparse.ArgumentParser();p.add_argument('--task',required=True);p.add_argument('--job-name',required=True);p.add_argument('--jobs-dir',default='./jobs');p.add_argument('--harbor',default=shutil.which('harbor') or 'harbor');p.add_argument('--model',default='gemini-4-argon');p.add_argument('--local-gemma',action='store_true');p.add_argument('--local-model',default='gemma-4-12b-refined-grpo');p.add_argument('--base-url',default='http://host.docker.internal:18941/v1');p.add_argument('--seed',type=int);p.add_argument('--key-file');p.add_argument('--phase',choices=['warming','cooling','dawn','late_warming']);p.add_argument('--budget',type=int);p.add_argument('--output-tokens',type=int);p.add_argument('--thinking-level',choices=['minimal','low','medium','high']);p.add_argument('--thinking-budget',type=int);p.add_argument('--flight-agent',action='store_true');a=p.parse_args()
     env=os.environ.copy()
     if a.budget is not None and not 60<=a.budget<=600:p.error('--budget must be 60..600 simulated seconds')
     if a.output_tokens is not None and not 512<=a.output_tokens<=(4096 if a.local_gemma else 65536):
@@ -31,6 +31,16 @@ def main():
         extra=['--api-key-name','GOOGLE_GENERATIVE_AI_API_KEY'];key_name='GOOGLE_GENERATIVE_AI_API_KEY';context=131072;output=8192
     if a.output_tokens is not None:output=a.output_tokens
     config=dict(provider={provider:dict(options=dict(apiKey='{env:'+key_name+'}'),models={model:dict(name=model,limit=dict(context=context,output=output),modalities=dict(input=['text','image'],output=['text']))})})
+    if a.thinking_level:
+        if a.local_gemma:p.error('--thinking-level is only supported for the Google provider')
+        config['provider'][provider]['models'][model]['options']={'thinkingConfig': {'thinkingLevel': a.thinking_level}}
+    if a.thinking_budget is not None:
+        if a.local_gemma or a.thinking_level or not 0<=a.thinking_budget<=24576:p.error('Use one Google thinking control; budget must be 0..24576')
+        selected=config['provider'][provider]['models'][model]
+        selected['reasoning']=False  # Suppress OpenCode automatic high-level defaults, not the explicit API budget.
+        selected['options']={'thinkingConfig': {'thinkingBudget': a.thinking_budget, 'includeThoughts': True}}
+    if a.flight_agent:
+        config['agent']={'build': {'prompt': 'You operate a simulated drone using the public drone CLI. Complete the mission through real tool calls before ending your response. Use concise decisions. First run drone status and the documented SDK import check. Choose a short set of inspection waypoints covering the public regions, at an altitude eligible for close evidence. Write only a small waypoint JSON plan, then execute drone collect with a 600000ms tool timeout. Do not implement a detector, inspect library internals, install packages, or write a long analysis program before collecting images. After landing, read the evidence index and actual thermal/RGB images, associate supported sightings using the public camera geometry, and submit the required JSON report. Respect the task instructions and flight budget. Never manufacture observations or target locations. The mission is unfinished until drone submit has returned.'}}
     kwargs=dict(version='1.19.5',opencode_config=config)
     if a.local_gemma:
         config['provider'][provider].update(npm='@ai-sdk/openai-compatible')

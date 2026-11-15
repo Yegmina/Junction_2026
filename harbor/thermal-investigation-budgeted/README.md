@@ -42,6 +42,22 @@ thermal condition and evidence requirements before takeoff. The public
 `camera_geometry` module projects captured pixels using actual pose/calibration.
 The private simulator holds insertion identities and immutable camera evidence.
 
+## Public flight-plan SDK (V6 bundle)
+
+The SDK is explicitly readable by the unprivileged agent user. A generic
+`drone collect --plan /workspace/plan.json` executor accepts agent-selected
+waypoints, captures paired images, maintains a conservative return reserve,
+and lands before downloading the images. The agent still chooses its route,
+interprets images, associates candidates and submits the report. The SDK has no
+detector, target coordinates or private simulator access. It uses the same
+public commands as a custom flight program. Direct control remains available.
+
+Prepare code before launch, collect with a bounded local controller, and analyse
+the saved `/workspace/evidence/mission.json` index and camera images after landing.
+This avoids spending the aircraft's flight time on slow API calls or Python
+debugging. The flight clock, 75-second budget and verifier are unchanged.
+The revised SDK and instructions are versioned separately from V5 results.
+
 The reference uses public images and telemetry: wide scans, RGB background
 fitting, radial-shape checks, close inspections within each region, and an
 explicit reserve for the remaining survey and home return. It receives no

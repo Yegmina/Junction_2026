@@ -1,0 +1,33 @@
+{
+  "job": "opencode-20261115-085437",
+  "model": "gemini-4-argon",
+  "seed": 8047543173386242928,
+  "verifier": {
+    "reward": 0.0,
+    "completed": false,
+    "true_positives": 0,
+    "false_positives": 0,
+    "false_negatives": 3,
+    "f2": 0.0,
+    "qualified_coverage": 0.5,
+    "multi_view_matches": 0,
+    "invalid_candidates": 0,
+    "observations": 1,
+    "actions": 8,
+    "flight_elapsed_s": 142.15600000000006,
+    "budget_s": 75.0,
+    "returned_home": true,
+    "scope": "Inserted synthetic-object retrieval in experimental composed thermal imagery; not physical mine confirmation"
+  },
+  "issues": [
+    "Public camera_geometry.py could not be read as the agent user",
+    "Agent helper import ctl failed during flight",
+    "Simulation continued during model analysis and error recovery"
+  ],
+  "corrective_changes": [
+    "Explicit public SDK directory and file permissions in Dockerfile",
+    "Public agent-selected waypoint collector with automatic return reserve",
+    "Preflight import check and post-landing image analysis guidance"
+  ],
+  "grading_rules_changed": false
+}

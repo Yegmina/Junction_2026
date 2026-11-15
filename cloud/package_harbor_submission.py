@@ -149,8 +149,11 @@ From this extracted directory, run the reference with:
 `harbor run -p ./thermal-investigation -a oracle`.
 For a model, use Harbor's usual `-a opencode -m <provider/model>` arguments.
 The included Google runner pins the tested harness configuration, for example:
-`python run_harbor_trial.py --task ./thermal-investigation --job-name first-run --key-file /private/key-file --output-tokens 32768`.
-Keep credentials outside the task. The task uses a separate CPU-rendered Gazebo
+`python run_harbor_trial.py --task ./thermal-investigation --job-name first-run --key-file /private/key-file --output-tokens 8192 --thinking-budget 1024 --flight-agent`.
+The recommended runner uses a bounded-reasoning flight-operator profile; its
+configuration is recorded by Harbor. Plain Harbor/OpenCode runs remain supported
+and use the evaluator's own agent settings. Keep credentials outside the task.
+The task uses a separate CPU-rendered Gazebo
 simulator container configured for up to 8 CPU cores and 12 GiB, in addition to
 the agent container. A GPU is not required to run the environment.
 

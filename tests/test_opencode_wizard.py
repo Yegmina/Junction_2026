@@ -150,6 +150,17 @@ def test_enter_respects_negative_default_for_resource_override(monkeypatch):
     assert wizard.confirm('Continue with insufficient resources?', False) is False
 
 
+def test_repeat_installation_uses_cached_workspace_allowance(tmp_path):
+    assert wizard.workspace_requirement(tmp_path) == 20
+    (tmp_path / 'harbor-venv/bin').mkdir(parents=True)
+    (tmp_path / 'harbor-venv/bin/harbor').write_text('cached executable')
+    receipt = tmp_path / 'setup-receipt.json'
+    receipt.write_text(json.dumps({'harbor_version': '0.26.0', 'opencode_version': '1.19.5'}))
+    assert wizard.workspace_requirement(tmp_path) == 8
+    receipt.write_text('invalid receipt')
+    assert wizard.workspace_requirement(tmp_path) == 20
+
+
 def test_key_stays_in_header_and_selected_model_output_limit_is_respected(monkeypatch, capsys):
     monkeypatch.delenv('GEMINI_API_KEY', raising=False)
     monkeypatch.delenv('GOOGLE_GENERATIVE_AI_API_KEY', raising=False)

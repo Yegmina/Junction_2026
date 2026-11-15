@@ -10,6 +10,32 @@ an evidence-linked JSON report. Read `drone status` before takeoff for the
 flight-time budget and thermal condition. You have at most 64 tool actions.
 The simulator keeps flying during your analysis.
 
+## Reliable execution
+
+Prepare and test your code **before takeoff**. Model calls and debugging can
+consume most of the flight budget. Prefer collecting evidence in one bounded
+local flight program, landing, and then using your image tools to analyse the
+saved frames and write the final report. Landing stops the flight clock;
+post-flight analysis and report preparation do not spend the flight budget.
+
+The public `drone collect --plan /workspace/plan.json` tool executes your chosen
+waypoints, captures paired images at each reached position, reserves a
+conservative return margin, and lands automatically. It does not select a route,
+detect candidates, submit a report, or access hidden information. Write a plan:
+`{"waypoints":[{"x":8,"y":1,"altitude":4}]}`. Choose enough positions to inspect
+the requested regions within the budget; the example is only one waypoint.
+Close captures need altitude at most 4.5m. A second view at least 1m away can
+support the same sighting. The executor may skip remaining waypoints to return
+on time. Read its saved `/workspace/evidence/mission.json` index for actual
+captures, pose, calibration, local image paths, and the landing receipt.
+
+Before collecting, verify `python3 -c "import camera_geometry, flight_plan"`.
+After collection, inspect the saved thermal/RGB images, associate sightings
+using the public geometry module, write normalized 0..1000 boxes, and submit
+with `drone submit --report /workspace/report.json`. Do not spend flight time
+writing detection code or waiting for a model to analyse images. Direct drone
+tools remain available for a custom adaptive controller instead of `collect`.
+
 Local coordinates are metres east (+x), north (+y), and altitude above flat
 ground. Home is (0,0). Flight bounds are x/y -24..24 and altitude 2..10m. East is
 x=5..15,y=-5..5; North is x=-5..5,y=7..17. You choose the route and heights;

@@ -20,8 +20,8 @@ import urllib.request
 import zipfile
 
 BASE = 'https://storage.googleapis.com/aerorozum-junction2026-submission-avid-relic-509408-e4'
-ARCHIVE = 'aerorozum-harbor-close-inspection-v5.zip'
-ARCHIVE_SHA = 'b49f5b89bd7fc64bbaff071da08bfaa145b65015daea0665f00708039c98de79'
+ARCHIVE = 'aerorozum-harbor-close-inspection-v6.zip'
+ARCHIVE_SHA = 'f1cf87c6344c74fa1bc7b4d3d9b1901af45a9f89c28ec19b968b5e303b74fb3d'
 HARBOR_VERSION = '0.26.0'
 DEFAULT_MODEL = 'gemini-4-argon'
 GIB = 1024 ** 3
@@ -143,15 +143,31 @@ def extract_package(archive, directory):
     return package
 
 
+def workspace_requirement(directory):
+    # A repeat launch reuses Python, Harbor and UV. Docker's independent
+    # 15-GiB storage check below still applies; do not repeat the cold-install
+    # workspace requirement after the first build has consumed some space.
+    try:
+        receipt = json.loads((directory / 'setup-receipt.json').read_text())
+        if (receipt.get('harbor_version') == HARBOR_VERSION
+                and receipt.get('opencode_version') == '1.19.5'
+                and (directory / 'harbor-venv/bin/harbor').is_file()):
+            return 8
+    except (OSError, ValueError, AttributeError):
+        pass
+    return 20
+
+
 def workspace(explicit=None):
     default = str(Path.home() / '.local/share/aerorozum-opencode')
     while True:
         directory = Path(explicit or ask('Where should the environment and results be saved?', default)).expanduser().resolve()
         directory.mkdir(parents=True, exist_ok=True)
         free = shutil.disk_usage(directory).free / GIB
-        if free >= 20:
+        required = workspace_requirement(directory)
+        if free >= required:
             return directory
-        message = 'Only %.1f GiB free at %s; allow at least 20 GiB for setup and Docker builds.' % (free, directory)
+        message = 'Only %.1f GiB free at %s; allow at least %s GiB for setup and Docker builds.' % (free, directory, required)
         if explicit:
             raise SetupError(message)
         print(message + '\nChoose another writable drive, or press Ctrl+C and run this on a VM.')
@@ -322,14 +338,18 @@ def choose_model():
             elif limits[model] < 512:
                 print('That model’s output allowance is too small for this harness.')
             else:
-                return key, model, min(32768, limits[model])
+                return key, model, min(8192, limits[model])
 
 
 def runner_command(python, harbor, package, jobs, name, model, output_tokens=32768):
-    return [str(python), str(package / 'run_harbor_trial.py'), '--task',
+    command = [str(python), str(package / 'run_harbor_trial.py'), '--task',
             str(package / 'thermal-investigation-budgeted'), '--job-name', name,
             '--jobs-dir', str(jobs), '--harbor', str(harbor), '--model', model,
             '--output-tokens', str(output_tokens)]
+    command += ['--flight-agent']
+    if model in ('gemini-4-argon', 'gemini-4-carbon'):
+        command += ['--thinking-budget', '1024']
+    return command
 
 
 def main(argv=None):
@@ -347,7 +367,11 @@ def main(argv=None):
         print('\nPreparing the exact judging package…')
         archive = directory / ARCHIVE
         download(BASE + '/' + ARCHIVE, archive, ARCHIVE_SHA)
-        package = extract_package(archive, directory)
+        # Install revisions alongside previous packages and keep every saved
+        # run intact. Never silently patch a checksummed cached task in place.
+        package_directory = directory / 'packages' / ARCHIVE_SHA[:16]
+        package_directory.mkdir(parents=True, exist_ok=True)
+        package = extract_package(archive, package_directory)
         print('\nPreparing Harbor 0.26.0 and Python 3.12…')
         harbor = harbor_ready(directory, env, args.harbor)
         print('  Harbor ready. OpenCode 1.19.5 installs inside the task container automatically.')
@@ -376,6 +400,15 @@ def main(argv=None):
         print('\nRun artifacts: ' + str(jobs / name))
         for reward in rewards:
             print('Verifier score: ' + reward.read_text().strip())
+            details = reward.parent / 'details.json'
+            if details.is_file():
+                data = json.loads(details.read_text())
+                elapsed, budget = data.get('flight_elapsed_s'), data.get('budget_s')
+                if isinstance(elapsed, (int, float)) and isinstance(budget, (int, float)):
+                    print('Flight: %.1f / %.1f seconds; %s captures; %s matched candidates.' %
+                          (elapsed, budget, data.get('observations', 0), data.get('true_positives', 0)))
+                    if elapsed > budget:
+                        print('Mission failed: the flight exceeded its budget. See the saved agent tool log.')
         if not rewards:
             print('No verifier score was produced; inspect the job’s result.json and agent logs.')
         return result.returncode

@@ -64,3 +64,11 @@ Select **Best Use of Aiven**, and include the following in the description:
 
 
 **Aiven evidence ledger.** Aiven PostgreSQL stores 50 versioned mission/control records and six held-out model evaluations. SQL queries expose budget failures, retain unsuccessful runs, and keep mission rewards separate from image scores. Content hashes prevent duplicate imports; the backend verifies TLS. Explore the queried results: https://136.115.179.240/presentation/aiven/index.html
+
+
+## Verified V6 OpenCode flight
+
+
+**Verified OpenCode flight (V6).** Our flight-operator profile scored 0.628: two of three inserted targets matched, zero false positives, six close captures, and home landing in 68.5 of 75 simulated seconds. A public waypoint collector reserves return time; the agent chooses its plan and analyses saved thermal/RGB evidence after landing. Replay: https://136.115.179.240/presentation/submission/playthrough/sdk-v6/index.html
+
+Runnable V6 bundle: https://storage.googleapis.com/aerorozum-junction2026-submission-avid-relic-509408-e4/aerorozum-harbor-close-inspection-v6.zip

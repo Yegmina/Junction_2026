@@ -36,3 +36,30 @@ def test_frontier_output_allowance_is_explicit_in_saved_harness_configuration(mo
     monkeypatch.setattr(runner.subprocess,'run',invoke)
     assert runner.main()==0
     assert captured[0]['provider']['google']['models']['gemini-4-argon']['limit']['output']==32768
+
+
+def test_explicit_thinking_level_is_saved_in_model_options(monkeypatch):
+    monkeypatch.setenv('GEMINI_API_KEY','credential-fixture')
+    monkeypatch.setattr(sys,'argv',['runner','--task','task','--job-name','fixture','--thinking-level','low'])
+    captured=[]
+    def invoke(args,env):
+        option=next(x for x in args if x.startswith('opencode_config='))
+        captured.append(json.loads(option.split('=',1)[1]));return SimpleNamespace(returncode=0)
+    monkeypatch.setattr(runner.subprocess,'run',invoke)
+    assert runner.main()==0
+    assert captured[0]['provider']['google']['models']['gemini-4-argon']['options']=={'thinkingConfig': {'thinkingLevel':'low'}}
+
+
+def test_bounded_flight_agent_does_not_inherit_automatic_high_thinking(monkeypatch):
+    monkeypatch.setenv('GEMINI_API_KEY','credential-fixture')
+    monkeypatch.setattr(sys,'argv',['runner','--task','task','--job-name','fixture','--thinking-budget','1024','--flight-agent'])
+    captured=[]
+    def invoke(args,env):
+        option=next(x for x in args if x.startswith('opencode_config='))
+        captured.append(json.loads(option.split('=',1)[1]));return SimpleNamespace(returncode=0)
+    monkeypatch.setattr(runner.subprocess,'run',invoke)
+    assert runner.main()==0
+    model=captured[0]['provider']['google']['models']['gemini-4-argon']
+    assert model['reasoning'] is False
+    assert model['options']['thinkingConfig']['thinkingBudget']==1024
+    assert 'drone collect' in captured[0]['agent']['build']['prompt']
