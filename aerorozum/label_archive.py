@@ -23,7 +23,7 @@ def archive_pass(folder, store, state_path, workers=8):
     pending = []
     failures = []
     paths = set(folder.glob('*.json'))
-    for name in ('results', 'paid-responses', 'provider/raw', 'provider/responses', 'provider/errors', 'failures', 'checkpoints', 'runs'):
+    for name in ('results', 'raw', 'responses', 'errors', 'paid-responses', 'provider/raw', 'provider/responses', 'provider/errors', 'failures', 'checkpoints', 'runs'):
         paths.update((folder / name).glob('*.json'))
     for path in sorted(paths):
         try:

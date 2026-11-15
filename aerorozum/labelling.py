@@ -181,6 +181,9 @@ def inference_cache_key(row,sha,provider,model=MODEL,*,prompt=None):
     # Explicit bounded repairs have separate identities. Ordinary paid-cache
     # identities remain unchanged, including every existing remote record.
     if cfg.get('inference_revision'):identity['inference_revision']=cfg['inference_revision']
+    if cfg.get('thinking_level') is not None:
+        identity['generation_config'].pop('thinking_budget',None)
+        identity['generation_config']['thinking_level']=str(cfg['thinking_level']).lower()
     return digest(identity)
 
 
@@ -386,6 +389,8 @@ async def label_frames(rows,output_dir,provider=None,model=MODEL,threshold=.6,co
                         'uncertain_boxes':[{'bbox':d['bbox'],'confidence':d['confidence']} for d in classification['uncertain']],
                         'zero_candidates':classification['zero_candidates'],'labelled_at':utcnow(),
                         'training_excluded_reason':'uncertain_regions_require_ignore_support' if classification['accepted'] and classification['uncertain'] else None}
+                    if getattr(provider,'cfg',{}).get('thinking_level') is not None:
+                        result['inference_profile']={k:provider.cfg.get(k) for k in ('thinking_level','reserve_output_tokens','temperature','inference_revision')}
                     if normalizations:
                         result['original_model_output']=output
                         result['output_normalization']={'policy':'lossless_bbox_key_aliases_v1','changes':normalizations,'coordinates_changed':False,'confidence_changed':False}

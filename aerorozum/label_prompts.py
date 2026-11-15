@@ -6,7 +6,16 @@ PROMPT_V1 = '''Inspect this ORIGINAL thermal frame for visible provisional mine-
 PROMPT_V2 = '''Inspect this ORIGINAL thermal drone frame for possible mine-like objects and localized ground signatures. Prioritize finding plausible candidates, including small, faint, low-contrast, partly obscured, blurred, or partially buried signatures, rather than only very obvious objects. Look for both hotter and colder anomalies, compact shapes, edges, rings, texture changes, and contrast with nearby ground; a candidate need not be circular or bright. Include a plausible subtle candidate with an appropriately LOWER confidence score. Calibrate confidence to the visible evidence: weak or ambiguous evidence should receive a low score, not an inflated score. Do not raise confidence to meet an acceptance threshold. For each candidate give a tight bounding box, brief visible evidence, and a plausible alternative explanation. Distinguish scene objects from sensor/reflection artifacts and out-of-focus camera equipment; list other visible objects separately without automatically dismissing nearby ground candidates. Return JSON {"detections":[{"label":"provisional mine-like thermal candidate","confidence":0.0,"bbox":{"x_min":0,"y_min":0,"x_max":1000,"y_max":1000},"evidence":"brief visible evidence","alternative":"other plausible explanation"}],"other_objects":[],"explanation":"brief visible evidence and limitations"}. Include ALL plausible proposed candidates even when confidence is low. An empty detections array means no plausible candidate was identified in this frame. Named normalized boxes use 0..1000. No private chain-of-thought.'''
 
 PROMPT_VERSION = 'thermal-v2-recall-calibrated'
-PROMPTS = {'thermal-v1-conservative': PROMPT_V1, PROMPT_VERSION: PROMPT_V2}
+PROMPT_V3 = PROMPT_V2 + '''
+Use a scene-scale pass to establish terrain, thermal gradients, vegetation,
+camera artifacts and the local contrast range. Then inspect compact anomalies
+at object scale, including faint hot and cold edges and partially obscured
+objects. Check each proposed box against the original pixels and surrounding
+ground. Keep distinct neighboring candidates separate. Use lower confidence
+for weak localization or ambiguous visual evidence. Return the same JSON
+schema, with concise evidence and alternatives rather than a reasoning trace.'''
+PROMPTS = {'thermal-v1-conservative': PROMPT_V1, PROMPT_VERSION: PROMPT_V2,
+           'thermal-v3-two-scale-review': PROMPT_V3}
 
 
 def prompt_metadata(text):

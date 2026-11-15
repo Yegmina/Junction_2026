@@ -23,9 +23,24 @@ class ProviderDraining(RuntimeError):
 
 def request_identity(cfg,*,role,prompt,images,model,max_output_tokens):
     """Identity shared by strict JSON calls and retained-completion evaluation."""
-    return digest(dict(role=role,prompt=prompt,images=images,model=model,
+    identity=dict(role=role,prompt=prompt,images=images,model=model,
         temperature=float(cfg.get('temperature',.1)),max_output_tokens=max_output_tokens,
-        api_version=cfg.get('api_version','v1beta'),thinking_budget=cfg.get('thinking_budget')))
+        api_version=cfg.get('api_version','v1beta'),thinking_budget=cfg.get('thinking_budget'))
+    if cfg.get('thinking_level') is not None:
+        identity['thinking_level']=str(cfg['thinking_level']).lower()
+    return digest(identity)
+
+
+def generation_settings(cfg,limit):
+    generation=dict(temperature=float(cfg.get('temperature',.1)),response_mime_type='application/json',max_output_tokens=limit)
+    if cfg.get('thinking_level') is not None:
+        if cfg.get('thinking_budget') is not None:raise ValueError('Choose thinking level or token budget, not both')
+        level=str(cfg['thinking_level']).lower()
+        if level not in ('minimal','low','medium','high','xhigh'):raise ValueError('Unknown reasoning level')
+        generation['thinking_config']={'thinking_level':level.upper()}
+    elif 'thinking_budget' in cfg:
+        generation['thinking_config']={'thinking_budget':cfg['thinking_budget']}
+    return generation
 
 
 @dataclass(eq=False)
@@ -108,7 +123,7 @@ class GeminiProvider:
         if not key:
             raise RuntimeError('Hackathon GEMINI_API_KEY is not configured; startup fallback is disabled')
         # Explicit flags prevent inherited Google Cloud variables selecting enterprise.
-        self.client = genai.Client(api_key=key, enterprise=False, vertexai=False, http_options={'timeout':120000,'api_version':self.cfg.get('api_version','v1beta')})
+        self.client = genai.Client(api_key=key, enterprise=False, vertexai=False, http_options={'timeout':self.cfg.get('http_timeout_ms',120000),'api_version':self.cfg.get('api_version','v1beta')})
         self.root = Path(output_dir or data_root() / 'gemini')
         self.root.mkdir(parents=True, exist_ok=True)
         self.limiter = WindowLimiter(self.cfg.get('requests_per_minute',60), self.cfg.get('input_tokens_per_minute',200000))
@@ -188,9 +203,7 @@ class GeminiProvider:
                     await self.limiter.cancel(reservation);raise
                 start = time.monotonic()
                 try:
-                    generation=dict(temperature=temperature,response_mime_type='application/json',max_output_tokens=limit)
-                    if 'thinking_budget' in self.cfg:
-                        generation['thinking_config']=types.ThinkingConfig(thinking_budget=self.cfg['thinking_budget'])
+                    generation=generation_settings(self.cfg,limit)
                     response = await self.client.aio.models.generate_content(model=model,contents=contents,config=types.GenerateContentConfig(**generation))
                     # Preserve every paid response before parsing, including malformed
                     # or truncated output that may still be useful for diagnostics.
@@ -202,6 +215,7 @@ class GeminiProvider:
                         raise ValueError('Expected JSON object')
                     usage = response.usage_metadata.model_dump(mode='json') if response.usage_metadata else {}
                     record = dict(id=cache_id,role=role,backend='developer_api',model=model,created_at=utcnow(),prompt=prompt,image_hashes=content_hashes,output=output,raw_text=response.text,finish_reason=str(response.candidates[0].finish_reason) if response.candidates else None,generation_config=dict(temperature=temperature,max_output_tokens=limit,api_version=self.cfg.get('api_version','v1beta'),thinking_budget=self.cfg.get('thinking_budget')),usage=usage,elapsed_s=time.monotonic()-start,attempt=attempt+1)
+                    if self.cfg.get('thinking_level') is not None:record['generation_config']['thinking_level']=str(self.cfg['thinking_level']).lower()
                     save(cache,record)
                     return output
                 except Exception as ex:
@@ -232,7 +246,7 @@ class GeminiProvider:
     def response_record(self,role,prompt,images=(),model=None,max_output_tokens=None):
         model=model or self.cfg['bulk_model'];limit=max_output_tokens or self.cfg.get('reserve_output_tokens',2048)
         hashes=[hashlib.sha256(Path(p).read_bytes()).hexdigest() for p in images]
-        key=digest(dict(role=role,prompt=prompt,images=hashes,model=model,temperature=.1,max_output_tokens=limit,api_version=self.cfg.get('api_version','v1beta'),thinking_budget=self.cfg.get('thinking_budget')))
+        key=request_identity(self.cfg,role=role,prompt=prompt,images=hashes,model=model,max_output_tokens=limit)
         path=self.root/'responses'/(key+'.json')
         if path.exists():return json.loads(path.read_text())
         raw=sorted((self.root/'raw').glob(key+'-*.json'))
