@@ -6,6 +6,7 @@ and agent-interface diagnostic, not a causal model-training comparison.
 from datetime import datetime,timezone
 import hashlib
 import json
+import os
 from pathlib import Path
 import shutil
 import subprocess
@@ -13,7 +14,7 @@ import time
 import urllib.request
 
 ROOT=Path('/opt/aerorozum');ART=ROOT/'artifacts';NIGHT=ART/'overnight-20261115T000942'
-PACKAGE=ROOT/'opencode-wizard-smoke/aerorozum-submission'
+PACKAGE=Path(os.environ.get('AEROROZUM_NATIVE_PACKAGE',str(ROOT/'opencode-wizard-smoke/aerorozum-submission')))
 HARBOR=ROOT/'opencode-wizard-smoke/harbor-venv/bin/harbor'
 END=datetime.fromisoformat('2026-11-15T05:45:00+00:00')
 

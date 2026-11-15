@@ -1,0 +1,447 @@
+{
+  "at": "2026-11-15T03:55:51.829079+00:00",
+  "status": "partial",
+  "protocol_sha256": "9346679d7fed7fdba8f7822bd33e049e2fcd3ad8fb165808c4998e719b7a54d9",
+  "protocol_file_sha256": "e7fbc318de30e49aed470d7294df545112133c83c8be54db162d646a42a8459c",
+  "expected_pairs": 3000,
+  "observed_frame_identities": 2582,
+  "valid_paired_frames": 2553,
+  "invalid_outputs_by_arm": {
+    "blind_context": 15,
+    "proposal_context": 13
+  },
+  "accepted_frame_table_blind_then_proposal": {
+    "none/none": 1623,
+    "none/accepted": 302,
+    "accepted/accepted": 496,
+    "accepted/none": 132
+  },
+  "accepted_candidate_totals": {
+    "proposal_context": 990,
+    "blind_context": 722
+  },
+  "uncertain_candidate_totals": {
+    "proposal_context": 2396,
+    "blind_context": 1553
+  },
+  "acceptance_disagreement_fraction": 0.1699960830395613,
+  "by_source": {
+    "jetson/2026-10-30/recordings/2026-10-30_132822/thermal-0000.avi": {
+      "none/none": 37,
+      "none/accepted": 1
+    },
+    "jetson/2026-10-30/recordings/2026-10-30_132822/thermal-0001.avi": {
+      "none/none": 35,
+      "none/accepted": 2
+    },
+    "jetson/2026-10-30/recordings/2026-10-30_132822/thermal-0003.avi": {
+      "none/none": 35,
+      "none/accepted": 1,
+      "accepted/accepted": 1
+    },
+    "jetson/2026-10-30/recordings/2026-10-30_132822/thermal-0004.avi": {
+      "none/none": 2
+    },
+    "jetson/2026-10-30/recordings/2026-10-30_132822/thermal-0008.avi": {
+      "none/none": 3
+    },
+    "jetson/2026-10-30/recordings/2026-10-30_132822/thermal-0017.avi": {
+      "none/none": 28
+    },
+    "jetson/2026-10-30/recordings/2026-10-30_142416/thermal-0002.avi": {
+      "none/none": 16
+    },
+    "jetson/2026-10-30/recordings/2026-10-30_142416/thermal-0003.avi": {
+      "accepted/none": 3,
+      "accepted/accepted": 15,
+      "none/none": 16,
+      "none/accepted": 4
+    },
+    "jetson/2026-10-30/recordings/2026-10-30_142416/thermal-0004.avi": {
+      "accepted/accepted": 16,
+      "none/none": 12,
+      "none/accepted": 9,
+      "accepted/none": 1
+    },
+    "jetson/2026-10-30/recordings/2026-10-30_143627/thermal-0001.avi": {
+      "none/accepted": 7,
+      "none/none": 12,
+      "accepted/none": 1,
+      "accepted/accepted": 1
+    },
+    "jetson/2026-10-30/recordings/2026-10-30_143627/thermal-0002.avi": {
+      "none/none": 29,
+      "accepted/none": 2,
+      "accepted/accepted": 3,
+      "none/accepted": 2
+    },
+    "jetson/2026-10-30/recordings/2026-10-30_143627/thermal-0003.avi": {
+      "none/accepted": 11,
+      "accepted/accepted": 13,
+      "none/none": 12,
+      "accepted/none": 1
+    },
+    "jetson/2026-10-30/recordings/2026-10-30_143627/thermal-0004.avi": {
+      "accepted/accepted": 18,
+      "none/accepted": 7,
+      "accepted/none": 1,
+      "none/none": 12
+    },
+    "jetson/2026-10-30/recordings/2026-10-30_143627/thermal-0005.avi": {
+      "accepted/none": 1,
+      "none/none": 14,
+      "none/accepted": 13,
+      "accepted/accepted": 9
+    },
+    "jetson/2026-10-30/recordings/2026-10-30_143627/thermal-0006.avi": {
+      "none/none": 29,
+      "none/accepted": 2,
+      "accepted/accepted": 7
+    },
+    "jetson/2026-10-30/recordings/2026-10-30_144714/thermal-0003.avi": {
+      "accepted/accepted": 3,
+      "none/none": 31,
+      "none/accepted": 3,
+      "accepted/none": 1
+    },
+    "jetson/2026-10-30/recordings/2026-10-30_144714/thermal-0004.avi": {
+      "none/accepted": 9,
+      "accepted/accepted": 10,
+      "none/none": 15,
+      "accepted/none": 4
+    },
+    "jetson/2026-10-30/recordings/2026-10-30_144714/thermal-0005.avi": {
+      "none/none": 31,
+      "none/accepted": 7
+    },
+    "jetson/2026-10-30/recordings/2026-10-30_144714/thermal-0006.avi": {
+      "none/none": 31,
+      "none/accepted": 5,
+      "accepted/accepted": 2
+    },
+    "jetson/2026-10-30/recordings/2026-10-30_144714/thermal-0007.avi": {
+      "none/none": 31,
+      "none/accepted": 3,
+      "accepted/accepted": 4
+    },
+    "jetson/2026-10-30/recordings/2026-10-30_144714/thermal-0008.avi": {
+      "accepted/accepted": 2,
+      "none/none": 32,
+      "accepted/none": 1,
+      "none/accepted": 3
+    },
+    "jetson/2026-11-03/recordings/2026-11-03_184330/thermal-0004.avi": {
+      "none/none": 6
+    },
+    "jetson/2026-11-03/recordings/2026-11-03_190921/thermal-0000.avi": {
+      "none/none": 11,
+      "accepted/none": 4,
+      "none/accepted": 2,
+      "accepted/accepted": 4
+    },
+    "jetson/2026-11-03/recordings/2026-11-03_190921/thermal-0001.avi": {
+      "none/none": 1
+    },
+    "jetson/2026-11-04/recordings/2026-11-04_144451/thermal-0000.avi": {
+      "none/none": 11,
+      "accepted/none": 3,
+      "none/accepted": 1
+    },
+    "jetson/2026-11-04/recordings/2026-11-04_144451/thermal-0001.avi": {
+      "none/none": 17,
+      "none/accepted": 12,
+      "accepted/accepted": 8,
+      "accepted/none": 1
+    },
+    "jetson/2026-11-04/recordings/2026-11-04_144451/thermal-0002.avi": {
+      "none/none": 20,
+      "accepted/accepted": 9,
+      "none/accepted": 8,
+      "accepted/none": 1
+    },
+    "jetson/2026-11-04/recordings/2026-11-04_144451/thermal-0003.avi": {
+      "none/none": 1
+    },
+    "jetson/2026-11-04/recordings/2026-11-04_145441/thermal-0001.avi": {
+      "accepted/accepted": 17,
+      "none/none": 15,
+      "none/accepted": 3,
+      "accepted/none": 3
+    },
+    "jetson/2026-11-04/recordings/2026-11-04_145441/thermal-0002.avi": {
+      "none/none": 27,
+      "accepted/none": 3,
+      "none/accepted": 4,
+      "accepted/accepted": 3
+    },
+    "jetson/2026-11-04/recordings/2026-11-04_145441/thermal-0003.avi": {
+      "none/none": 2
+    },
+    "jetson/2026-11-04/recordings/2026-11-04_152714/thermal-0001.avi": {
+      "none/accepted": 5,
+      "none/none": 23,
+      "accepted/accepted": 7,
+      "accepted/none": 2
+    },
+    "jetson/2026-11-04/recordings/2026-11-04_152714/thermal-0002.avi": {
+      "accepted/accepted": 13,
+      "none/accepted": 9,
+      "none/none": 16
+    },
+    "jetson/2026-11-04/recordings/2026-11-04_152714/thermal-0003.avi": {
+      "none/none": 12,
+      "accepted/accepted": 9,
+      "none/accepted": 12,
+      "accepted/none": 3
+    },
+    "jetson/2026-11-04/recordings/2026-11-04_152714/thermal-0004.avi": {
+      "none/none": 25,
+      "accepted/accepted": 3,
+      "none/accepted": 4,
+      "accepted/none": 4
+    },
+    "jetson/2026-11-04/recordings/2026-11-04_152714/thermal-0005.avi": {
+      "none/none": 23,
+      "none/accepted": 4,
+      "accepted/accepted": 8,
+      "accepted/none": 3
+    },
+    "jetson/2026-11-04/recordings/2026-11-04_152714/thermal-0006.avi": {
+      "none/none": 31,
+      "none/accepted": 4,
+      "accepted/accepted": 2,
+      "accepted/none": 1
+    },
+    "jetson/2026-11-04/recordings/2026-11-04_152714/thermal-0007.avi": {
+      "none/none": 27,
+      "accepted/accepted": 7,
+      "none/accepted": 2,
+      "accepted/none": 1
+    },
+    "jetson/2026-11-04/recordings/2026-11-04_152714/thermal-0008.avi": {
+      "none/none": 14
+    },
+    "jetson/2026-11-04/recordings/2026-11-04_155308/thermal-0005.avi": {
+      "none/none": 15,
+      "none/accepted": 1
+    },
+    "jetson/2026-11-04/recordings/2026-11-04_155308/thermal-0006.avi": {
+      "none/none": 26,
+      "none/accepted": 6,
+      "accepted/none": 5
+    },
+    "jetson/2026-11-04/recordings/2026-11-04_155308/thermal-0007.avi": {
+      "none/accepted": 7,
+      "accepted/accepted": 9,
+      "none/none": 21
+    },
+    "jetson/2026-11-04/recordings/2026-11-04_155308/thermal-0008.avi": {
+      "none/none": 30,
+      "none/accepted": 4,
+      "accepted/accepted": 2,
+      "accepted/none": 1
+    },
+    "jetson/2026-11-04/recordings/2026-11-04_155308/thermal-0009.avi": {
+      "none/none": 34,
+      "accepted/none": 1,
+      "none/accepted": 2
+    },
+    "jetson/2026-11-04/recordings/2026-11-04_155308/thermal-0010.avi": {
+      "none/none": 20,
+      "accepted/accepted": 7,
+      "none/accepted": 8,
+      "accepted/none": 2
+    },
+    "jetson/2026-11-04/recordings/2026-11-04_155308/thermal-0011.avi": {
+      "none/none": 26,
+      "accepted/accepted": 4,
+      "none/accepted": 7
+    },
+    "jetson/2026-11-04/recordings/2026-11-04_162621/thermal-0001.avi": {
+      "none/none": 17
+    },
+    "jetson/2026-11-04/recordings/2026-11-04_162621/thermal-0002.avi": {
+      "none/none": 36,
+      "none/accepted": 1
+    },
+    "jetson/2026-11-04/recordings/2026-11-04_162621/thermal-0003.avi": {
+      "none/none": 34,
+      "accepted/accepted": 1,
+      "none/accepted": 2
+    },
+    "jetson/2026-11-04/recordings/2026-11-04_162621/thermal-0004.avi": {
+      "accepted/accepted": 13,
+      "none/none": 14,
+      "none/accepted": 9,
+      "accepted/none": 1
+    },
+    "jetson/2026-11-04/recordings/2026-11-04_162621/thermal-0005.avi": {
+      "accepted/accepted": 4,
+      "none/none": 24,
+      "none/accepted": 6,
+      "accepted/none": 3
+    },
+    "jetson/2026-11-04/recordings/2026-11-04_162621/thermal-0006.avi": {
+      "none/accepted": 3,
+      "none/none": 33
+    },
+    "jetson/2026-11-04/recordings/2026-11-04_162621/thermal-0007.avi": {
+      "none/none": 15,
+      "accepted/accepted": 2,
+      "accepted/none": 2,
+      "none/accepted": 3
+    },
+    "jetson/2026-11-11/recordings/2026-11-11_134911/thermal-0004.avi": {
+      "accepted/accepted": 13,
+      "none/none": 16,
+      "none/accepted": 6,
+      "accepted/none": 2
+    },
+    "jetson/2026-11-11/recordings/2026-11-11_134911/thermal-0005.avi": {
+      "none/none": 32,
+      "accepted/none": 2,
+      "none/accepted": 3
+    },
+    "jetson/2026-11-11/recordings/2026-11-11_134911/thermal-0006.avi": {
+      "none/none": 30,
+      "none/accepted": 2,
+      "accepted/accepted": 3,
+      "accepted/none": 2
+    },
+    "jetson/2026-11-11/recordings/2026-11-11_134911/thermal-0007.avi": {
+      "accepted/accepted": 11,
+      "none/none": 17,
+      "accepted/none": 4,
+      "none/accepted": 4
+    },
+    "jetson/2026-11-11/recordings/2026-11-11_134911/thermal-0008.avi": {
+      "none/accepted": 2,
+      "none/none": 29,
+      "accepted/accepted": 5
+    },
+    "jetson/2026-11-11/recordings/2026-11-11_134911/thermal-0009.avi": {
+      "accepted/none": 4,
+      "none/none": 17,
+      "none/accepted": 5,
+      "accepted/accepted": 11
+    },
+    "jetson/2026-11-11/recordings/2026-11-11_134911/thermal-0010.avi": {
+      "none/none": 27,
+      "accepted/accepted": 9
+    },
+    "jetson/2026-11-13/recordings/2026-11-13_133717/thermal-0002.avi": {
+      "none/none": 27,
+      "accepted/accepted": 4,
+      "accepted/none": 3,
+      "none/accepted": 1
+    },
+    "jetson/2026-11-13/recordings/2026-11-13_133717/thermal-0003.avi": {
+      "none/accepted": 11,
+      "none/none": 16,
+      "accepted/accepted": 7,
+      "accepted/none": 2
+    },
+    "jetson/2026-11-13/recordings/2026-11-13_133717/thermal-0004.avi": {
+      "none/none": 12,
+      "accepted/none": 6,
+      "none/accepted": 5,
+      "accepted/accepted": 13
+    },
+    "jetson/2026-11-13/recordings/2026-11-13_133717/thermal-0005.avi": {
+      "none/accepted": 2,
+      "none/none": 24,
+      "accepted/none": 4,
+      "accepted/accepted": 7
+    },
+    "jetson/2026-11-13/recordings/2026-11-13_135448/thermal-0006.avi": {
+      "none/none": 25,
+      "none/accepted": 5,
+      "accepted/accepted": 1,
+      "accepted/none": 5
+    },
+    "jetson/2026-11-13/recordings/2026-11-13_135448/thermal-0007.avi": {
+      "none/none": 30,
+      "accepted/none": 4,
+      "accepted/accepted": 3
+    },
+    "jetson/2026-11-13/recordings/2026-11-13_135448/thermal-0008.avi": {
+      "accepted/accepted": 3,
+      "none/none": 32,
+      "accepted/none": 2
+    },
+    "jetson/2026-11-13/recordings/2026-11-13_140652/thermal-0000.avi": {
+      "accepted/none": 4,
+      "none/none": 25,
+      "accepted/accepted": 7,
+      "none/accepted": 1
+    },
+    "jetson/2026-11-13/recordings/2026-11-13_140652/thermal-0001.avi": {
+      "none/none": 33,
+      "none/accepted": 1,
+      "accepted/none": 2,
+      "accepted/accepted": 1
+    },
+    "jetson/2026-11-13/recordings/2026-11-13_140652/thermal-0002.avi": {
+      "none/none": 27,
+      "accepted/none": 4,
+      "accepted/accepted": 6
+    },
+    "jetson/2026-11-13/recordings/2026-11-13_140652/thermal-0003.avi": {
+      "none/none": 32,
+      "accepted/accepted": 4,
+      "none/accepted": 1
+    },
+    "jetson/2026-11-14/recordings/2026-11-14_140133/thermal-0012.avi": {
+      "none/none": 11,
+      "accepted/accepted": 19,
+      "accepted/none": 4,
+      "none/accepted": 3
+    },
+    "jetson/2026-11-14/recordings/2026-11-14_140133/thermal-0013.avi": {
+      "none/none": 6,
+      "accepted/accepted": 21,
+      "accepted/none": 3,
+      "none/accepted": 7
+    },
+    "jetson/2026-11-14/recordings/2026-11-14_140133/thermal-0014.avi": {
+      "accepted/none": 2,
+      "accepted/accepted": 17,
+      "none/accepted": 7,
+      "none/none": 9
+    },
+    "jetson/2026-11-14/recordings/2026-11-14_142320/thermal-0003.avi": {
+      "none/none": 15,
+      "accepted/accepted": 16,
+      "accepted/none": 5,
+      "none/accepted": 1
+    },
+    "jetson/2026-11-14/recordings/2026-11-14_142320/thermal-0004.avi": {
+      "accepted/accepted": 19,
+      "none/none": 7,
+      "accepted/none": 3,
+      "none/accepted": 6
+    },
+    "jetson/2026-11-14/recordings/2026-11-14_142320/thermal-0005.avi": {
+      "accepted/accepted": 15,
+      "none/none": 16,
+      "none/accepted": 4,
+      "accepted/none": 2
+    },
+    "jetson/2026-11-14/recordings/2026-11-14_143512/thermal-0002.avi": {
+      "none/none": 16,
+      "accepted/accepted": 16,
+      "none/accepted": 3,
+      "accepted/none": 1
+    },
+    "jetson/2026-11-14/recordings/2026-11-14_143512/thermal-0003.avi": {
+      "none/none": 2,
+      "accepted/none": 2,
+      "none/accepted": 4,
+      "accepted/accepted": 29
+    }
+  },
+  "provider_report": null,
+  "training_eligible": false,
+  "independent_accuracy_claimed": false,
+  "interpretation": "Descriptive same-provider paired review diagnostic, not recall, precision, or physical confirmation. Both arms see the same three frames; the proposal arm additionally sees earlier unverified detections. Acceptance uses the frozen 0.60 threshold. Invalid or missing arms are excluded from the paired table and retained separately. No first-pass record is overwritten."
+}

@@ -12,7 +12,7 @@ import urllib.request
 
 ROOT=Path('/opt/aerorozum')
 STUDY=ROOT/'artifacts/overnight-20261115T000942'
-PACKAGE=ROOT/'opencode-wizard-smoke/aerorozum-submission'
+PACKAGE=Path(os.environ.get('AEROROZUM_NATIVE_PACKAGE',str(ROOT/'opencode-wizard-smoke/aerorozum-submission')))
 HARBOR=ROOT/'opencode-wizard-smoke/harbor-venv/bin/harbor'
 PYTHON=HARBOR.with_name('python')
 JOBS=ROOT/'harbor/jobs'

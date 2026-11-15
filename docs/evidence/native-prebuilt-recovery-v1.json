@@ -1,0 +1,47 @@
+{
+  "at": "2026-11-15T04:03:40.433106+00:00",
+  "original_package": "/opt/aerorozum/opencode-wizard-smoke/aerorozum-submission",
+  "operational_package": "/opt/aerorozum/postsubmission/prebuilt-native-package-v1",
+  "changed_files": [
+    "task.toml",
+    "environment/docker-compose.yaml"
+  ],
+  "images": {
+    "main": "sha256:aaf0d1ced16396939cc6b067bd101200b3f93e8fa20e5114793a2423a5c8063c",
+    "simulator": "sha256:8def4fb08951de782ede7ac6b7d01ba5e13f6d1f67b3bf35caab82e502fef45d"
+  },
+  "original_runtime_files_match": {
+    "main": {
+      "verified_input_files": 2,
+      "image": "sha256:aaf0d1ced16396939cc6b067bd101200b3f93e8fa20e5114793a2423a5c8063c"
+    },
+    "simulator": {
+      "verified_input_files": 50,
+      "image": "sha256:8def4fb08951de782ede7ac6b7d01ba5e13f6d1f67b3bf35caab82e502fef45d"
+    }
+  },
+  "task_instruction_tests_solution_and_budget_unchanged": true,
+  "no_image_rebuild_or_package_upgrade_used": true,
+  "original_errors_preserved": true,
+  "new_trials_only": true,
+  "original_published_submission_unchanged": true,
+  "dispatch_resumed_at": "2026-11-15T04:07:26.787633+00:00",
+  "coordinators": [
+    "aerorozum-overnight-native-controller-v4",
+    "aerorozum-native-chat-controls-v4"
+  ],
+  "new_source": "/opt/aerorozum/postsubmission/native-prebuilt-queues-v1",
+  "source_sha256": {
+    "cloud/overnight_missions.py": "395f6c8b654ff01577f9fd73b126c6e71d90d8d34830b6bd1fb2833d1acf5f38",
+    "cloud/native_chat_controls.py": "af1bd975af9e739757bd5c083af1f82b9f5ed6f213637d4f1e3038630d40100f"
+  },
+  "smoke_started": true,
+  "smoke_verified_public_status": {
+    "ready": true,
+    "observed_real_mission_action_count": 12,
+    "observed_flight_elapsed_s": 53.2
+  },
+  "smoke_final_score_pending": true,
+  "accepted_carbon_trial_preserved": true,
+  "previous_failed_trials_not_retried": true
+}

@@ -126,3 +126,19 @@ The PDF is about 1.1 MB, below the form's 20 MB limit. Browser export verified s
 The expanded seed-17 parent scored F2 0.677570 after its initial 15 GRPO updates. From that exact parent, the extra-SFT control completed all 96 requested updates and scored 0.686047 (TP 59, FP 19, FN 29). The extra-GRPO arm stopped at 25 of 96 requested updates and scored 0.704388 (TP 61, FP 20, FN 27). Both had zero disagreements on the 32 model-zero reference frames. These arms share the maximum requested update budget; their actual updates and compute differ. The earlier 602-image seed-17 comparison did complete 96 updates in both arms.
 
 The first 4,688-image HIGH-teacher run then started on GPU 1. At 03:47 UTC it had completed 41 of 3,751 supervised updates, with 41 finite nonzero gradient checks and a nonzero visual-projection gradient. Other seeds remain in their predeclared comparisons before entering the new cohort.
+
+## Continuous comparison reporting, 03:58 UTC
+
+A separate read-only publisher now renders the 2,400-image cohort and its paired continuation arms whenever a terminal result appears. It shows all three declared seeds, the actual optimizer counts, and pending arms explicitly. The live page links both the figure and its source hashes. This reporter neither launches training nor changes its inputs. Source and rendered snapshots are archived privately in GCS.
+
+The temporal-review summarizer compares accepted-frame decisions between blind three-frame context and the same context with earlier unverified proposals. It excludes invalid/unpaired outputs from the paired table and retains their counts separately. The comparison measures same-provider proposal sensitivity, not detection accuracy; no reviewed output overwrites the first-pass labels or becomes training data.
+
+Removing only unused Docker build cache older than six hours reported 1.381 GB reclaimed. Concurrent work means measured filesystem headroom rose by 0.882 GiB during the command, rather than exactly that amount. Images, containers, volumes and original datasets were preserved. [Cleanup receipt](evidence/cloud-build-cache-cleanup.json).
+
+## Native build recovery, 04:07 UTC
+
+Cache cleanup exposed a dependency on cached Docker build layers: new Harbor trials attempted package installation, but container DNS could not reach the cloud resolver behind the existing link-local block. These setup failures remain infrastructure errors in the outcome grid. The cloud model, training, labeling and active Carbon mission were unaffected.
+
+Remaining trials now use a separate operational task copy that names the **exact original retained image IDs**. Only `task.toml` and the Compose image-routing fields differ; instructions, tests, solution, budgets and runtime image contents are unchanged. All 52 packaged runtime/scene/SDK files matched their original image contents by SHA256. No rebuilt image or upgraded package is used for the resumed comparisons. A diagnostic legacy main-image build was retained as an unused infrastructure probe, not a new benchmark image.
+
+The unchanged metadata firewall and daemon remain in place. Old dispatchers were held and replaced; accepted independent workers continued. Previously attempted worlds are never retried. A separate unscored-for-comparison smoke mission at seed 941999 reached ready state and executed actual flight/evidence actions; its terminal verifier result remains pending at this timestamp. The new dispatchers preserve their own source hashes and explicit package path. [Recovery receipt](evidence/native-prebuilt-recovery-v1.json).
